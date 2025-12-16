@@ -17,6 +17,22 @@ export const metadata: Metadata = {
   title: "SipWiki - The Ultimate Drinking Game Encyclopedia",
   description: "Discover, play, and master drinking games. Browse 20+ party games with rules, materials, and an AI referee to settle disputes.",
   keywords: ["drinking games", "party games", "beer pong", "kings cup", "drinking game rules"],
+  manifest: "/manifest.json",
+  themeColor: "#ec4899",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "SipWiki",
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
+  other: {
+    "mobile-web-app-capable": "yes",
+  },
 };
 
 export default function RootLayout({

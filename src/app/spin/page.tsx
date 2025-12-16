@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { nonAffiliateItems } from "@/config/monetizationConfig";
 
 const playerOptions = [
+  { label: "1", value: 1 },
   { label: "2", value: 2 },
   { label: "3-5", value: 4 },
   { label: "6-10", value: 8 },
