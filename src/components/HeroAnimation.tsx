@@ -1,58 +1,69 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Scene = "beer-pong" | "cards" | "dice";
 
+const SCENE_DURATION = 5000; // 5 seconds per scene
+
+const colors = {
+  pink: "#ec4899",
+  purple: "#a855f7",
+  green: "#10b981",
+  dark: "#0a0a0f",
+};
+
 export function HeroAnimation() {
   const [currentScene, setCurrentScene] = useState<Scene>("beer-pong");
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
   const scenes: Scene[] = ["beer-pong", "cards", "dice"];
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentScene((prev) => {
-          const currentIndex = scenes.indexOf(prev);
-          return scenes[(currentIndex + 1) % scenes.length];
-        });
-        setIsTransitioning(false);
-      }, 300);
-    }, 6000);
+      setCurrentScene((prev) => {
+        const currentIndex = scenes.indexOf(prev);
+        return scenes[(currentIndex + 1) % scenes.length];
+      });
+    }, SCENE_DURATION);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="relative w-full max-w-2xl mx-auto h-64 md:h-80">
+    <div className="relative w-full max-w-2xl mx-auto h-72 md:h-80">
+      {/* Ambient glow background */}
       <div
-        className={`absolute inset-0 transition-opacity duration-300 ${
-          isTransitioning ? "opacity-0" : "opacity-100"
-        }`}
-      >
-        {currentScene === "beer-pong" && <BeerPongScene />}
-        {currentScene === "cards" && <CardsScene />}
-        {currentScene === "dice" && <DiceScene />}
-      </div>
+        className="absolute inset-0 opacity-30"
+        style={{
+          background: `radial-gradient(ellipse at center, ${colors.purple}20 0%, transparent 70%)`,
+        }}
+      />
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentScene}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.05 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="absolute inset-0"
+        >
+          {currentScene === "beer-pong" && <BeerPongScene />}
+          {currentScene === "cards" && <CardsScene />}
+          {currentScene === "dice" && <DiceScene />}
+        </motion.div>
+      </AnimatePresence>
 
       {/* Scene indicators */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-2">
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2 z-10">
         {scenes.map((scene) => (
           <button
             key={scene}
-            onClick={() => {
-              setIsTransitioning(true);
-              setTimeout(() => {
-                setCurrentScene(scene);
-                setIsTransitioning(false);
-              }, 300);
-            }}
-            className={`w-2 h-2 rounded-full transition-all ${
+            onClick={() => setCurrentScene(scene)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
               currentScene === scene
-                ? "bg-neon-pink w-6"
-                : "bg-dark-600 hover:bg-dark-500"
+                ? "w-8 bg-gradient-to-r from-pink-500 to-purple-500"
+                : "w-1.5 bg-white/20 hover:bg-white/40"
             }`}
           />
         ))}
@@ -61,462 +72,430 @@ export function HeroAnimation() {
   );
 }
 
+// ============================================
+// BEER PONG SCENE
+// ============================================
 function BeerPongScene() {
   return (
-    <svg
-      viewBox="0 0 400 200"
-      className="w-full h-full"
-      style={{ overflow: "visible" }}
-    >
-      {/* Table */}
-      <rect
-        x="80"
-        y="130"
-        width="240"
-        height="8"
-        rx="2"
-        fill="#1a1a2e"
-        stroke="#2d2d44"
-        strokeWidth="1"
-      />
-      <rect
-        x="90"
-        y="138"
-        width="4"
-        height="40"
-        fill="#1a1a2e"
-      />
-      <rect
-        x="306"
-        y="138"
-        width="4"
-        height="40"
-        fill="#1a1a2e"
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+      {/* Table surface hint */}
+      <motion.div
+        initial={{ opacity: 0, scaleX: 0 }}
+        animate={{ opacity: 1, scaleX: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="absolute bottom-16 w-3/4 h-1 rounded-full"
+        style={{
+          background: `linear-gradient(90deg, transparent, ${colors.purple}40, transparent)`,
+        }}
       />
 
-      {/* Left cups (pyramid) */}
-      <g className="cups-left">
-        {/* Back row */}
-        <Cup x={95} y={110} />
-        <Cup x={115} y={110} />
-        <Cup x={135} y={110} />
-        <Cup x={155} y={110} />
-        {/* Middle row */}
-        <Cup x={105} y={95} />
-        <Cup x={125} y={95} />
-        <Cup x={145} y={95} />
-        {/* Front row */}
-        <Cup x={115} y={80} />
-        <Cup x={135} y={80} />
-        {/* Top */}
-        <Cup x={125} y={65} />
-      </g>
+      {/* Left cup formation */}
+      <div className="absolute left-1/4 -translate-x-1/2 bottom-20">
+        <CupFormation delay={0} side="left" />
+      </div>
 
-      {/* Right cups (pyramid) */}
-      <g className="cups-right">
-        {/* Back row */}
-        <Cup x={245} y={110} />
-        <Cup x={265} y={110} />
-        <Cup x={285} y={110} />
-        <Cup x={305} y={110} />
-        {/* Middle row */}
-        <Cup x={255} y={95} />
-        <Cup x={275} y={95} />
-        <Cup x={295} y={95} />
-        {/* Front row */}
-        <Cup x={265} y={80} />
-        <Cup x={285} y={80} />
-        {/* Top */}
-        <Cup x={275} y={65} />
-      </g>
-
-      {/* Left player */}
-      <g className="player-left">
-        <StickFigure x={40} y={60} facing="right" />
-      </g>
-
-      {/* Right player */}
-      <g className="player-right">
-        <StickFigure x={360} y={60} facing="left" />
-      </g>
+      {/* Right cup formation */}
+      <div className="absolute right-1/4 translate-x-1/2 bottom-20">
+        <CupFormation delay={0.2} side="right" />
+      </div>
 
       {/* Animated ball with trail */}
-      <g className="ball-animation">
-        {/* Trail (dotted line) */}
-        <path
-          d="M 55 75 Q 150 -20 275 70"
-          fill="none"
-          stroke="#6b7280"
-          strokeWidth="2"
-          strokeDasharray="4 4"
-          className="animate-trail"
-          style={{
-            strokeDashoffset: 100,
-            animation: "drawTrail 2s ease-out infinite",
-          }}
-        />
-        {/* Ball */}
-        <circle
-          r="6"
-          fill="white"
-          className="animate-ball"
-          style={{
-            offsetPath: "path('M 55 75 Q 150 -20 275 70')",
-            animation: "moveBall 2s ease-out infinite",
-          }}
-        >
-          <animateMotion
-            dur="2s"
-            repeatCount="indefinite"
-            path="M 55 75 Q 150 -20 275 70"
-            keyTimes="0;1"
-            keySplines="0.25 0.1 0.25 1"
-            calcMode="spline"
-          />
-        </circle>
-      </g>
-
-      {/* Decorative glow */}
-      <defs>
-        <filter id="glow">
-          <feGaussianBlur stdDeviation="2" result="coloredBlur" />
-          <feMerge>
-            <feMergeNode in="coloredBlur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-
-      <style>{`
-        @keyframes drawTrail {
-          0% {
-            stroke-dashoffset: 200;
-            opacity: 0;
-          }
-          20% {
-            opacity: 0.6;
-          }
-          80% {
-            opacity: 0.6;
-          }
-          100% {
-            stroke-dashoffset: 0;
-            opacity: 0;
-          }
-        }
-      `}</style>
-    </svg>
+      <BallWithTrail />
+    </div>
   );
 }
 
-function Cup({ x, y }: { x: number; y: number }) {
+function CupFormation({ delay, side }: { delay: number; side: "left" | "right" }) {
+  const cupPositions = [
+    // Row 1 (back) - 4 cups
+    { x: 0, y: 0 }, { x: 24, y: 0 }, { x: 48, y: 0 }, { x: 72, y: 0 },
+    // Row 2 - 3 cups
+    { x: 12, y: -20 }, { x: 36, y: -20 }, { x: 60, y: -20 },
+    // Row 3 - 2 cups
+    { x: 24, y: -40 }, { x: 48, y: -40 },
+    // Row 4 (front) - 1 cup
+    { x: 36, y: -60 },
+  ];
+
   return (
-    <g transform={`translate(${x}, ${y})`}>
-      {/* Cup body */}
-      <path
-        d="M -8 0 L -6 20 L 6 20 L 8 0 Z"
-        fill="#ef4444"
-        stroke="#dc2626"
-        strokeWidth="0.5"
-      />
-      {/* Liquid shine */}
-      <ellipse cx="0" cy="2" rx="6" ry="2" fill="#fca5a5" opacity="0.3" />
-      {/* Top rim */}
-      <ellipse cx="0" cy="0" rx="8" ry="3" fill="none" stroke="#f87171" strokeWidth="1" />
-    </g>
-  );
-}
-
-function StickFigure({
-  x,
-  y,
-  facing,
-}: {
-  x: number;
-  y: number;
-  facing: "left" | "right";
-}) {
-  const flip = facing === "left" ? -1 : 1;
-  return (
-    <g transform={`translate(${x}, ${y}) scale(${flip}, 1)`}>
-      {/* Head */}
-      <circle cx="0" cy="0" r="10" fill="none" stroke="#a855f7" strokeWidth="2" />
-      {/* Body */}
-      <line x1="0" y1="10" x2="0" y2="40" stroke="#a855f7" strokeWidth="2" />
-      {/* Legs */}
-      <line x1="0" y1="40" x2="-10" y2="65" stroke="#a855f7" strokeWidth="2" />
-      <line x1="0" y1="40" x2="10" y2="65" stroke="#a855f7" strokeWidth="2" />
-      {/* Throwing arm */}
-      <line
-        x1="0"
-        y1="18"
-        x2="15"
-        y2="8"
-        stroke="#a855f7"
-        strokeWidth="2"
-        className="arm-throw"
-        style={{
-          transformOrigin: "0px 18px",
-          animation: "throwArm 2s ease-out infinite",
-        }}
-      />
-      {/* Other arm */}
-      <line x1="0" y1="18" x2="-12" y2="30" stroke="#a855f7" strokeWidth="2" />
-
-      <style>{`
-        @keyframes throwArm {
-          0%, 100% {
-            transform: rotate(-30deg);
-          }
-          30% {
-            transform: rotate(45deg);
-          }
-          50%, 100% {
-            transform: rotate(-30deg);
-          }
-        }
-      `}</style>
-    </g>
-  );
-}
-
-function CardsScene() {
-  return (
-    <svg viewBox="0 0 400 200" className="w-full h-full">
-      {/* Central deck */}
-      <g transform="translate(200, 100)">
-        {/* Stack of cards */}
-        {[...Array(5)].map((_, i) => (
-          <rect
-            key={i}
-            x={-30 + i * 2}
-            y={-40 + i * 2}
-            width="60"
-            height="80"
-            rx="4"
-            fill="#1a1a2e"
-            stroke="#2d2d44"
-            strokeWidth="1"
-          />
-        ))}
-        {/* Top card face */}
-        <rect x={-22} y={-32} width="60" height="80" rx="4" fill="#1e1e32" stroke="#ec4899" strokeWidth="1" />
-        <text x="8" y="8" fill="#ec4899" fontSize="24" fontWeight="bold" textAnchor="middle">K</text>
-        <text x="8" y="28" fill="#ec4899" fontSize="16" textAnchor="middle">♥</text>
-      </g>
-
-      {/* Animated card being drawn */}
-      <g className="drawing-card">
-        <rect
-          x="170"
-          y="60"
-          width="60"
-          height="80"
-          rx="4"
-          fill="#1e1e32"
-          stroke="#a855f7"
-          strokeWidth="1"
-          style={{
-            transformOrigin: "200px 100px",
-            animation: "drawCard 3s ease-in-out infinite",
-          }}
-        />
-      </g>
-
-      {/* Players around (circles representing seats) */}
-      <circle cx="80" cy="100" r="20" fill="none" stroke="#3b82f6" strokeWidth="2" strokeDasharray="4 2" />
-      <circle cx="320" cy="100" r="20" fill="none" stroke="#3b82f6" strokeWidth="2" strokeDasharray="4 2" />
-      <circle cx="200" cy="30" r="20" fill="none" stroke="#3b82f6" strokeWidth="2" strokeDasharray="4 2" />
-      <circle cx="200" cy="170" r="20" fill="none" stroke="#3b82f6" strokeWidth="2" strokeDasharray="4 2" />
-
-      {/* Connection lines */}
-      <line x1="100" y1="100" x2="170" y2="100" stroke="#3b82f6" strokeWidth="1" strokeDasharray="4 4" opacity="0.3" />
-      <line x1="230" y1="100" x2="300" y2="100" stroke="#3b82f6" strokeWidth="1" strokeDasharray="4 4" opacity="0.3" />
-      <line x1="200" y1="50" x2="200" y2="68" stroke="#3b82f6" strokeWidth="1" strokeDasharray="4 4" opacity="0.3" />
-      <line x1="200" y1="132" x2="200" y2="150" stroke="#3b82f6" strokeWidth="1" strokeDasharray="4 4" opacity="0.3" />
-
-      <style>{`
-        @keyframes drawCard {
-          0%, 100% {
-            transform: translate(0, 0) rotate(0deg);
-            opacity: 1;
-          }
-          40% {
-            transform: translate(80px, -60px) rotate(15deg);
-            opacity: 1;
-          }
-          50% {
-            transform: translate(80px, -60px) rotate(15deg);
-            opacity: 0;
-          }
-          51% {
-            transform: translate(0, 0) rotate(0deg);
-            opacity: 0;
-          }
-          60% {
-            opacity: 1;
-          }
-        }
-      `}</style>
-    </svg>
-  );
-}
-
-function DiceScene() {
-  return (
-    <svg viewBox="0 0 400 200" className="w-full h-full">
-      {/* Table surface hint */}
-      <ellipse cx="200" cy="150" rx="150" ry="30" fill="#1a1a2e" opacity="0.5" />
-
-      {/* Dice 1 */}
-      <g
-        transform="translate(150, 90)"
-        style={{
-          animation: "rollDice1 2.5s ease-out infinite",
-        }}
-      >
-        <rect x="-25" y="-25" width="50" height="50" rx="8" fill="#1e1e32" stroke="#ec4899" strokeWidth="2" />
-        {/* Dots for 5 */}
-        <circle cx="-10" cy="-10" r="4" fill="#ec4899" />
-        <circle cx="10" cy="-10" r="4" fill="#ec4899" />
-        <circle cx="0" cy="0" r="4" fill="#ec4899" />
-        <circle cx="-10" cy="10" r="4" fill="#ec4899" />
-        <circle cx="10" cy="10" r="4" fill="#ec4899" />
-      </g>
-
-      {/* Dice 2 */}
-      <g
-        transform="translate(250, 95)"
-        style={{
-          animation: "rollDice2 2.5s ease-out infinite",
-        }}
-      >
-        <rect x="-25" y="-25" width="50" height="50" rx="8" fill="#1e1e32" stroke="#a855f7" strokeWidth="2" />
-        {/* Dots for 3 */}
-        <circle cx="-10" cy="-10" r="4" fill="#a855f7" />
-        <circle cx="0" cy="0" r="4" fill="#a855f7" />
-        <circle cx="10" cy="10" r="4" fill="#a855f7" />
-      </g>
-
-      {/* Hand throwing */}
-      <g
-        className="throwing-hand"
-        style={{
-          transformOrigin: "80px 50px",
-          animation: "throwHand 2.5s ease-out infinite",
-        }}
-      >
-        <path
-          d="M 60 80 Q 70 60 80 50 L 90 55 Q 85 65 75 85 Z"
-          fill="none"
-          stroke="#6b7280"
-          strokeWidth="2"
-        />
-      </g>
-
-      {/* Score display */}
-      <g transform="translate(200, 30)">
-        <text
-          x="0"
-          y="0"
-          fill="#10b981"
-          fontSize="20"
-          fontWeight="bold"
-          textAnchor="middle"
-          style={{
-            animation: "showScore 2.5s ease-out infinite",
-          }}
-        >
-          8!
-        </text>
-      </g>
-
-      {/* Decorative particles */}
-      {[...Array(6)].map((_, i) => (
-        <circle
+    <div className="relative" style={{ width: 90, height: 80 }}>
+      {cupPositions.map((pos, i) => (
+        <motion.div
           key={i}
-          cx={180 + i * 10}
-          cy={120}
-          r="2"
-          fill="#fbbf24"
-          style={{
-            animation: `particle ${2.5}s ease-out infinite`,
-            animationDelay: `${i * 0.1}s`,
+          initial={{ opacity: 0, y: 20, scale: 0.8 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{
+            delay: delay + i * 0.05,
+            type: "spring",
+            stiffness: 200,
+            damping: 15,
+          }}
+          className="absolute"
+          style={{ left: pos.x, top: pos.y + 60 }}
+        >
+          <Cup glowColor={side === "left" ? colors.pink : colors.purple} />
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+function Cup({ glowColor }: { glowColor: string }) {
+  return (
+    <div className="relative w-5 h-7">
+      {/* Cup glow */}
+      <div
+        className="absolute inset-0 rounded-sm blur-sm"
+        style={{ background: `${glowColor}30` }}
+      />
+      {/* Cup body */}
+      <div
+        className="absolute inset-0 rounded-t-sm"
+        style={{
+          background: `linear-gradient(180deg, ${glowColor}60 0%, ${glowColor}30 100%)`,
+          clipPath: "polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)",
+          backdropFilter: "blur(4px)",
+        }}
+      />
+      {/* Cup rim highlight */}
+      <div
+        className="absolute top-0 left-0 right-0 h-0.5 rounded-full"
+        style={{ background: `${glowColor}` }}
+      />
+    </div>
+  );
+}
+
+function BallWithTrail() {
+  return (
+    <>
+      {/* Trail path */}
+      <svg
+        className="absolute inset-0 w-full h-full"
+        viewBox="0 0 400 200"
+        style={{ overflow: "visible" }}
+      >
+        <motion.path
+          d="M 80 140 Q 200 20 320 140"
+          fill="none"
+          stroke="url(#trailGradient)"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeDasharray="8 4"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: [0, 0.6, 0.6, 0] }}
+          transition={{
+            duration: 2,
+            ease: "easeOut",
+            repeat: Infinity,
+            repeatDelay: 1,
+          }}
+        />
+        <defs>
+          <linearGradient id="trailGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor={colors.pink} stopOpacity="0.3" />
+            <stop offset="50%" stopColor="white" stopOpacity="0.6" />
+            <stop offset="100%" stopColor={colors.purple} stopOpacity="0.3" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      {/* Ball */}
+      <motion.div
+        className="absolute w-4 h-4 rounded-full bg-white"
+        initial={{ x: -120, y: 60, opacity: 0, scale: 0.5 }}
+        animate={{
+          x: [-120, 0, 120],
+          y: [60, -60, 60],
+          opacity: [0, 1, 1, 0],
+          scale: [0.5, 1, 1, 0.8],
+        }}
+        transition={{
+          duration: 2,
+          ease: "easeOut",
+          repeat: Infinity,
+          repeatDelay: 1,
+          times: [0, 0.5, 1, 1],
+        }}
+        style={{
+          boxShadow: `0 0 10px white, 0 0 20px ${colors.pink}, 0 0 30px ${colors.pink}50`,
+        }}
+      />
+    </>
+  );
+}
+
+// ============================================
+// CARDS SCENE
+// ============================================
+function CardsScene() {
+  const cardCount = 6;
+
+  return (
+    <div
+      className="relative w-full h-full flex items-center justify-center"
+      style={{ perspective: "1000px" }}
+    >
+      {/* Card stack */}
+      <div className="relative" style={{ transformStyle: "preserve-3d" }}>
+        {[...Array(cardCount)].map((_, i) => (
+          <motion.div
+            key={i}
+            initial={{
+              opacity: 0,
+              y: 50,
+              rotateX: 45,
+              z: -i * 4,
+            }}
+            animate={{
+              opacity: 1,
+              y: -i * 3,
+              rotateX: 55,
+              z: -i * 4,
+            }}
+            transition={{
+              delay: i * 0.1,
+              type: "spring",
+              stiffness: 100,
+              damping: 15,
+            }}
+            className="absolute w-28 h-40 rounded-xl"
+            style={{
+              transformStyle: "preserve-3d",
+              transform: `translateY(${-i * 3}px) translateZ(${-i * 4}px) rotateX(55deg)`,
+            }}
+          >
+            <Card index={i} isTop={i === cardCount - 1} />
+          </motion.div>
+        ))}
+
+        {/* Drawing card animation */}
+        <motion.div
+          initial={{ y: -15, rotateX: 55, rotateY: 0, x: 0, opacity: 1 }}
+          animate={{
+            y: [-15, -80, -80],
+            rotateX: [55, 20, 0],
+            rotateY: [0, -15, -20],
+            x: [0, 60, 80],
+            opacity: [1, 1, 0],
+          }}
+          transition={{
+            duration: 2.5,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatDelay: 1.5,
+            times: [0, 0.6, 1],
+          }}
+          className="absolute w-28 h-40 rounded-xl"
+          style={{ transformStyle: "preserve-3d" }}
+        >
+          <Card index={-1} isTop={true} isDrawing={true} />
+        </motion.div>
+      </div>
+
+      {/* Ambient particles */}
+      {[...Array(5)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-1 h-1 rounded-full"
+          style={{ background: colors.green }}
+          initial={{ opacity: 0, x: 40, y: 20 }}
+          animate={{
+            opacity: [0, 0.8, 0],
+            x: [40, 60 + i * 20, 80 + i * 20],
+            y: [20, -20 - i * 10, -40 - i * 15],
+          }}
+          transition={{
+            duration: 1.5,
+            delay: 1.8 + i * 0.1,
+            repeat: Infinity,
+            repeatDelay: 2.5,
           }}
         />
       ))}
+    </div>
+  );
+}
 
-      <style>{`
-        @keyframes rollDice1 {
-          0% {
-            transform: translate(150px, 90px) rotate(0deg) scale(0.5);
-            opacity: 0;
-          }
-          20% {
-            opacity: 1;
-          }
-          40% {
-            transform: translate(150px, 90px) rotate(360deg) scale(1);
-          }
-          100% {
-            transform: translate(150px, 90px) rotate(360deg) scale(1);
-          }
-        }
-        @keyframes rollDice2 {
-          0% {
-            transform: translate(250px, 95px) rotate(0deg) scale(0.5);
-            opacity: 0;
-          }
-          25% {
-            opacity: 1;
-          }
-          45% {
-            transform: translate(250px, 95px) rotate(-360deg) scale(1);
-          }
-          100% {
-            transform: translate(250px, 95px) rotate(-360deg) scale(1);
-          }
-        }
-        @keyframes throwHand {
-          0%, 30% {
-            opacity: 1;
-            transform: rotate(0deg);
-          }
-          40% {
-            opacity: 0;
-            transform: rotate(20deg);
-          }
-          100% {
-            opacity: 0;
-          }
-        }
-        @keyframes showScore {
-          0%, 50% {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          60% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-          100% {
-            opacity: 1;
-          }
-        }
-        @keyframes particle {
-          0%, 40% {
-            opacity: 0;
-            transform: translateY(0);
-          }
-          50% {
-            opacity: 1;
-          }
-          100% {
-            opacity: 0;
-            transform: translateY(-30px);
-          }
-        }
-      `}</style>
-    </svg>
+function Card({ index, isTop, isDrawing = false }: { index: number; isTop: boolean; isDrawing?: boolean }) {
+  const suits = ["♠", "♥", "♦", "♣"];
+  const values = ["A", "K", "Q", "J", "10"];
+  const suit = suits[Math.abs(index) % 4];
+  const value = values[Math.abs(index) % 5];
+  const isRed = suit === "♥" || suit === "♦";
+
+  return (
+    <div
+      className="w-full h-full rounded-xl border overflow-hidden"
+      style={{
+        background: isTop || isDrawing
+          ? "linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%)"
+          : "linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)",
+        borderColor: isDrawing ? colors.green : isTop ? `${colors.purple}60` : "rgba(255,255,255,0.1)",
+        backdropFilter: "blur(8px)",
+        boxShadow: isTop || isDrawing
+          ? `0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1), 0 0 20px ${isDrawing ? colors.green : colors.purple}30`
+          : "0 4px 16px rgba(0,0,0,0.3)",
+      }}
+    >
+      {(isTop || isDrawing) && (
+        <>
+          <div
+            className="absolute top-2 left-2 text-lg font-bold"
+            style={{ color: isRed ? colors.pink : "white" }}
+          >
+            {value}
+          </div>
+          <div
+            className="absolute top-6 left-2 text-base"
+            style={{ color: isRed ? colors.pink : "white" }}
+          >
+            {suit}
+          </div>
+          <div
+            className="absolute bottom-2 right-2 text-lg font-bold rotate-180"
+            style={{ color: isRed ? colors.pink : "white" }}
+          >
+            {value}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+// ============================================
+// DICE SCENE
+// ============================================
+function DiceScene() {
+  return (
+    <div
+      className="relative w-full h-full flex items-center justify-center gap-8"
+      style={{ perspective: "800px" }}
+    >
+      {/* First die */}
+      <motion.div
+        initial={{ x: -100, y: -80, rotateX: 720, rotateY: 720, opacity: 0 }}
+        animate={{ x: 0, y: 0, rotateX: 0, rotateY: 0, opacity: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 60,
+          damping: 12,
+          delay: 0.2,
+        }}
+      >
+        <Die value={5} glowColor={colors.pink} />
+      </motion.div>
+
+      {/* Second die */}
+      <motion.div
+        initial={{ x: 100, y: -80, rotateX: -720, rotateY: -720, opacity: 0 }}
+        animate={{ x: 0, y: 0, rotateX: 0, rotateY: 0, opacity: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 60,
+          damping: 12,
+          delay: 0.4,
+        }}
+      >
+        <Die value={3} glowColor={colors.purple} />
+      </motion.div>
+
+      {/* Score reveal */}
+      <motion.div
+        className="absolute top-8 text-3xl font-bold"
+        initial={{ opacity: 0, y: 20, scale: 0.5 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ delay: 1.2, type: "spring", stiffness: 200 }}
+        style={{
+          background: `linear-gradient(135deg, ${colors.green}, ${colors.purple})`,
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          textShadow: `0 0 30px ${colors.green}50`,
+        }}
+      >
+        8!
+      </motion.div>
+
+      {/* Celebration particles */}
+      {[...Array(8)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-1.5 h-1.5 rounded-full"
+          style={{
+            background: i % 2 === 0 ? colors.green : colors.pink,
+          }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{
+            opacity: [0, 1, 0],
+            scale: [0, 1, 0.5],
+            x: Math.cos((i * Math.PI) / 4) * 80,
+            y: [0, Math.sin((i * Math.PI) / 4) * 60 - 40],
+          }}
+          transition={{
+            duration: 1,
+            delay: 1.3 + i * 0.05,
+            repeat: Infinity,
+            repeatDelay: 3,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function Die({ value, glowColor }: { value: number; glowColor: string }) {
+  const dotPositions: Record<number, { x: number; y: number }[]> = {
+    1: [{ x: 50, y: 50 }],
+    2: [{ x: 25, y: 25 }, { x: 75, y: 75 }],
+    3: [{ x: 25, y: 25 }, { x: 50, y: 50 }, { x: 75, y: 75 }],
+    4: [{ x: 25, y: 25 }, { x: 75, y: 25 }, { x: 25, y: 75 }, { x: 75, y: 75 }],
+    5: [{ x: 25, y: 25 }, { x: 75, y: 25 }, { x: 50, y: 50 }, { x: 25, y: 75 }, { x: 75, y: 75 }],
+    6: [{ x: 25, y: 25 }, { x: 25, y: 50 }, { x: 25, y: 75 }, { x: 75, y: 25 }, { x: 75, y: 50 }, { x: 75, y: 75 }],
+  };
+
+  const dots = dotPositions[value] || [];
+
+  return (
+    <motion.div
+      className="relative w-20 h-20"
+      whileHover={{ scale: 1.05 }}
+      style={{ transformStyle: "preserve-3d" }}
+    >
+      {/* Glow effect */}
+      <div
+        className="absolute inset-0 rounded-2xl blur-xl opacity-50"
+        style={{ background: glowColor }}
+      />
+
+      {/* Die face */}
+      <div
+        className="absolute inset-0 rounded-2xl border"
+        style={{
+          background: "linear-gradient(145deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%)",
+          borderColor: `${glowColor}60`,
+          backdropFilter: "blur(10px)",
+          boxShadow: `0 10px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2), 0 0 20px ${glowColor}40`,
+        }}
+      >
+        {/* Dots */}
+        {dots.map((dot, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-3 h-3 rounded-full"
+            style={{
+              left: `${dot.x}%`,
+              top: `${dot.y}%`,
+              transform: "translate(-50%, -50%)",
+              background: glowColor,
+              boxShadow: `0 0 8px ${glowColor}`,
+            }}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.8 + i * 0.05, type: "spring" }}
+          />
+        ))}
+      </div>
+    </motion.div>
   );
 }
