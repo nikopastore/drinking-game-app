@@ -443,4 +443,45 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 
 ---
 
+## Implementation Status
+
+### Completed Files
+
+- `supabase/schema.sql` - Database schema with all tables and RPC functions
+- `src/lib/auth/useAuth.ts` - Auth state hook with Google/Apple sign-in
+- `src/lib/auth/authHelpers.ts` - Profile management helpers
+- `src/lib/auth/index.ts` - Auth exports
+- `src/app/auth/callback/route.ts` - OAuth callback handler
+- `src/components/auth/AuthModal.tsx` - Sign-in modal with Google + Apple buttons
+- `src/components/auth/AuthGuard.tsx` - Hook for gating actions behind auth
+- `src/components/auth/AuthProvider.tsx` - Global auth context provider
+- `src/components/auth/index.ts` - Auth component exports
+- `src/lib/contacts/contactHelpers.ts` - Hash, normalize functions
+- `src/lib/contacts/useContacts.ts` - Contact sync hook
+- `src/lib/contacts/index.ts` - Contact exports
+- `src/components/contacts/ContactSyncPrompt.tsx` - "Find friends" modal
+- `src/components/contacts/FriendsFoundModal.tsx` - "Friends found" celebration modal
+- `src/components/contacts/index.ts` - Contact component exports
+- `src/components/Providers.tsx` - Updated to include AuthProvider
+- `src/components/GameCard.tsx` - Updated to require auth on click
+- `android/app/src/main/AndroidManifest.xml` - Added READ_CONTACTS permission
+
+### iOS Setup Required
+
+The iOS folder doesn't exist yet. After running `npx cap add ios`, add this to `ios/App/App/Info.plist`:
+
+```xml
+<key>NSContactsUsageDescription</key>
+<string>SipWiki uses your contacts to find friends who are already using the app.</string>
+```
+
+### Supabase Configuration Required
+
+1. Enable Google OAuth in Supabase Dashboard → Authentication → Providers
+2. Enable Apple OAuth in Supabase Dashboard → Authentication → Providers
+3. Run the migrations in `supabase/schema.sql` against your Supabase database
+
+---
+
 *Document created: December 2025*
+*Implementation completed: December 2025*

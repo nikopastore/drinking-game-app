@@ -14,9 +14,29 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SipWiki - The Ultimate Drinking Game Encyclopedia",
-  description: "Discover, play, and master drinking games. Browse 20+ party games with rules, materials, and an AI referee to settle disputes.",
-  keywords: ["drinking games", "party games", "beer pong", "kings cup", "drinking game rules"],
+  title: "SipWiki - Party Games & Icebreakers for Adults | 30+ Games",
+  description: "The ultimate party companion app. 30+ fun group games with rules, from classic Beer Pong to Kings Cup. Perfect icebreakers for house parties, pre-games, and game nights. Works offline!",
+  keywords: [
+    // High-intent, lower competition
+    "party games for adults",
+    "icebreaker games",
+    "group games for adults",
+    "pre-game app",
+    "house party games",
+    "game night ideas",
+    // Activity-based
+    "truth or dare app",
+    "never have i ever game",
+    "kings cup rules",
+    "beer pong rules",
+    "flip cup rules",
+    // Contextual
+    "drinking game rules",
+    "party game app",
+    "social games",
+    "fun group activities",
+    "adult party ideas",
+  ],
   manifest: "/manifest.json",
   themeColor: "#ec4899",
   appleWebApp: {
@@ -30,8 +50,24 @@ export const metadata: Metadata = {
     maximumScale: 1,
     userScalable: false,
   },
+  openGraph: {
+    title: "SipWiki - Party Games & Icebreakers",
+    description: "30+ fun party games with rules. Perfect for house parties, pre-games, and breaking the ice. Free app that works offline!",
+    type: "website",
+    locale: "en_US",
+    siteName: "SipWiki",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SipWiki - Party Games & Icebreakers",
+    description: "30+ fun party games with rules. Perfect for house parties and game nights!",
+  },
   other: {
     "mobile-web-app-capable": "yes",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
