@@ -183,3 +183,129 @@ BEGIN
   WHERE game_id = game_slug;
 END;
 $$ LANGUAGE plpgsql;
+
+-- ============================================
+-- USER PROFILES TABLE (extends auth.users)
+-- ============================================
+CREATE TABLE IF NOT EXISTS user_profiles (
+  id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+  display_name TEXT,
+  avatar_url TEXT,
+  phone_number TEXT,
+  phone_verified BOOLEAN DEFAULT FALSE,
+  contacts_synced_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX idx_user_profiles_display_name ON user_profiles(display_name);
+
+-- ============================================
+-- USER CONTACTS TABLE (hashed for privacy)
+-- ============================================
+CREATE TABLE IF NOT EXISTS user_contacts (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
+  contact_hash TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(user_id, contact_hash)
+);
+
+CREATE INDEX idx_user_contacts_hash ON user_contacts(contact_hash);
+CREATE INDEX idx_user_contacts_user_id ON user_contacts(user_id);
+
+-- ============================================
+-- FRIENDSHIPS TABLE (derived from contact matching)
+-- ============================================
+CREATE TABLE IF NOT EXISTS friendships (
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
+  friend_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
+  discovered_at TIMESTAMPTZ DEFAULT NOW(),
+  PRIMARY KEY (user_id, friend_id)
+);
+
+CREATE INDEX idx_friendships_user_id ON friendships(user_id);
+CREATE INDEX idx_friendships_friend_id ON friendships(friend_id);
+
+-- ============================================
+-- USER PROFILES RLS POLICIES
+-- ============================================
+ALTER TABLE user_profiles ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Anyone can read user profiles"
+  ON user_profiles FOR SELECT
+  USING (true);
+
+CREATE POLICY "Users can insert their own profile"
+  ON user_profiles FOR INSERT
+  WITH CHECK (auth.uid() = id);
+
+CREATE POLICY "Users can update their own profile"
+  ON user_profiles FOR UPDATE
+  USING (auth.uid() = id);
+
+-- ============================================
+-- USER CONTACTS RLS POLICIES
+-- ============================================
+ALTER TABLE user_contacts ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can read their own contacts"
+  ON user_contacts FOR SELECT
+  USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can insert their own contacts"
+  ON user_contacts FOR INSERT
+  WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can delete their own contacts"
+  ON user_contacts FOR DELETE
+  USING (auth.uid() = user_id);
+
+-- ============================================
+-- FRIENDSHIPS RLS POLICIES
+-- ============================================
+ALTER TABLE friendships ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can read their own friendships"
+  ON friendships FOR SELECT
+  USING (auth.uid() = user_id OR auth.uid() = friend_id);
+
+CREATE POLICY "Users can insert their own friendships"
+  ON friendships FOR INSERT
+  WITH CHECK (auth.uid() = user_id);
+
+-- ============================================
+-- FRIEND MATCHING FUNCTION
+-- ============================================
+CREATE OR REPLACE FUNCTION find_friends(p_user_id UUID)
+RETURNS TABLE (
+  friend_id UUID,
+  display_name TEXT,
+  avatar_url TEXT
+) AS $$
+  SELECT DISTINCT
+    up.id as friend_id,
+    up.display_name,
+    up.avatar_url
+  FROM user_contacts uc
+  JOIN user_contacts friend_uc ON uc.contact_hash = friend_uc.contact_hash
+  JOIN user_profiles up ON friend_uc.user_id = up.id
+  WHERE uc.user_id = p_user_id
+    AND friend_uc.user_id != p_user_id;
+$$ LANGUAGE sql SECURITY DEFINER;
+
+-- ============================================
+-- AUTO-UPDATE TIMESTAMP TRIGGER
+-- ============================================
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_user_profiles_updated_at
+  BEFORE UPDATE ON user_profiles
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column();

@@ -16,6 +16,7 @@
     "mobile:android": "npm run build:mobile && npx cap sync android && npx cap open android"
   },
   "dependencies": {
+    "@capacitor-community/contacts": "^7.0.0",
     "@capacitor/android": "^8.0.0",
     "@capacitor/cli": "^8.0.0",
     "@capacitor/core": "^8.0.0",

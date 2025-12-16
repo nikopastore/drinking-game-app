@@ -612,6 +612,50 @@ sipwiki.app/?utm_source=qr&utm_medium=sticker&utm_campaign=osu-campus&utm_conten
 
 ---
 
+## 15. Social Signup & Contact Sync (Growth Engine)
+
+**Difficulty:** Medium
+**Purpose:** User acquisition & trust building
+
+### The Concept
+LinkedIn-style social proof at signup. Show users which of their friends are already on SipWiki to build instant trust and encourage signups.
+
+### How It Works
+
+**Gated Play Flow:**
+1. User browses games freely (no account needed)
+2. Tapping any game triggers signup modal
+3. One-tap signup via Google or Apple OAuth
+4. Prompt: "Find friends on SipWiki?"
+5. If granted: sync contacts, match against existing users
+6. Show celebration: "🎉 3 friends are already here!"
+7. Proceed to game
+
+### Why It Works
+- **Trust transfer:** "If my friends use this, it must be good"
+- **Social proof:** Seeing friends reduces signup friction
+- **Viral loop:** Every user becomes a potential referrer via their contact list
+- **Data collection:** Capture user info at high-intent moment
+
+### Privacy-Safe Contact Matching
+- Contacts are hashed (SHA256) before upload
+- We never store raw phone numbers or emails
+- Matching happens via hash comparison
+- Fully GDPR/CCPA compliant
+
+### Technical Details
+See: `docs/plans/2025-12-16-auth-social-signup-design.md`
+
+### Metrics to Track
+| Metric | Target |
+|--------|--------|
+| Signup conversion (game tap → signup) | >60% |
+| Contact sync opt-in rate | >70% |
+| Avg friends found per user | 2-3 |
+| Viral coefficient (invites sent) | >1.2 |
+
+---
+
 ## Legal Considerations
 
 - **Age Verification:** All monetization assumes 21+ user base
