@@ -68,3 +68,20 @@ export interface FilterState {
   alcoholType: "beer" | "liquor" | "any" | null;
   search: string;
 }
+
+export interface UserProfile {
+  id: string;
+  display_name: string | null;
+  avatar_url: string | null;
+  phone_number: string | null;
+  phone_verified: boolean;
+  contacts_synced_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Friend {
+  friend_id: string;
+  display_name: string | null;
+  avatar_url: string | null;
+}

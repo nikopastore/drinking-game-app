@@ -4,13 +4,17 @@ import { Game } from "@/types";
 import { Card, CardContent, Badge } from "@/components/ui";
 import { Users, Wine, Flame } from "lucide-react";
 import { formatPlayerCount, getDrunkennessLabel } from "@/lib/utils";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuthContext } from "@/components/auth";
 
 interface GameCardProps {
   game: Game;
 }
 
 export function GameCard({ game }: GameCardProps) {
+  const router = useRouter();
+  const { requireAuth } = useAuthContext();
+
   const drunkennessColors: Record<number, "green" | "yellow" | "pink" | "purple"> = {
     1: "green",
     2: "green",
@@ -25,8 +29,15 @@ export function GameCard({ game }: GameCardProps) {
     any: "Any Drink",
   };
 
+  const handleClick = () => {
+    // Require auth before navigating to game
+    if (requireAuth()) {
+      router.push(`/game/${game.slug}`);
+    }
+  };
+
   return (
-    <Link href={`/game/${game.slug}`}>
+    <div onClick={handleClick} className="cursor-pointer">
       <Card hoverable className="h-full flex flex-col">
         <CardContent className="flex flex-col h-full">
           {/* Title */}
@@ -93,6 +104,6 @@ export function GameCard({ game }: GameCardProps) {
           )}
         </CardContent>
       </Card>
-    </Link>
+    </div>
   );
 }

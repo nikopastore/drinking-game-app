@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useAppStore } from "@/lib/store";
 import { RatingModal } from "@/components/RatingModal";
+import { AuthProvider } from "@/components/auth";
 import { useRouter } from "next/navigation";
 
-export function Providers({ children }: { children: React.ReactNode }) {
+function ProvidersContent({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const { pendingRating, setPendingRating, checkExpiredSession } = useAppStore();
   const [showRatingModal, setShowRatingModal] = useState(false);
@@ -42,7 +43,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <>
+    <AuthProvider>
       {children}
       {pendingRating && (
         <RatingModal
@@ -53,6 +54,14 @@ export function Providers({ children }: { children: React.ReactNode }) {
           onSkip={handleRatingSkip}
         />
       )}
-    </>
+    </AuthProvider>
+  );
+}
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-dark-900" />}>
+      <ProvidersContent>{children}</ProvidersContent>
+    </Suspense>
   );
 }
