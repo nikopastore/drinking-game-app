@@ -277,6 +277,146 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     alcohol_type: "any",
     drunkenness_level: 2,
   },
+  {
+    id: "seed-21",
+    slug: "truth-or-drink",
+    name: "Truth or Drink",
+    description:
+      "Answer the question honestly or take a drink. Secrets will be revealed.",
+    rules_text:
+      "1. Players take turns asking each other questions.\n2. The person asked must either answer truthfully or take a drink.\n3. Questions can range from mild to spicy depending on the group.\n4. **Pro tip:** Write questions on cards beforehand or use a question app.\n5. Popular categories: embarrassing moments, relationships, secrets, hypotheticals.",
+    materials: ["no prop"],
+    min_players: 2,
+    max_players: null,
+    alcohol_type: "any",
+    drunkenness_level: 3,
+  },
+  {
+    id: "seed-22",
+    slug: "most-likely-to",
+    name: "Most Likely To",
+    description:
+      "Point at who's most likely to do something. Get pointed at? Drink up.",
+    rules_text:
+      "1. One person asks a 'Most Likely To' question (e.g., 'Who is most likely to get arrested?').\n2. On the count of 3, everyone points at whoever they think fits best.\n3. You drink once for each finger pointed at you.\n4. If it's a tie, both people drink.\n5. Rotate who asks the question.",
+    materials: ["no prop"],
+    min_players: 3,
+    max_players: null,
+    alcohol_type: "any",
+    drunkenness_level: 3,
+  },
+  {
+    id: "seed-23",
+    slug: "would-you-rather",
+    name: "Would You Rather",
+    description:
+      "Choose between two terrible options. The minority drinks.",
+    rules_text:
+      "1. One person asks a 'Would You Rather' question with two options.\n2. Everyone votes by holding up 1 finger or 2 fingers.\n3. The group in the minority must drink.\n4. If it's a tie, everyone drinks.\n5. Make questions progressively more difficult or absurd.",
+    materials: ["no prop"],
+    min_players: 3,
+    max_players: null,
+    alcohol_type: "any",
+    drunkenness_level: 2,
+  },
+  {
+    id: "seed-24",
+    slug: "slap-cup",
+    name: "Slap Cup",
+    description:
+      "Like Rage Cage but you can slap cups away. Fast, furious, and messy.",
+    rules_text:
+      "1. Fill cups with beer and place them in the center of the table.\n2. Two players start on opposite sides with empty cups and ping pong balls.\n3. Bounce the ball into your cup. If you make it on the first try, pass to anyone. Otherwise, pass right.\n4. If you make it while the person to your LEFT is still bouncing, SLAP their cup away.\n5. They grab a new cup from the center, drink it, and try again.\n6. Game ends when all center cups are gone.",
+    materials: ["red solo cups", "ping pong balls", "table"],
+    min_players: 4,
+    max_players: null,
+    alcohol_type: "beer",
+    drunkenness_level: 4,
+  },
+  {
+    id: "seed-25",
+    slug: "horse-race",
+    name: "Horse Race",
+    description:
+      "Bet on a suit and cheer your horse to victory. A drinking game with gambling vibes.",
+    rules_text:
+      "1. Remove the 4 Aces and line them up as 'horses'.\n2. Players bet drinks on which suit will win (e.g., 'I bet 3 drinks on Hearts').\n3. Lay out 8-10 cards face down as the 'track'.\n4. Flip track cards one at a time. The matching suit's Ace moves forward one space.\n5. First Ace to the end wins. Losers drink their bet. Winners assign their bet amount to others.\n6. **Side rule:** If a suit appears twice in a row, that horse moves back one.",
+    materials: ["cards"],
+    min_players: 3,
+    max_players: 10,
+    alcohol_type: "any",
+    drunkenness_level: 3,
+  },
+  {
+    id: "seed-26",
+    slug: "bite-the-bag",
+    name: "Bite the Bag",
+    description:
+      "Pick up a paper bag with your teeth. No hands. Gets harder every round.",
+    rules_text:
+      "1. Place a paper bag on the floor.\n2. Players take turns trying to pick up the bag using ONLY their mouth. No hands or knees touching the ground.\n3. If you fail, take a drink.\n4. After each round, tear or fold an inch off the top of the bag.\n5. As the bag gets shorter, it becomes nearly impossible.\n6. Last person standing wins.",
+    materials: ["paper bag"],
+    min_players: 2,
+    max_players: null,
+    alcohol_type: "any",
+    drunkenness_level: 3,
+  },
+  {
+    id: "seed-27",
+    slug: "chandelier",
+    name: "Chandelier",
+    description:
+      "Beer pong meets flip cup. Sink the center cup and chaos ensues.",
+    rules_text:
+      "1. Each player has a cup with a little beer in front of them around a table.\n2. One cup in the CENTER is filled completely (the Chandelier).\n3. Players take turns bouncing a ping pong ball. If you hit someone's cup, they drink and refill.\n4. If you hit the CENTER cup, everyone chugs their drink and races to flip their cup.\n5. Last person to flip drinks the center Chandelier cup.\n6. Refill and repeat.",
+    materials: ["red solo cups", "ping pong balls", "table"],
+    min_players: 4,
+    max_players: 10,
+    alcohol_type: "beer",
+    drunkenness_level: 5,
+  },
+  {
+    id: "seed-28",
+    slug: "irish-poker",
+    name: "Irish Poker",
+    description:
+      "Four guesses, four chances to drink. Then build a pyramid of pain.",
+    rules_text:
+      "1. Deal 4 cards face down to each player.\n2. **Card 1:** Guess Red or Black. Wrong = 2 drinks.\n3. **Card 2:** Guess Higher or Lower than Card 1. Wrong = 4 drinks.\n4. **Card 3:** Guess Inside or Outside the first two. Wrong = 6 drinks.\n5. **Card 4:** Guess the Suit. Wrong = 8 drinks.\n6. **Pyramid Round:** Build a pyramid of cards. Flip one at a time. If you have a matching card, give out drinks based on the row (bottom = 1, top = 5).",
+    materials: ["cards"],
+    min_players: 2,
+    max_players: 8,
+    alcohol_type: "any",
+    drunkenness_level: 4,
+  },
+  {
+    id: "seed-29",
+    slug: "cheers-to-the-governor",
+    name: "Cheers to the Governor",
+    description:
+      "Count to 21 as a group. Mess up and drink. Rules stack up fast.",
+    rules_text:
+      "1. Players count from 1 to 21 around the circle, one number per person.\n2. When someone says '21', everyone cheers 'To the Governor!' and drinks.\n3. That person makes a NEW RULE (e.g., '7 and 14 are swapped' or 'Say potato instead of 5').\n4. Restart counting. If anyone messes up a rule, they drink and you restart.\n5. Rules stack, making it increasingly chaotic.\n6. Common rules: swap numbers, say something silly, skip a person.",
+    materials: ["no prop"],
+    min_players: 4,
+    max_players: null,
+    alcohol_type: "any",
+    drunkenness_level: 4,
+  },
+  {
+    id: "seed-30",
+    slug: "beeramid",
+    name: "Beeramid (Pyramid)",
+    description:
+      "Bluff your way through a pyramid of cards. Get caught lying? Drink double.",
+    rules_text:
+      "1. Build a pyramid of face-down cards: 5 on bottom, then 4, 3, 2, 1 on top.\n2. Deal remaining cards evenly to players.\n3. Flip pyramid cards one at a time, starting from the bottom row.\n4. If you HAVE a matching card (or bluff that you do), you can assign drinks: Row 1 = 1 drink, Row 2 = 2 drinks, etc.\n5. Anyone can call your bluff. If you were bluffing, YOU drink double. If you weren't, THEY drink double.\n6. Top of pyramid = 5 drinks (or 10 if caught bluffing).",
+    materials: ["cards"],
+    min_players: 3,
+    max_players: 8,
+    alcohol_type: "any",
+    drunkenness_level: 4,
+  },
 ];
 
 // Convert to full Game objects with timestamps

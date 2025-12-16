@@ -479,6 +479,139 @@ Scarcity + relevance = conversion. People buy stuff they "might need" when it's 
 
 ---
 
+## 14. QR Code & NFC Guerrilla Marketing
+
+**Difficulty:** Easy to Start
+**Cost:** Low ($50-500 to start)
+
+### The Concept
+Physical world meets digital app. Make it dead simple for people to discover SipWiki through scannable/tappable codes in the real world.
+
+### Distribution Channels
+
+#### Personal "Always On" Marketing
+| Method | Description | Cost |
+|--------|-------------|------|
+| Phone Case QR | Custom case with QR code on back | $15-30 |
+| NFC Business Cards | Tap phone → opens app | $2-5 each |
+| NFC Stickers | Stick on phone back, tap to share | $1-2 each |
+| Traditional Business Cards | QR code + "Scan for party games" | $20/500 |
+
+#### College Campus Blitz
+| Location | Why It Works |
+|----------|--------------|
+| Dorm bulletin boards | Captive audience, party-prone demographic |
+| Bathroom stalls | Bored + phone in hand = scans |
+| Bar/pub tables | Already drinking, high intent |
+| Frat/sorority houses | Core user base |
+| Student union boards | High foot traffic |
+| Laundry rooms | Waiting = scanning |
+| Bus stops near campus | Bored commuters |
+
+#### Bar & Party Venue Placement
+| Location | Approach |
+|----------|----------|
+| Bar tables/coasters | Partner with local bars |
+| Pool table areas | Beer pong adjacent |
+| Jukebox/game areas | Already in "game mode" |
+| Restroom mirrors | Captive audience |
+
+### QR Code Best Practices
+
+**Design Tips:**
+- Add a compelling CTA: "Scan for 100+ drinking games 🍺"
+- Use a branded short URL (e.g., `sipwiki.app/go`)
+- Add logo in center of QR (increases brand recognition)
+- Test scan distance - make sure it works from 2+ feet away
+- Use high contrast colors (dark on light background)
+
+**Tracking:**
+- Create unique QR codes per location to track which placements convert
+- Example: `sipwiki.app/go?src=ohio-state-dorms`
+- Track: scans → app opens → signups → games played
+
+### NFC Implementation
+
+**What is NFC?**
+Near Field Communication - tap phone to phone/card to instantly open a link.
+
+**Use Cases:**
+- Tap your phone to a friend's → they get the app
+- Business card tap → opens app store listing
+- Sticker on laptop → conversation starter at coffee shops
+
+**Tech Setup:**
+- NFC tags cost ~$0.50-2 each
+- Program with iOS Shortcuts or NFC Tools app
+- Link to: App Store, Play Store, or smart redirect based on device
+
+### Sticker/Poster Campaign
+
+**Sticker Ideas:**
+| Design | Message |
+|--------|---------|
+| Minimalist | QR + "Party Starter" |
+| Funny | "Scan if you can handle it 🍻" |
+| Challenge | "100+ ways to get drunk. Scan to unlock." |
+| FOMO | "Your friends already have this app" |
+
+**Poster Locations (College):**
+- Dorm common areas
+- Greek life houses
+- Off-campus housing bulletin boards
+- Local bar partnerships
+- Campus event flyers (sponsor game nights)
+
+### Cost Breakdown (Starter Kit)
+
+| Item | Quantity | Cost |
+|------|----------|------|
+| NFC Business Cards | 100 | $200 |
+| QR Stickers (weatherproof) | 500 | $150 |
+| Phone Case (custom) | 1 | $25 |
+| NFC Phone Stickers | 10 | $15 |
+| Posters (11x17) | 50 | $75 |
+| **Total** | | **~$465** |
+
+### Tracking & Analytics
+
+Create UTM parameters for each placement:
+```
+sipwiki.app/?utm_source=qr&utm_medium=sticker&utm_campaign=osu-campus&utm_content=dorm-bathroom
+```
+
+**Metrics to Track:**
+- Scans per location
+- Scan-to-install conversion rate
+- Cost per acquisition (CPA) by location
+- Best performing designs/CTAs
+- Time of day patterns
+
+### Legal Considerations
+
+- **Don't vandalize** - Use bulletin boards, not walls
+- **Get permission** for bar/venue placements
+- **Campus policies** - Check university posting rules
+- **Remove old stickers** - Don't litter
+
+### Scaling Strategy
+
+1. **Phase 1:** Personal network + 1 local campus ($100)
+2. **Phase 2:** 5 campuses in your region ($500)
+3. **Phase 3:** Hire campus ambassadors ($20/ambassador + free premium)
+4. **Phase 4:** National campus ambassador program
+
+### Campus Ambassador Program (Future)
+
+| Tier | Requirements | Rewards |
+|------|--------------|---------|
+| Bronze | 50 signups from your code | Free premium forever |
+| Silver | 200 signups | $50 + merch |
+| Gold | 500 signups | $150 + featured creator status |
+| Platinum | 1000+ signups | Revenue share on referrals |
+
+---
+
 ## Legal Considerations
 
 - **Age Verification:** All monetization assumes 21+ user base
