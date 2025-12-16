@@ -11,6 +11,7 @@ import {
   ExternalLink,
   ArrowLeft,
   ShoppingCart,
+  Package,
 } from "lucide-react";
 import Link from "next/link";
 import { formatPlayerCount, getDrunkennessLabel } from "@/lib/utils";
@@ -85,6 +86,15 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
             >
               <Flame className="h-4 w-4" />
               {getDrunkennessLabel(game.drunkenness_level)}
+            </Badge>
+
+            <Badge variant="pink" className="flex items-center gap-1 text-sm py-1">
+              <Package className="h-4 w-4" />
+              {game.materials[0] === "no prop"
+                ? "No Props"
+                : game.materials.length === 1
+                ? game.materials[0]
+                : `${game.materials.length} items needed`}
             </Badge>
           </div>
         </div>
