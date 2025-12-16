@@ -2,9 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 import { ChatMessage } from "@/types";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+// Initialize OpenAI client lazily to avoid build-time errors
+function getOpenAIClient() {
+  return new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+}
 
 function getSystemPrompt(gameName: string, rules: string): string {
   return `You are the official referee for "${gameName}". You know the rules inside and out.
@@ -70,7 +73,7 @@ export async function POST(request: NextRequest) {
       },
     ];
 
-    const completion = await openai.chat.completions.create({
+    const completion = await getOpenAIClient().chat.completions.create({
       model: "gpt-4o-mini",
       messages,
       max_tokens: 200,
