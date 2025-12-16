@@ -6,6 +6,7 @@ import { FilterState } from "@/types";
 import { GameCard } from "@/components/GameCard";
 import { FilterBar } from "@/components/FilterBar";
 import { Header } from "@/components/Header";
+import { HeroAnimation } from "@/components/HeroAnimation";
 import { Sparkles } from "lucide-react";
 
 export default function HomePage() {
@@ -77,19 +78,24 @@ export default function HomePage() {
     <div className="min-h-screen bg-dark-900">
       <Header />
 
-      <main className="max-w-7xl mx-auto px-4 py-8">
-        {/* Hero */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Find Your Perfect{" "}
-            <span className="bg-gradient-to-r from-neon-pink to-neon-purple bg-clip-text text-transparent">
-              Drinking Game
-            </span>
-          </h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Browse {games.length} party games with complete rules, AI referee support,
-            and everything you need to keep the party going.
-          </p>
+      <main className="max-w-7xl mx-auto px-4 py-6">
+        {/* Hero with Animation */}
+        <div className="mb-10">
+          {/* Animated Diagram */}
+          <HeroAnimation />
+
+          {/* Title below animation */}
+          <div className="text-center mt-6">
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+              Find Your Perfect{" "}
+              <span className="bg-gradient-to-r from-neon-pink to-neon-purple bg-clip-text text-transparent">
+                Party Game
+              </span>
+            </h1>
+            <p className="text-gray-400 text-base max-w-xl mx-auto">
+              {games.length} games with complete rules. No more Googling mid-party.
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">

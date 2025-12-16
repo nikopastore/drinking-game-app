@@ -119,8 +119,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
       <AuthModal
         isOpen={authStep === "auth"}
         onClose={handleAuthModalClose}
-        onGoogleSignIn={signInWithGoogle}
-        onAppleSignIn={signInWithApple}
       />
 
       {/* Contact Sync Prompt - shown after successful OAuth */}
