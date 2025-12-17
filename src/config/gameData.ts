@@ -358,6 +358,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     max_players: 10,
     alcohol_type: "any",
     drunkenness_level: 3,
+    image: "/games/horse-race-1.png",
   },
   {
     id: "seed-26",
