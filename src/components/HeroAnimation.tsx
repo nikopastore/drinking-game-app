@@ -275,22 +275,6 @@ function DiceScene() {
         <Die value={3} color={COLORS.cyan} />
       </motion.div>
 
-      {/* Score burst */}
-      <motion.div
-        className="absolute -top-8 text-4xl font-bold"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 1, type: "spring", stiffness: 200 }}
-        style={{
-          background: `linear-gradient(135deg, ${COLORS.green}, ${COLORS.cyan})`,
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          filter: `drop-shadow(0 0 20px ${COLORS.green}80)`,
-        }}
-      >
-        8!
-      </motion.div>
-
       {/* Bounce particles */}
       {[...Array(8)].map((_, i) => (
         <motion.div
