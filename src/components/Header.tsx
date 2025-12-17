@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Wine, Search, CircleDot, PlusCircle } from "lucide-react";
+import { Wine, Search, CircleDot, PlusCircle, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui";
 
 interface HeaderProps {
@@ -46,6 +46,18 @@ export function Header({ onSearchClick }: HeaderProps) {
               >
                 <CircleDot className="h-5 w-5" />
                 <span className="hidden sm:inline">Spin</span>
+              </Button>
+            </Link>
+
+            {/* Shop Button */}
+            <Link href="/shop">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="flex items-center gap-2 text-gray-300 hover:text-white hover:bg-dark-700"
+              >
+                <ShoppingBag className="h-5 w-5" />
+                <span className="hidden sm:inline">Shop</span>
               </Button>
             </Link>
           </div>
