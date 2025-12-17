@@ -24,7 +24,7 @@ export const affiliateLinks: Record<string, { url: string; label: string }> = {
     label: "Pro Ping Pong Balls",
   },
   dice: {
-    url: "https://www.amazon.com/s?k=drinking+dice&tag=khanthebot-20",
+    url: "https://a.co/d/76GnIfa",
     label: "Dice Set",
   },
   "shot glasses": {
