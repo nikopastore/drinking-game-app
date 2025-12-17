@@ -95,33 +95,37 @@ export function GameCard({ game, size = "medium" }: GameCardProps) {
         </div>
       )}
 
-      {/* Gradient overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+      {/* Gradient overlay for text readability - only for games without cover images */}
+      {!game.image && (
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+      )}
 
       {/* Hover glow effect */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-neon-pink/30 to-transparent" />
 
-      {/* Content */}
-      <div className="absolute bottom-0 left-0 right-0 p-3">
-        {/* Drunkenness indicator */}
-        <div className="flex gap-0.5 mb-1.5">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Flame
-              key={i}
-              className={`h-3 w-3 ${
-                i < game.drunkenness_level
-                  ? "text-neon-pink drop-shadow-[0_0_4px_rgba(236,72,153,0.8)]"
-                  : "text-gray-600"
-              }`}
-            />
-          ))}
-        </div>
+      {/* Content - only show for games without cover images */}
+      {!game.image && (
+        <div className="absolute bottom-0 left-0 right-0 p-3">
+          {/* Drunkenness indicator */}
+          <div className="flex gap-0.5 mb-1.5">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <Flame
+                key={i}
+                className={`h-3 w-3 ${
+                  i < game.drunkenness_level
+                    ? "text-neon-pink drop-shadow-[0_0_4px_rgba(236,72,153,0.8)]"
+                    : "text-gray-600"
+                }`}
+              />
+            ))}
+          </div>
 
-        {/* Title */}
-        <h3 className={`${titleSizes[size]} font-bold text-white leading-tight line-clamp-2 drop-shadow-lg`}>
-          {game.name}
-        </h3>
-      </div>
+          {/* Title */}
+          <h3 className={`${titleSizes[size]} font-bold text-white leading-tight line-clamp-2 drop-shadow-lg`}>
+            {game.name}
+          </h3>
+        </div>
+      )}
 
       {/* Border on hover */}
       <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-neon-pink/50 transition-colors duration-300" />

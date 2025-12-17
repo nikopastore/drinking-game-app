@@ -286,30 +286,31 @@ export default function SpinPage() {
                   </div>
                 )}
 
-                {/* Gradient overlay for text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-
-                {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-3">
-                  {/* Drunkenness indicator */}
-                  <div className="flex gap-0.5 mb-1.5 justify-center">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Flame
-                        key={i}
-                        className={`h-4 w-4 ${
-                          i < selectedGame.drunkenness_level
-                            ? "text-neon-pink drop-shadow-[0_0_4px_rgba(236,72,153,0.8)]"
-                            : "text-gray-600"
-                        }`}
-                      />
-                    ))}
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-lg font-bold text-white leading-tight drop-shadow-lg">
-                    {selectedGame.name}
-                  </h3>
-                </div>
+                {/* Gradient overlay and content - only for games without cover images */}
+                {!selectedGame.image && (
+                  <>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-3">
+                      {/* Drunkenness indicator */}
+                      <div className="flex gap-0.5 mb-1.5 justify-center">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <Flame
+                            key={i}
+                            className={`h-4 w-4 ${
+                              i < selectedGame.drunkenness_level
+                                ? "text-neon-pink drop-shadow-[0_0_4px_rgba(236,72,153,0.8)]"
+                                : "text-gray-600"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                      {/* Title */}
+                      <h3 className="text-lg font-bold text-white leading-tight drop-shadow-lg">
+                        {selectedGame.name}
+                      </h3>
+                    </div>
+                  </>
+                )}
               </div>
 
               <p className="text-gray-400 mb-6 text-sm px-2">{selectedGame.description}</p>
