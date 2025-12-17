@@ -6,9 +6,43 @@ import { Game } from "@/types";
 import { Header } from "@/components/Header";
 import { WheelSpinner } from "@/components/WheelSpinner";
 import { Button, Card, CardContent, Badge, Modal } from "@/components/ui";
-import { Users, Package, Wine, PartyPopper, Play, RotateCcw } from "lucide-react";
+import { Users, Package, Wine, PartyPopper, Play, RotateCcw, Flame } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
+
+// Generate a consistent color based on slug for placeholder
+const getPlaceholderGradient = (slug: string): string => {
+  const colors = [
+    "from-pink-600 to-purple-800",
+    "from-blue-600 to-cyan-800",
+    "from-orange-600 to-red-800",
+    "from-green-600 to-teal-800",
+    "from-yellow-600 to-orange-800",
+    "from-indigo-600 to-blue-800",
+    "from-rose-600 to-pink-800",
+    "from-violet-600 to-purple-800",
+  ];
+
+  let hash = 0;
+  for (let i = 0; i < slug.length; i++) {
+    hash = slug.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  return colors[Math.abs(hash) % colors.length];
+};
+
+// Get emoji for game type based on materials/name
+const getGameEmoji = (game: Game): string => {
+  if (game.materials.includes("cards")) return "🃏";
+  if (game.materials.includes("ping pong balls")) return "🏓";
+  if (game.materials.includes("dice")) return "🎲";
+  if (game.materials.includes("cups")) return "🥤";
+  if (game.name.toLowerCase().includes("movie")) return "🎬";
+  if (game.name.toLowerCase().includes("music") || game.name.toLowerCase().includes("thunder")) return "🎵";
+  if (game.materials.includes("no prop")) return "🗣️";
+  return "🍻";
+};
 import { nonAffiliateItems } from "@/config/monetizationConfig";
 
 const playerOptions = [
@@ -224,19 +258,61 @@ export default function SpinPage() {
         >
           {selectedGame && (
             <div className="text-center py-4">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-neon-pink to-neon-purple flex items-center justify-center mx-auto mb-4 animate-bounce">
-                <PartyPopper className="h-10 w-10 text-white" />
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <PartyPopper className="h-6 w-6 text-neon-pink animate-bounce" />
+                <h2 className="text-xl font-bold text-white">
+                  You&apos;re playing...
+                </h2>
+                <PartyPopper className="h-6 w-6 text-neon-purple animate-bounce" />
               </div>
 
-              <h2 className="text-2xl font-bold text-white mb-2">
-                🎉 You&apos;re playing...
-              </h2>
+              {/* Game Card Display */}
+              <div className="w-48 h-64 mx-auto mb-4 relative rounded-xl overflow-hidden shadow-2xl shadow-neon-pink/30 border-2 border-neon-pink/50">
+                {/* Background - Image or Gradient Placeholder */}
+                {selectedGame.image ? (
+                  <Image
+                    src={selectedGame.image}
+                    alt={selectedGame.name}
+                    fill
+                    className="object-cover"
+                    sizes="192px"
+                  />
+                ) : (
+                  <div className={`absolute inset-0 bg-gradient-to-br ${getPlaceholderGradient(selectedGame.slug)}`}>
+                    {/* Placeholder emoji */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-30">
+                      <span className="text-6xl">{getGameEmoji(selectedGame)}</span>
+                    </div>
+                  </div>
+                )}
 
-              <h3 className="text-3xl font-bold bg-gradient-to-r from-neon-pink to-neon-purple bg-clip-text text-transparent mb-4">
-                {selectedGame.name}
-              </h3>
+                {/* Gradient overlay for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
-              <p className="text-gray-400 mb-6">{selectedGame.description}</p>
+                {/* Content */}
+                <div className="absolute bottom-0 left-0 right-0 p-3">
+                  {/* Drunkenness indicator */}
+                  <div className="flex gap-0.5 mb-1.5 justify-center">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Flame
+                        key={i}
+                        className={`h-4 w-4 ${
+                          i < selectedGame.drunkenness_level
+                            ? "text-neon-pink drop-shadow-[0_0_4px_rgba(236,72,153,0.8)]"
+                            : "text-gray-600"
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-lg font-bold text-white leading-tight drop-shadow-lg">
+                    {selectedGame.name}
+                  </h3>
+                </div>
+              </div>
+
+              <p className="text-gray-400 mb-6 text-sm px-2">{selectedGame.description}</p>
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href={`/game/${selectedGame.slug}`} className="flex-1">
