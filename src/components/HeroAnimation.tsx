@@ -329,13 +329,14 @@ function DiceScene() {
 }
 
 function Die({ value, color }: { value: number; color: string }) {
+  // Dot positions adjusted for better centering (30/50/70 instead of 25/50/75)
   const dotPositions: Record<number, { x: number; y: number }[]> = {
     1: [{ x: 50, y: 50 }],
-    2: [{ x: 25, y: 25 }, { x: 75, y: 75 }],
-    3: [{ x: 25, y: 25 }, { x: 50, y: 50 }, { x: 75, y: 75 }],
-    4: [{ x: 25, y: 25 }, { x: 75, y: 25 }, { x: 25, y: 75 }, { x: 75, y: 75 }],
-    5: [{ x: 25, y: 25 }, { x: 75, y: 25 }, { x: 50, y: 50 }, { x: 25, y: 75 }, { x: 75, y: 75 }],
-    6: [{ x: 25, y: 25 }, { x: 25, y: 50 }, { x: 25, y: 75 }, { x: 75, y: 25 }, { x: 75, y: 50 }, { x: 75, y: 75 }],
+    2: [{ x: 30, y: 30 }, { x: 70, y: 70 }],
+    3: [{ x: 30, y: 30 }, { x: 50, y: 50 }, { x: 70, y: 70 }],
+    4: [{ x: 30, y: 30 }, { x: 70, y: 30 }, { x: 30, y: 70 }, { x: 70, y: 70 }],
+    5: [{ x: 30, y: 30 }, { x: 70, y: 30 }, { x: 50, y: 50 }, { x: 30, y: 70 }, { x: 70, y: 70 }],
+    6: [{ x: 30, y: 30 }, { x: 30, y: 50 }, { x: 30, y: 70 }, { x: 70, y: 30 }, { x: 70, y: 50 }, { x: 70, y: 70 }],
   };
 
   const dots = dotPositions[value] || [];
@@ -366,12 +367,6 @@ function Die({ value, color }: { value: number; color: string }) {
           transition={{ delay: 0.8 + i * 0.05, type: "spring" }}
         />
       ))}
-
-      {/* Shine effect */}
-      <div
-        className="absolute top-1 left-1 w-4 h-4 rounded-full opacity-30"
-        style={{ background: `radial-gradient(circle, ${COLORS.white} 0%, transparent 70%)` }}
-      />
     </div>
   );
 }
