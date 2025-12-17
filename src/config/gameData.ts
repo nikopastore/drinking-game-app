@@ -120,6 +120,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     id: "seed-9",
     slug: "thunderstruck",
     name: "Thunderstruck",
+    image: "/games/thunderstruck-1.png",
     description:
       "A listening game set to the AC/DC song 'Thunderstruck'. Simple but deadly.",
     rules_text:
