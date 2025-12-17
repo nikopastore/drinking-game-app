@@ -76,14 +76,14 @@ export default function HomePage() {
     <div className="min-h-screen bg-dark-900">
       <Header onSearchClick={() => setIsSearchOpen(true)} />
 
-      <main className="py-6">
+      <main className="py-3">
         {/* Hero Section with Animation */}
-        <div className="mb-8">
+        <div className="mb-4">
           {/* Animated Diagram */}
           <HeroAnimation />
 
           {/* Title below animation */}
-          <div className="text-center mt-4 px-4">
+          <div className="text-center mt-2 px-4">
             <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
               Find Your Perfect{" "}
               <span className="bg-gradient-to-r from-neon-pink to-neon-purple bg-clip-text text-transparent">
