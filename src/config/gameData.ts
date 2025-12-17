@@ -436,6 +436,132 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     drunkenness_level: 4,
     image: "/games/beeramid-1.png",
   },
+  {
+    id: "seed-31",
+    slug: "ace-race",
+    name: "Ace Race",
+    description:
+      "Bet on a suit and watch the aces race to the finish. Also known as Horse Race.",
+    rules_text:
+      "1. Remove the 4 Aces and line them up as 'horses' at the starting line.\n2. Lay out 7-8 cards face down in a line as the 'race track'.\n3. Players bet drinks (1-5) on which suit will win.\n4. Flip cards from the deck one at a time. The Ace matching that suit moves forward one space.\n5. First Ace to cross the finish line wins!\n6. Winners assign their bet amount to others. Losers drink their bet.\n7. **Stumble Rule:** When an Ace reaches a new track card, flip it. That suit's Ace moves back one space.",
+    materials: ["cards"],
+    min_players: 3,
+    max_players: 10,
+    alcohol_type: "any",
+    drunkenness_level: 3,
+  },
+  {
+    id: "seed-32",
+    slug: "around-the-world",
+    name: "Around the World",
+    description:
+      "Four guesses, four cards. Make it around the world or drink trying.",
+    rules_text:
+      "1. **Card 1:** Guess Red or Black. Wrong = 1 drink.\n2. **Card 2:** Guess Higher or Lower than Card 1. Wrong = 2 drinks.\n3. **Card 3:** Guess In Between or Outside the first two cards. Wrong = 3 drinks.\n4. **Card 4:** Guess the Suit. Wrong = 4 drinks.\n5. Get all 4 right? You made it 'Around the World' and can assign 10 drinks!\n6. **Pyramid Round (optional):** Build a pyramid and match cards to give/take drinks based on row.",
+    materials: ["cards"],
+    min_players: 2,
+    max_players: 10,
+    alcohol_type: "any",
+    drunkenness_level: 4,
+  },
+  {
+    id: "seed-33",
+    slug: "chems",
+    name: "Chems",
+    description:
+      "Collect four of a kind and signal your partner. A team-based card game of deception.",
+    rules_text:
+      "1. Split into teams of 2. Each team secretly decides on a signal (wink, scratch, tap, etc.).\n2. Deal 4 cards to each player. Place 4 cards face-up in the center.\n3. Players swap cards from their hand with center cards (discard first, then pick up).\n4. Goal: Collect 4 of the same rank (e.g., four 7s).\n5. When you have 4 of a kind, signal your partner.\n6. Partner calls 'CHEMS!' - if correct, opponents drink 10. If wrong, your team drinks 10.\n7. **Gotcha:** Call out an opponent you think has 4 of a kind. Correct = they drink 10. Wrong = you drink 10.",
+    materials: ["cards"],
+    min_players: 4,
+    max_players: 8,
+    alcohol_type: "any",
+    drunkenness_level: 3,
+  },
+  {
+    id: "seed-34",
+    slug: "juggernaut",
+    name: "Juggernaut",
+    description:
+      "An endurance card game. Keep flipping until you can't take anymore.",
+    rules_text:
+      "1. Place a full deck face down in the center.\n2. Players take turns flipping cards one at a time.\n3. Number cards (2-10): Drink that many sips.\n4. Face cards: Jack = 11 sips, Queen = 12 sips, King = 13 sips.\n5. Ace: You become the Juggernaut! Choose any player to drink 14 sips OR split among multiple players.\n6. **Survival Rule:** At any point, you can tap out and pass to the next player, but you must finish your current drink first.\n7. Last person standing wins.",
+    materials: ["cards"],
+    min_players: 2,
+    max_players: 8,
+    alcohol_type: "any",
+    drunkenness_level: 5,
+  },
+  {
+    id: "seed-35",
+    slug: "vietnam-war",
+    name: "Vietnam War",
+    description:
+      "Asymmetric beer pong warfare. America vs Vietnam in an unwinnable war.",
+    rules_text:
+      "1. **Setup:** USA arranges 10 cups in a triangle (normal beer pong, cups 1/4 full). Vietnam scatters 10 FULL cups anywhere on their half.\n2. Teams take turns throwing ping pong balls.\n3. **USA hits:** Vietnam drinks that full cup and removes it.\n4. **Vietnam hits:** USA drinks, refills, and puts the cup back (unlimited resources).\n5. Vietnam can reposition cups after every turn.\n6. **Game ends:** When USA 'pulls out' (quits) OR sinks all of Vietnam's cups.\n7. **Napalm (optional):** USA lands 2 in one round = Vietnam takes a shot.",
+    materials: ["ping pong balls", "red solo cups", "table"],
+    min_players: 4,
+    max_players: 8,
+    alcohol_type: "beer",
+    drunkenness_level: 5,
+  },
+  {
+    id: "seed-36",
+    slug: "baseball",
+    name: "Baseball",
+    description:
+      "Beer pong meets flip cup in this full-contact drinking sport.",
+    rules_text:
+      "1. **Setup:** 4 cups in a line per team (Single, Double, Triple, Home Run). 3 flip cups on the side for stealing.\n2. **Batting:** Throw the ball at the cups. Hit = that base hit. Miss 3 times = strikeout (out).\n3. When you hit a cup, defenders drink all cups from that one down.\n4. **Stealing:** Challenge the defender to flip cup. Win = advance a base. Lose = out.\n5. **Scoring:** Runners advance and score like real baseball.\n6. 3 outs = switch sides. Play 6-9 innings.\n7. **Home Run Cup:** Should have the most beer!",
+    materials: ["ping pong balls", "red solo cups", "table"],
+    min_players: 8,
+    max_players: 16,
+    alcohol_type: "beer",
+    drunkenness_level: 4,
+  },
+  {
+    id: "seed-37",
+    slug: "7-11-doubles",
+    name: "7-11-Doubles",
+    description:
+      "Roll dice while someone chugs. Race against the roll.",
+    rules_text:
+      "1. Fill a cup 3/4 full and place it in the center.\n2. First player rolls two dice. Roll a 7, 11, or doubles = choose someone to drink.\n3. The chosen player grabs the cup and starts chugging.\n4. Roller can't touch dice until drinker touches the cup!\n5. Roller keeps rolling. If they hit 7, 11, or doubles before you finish = refill and drink again.\n6. Finish before they roll? Pass the dice left and refill the cup.\n7. **Penalty:** Touch dice before drinker touches cup = switch roles. Dice off table = you chug.",
+    materials: ["dice", "cups"],
+    min_players: 3,
+    max_players: 10,
+    alcohol_type: "beer",
+    drunkenness_level: 4,
+  },
+  {
+    id: "seed-38",
+    slug: "titanic",
+    name: "Titanic",
+    description:
+      "Float a shot glass in beer. Pour carefully or sink the ship and chug everything.",
+    rules_text:
+      "1. Fill a pint glass with beer until a shot glass floats in it.\n2. Players take turns pouring a small amount of liquor into the floating shot glass.\n3. Pour as little as you dare - even a single drop counts!\n4. The shot glass will slowly sink as it fills with liquor.\n5. The player who sinks the shot glass (the Titanic) must chug the entire pint - beer AND shot together.\n6. Refill and play again!\n7. **Pro tip:** Pour slowly and from a low height. Cold beer = less foam = more predictable sinking.",
+    materials: ["shot glass", "pint glass", "beer", "liquor"],
+    min_players: 2,
+    max_players: 10,
+    alcohol_type: "any",
+    drunkenness_level: 4,
+  },
+  {
+    id: "seed-39",
+    slug: "landmines",
+    name: "Landmines",
+    description:
+      "Spin a quarter, chug your beer, catch it. Empty cans become obstacles.",
+    rules_text:
+      "1. Clear the table. Everyone needs a beer.\n2. Spin a quarter with one hand. While it spins, chug beer with the SAME hand.\n3. Catch the quarter before it stops. If it falls or stops spinning = drink more and spin again.\n4. **Creating Landmines:** Finish a beer? Slam the empty can onto someone's spinning quarter. That can stays on the table forever.\n5. If your quarter hits a landmine (empty can), drink and spin again.\n6. You get 3 attempts per turn. Fail all 3 = eliminated.\n7. Table gets more cluttered as the game goes on. Last player standing wins!",
+    materials: ["quarters", "beer cans"],
+    min_players: 4,
+    max_players: 10,
+    alcohol_type: "beer",
+    drunkenness_level: 4,
+  },
 ];
 
 // Convert to full Game objects with timestamps
