@@ -85,7 +85,7 @@ function CardsScene() {
       {/* Card fan */}
       {[...Array(cardCount)].map((_, i) => {
         const rotation = (i - Math.floor(cardCount / 2)) * fanAngle;
-        const isCenter = i === Math.floor(cardCount / 2);
+        const isTopCard = i === cardCount - 1; // Last card is on top
 
         return (
           <motion.div
@@ -97,6 +97,7 @@ function CardsScene() {
               left: "50%",
               marginLeft: -40,
               transformOrigin: "center bottom",
+              zIndex: i, // Stack cards so last one is on top
             }}
             initial={{ rotate: 0, y: 50, opacity: 0 }}
             animate={{
@@ -111,10 +112,10 @@ function CardsScene() {
             }}
           >
             <PlayingCard
-              suit={["♠", "♥", "♦", "♣"][i % 4]}
-              value={["A", "K", "Q", "J", "10"][i]}
-              isHighlighted={isCenter}
-              flipDelay={isCenter ? 0.8 : undefined}
+              suit={["♠", "♥", "♦", "♣", "♥"][i]}
+              value={["10", "J", "Q", "K", "A"][i]}
+              isHighlighted={isTopCard}
+              flipDelay={isTopCard ? 1.0 : undefined}
             />
           </motion.div>
         );
