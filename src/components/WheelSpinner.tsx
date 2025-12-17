@@ -87,6 +87,7 @@ export function WheelSpinner({ games, onResult }: WheelSpinnerProps) {
   const spinStartRef = useRef<number>(0);
   const lastRotationRef = useRef<number>(0);
   const targetRotationRef = useRef<number>(0);
+  const targetSegmentRef = useRef<number>(0);
 
   const spin = () => {
     if (isSpinning || games.length === 0) return;
@@ -94,10 +95,32 @@ export function WheelSpinner({ games, onResult }: WheelSpinnerProps) {
     setIsSpinning(true);
     setIsSettling(false);
 
-    // Random full rotations (6-9) plus random final position
-    const fullRotations = (6 + Math.random() * 3) * 360;
-    const randomOffset = Math.random() * 360;
-    const newRotation = rotation + fullRotations + randomOffset;
+    // STEP 1: Pick a truly random segment to land on
+    const targetIndex = Math.floor(Math.random() * segments.length);
+    targetSegmentRef.current = targetIndex;
+
+    // STEP 2: Calculate the exact rotation to land on this segment
+    // The pointer is at the top. Segment 0 starts at the top.
+    // After rotating clockwise by R degrees, the segment at the pointer is:
+    // index = floor((360 - (R % 360)) / segmentAngle) % segments.length
+    //
+    // To land on targetIndex, we need:
+    // (360 - (R % 360)) / segmentAngle ≈ targetIndex
+    // 360 - (R % 360) ≈ targetIndex * segmentAngle
+    // R % 360 ≈ 360 - targetIndex * segmentAngle
+
+    const targetAngle = (360 - (targetIndex * segmentAngle) - (segmentAngle / 2)) % 360;
+
+    // STEP 3: Add random full rotations (5-8 full spins) for visual excitement
+    const fullRotations = (5 + Math.floor(Math.random() * 4)) * 360;
+
+    // STEP 4: Add small random variance within the segment (so it doesn't always hit dead center)
+    const variance = (Math.random() - 0.5) * (segmentAngle * 0.7);
+
+    // STEP 5: Calculate final rotation from a fresh base (not cumulative)
+    // Normalize current rotation first to prevent huge numbers
+    const normalizedCurrent = rotation % 360;
+    const newRotation = normalizedCurrent + fullRotations + targetAngle + variance;
 
     lastRotationRef.current = rotation;
     targetRotationRef.current = newRotation;
@@ -115,15 +138,12 @@ export function WheelSpinner({ games, onResult }: WheelSpinnerProps) {
       // Add settling bounce effect
       setIsSettling(true);
 
-      // Calculate result after settle animation
+      // Calculate result after settle animation - use the pre-selected target
       setTimeout(() => {
-        const finalAngle = newRotation % 360;
-        const effectiveAngle = (360 - finalAngle + 360) % 360;
-        const index = Math.floor(effectiveAngle / segmentAngle) % segments.length;
-
         setIsSpinning(false);
         setIsSettling(false);
-        onResult(segments[index]);
+        // Use the pre-selected random segment for guaranteed accuracy
+        onResult(segments[targetSegmentRef.current]);
       }, 500);
     }, 7000);
   };
