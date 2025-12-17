@@ -259,6 +259,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     max_players: 8,
     alcohol_type: "any",
     drunkenness_level: 4,
+    image: "/games/f-the-dealer-1.png",
   },
   {
     id: "seed-19",
