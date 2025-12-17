@@ -10,6 +10,7 @@ export interface Game {
   alcohol_type: "beer" | "liquor" | "any";
   drunkenness_level: 1 | 2 | 3 | 4 | 5;
   video_url?: string;
+  image?: string; // Cover image path (e.g., "/games/kings-cup.webp")
   created_at: string;
   is_user_submitted: boolean;
 }

@@ -4,6 +4,7 @@ import { Game } from "@/types";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/components/auth";
 import { Flame } from "lucide-react";
+import Image from "next/image";
 
 interface GameCardProps {
   game: Game;
@@ -76,13 +77,23 @@ export function GameCard({ game, size = "medium" }: GameCardProps) {
       onClick={handleClick}
       className={`${sizeClasses[size]} flex-shrink-0 cursor-pointer group relative rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:z-10 hover:shadow-2xl hover:shadow-neon-pink/20`}
     >
-      {/* Background Gradient Placeholder */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${getPlaceholderGradient(game.slug)}`}>
-        {/* Placeholder emoji */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-30">
-          <span className={emojiSizes[size]}>{getGameEmoji(game)}</span>
+      {/* Background - Image or Gradient Placeholder */}
+      {game.image ? (
+        <Image
+          src={game.image}
+          alt={game.name}
+          fill
+          className="object-cover"
+          sizes="(max-width: 640px) 144px, 192px"
+        />
+      ) : (
+        <div className={`absolute inset-0 bg-gradient-to-br ${getPlaceholderGradient(game.slug)}`}>
+          {/* Placeholder emoji */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-30">
+            <span className={emojiSizes[size]}>{getGameEmoji(game)}</span>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Gradient overlay for text readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
