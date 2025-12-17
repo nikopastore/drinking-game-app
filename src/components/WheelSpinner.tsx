@@ -1,37 +1,36 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Game } from "@/types";
 import { cn } from "@/lib/utils";
-import { Volume2, VolumeX } from "lucide-react";
 
 interface WheelSpinnerProps {
   games: Game[];
   onResult: (game: Game) => void;
 }
 
+// Professional casino color palette
 const WHEEL_COLORS = [
-  "#ff2d92", // neon-pink
-  "#00d4ff", // neon-blue
-  "#b94dff", // neon-purple
-  "#39ff14", // neon-green
-  "#ff6b6b", // coral
-  "#ffd93d", // gold
-  "#4ecdc4", // teal
-  "#ff9f43", // orange
+  { main: "#DC2626", dark: "#991B1B" }, // Deep red
+  { main: "#1E293B", dark: "#0F172A" }, // Rich black
+  { main: "#DC2626", dark: "#991B1B" }, // Deep red
+  { main: "#1E293B", dark: "#0F172A" }, // Rich black
+  { main: "#DC2626", dark: "#991B1B" }, // Deep red
+  { main: "#1E293B", dark: "#0F172A" }, // Rich black
+  { main: "#DC2626", dark: "#991B1B" }, // Deep red
+  { main: "#1E293B", dark: "#0F172A" }, // Rich black
 ];
 
 export function WheelSpinner({ games, onResult }: WheelSpinnerProps) {
   const [isSpinning, setIsSpinning] = useState(false);
   const [rotation, setRotation] = useState(0);
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [showLights, setShowLights] = useState(true);
-  const [soundEnabled, setSoundEnabled] = useState(true);
-  const wheelRef = useRef<HTMLDivElement>(null);
-  const tickAudioRef = useRef<HTMLAudioElement | null>(null);
-  const winAudioRef = useRef<HTMLAudioElement | null>(null);
+  const [tickerFlick, setTickerFlick] = useState(false);
+  const [ledPhase, setLedPhase] = useState(0);
+  const [isSettling, setIsSettling] = useState(false);
+  const tickIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const lastSegmentRef = useRef<number>(0);
 
-  // Create segments - ensure at least 8 for visual appeal
+  // Create segments - use game count or minimum 8
   const segments: Game[] = [];
   const minSegments = Math.max(8, games.length);
   for (let i = 0; i < minSegments; i++) {
@@ -39,336 +38,491 @@ export function WheelSpinner({ games, onResult }: WheelSpinnerProps) {
   }
 
   const segmentAngle = 360 / segments.length;
+  const numLeds = 32;
 
-  // Blinking lights effect
+  // LED chasing animation
   useEffect(() => {
     const interval = setInterval(() => {
-      setShowLights((prev) => !prev);
-    }, 500);
+      setLedPhase((prev) => (prev + 1) % numLeds);
+    }, isSpinning ? 50 : 150);
     return () => clearInterval(interval);
-  }, []);
+  }, [isSpinning, numLeds]);
+
+  // Ticker flick effect during spin
+  const startTickerEffect = useCallback(() => {
+    if (tickIntervalRef.current) {
+      clearInterval(tickIntervalRef.current);
+    }
+
+    let currentRotation = rotation;
+    const targetRotation = rotation;
+
+    tickIntervalRef.current = setInterval(() => {
+      // Estimate current visual rotation based on easing
+      const elapsed = Date.now() - spinStartRef.current;
+      const duration = 7000;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Approximate the cubic-bezier easing
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      const estimatedRotation = lastRotationRef.current +
+        (targetRotationRef.current - lastRotationRef.current) * easedProgress;
+
+      const currentSegment = Math.floor((estimatedRotation % 360) / segmentAngle);
+
+      if (currentSegment !== lastSegmentRef.current) {
+        lastSegmentRef.current = currentSegment;
+        setTickerFlick(true);
+        setTimeout(() => setTickerFlick(false), 50);
+      }
+
+      if (progress >= 1) {
+        if (tickIntervalRef.current) {
+          clearInterval(tickIntervalRef.current);
+        }
+      }
+    }, 30);
+  }, [rotation, segmentAngle]);
+
+  const spinStartRef = useRef<number>(0);
+  const lastRotationRef = useRef<number>(0);
+  const targetRotationRef = useRef<number>(0);
 
   const spin = () => {
     if (isSpinning || games.length === 0) return;
 
     setIsSpinning(true);
-    setSelectedIndex(null);
+    setIsSettling(false);
 
-    // Random full rotations (5-8) plus random final position
-    const fullRotations = (5 + Math.random() * 3) * 360;
+    // Random full rotations (6-9) plus random final position
+    const fullRotations = (6 + Math.random() * 3) * 360;
     const randomOffset = Math.random() * 360;
     const newRotation = rotation + fullRotations + randomOffset;
 
+    lastRotationRef.current = rotation;
+    targetRotationRef.current = newRotation;
+    spinStartRef.current = Date.now();
+
     setRotation(newRotation);
+    startTickerEffect();
 
-    // Calculate result after animation completes (add 100ms buffer)
+    // Main spin ends at 7s
     setTimeout(() => {
-      // Normalize the final rotation to 0-360
-      const finalAngle = newRotation % 360;
+      if (tickIntervalRef.current) {
+        clearInterval(tickIntervalRef.current);
+      }
 
-      // The pointer is at the top (0 degrees)
-      // The wheel rotates clockwise, so we need to find which segment is at the pointer
-      // Segment 0 starts at the top and goes clockwise
-      // After rotating by finalAngle degrees clockwise, segment 0 is now at finalAngle degrees from top
-      // The segment at the top is (360 - finalAngle) / segmentAngle segments back from segment 0
+      // Add settling bounce effect
+      setIsSettling(true);
 
-      const effectiveAngle = (360 - finalAngle + 360) % 360;
-      const index = Math.floor(effectiveAngle / segmentAngle) % segments.length;
+      // Calculate result after settle animation
+      setTimeout(() => {
+        const finalAngle = newRotation % 360;
+        const effectiveAngle = (360 - finalAngle + 360) % 360;
+        const index = Math.floor(effectiveAngle / segmentAngle) % segments.length;
 
-      setSelectedIndex(index);
-      setIsSpinning(false);
-      onResult(segments[index]);
-    }, 5100); // Animation is 5s, add buffer
+        setIsSpinning(false);
+        setIsSettling(false);
+        onResult(segments[index]);
+      }, 500);
+    }, 7000);
   };
 
   return (
-    <div className="relative flex flex-col items-center">
-      {/* Arcade Cabinet Frame */}
-      <div className="relative">
-        {/* Outer glow */}
-        <div className="absolute -inset-8 bg-gradient-to-r from-neon-pink via-neon-purple to-neon-blue rounded-full opacity-30 blur-2xl animate-pulse" />
+    <div className="relative flex flex-col items-center select-none">
+      {/* Casino backdrop glow */}
+      <div className="absolute -inset-20 bg-gradient-radial from-amber-900/20 via-transparent to-transparent blur-3xl pointer-events-none" />
 
-        {/* Arcade lights ring */}
-        <div className="absolute -inset-4 rounded-full">
-          {Array.from({ length: 24 }).map((_, i) => {
-            const angle = (i * 360) / 24;
+      {/* Main wheel assembly */}
+      <div className="relative">
+
+        {/* Outer gold frame - multiple layers for depth */}
+        <div className="absolute -inset-6 rounded-full"
+          style={{
+            background: "linear-gradient(145deg, #B8860B, #DAA520, #FFD700, #DAA520, #B8860B)",
+            boxShadow: "0 10px 40px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.3)",
+          }}
+        />
+
+        {/* Chrome inner ring */}
+        <div className="absolute -inset-4 rounded-full"
+          style={{
+            background: "linear-gradient(145deg, #E8E8E8, #FFFFFF, #C0C0C0, #FFFFFF, #A8A8A8)",
+            boxShadow: "inset 0 4px 8px rgba(0,0,0,0.3), inset 0 -2px 4px rgba(255,255,255,0.5)",
+          }}
+        />
+
+        {/* LED lights ring */}
+        <div className="absolute -inset-5 rounded-full pointer-events-none">
+          {Array.from({ length: numLeds }).map((_, i) => {
+            const angle = (i * 360) / numLeds - 90;
             const rad = (angle * Math.PI) / 180;
-            const x = 50 + 48 * Math.cos(rad);
-            const y = 50 + 48 * Math.sin(rad);
+            const radius = 50;
+            const x = 50 + radius * Math.cos(rad);
+            const y = 50 + radius * Math.sin(rad);
+
+            // Chase pattern - 3 LEDs lit at a time
+            const isLit = (i === ledPhase || i === (ledPhase + 1) % numLeds || i === (ledPhase + 2) % numLeds);
+
             return (
               <div
                 key={i}
-                className={cn(
-                  "absolute w-3 h-3 rounded-full transition-all duration-200",
-                  showLights && i % 2 === 0
-                    ? "bg-yellow-400 shadow-[0_0_10px_#ffd93d,0_0_20px_#ffd93d]"
-                    : showLights && i % 2 === 1
-                    ? "bg-yellow-600"
-                    : !showLights && i % 2 === 1
-                    ? "bg-yellow-400 shadow-[0_0_10px_#ffd93d,0_0_20px_#ffd93d]"
-                    : "bg-yellow-600"
-                )}
+                className="absolute w-2.5 h-2.5 rounded-full transition-all duration-100"
                 style={{
                   left: `${x}%`,
                   top: `${y}%`,
                   transform: "translate(-50%, -50%)",
+                  background: isLit
+                    ? "radial-gradient(circle, #FFFDE4, #FFD700)"
+                    : "radial-gradient(circle, #8B7355, #5C4A32)",
+                  boxShadow: isLit
+                    ? "0 0 8px #FFD700, 0 0 16px #FFA500, 0 0 24px #FF8C00"
+                    : "inset 0 1px 2px rgba(0,0,0,0.5)",
                 }}
               />
             );
           })}
         </div>
 
-        {/* Metal frame */}
-        <div className="relative w-80 h-80 md:w-[420px] md:h-[420px] rounded-full bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 p-3 shadow-[0_0_60px_rgba(0,0,0,0.8),inset_0_2px_10px_rgba(255,255,255,0.1)]">
-          {/* Inner metal ring */}
-          <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-600 via-gray-700 to-gray-800 p-2 shadow-[inset_0_4px_20px_rgba(0,0,0,0.5)]">
+        {/* Mahogany base ring */}
+        <div className="relative w-80 h-80 md:w-[400px] md:h-[400px] rounded-full p-1"
+          style={{
+            background: "radial-gradient(circle at 30% 30%, #8B4513, #5D3A1A, #3D2512)",
+            boxShadow: "inset 0 0 30px rgba(0,0,0,0.7), 0 8px 32px rgba(0,0,0,0.5)",
+          }}
+        >
 
-            {/* Wheel container with 3D effect */}
+          {/* Inner recessed area */}
+          <div className="w-full h-full rounded-full overflow-hidden"
+            style={{
+              boxShadow: "inset 0 0 40px rgba(0,0,0,0.8)",
+            }}
+          >
+
+            {/* The spinning wheel */}
             <div
-              className="relative w-full h-full rounded-full overflow-hidden"
+              className={cn(
+                "w-full h-full rounded-full",
+                isSettling && "animate-settle"
+              )}
               style={{
-                perspective: "1000px",
-                transformStyle: "preserve-3d",
+                transform: `rotate(${rotation}deg)`,
+                transition: isSpinning && !isSettling
+                  ? "transform 7s cubic-bezier(0.0, 0.4, 0.2, 1)"
+                  : isSettling
+                  ? "transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+                  : "none",
               }}
             >
-              {/* The spinning wheel */}
-              <div
-                ref={wheelRef}
-                className="w-full h-full rounded-full shadow-[inset_0_0_30px_rgba(0,0,0,0.5)]"
-                style={{
-                  transform: `rotate(${rotation}deg)`,
-                  transition: isSpinning
-                    ? "transform 5s cubic-bezier(0.2, 0.8, 0.2, 1)"
-                    : "none",
-                  transformStyle: "preserve-3d",
-                }}
-              >
-                <svg viewBox="0 0 200 200" className="w-full h-full">
-                  {/* Segments */}
-                  {segments.map((game, index) => {
-                    const startAngle = index * segmentAngle - 90;
-                    const endAngle = startAngle + segmentAngle;
-                    const startRad = (startAngle * Math.PI) / 180;
-                    const endRad = (endAngle * Math.PI) / 180;
+              <svg viewBox="0 0 200 200" className="w-full h-full">
+                <defs>
+                  {/* Wood grain pattern */}
+                  <pattern id="woodGrain" patternUnits="userSpaceOnUse" width="4" height="4">
+                    <rect width="4" height="4" fill="#2D1810"/>
+                    <path d="M0 2 Q1 1, 2 2 T4 2" stroke="#3D2512" strokeWidth="0.5" fill="none" opacity="0.3"/>
+                  </pattern>
 
-                    const x1 = 100 + 92 * Math.cos(startRad);
-                    const y1 = 100 + 92 * Math.sin(startRad);
-                    const x2 = 100 + 92 * Math.cos(endRad);
-                    const y2 = 100 + 92 * Math.sin(endRad);
+                  {/* Glossy overlay */}
+                  <radialGradient id="glossOverlay" cx="35%" cy="35%" r="60%">
+                    <stop offset="0%" stopColor="white" stopOpacity="0.25"/>
+                    <stop offset="50%" stopColor="white" stopOpacity="0.05"/>
+                    <stop offset="100%" stopColor="white" stopOpacity="0"/>
+                  </radialGradient>
 
-                    const largeArc = segmentAngle > 180 ? 1 : 0;
-                    const pathD = `M 100 100 L ${x1} ${y1} A 92 92 0 ${largeArc} 1 ${x2} ${y2} Z`;
-
-                    // Text position
-                    const textAngle = startAngle + segmentAngle / 2;
-                    const textRad = (textAngle * Math.PI) / 180;
-                    const textX = 100 + 58 * Math.cos(textRad);
-                    const textY = 100 + 58 * Math.sin(textRad);
-
-                    const color = WHEEL_COLORS[index % WHEEL_COLORS.length];
-
-                    return (
-                      <g key={`${game.slug}-${index}`}>
-                        {/* Segment with gradient */}
-                        <defs>
-                          <linearGradient
-                            id={`grad-${index}`}
-                            x1="0%"
-                            y1="0%"
-                            x2="100%"
-                            y2="100%"
-                          >
-                            <stop offset="0%" stopColor={color} stopOpacity="1" />
-                            <stop offset="100%" stopColor={color} stopOpacity="0.7" />
-                          </linearGradient>
-                        </defs>
-                        <path
-                          d={pathD}
-                          fill={`url(#grad-${index})`}
-                          stroke="#1a1a2e"
-                          strokeWidth="1.5"
-                          className="drop-shadow-lg"
-                        />
-                        {/* Segment shine */}
-                        <path
-                          d={pathD}
-                          fill="url(#shine)"
-                          opacity="0.3"
-                        />
-                        {/* Text */}
-                        <text
-                          x={textX}
-                          y={textY}
-                          fill="white"
-                          fontSize={segments.length > 12 ? "5" : "6"}
-                          fontWeight="bold"
-                          textAnchor="middle"
-                          dominantBaseline="middle"
-                          transform={`rotate(${textAngle + 90}, ${textX}, ${textY})`}
-                          className="pointer-events-none select-none uppercase tracking-wide"
-                          style={{
-                            textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(0,0,0,0.5)",
-                            paintOrder: "stroke fill",
-                            stroke: "#000",
-                            strokeWidth: "0.5px",
-                          }}
-                        >
-                          {game.name.length > 10
-                            ? game.name.slice(0, 9) + "…"
-                            : game.name}
-                        </text>
-                      </g>
-                    );
-                  })}
-
-                  {/* Global shine gradient */}
-                  <defs>
-                    <linearGradient id="shine" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="white" stopOpacity="0.4" />
-                      <stop offset="50%" stopColor="white" stopOpacity="0" />
+                  {/* Segment gradients */}
+                  {WHEEL_COLORS.map((color, i) => (
+                    <linearGradient key={`seg-grad-${i}`} id={`segGrad${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor={color.main}/>
+                      <stop offset="100%" stopColor={color.dark}/>
                     </linearGradient>
-                    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#ff2d92" stopOpacity="1" />
-                      <stop offset="70%" stopColor="#ff2d92" stopOpacity="0.5" />
-                      <stop offset="100%" stopColor="#b94dff" stopOpacity="0.3" />
-                    </radialGradient>
-                  </defs>
+                  ))}
 
-                  {/* Center hub - 3D effect */}
-                  <circle
-                    cx="100"
-                    cy="100"
-                    r="22"
-                    fill="#1a1a2e"
-                    stroke="#2a2a3e"
-                    strokeWidth="2"
-                  />
-                  <circle
-                    cx="100"
-                    cy="100"
-                    r="18"
-                    fill="url(#centerGlow)"
-                    className={cn(isSpinning && "animate-pulse")}
-                  />
-                  <circle
-                    cx="100"
-                    cy="100"
-                    r="8"
-                    fill="#fff"
-                    opacity="0.9"
-                  />
-                  <circle
-                    cx="98"
-                    cy="98"
-                    r="3"
-                    fill="#fff"
-                    opacity="0.5"
-                  />
-                </svg>
-              </div>
+                  {/* Center hub gradient */}
+                  <radialGradient id="hubGradient" cx="40%" cy="40%" r="60%">
+                    <stop offset="0%" stopColor="#FFD700"/>
+                    <stop offset="50%" stopColor="#DAA520"/>
+                    <stop offset="100%" stopColor="#B8860B"/>
+                  </radialGradient>
+
+                  {/* Brass peg gradient */}
+                  <linearGradient id="brassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#E6C87A"/>
+                    <stop offset="50%" stopColor="#D4AF37"/>
+                    <stop offset="100%" stopColor="#A67C00"/>
+                  </linearGradient>
+                </defs>
+
+                {/* Segments */}
+                {segments.map((game, index) => {
+                  const startAngle = index * segmentAngle - 90;
+                  const endAngle = startAngle + segmentAngle;
+                  const startRad = (startAngle * Math.PI) / 180;
+                  const endRad = (endAngle * Math.PI) / 180;
+
+                  const outerRadius = 94;
+                  const innerRadius = 28;
+
+                  const x1 = 100 + outerRadius * Math.cos(startRad);
+                  const y1 = 100 + outerRadius * Math.sin(startRad);
+                  const x2 = 100 + outerRadius * Math.cos(endRad);
+                  const y2 = 100 + outerRadius * Math.sin(endRad);
+                  const x3 = 100 + innerRadius * Math.cos(endRad);
+                  const y3 = 100 + innerRadius * Math.sin(endRad);
+                  const x4 = 100 + innerRadius * Math.cos(startRad);
+                  const y4 = 100 + innerRadius * Math.sin(startRad);
+
+                  const largeArc = segmentAngle > 180 ? 1 : 0;
+                  const pathD = `M ${x4} ${y4} L ${x1} ${y1} A ${outerRadius} ${outerRadius} 0 ${largeArc} 1 ${x2} ${y2} L ${x3} ${y3} A ${innerRadius} ${innerRadius} 0 ${largeArc} 0 ${x4} ${y4} Z`;
+
+                  // Text position
+                  const textAngle = startAngle + segmentAngle / 2;
+                  const textRad = (textAngle * Math.PI) / 180;
+                  const textRadius = 62;
+                  const textX = 100 + textRadius * Math.cos(textRad);
+                  const textY = 100 + textRadius * Math.sin(textRad);
+
+                  // Peg position (at segment boundary)
+                  const pegRad = (startAngle * Math.PI) / 180;
+                  const pegRadius = 90;
+                  const pegX = 100 + pegRadius * Math.cos(pegRad);
+                  const pegY = 100 + pegRadius * Math.sin(pegRad);
+
+                  const colorIndex = index % WHEEL_COLORS.length;
+
+                  return (
+                    <g key={`${game.slug}-${index}`}>
+                      {/* Segment */}
+                      <path
+                        d={pathD}
+                        fill={`url(#segGrad${colorIndex})`}
+                        stroke="#1a1a1a"
+                        strokeWidth="0.5"
+                      />
+
+                      {/* Segment inner shadow */}
+                      <path
+                        d={pathD}
+                        fill="none"
+                        stroke="rgba(0,0,0,0.3)"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        style={{ filter: "blur(2px)" }}
+                      />
+
+                      {/* Brass divider peg */}
+                      <circle
+                        cx={pegX}
+                        cy={pegY}
+                        r="3"
+                        fill="url(#brassGrad)"
+                        stroke="#8B7355"
+                        strokeWidth="0.5"
+                        style={{ filter: "drop-shadow(1px 1px 1px rgba(0,0,0,0.5))" }}
+                      />
+
+                      {/* Text */}
+                      <text
+                        x={textX}
+                        y={textY}
+                        fill="#F8F4E3"
+                        fontSize={segments.length > 12 ? "4.5" : "5.5"}
+                        fontWeight="bold"
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        transform={`rotate(${textAngle + 90}, ${textX}, ${textY})`}
+                        style={{
+                          textShadow: "0 1px 2px rgba(0,0,0,0.8)",
+                          letterSpacing: "0.5px",
+                        }}
+                      >
+                        {game.name.length > 12
+                          ? game.name.slice(0, 11) + "…"
+                          : game.name}
+                      </text>
+                    </g>
+                  );
+                })}
+
+                {/* Glossy overlay */}
+                <circle cx="100" cy="100" r="94" fill="url(#glossOverlay)" />
+
+                {/* Center hub - golden */}
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="26"
+                  fill="url(#hubGradient)"
+                  stroke="#8B7355"
+                  strokeWidth="2"
+                  style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.5))" }}
+                />
+
+                {/* Hub decorative rings */}
+                <circle cx="100" cy="100" r="20" fill="none" stroke="#FFE55C" strokeWidth="1" opacity="0.5"/>
+                <circle cx="100" cy="100" r="14" fill="none" stroke="#8B7355" strokeWidth="1"/>
+
+                {/* Hub center jewel */}
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="8"
+                  fill="radial-gradient(circle at 40% 40%, #FF6B6B, #DC2626, #991B1B)"
+                  style={{
+                    filter: "drop-shadow(0 0 4px rgba(220,38,38,0.8))",
+                  }}
+                />
+                <circle cx="98" cy="98" r="3" fill="white" opacity="0.6"/>
+              </svg>
             </div>
           </div>
         </div>
 
-        {/* Pointer - Arrow style */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 z-20">
-          <div className="relative">
-            {/* Pointer glow */}
-            <div className="absolute inset-0 blur-md bg-white opacity-50"
-              style={{
-                clipPath: "polygon(50% 100%, 0% 0%, 100% 0%)",
-                width: "40px",
-                height: "50px",
-              }}
-            />
-            {/* Main pointer */}
-            <svg width="40" height="50" viewBox="0 0 40 50" className="drop-shadow-2xl">
-              <defs>
-                <linearGradient id="pointerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#fff" />
-                  <stop offset="50%" stopColor="#e0e0e0" />
-                  <stop offset="100%" stopColor="#b0b0b0" />
-                </linearGradient>
-                <filter id="pointerShadow">
-                  <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.5" />
-                </filter>
-              </defs>
-              <path
-                d="M20 50 L5 10 L20 18 L35 10 Z"
-                fill="url(#pointerGrad)"
-                stroke="#333"
-                strokeWidth="2"
-                filter="url(#pointerShadow)"
-              />
-              {/* Pointer highlight */}
-              <path
-                d="M20 45 L10 15 L20 20 L30 15 Z"
-                fill="white"
-                opacity="0.3"
-              />
-            </svg>
-          </div>
-        </div>
-
-        {/* Sound toggle */}
-        <button
-          onClick={() => setSoundEnabled(!soundEnabled)}
-          className="absolute -right-2 top-1/2 -translate-y-1/2 p-2 bg-dark-700 rounded-full border border-dark-600 hover:bg-dark-600 transition-colors z-30"
-        >
-          {soundEnabled ? (
-            <Volume2 className="w-4 h-4 text-neon-blue" />
-          ) : (
-            <VolumeX className="w-4 h-4 text-gray-500" />
+        {/* The Pointer/Ticker - Professional flapper style */}
+        <div
+          className={cn(
+            "absolute top-0 left-1/2 -translate-x-1/2 z-20",
+            tickerFlick && "animate-flick"
           )}
-        </button>
+          style={{
+            transformOrigin: "center bottom",
+            filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.5))",
+          }}
+        >
+          <svg width="50" height="70" viewBox="0 0 50 70" className="-mt-2">
+            <defs>
+              <linearGradient id="pointerBody" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#DC2626"/>
+                <stop offset="50%" stopColor="#EF4444"/>
+                <stop offset="100%" stopColor="#B91C1C"/>
+              </linearGradient>
+              <linearGradient id="pointerShine" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="white" stopOpacity="0.4"/>
+                <stop offset="100%" stopColor="white" stopOpacity="0"/>
+              </linearGradient>
+              <linearGradient id="mountGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#DAA520"/>
+                <stop offset="50%" stopColor="#FFD700"/>
+                <stop offset="100%" stopColor="#B8860B"/>
+              </linearGradient>
+            </defs>
+
+            {/* Pointer body */}
+            <path
+              d="M25 5 L15 55 Q15 60, 20 60 L30 60 Q35 60, 35 55 L25 5"
+              fill="url(#pointerBody)"
+              stroke="#7F1D1D"
+              strokeWidth="1"
+            />
+
+            {/* Pointer shine */}
+            <path
+              d="M25 8 L18 50 L25 50 L25 8"
+              fill="url(#pointerShine)"
+            />
+
+            {/* Gold mounting bracket */}
+            <ellipse
+              cx="25"
+              cy="62"
+              rx="16"
+              ry="8"
+              fill="url(#mountGrad)"
+              stroke="#8B7355"
+              strokeWidth="1"
+            />
+
+            {/* Mounting screws */}
+            <circle cx="15" cy="62" r="2" fill="#B8860B" stroke="#8B7355" strokeWidth="0.5"/>
+            <circle cx="35" cy="62" r="2" fill="#B8860B" stroke="#8B7355" strokeWidth="0.5"/>
+
+            {/* Center gem on mount */}
+            <circle cx="25" cy="62" r="4" fill="url(#hubGradient)" stroke="#8B7355" strokeWidth="0.5"/>
+          </svg>
+        </div>
       </div>
 
-      {/* Spin Button - Arcade style */}
+      {/* Premium Spin Button */}
       <button
         onClick={spin}
         disabled={isSpinning || games.length === 0}
         className={cn(
-          "mt-10 relative group",
-          "disabled:opacity-50 disabled:cursor-not-allowed"
+          "mt-12 relative group",
+          "disabled:cursor-not-allowed"
         )}
       >
-        {/* Button glow */}
+        {/* Button outer glow */}
         <div className={cn(
-          "absolute -inset-2 rounded-full blur-lg transition-all duration-300",
+          "absolute -inset-4 rounded-2xl blur-xl transition-all duration-500",
           isSpinning
-            ? "bg-neon-purple/50 animate-pulse"
-            : "bg-neon-pink/50 group-hover:bg-neon-pink/70"
+            ? "bg-amber-500/30 animate-pulse"
+            : "bg-amber-500/20 group-hover:bg-amber-500/40"
         )} />
 
-        {/* Button base (3D effect) */}
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-pink-800 to-pink-950 rounded-full translate-y-2" />
-          <div className={cn(
-            "relative px-10 py-5 text-xl font-black uppercase tracking-wider rounded-full transition-all duration-150",
-            "bg-gradient-to-b from-neon-pink via-pink-500 to-pink-600",
-            "text-white shadow-[0_0_20px_rgba(255,45,146,0.5),inset_0_2px_10px_rgba(255,255,255,0.3)]",
-            "border-2 border-pink-400/50",
-            !isSpinning && "group-hover:translate-y-0.5 group-hover:shadow-[0_0_30px_rgba(255,45,146,0.7)]",
-            isSpinning && "translate-y-1"
+        {/* Button 3D base layer */}
+        <div className="absolute inset-0 rounded-xl translate-y-2"
+          style={{
+            background: "linear-gradient(to bottom, #5D3A1A, #3D2512)",
+          }}
+        />
+
+        {/* Button main surface */}
+        <div className={cn(
+          "relative px-12 py-5 rounded-xl transition-all duration-150",
+          !isSpinning && "group-hover:translate-y-0.5 group-active:translate-y-1.5",
+          isSpinning && "translate-y-1"
+        )}
+          style={{
+            background: "linear-gradient(145deg, #DAA520, #FFD700, #DAA520)",
+            boxShadow: "inset 0 2px 4px rgba(255,255,255,0.5), inset 0 -2px 4px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.3)",
+          }}
+        >
+          {/* Button text with emboss effect */}
+          <span className={cn(
+            "text-xl font-black uppercase tracking-wider",
+            "bg-gradient-to-b from-amber-900 via-amber-800 to-amber-900 bg-clip-text text-transparent",
+            "drop-shadow-[0_1px_0_rgba(255,255,255,0.5)]",
+            isSpinning && "opacity-70"
           )}>
             {isSpinning ? (
-              <span className="flex items-center gap-2">
-                <span className="animate-spin">🎰</span>
-                Spinning...
+              <span className="flex items-center gap-3">
+                <span className="inline-block animate-spin">⭐</span>
+                SPINNING
               </span>
             ) : (
-              <span className="flex items-center gap-2">
-                🎲 SPIN TO WIN!
-              </span>
+              "🎰 SPIN TO WIN"
             )}
-          </div>
+          </span>
+
+          {/* Inner highlight */}
+          <div className="absolute inset-x-4 top-1 h-2 rounded-full bg-gradient-to-b from-white/40 to-transparent" />
         </div>
       </button>
 
-      {/* Decorative text */}
-      <p className="mt-4 text-gray-500 text-sm uppercase tracking-widest">
-        {games.length} games in the wheel
-      </p>
+      {/* Game counter badge */}
+      <div className="mt-6 px-4 py-1.5 rounded-full bg-gradient-to-r from-amber-900/50 via-amber-800/50 to-amber-900/50 border border-amber-700/30">
+        <span className="text-amber-200/80 text-sm font-medium tracking-wide">
+          {games.length} Games Available
+        </span>
+      </div>
+
+      {/* Custom CSS for animations */}
+      <style jsx>{`
+        @keyframes flick {
+          0%, 100% { transform: translateX(-50%) rotate(0deg); }
+          50% { transform: translateX(-50%) rotate(-20deg); }
+        }
+
+        @keyframes settle {
+          0% { transform: rotate(var(--rotation)); }
+          30% { transform: rotate(calc(var(--rotation) - 3deg)); }
+          60% { transform: rotate(calc(var(--rotation) + 1.5deg)); }
+          100% { transform: rotate(var(--rotation)); }
+        }
+
+        .animate-flick {
+          animation: flick 0.08s ease-in-out;
+        }
+      `}</style>
     </div>
   );
 }
