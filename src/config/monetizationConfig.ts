@@ -20,7 +20,7 @@ export const affiliateLinks: Record<string, { url: string; label: string }> = {
     label: "Giant Party Goblet", // Fun upsell for King's Cup
   },
   "ping pong balls": {
-    url: "https://www.amazon.com/s?k=beer+pong+balls&tag=khanthebot-20",
+    url: "https://a.co/d/5XLkYU5",
     label: "Pro Ping Pong Balls",
   },
   dice: {
