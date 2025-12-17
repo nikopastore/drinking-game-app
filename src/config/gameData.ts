@@ -44,6 +44,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     max_players: 8,
     alcohol_type: "any",
     drunkenness_level: 5,
+    image: "/games/ride-the-bus-1.png",
   },
   {
     id: "seed-4",
