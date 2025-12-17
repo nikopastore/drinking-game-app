@@ -54,21 +54,6 @@ export function HeroAnimation() {
           {currentScene === "cups" && <CupsScene />}
         </motion.div>
       </AnimatePresence>
-
-      {/* Scene indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-        {scenes.map((scene) => (
-          <button
-            key={scene}
-            onClick={() => setCurrentScene(scene)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              currentScene === scene
-                ? "w-8 bg-gradient-to-r from-pink-500 to-purple-500"
-                : "w-1.5 bg-white/30 hover:bg-white/50"
-            }`}
-          />
-        ))}
-      </div>
     </div>
   );
 }
