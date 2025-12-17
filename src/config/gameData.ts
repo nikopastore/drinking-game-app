@@ -49,6 +49,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     id: "seed-4",
     slug: "flip-cup",
     name: "Flip Cup",
+    image: "/games/flip-cup-1.png",
     description:
       "Fast-paced team relay race. Chug your beer, flip your cup, next person goes.",
     rules_text:
