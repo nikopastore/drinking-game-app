@@ -1,807 +1,472 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
-import { motion, useAnimation, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { FlaskConical, Dice5, CreditCard, Users, GlassWater } from "lucide-react";
 
+// Color palette
 const COLORS = {
-  dark: "#0a0a0f",
+  bg: "#020617", // slate-950
   pink: "#ec4899",
   purple: "#a855f7",
+  cyan: "#22d3ee",
   green: "#10b981",
   white: "#ffffff",
 };
 
-// Animation phases
-type Phase =
-  | "beer-pong-setup"
-  | "ball-throw-forward"
-  | "ball-throw-back"
-  | "ball-to-deck"
-  | "deal-cards"
-  | "cards-to-center"
-  | "dice-roll"
-  | "pause"
-  | "fade-out";
+// Node configuration
+const NODES = [
+  { id: "dice", icon: Dice5, color: COLORS.pink, angle: 45, label: "Dice Games" },
+  { id: "cards", icon: CreditCard, color: COLORS.purple, angle: 135, label: "Card Games" },
+  { id: "cups", icon: GlassWater, color: COLORS.cyan, angle: 225, label: "Cup Games" },
+  { id: "group", icon: Users, color: COLORS.green, angle: 315, label: "Group Games" },
+];
 
 export function HeroAnimation() {
-  const [phase, setPhase] = useState<Phase>("beer-pong-setup");
-  const [isVisible, setIsVisible] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const hubControls = useAnimation();
+  const beamControls = useAnimation();
+  const nodeControls = useAnimation();
 
-  const runSequence = useCallback(async () => {
-    const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-
-    while (true) {
-      setIsVisible(true);
-      setPhase("beer-pong-setup");
-      await delay(800);
-
-      setPhase("ball-throw-forward");
-      await delay(1200);
-
-      setPhase("ball-throw-back");
-      await delay(1500);
-
-      setPhase("ball-to-deck");
-      await delay(1000);
-
-      setPhase("deal-cards");
-      await delay(2500);
-
-      setPhase("cards-to-center");
-      await delay(800);
-
-      setPhase("dice-roll");
-      await delay(2000);
-
-      setPhase("pause");
-      await delay(1000);
-
-      setPhase("fade-out");
-      await delay(600);
-      setIsVisible(false);
-      await delay(400);
-    }
-  }, []);
-
+  // Entrance animation sequence
   useEffect(() => {
-    runSequence();
-  }, [runSequence]);
+    const runEntrance = async () => {
+      // Hub scales up
+      await hubControls.start({
+        scale: 1,
+        opacity: 1,
+        transition: { duration: 0.6, ease: "backOut" },
+      });
+
+      // Beams draw
+      await beamControls.start({
+        pathLength: 1,
+        opacity: 1,
+        transition: { duration: 0.8, ease: "easeOut" },
+      });
+
+      // Nodes pop in
+      await nodeControls.start({
+        scale: 1,
+        opacity: 1,
+        transition: { duration: 0.5, ease: "backOut", staggerChildren: 0.1 },
+      });
+
+      setIsLoaded(true);
+    };
+
+    runEntrance();
+  }, [hubControls, beamControls, nodeControls]);
 
   return (
-    <div className="relative w-full max-w-2xl mx-auto h-72 md:h-80 overflow-hidden">
-      {/* Ambient background glow */}
+    <div className="relative w-full max-w-3xl mx-auto h-80 md:h-96">
+      {/* Background gradient glow */}
       <div
-        className="absolute inset-0 opacity-40"
+        className="absolute inset-0 opacity-30"
         style={{
-          background: `radial-gradient(ellipse at center, ${COLORS.purple}15 0%, transparent 70%)`,
+          background: `radial-gradient(ellipse at center, ${COLORS.purple}20 0%, transparent 60%)`,
         }}
       />
 
-      <AnimatePresence>
-        {isVisible && (
+      <svg
+        viewBox="0 0 500 400"
+        className="w-full h-full"
+        style={{ overflow: "visible" }}
+      >
+        <defs>
+          {/* Glow filters */}
+          <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="glow-purple" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="glow-strong" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="8" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+
+          {/* Beam gradient */}
+          <linearGradient id="beamGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor={COLORS.purple} stopOpacity="0.8" />
+            <stop offset="100%" stopColor={COLORS.cyan} stopOpacity="0.3" />
+          </linearGradient>
+
+          {/* Particle gradient */}
+          <radialGradient id="particleGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor={COLORS.white} />
+            <stop offset="50%" stopColor={COLORS.pink} />
+            <stop offset="100%" stopColor={COLORS.pink} stopOpacity="0" />
+          </radialGradient>
+        </defs>
+
+        {/* Connection Beams */}
+        {NODES.map((node, i) => (
+          <ConnectionBeam
+            key={node.id}
+            nodeAngle={node.angle}
+            color={node.color}
+            controls={beamControls}
+            isLoaded={isLoaded}
+            delay={i * 0.2}
+          />
+        ))}
+
+        {/* Central Hub */}
+        <CentralHub controls={hubControls} />
+
+        {/* Orbiting Nodes */}
+        {NODES.map((node, i) => (
+          <OrbitingNode
+            key={node.id}
+            node={node}
+            controls={nodeControls}
+            isLoaded={isLoaded}
+            index={i}
+          />
+        ))}
+      </svg>
+
+      {/* Labels (HTML overlay for better text rendering) */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="relative w-full h-full">
+          {/* Center label */}
           <motion.div
-            className="absolute inset-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-12 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 0.5 }}
           >
-            <svg
-              viewBox="0 0 400 250"
-              className="w-full h-full"
-              style={{ overflow: "visible" }}
-            >
-              <defs>
-                {/* Table gradient - 3D effect */}
-                <linearGradient id="tableGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.purple} stopOpacity="0.4" />
-                  <stop offset="50%" stopColor={COLORS.purple} stopOpacity="0.2" />
-                  <stop offset="100%" stopColor={COLORS.purple} stopOpacity="0.1" />
-                </linearGradient>
-                {/* Table side gradient */}
-                <linearGradient id="tableSideGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.purple} stopOpacity="0.3" />
-                  <stop offset="100%" stopColor={COLORS.purple} stopOpacity="0.6" />
-                </linearGradient>
-                {/* Ball glow */}
-                <radialGradient id="ballGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor={COLORS.white} />
-                  <stop offset="70%" stopColor={COLORS.pink} />
-                  <stop offset="100%" stopColor={COLORS.pink} stopOpacity="0" />
-                </radialGradient>
-                {/* Cup gradients for 3D effect */}
-                <linearGradient id="cupGradPink" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.pink} stopOpacity="0.8" />
-                  <stop offset="50%" stopColor={COLORS.pink} stopOpacity="0.5" />
-                  <stop offset="100%" stopColor={COLORS.pink} stopOpacity="0.3" />
-                </linearGradient>
-                <linearGradient id="cupGradPurple" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.purple} stopOpacity="0.8" />
-                  <stop offset="50%" stopColor={COLORS.purple} stopOpacity="0.5" />
-                  <stop offset="100%" stopColor={COLORS.purple} stopOpacity="0.3" />
-                </linearGradient>
-                {/* Card gradient */}
-                <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.purple} stopOpacity="0.4" />
-                  <stop offset="100%" stopColor={COLORS.pink} stopOpacity="0.2" />
-                </linearGradient>
-              </defs>
-
-              {/* Beer Pong Scene */}
-              <BeerPongScene phase={phase} />
-
-              {/* Flying Ball */}
-              <FlyingBall phase={phase} />
-
-              {/* Card Deck & Dealt Cards */}
-              <CardScene phase={phase} />
-
-              {/* Dice */}
-              <DiceScene phase={phase} />
-            </svg>
+            <span className="text-xs md:text-sm font-mono text-purple-400/80 tracking-wider">
+              SIPWIKI DATABASE
+            </span>
           </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Phase indicator dots */}
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-        {["beer-pong", "cards", "dice"].map((scene, i) => {
-          const isActive =
-            (scene === "beer-pong" && ["beer-pong-setup", "ball-throw-forward", "ball-throw-back"].includes(phase)) ||
-            (scene === "cards" && ["ball-to-deck", "deal-cards", "cards-to-center"].includes(phase)) ||
-            (scene === "dice" && ["dice-roll", "pause"].includes(phase));
-          return (
-            <div
-              key={scene}
-              className={`h-1.5 rounded-full transition-all duration-500 ${
-                isActive
-                  ? "w-6 bg-gradient-to-r from-pink-500 to-purple-500"
-                  : "w-1.5 bg-white/20"
-              }`}
-            />
-          );
-        })}
+        </div>
       </div>
     </div>
   );
 }
 
 // ============================================
-// BEER PONG SCENE
+// CENTRAL HUB
 // ============================================
-function BeerPongScene({ phase }: { phase: Phase }) {
-  const showScene = ["beer-pong-setup", "ball-throw-forward", "ball-throw-back"].includes(phase);
-  const isThrowing = phase === "ball-throw-forward";
-  const isOpponentThrowing = phase === "ball-throw-back";
-
+function CentralHub({ controls }: { controls: ReturnType<typeof useAnimation> }) {
   return (
     <motion.g
-      initial={{ opacity: 0 }}
-      animate={{ opacity: showScene ? 1 : 0 }}
-      transition={{ duration: 0.4 }}
+      initial={{ scale: 0, opacity: 0 }}
+      animate={controls}
+      style={{ originX: "250px", originY: "200px" }}
     >
-      {/* 3D Table - viewed from behind close player */}
-      {/* Table top surface */}
-      <motion.path
-        d="M 80 220 L 320 220 L 280 95 L 120 95 Z"
-        fill="url(#tableGrad)"
+      {/* Outer rotating ring */}
+      <motion.circle
+        cx="250"
+        cy="200"
+        r="55"
+        fill="none"
         stroke={COLORS.purple}
         strokeWidth="1"
-        strokeOpacity="0.8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showScene ? 1 : 0 }}
-        transition={{ duration: 0.5 }}
-      />
-      {/* Table front edge (3D depth) */}
-      <motion.path
-        d="M 80 220 L 320 220 L 320 228 L 80 228 Z"
-        fill="url(#tableSideGrad)"
-        stroke={COLORS.purple}
-        strokeWidth="0.5"
-        strokeOpacity="0.5"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showScene ? 1 : 0 }}
-        transition={{ duration: 0.5 }}
-      />
-      {/* Table left leg hint */}
-      <motion.line
-        x1="90" y1="228" x2="90" y2="250"
-        stroke={COLORS.purple}
-        strokeWidth="3"
-        strokeOpacity="0.4"
-        strokeLinecap="round"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showScene ? 1 : 0 }}
-        transition={{ duration: 0.5 }}
-      />
-      {/* Table right leg hint */}
-      <motion.line
-        x1="310" y1="228" x2="310" y2="250"
-        stroke={COLORS.purple}
-        strokeWidth="3"
-        strokeOpacity="0.4"
-        strokeLinecap="round"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showScene ? 1 : 0 }}
-        transition={{ duration: 0.5 }}
+        strokeDasharray="8 4"
+        opacity="0.4"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        style={{ originX: "250px", originY: "200px" }}
       />
 
-      {/* Table center line */}
-      <motion.line
-        x1="200" y1="220" x2="200" y2="95"
-        stroke={COLORS.purple}
-        strokeWidth="1"
-        strokeOpacity="0.3"
-        strokeDasharray="4 4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showScene ? 1 : 0 }}
-        transition={{ duration: 0.5 }}
+      {/* Middle pulsing ring */}
+      <motion.circle
+        cx="250"
+        cy="200"
+        r="45"
+        fill="none"
+        stroke={COLORS.cyan}
+        strokeWidth="2"
+        opacity="0.6"
+        animate={{ scale: [1, 1.1, 1], opacity: [0.6, 0.3, 0.6] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        filter="url(#glow-purple)"
       />
 
-      {/* 3D Cups at far end (opponent's side) */}
-      <motion.g
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showScene ? 1 : 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        {/* 6 cups in triangle formation - 3D style */}
-        {[
-          { cx: 175, cy: 112, size: 0.8 },
-          { cx: 200, cy: 112, size: 0.8 },
-          { cx: 225, cy: 112, size: 0.8 },
-          { cx: 187, cy: 104, size: 0.75 },
-          { cx: 213, cy: 104, size: 0.75 },
-          { cx: 200, cy: 96, size: 0.7 },
-        ].map((cup, i) => (
-          <g key={i}>
-            {/* Shadow/glow under cup */}
-            <ellipse
-              cx={cup.cx}
-              cy={cup.cy + 8 * cup.size}
-              rx={12 * cup.size}
-              ry={4 * cup.size}
-              fill={COLORS.pink}
-              opacity="0.15"
-              style={{ filter: "blur(3px)" }}
-            />
-            {/* Cup body (trapezoid shape for 3D) */}
-            <path
-              d={`M ${cup.cx - 8 * cup.size} ${cup.cy}
-                  L ${cup.cx - 10 * cup.size} ${cup.cy + 18 * cup.size}
-                  L ${cup.cx + 10 * cup.size} ${cup.cy + 18 * cup.size}
-                  L ${cup.cx + 8 * cup.size} ${cup.cy} Z`}
-              fill="url(#cupGradPink)"
-              stroke={COLORS.pink}
-              strokeWidth="1"
-            />
-            {/* Cup rim (ellipse at top) */}
-            <ellipse
-              cx={cup.cx}
-              cy={cup.cy}
-              rx={8 * cup.size}
-              ry={3 * cup.size}
-              fill={COLORS.pink}
-              opacity="0.3"
-            />
-            <ellipse
-              cx={cup.cx}
-              cy={cup.cy}
-              rx={8 * cup.size}
-              ry={3 * cup.size}
-              fill="none"
-              stroke={COLORS.pink}
-              strokeWidth="1.5"
-            />
-            {/* Liquid inside hint */}
-            <ellipse
-              cx={cup.cx}
-              cy={cup.cy + 2 * cup.size}
-              rx={6 * cup.size}
-              ry={2 * cup.size}
-              fill={COLORS.pink}
-              opacity="0.5"
-            />
-          </g>
-        ))}
-      </motion.g>
+      {/* Inner hexagon */}
+      <motion.polygon
+        points="250,165 280,182.5 280,217.5 250,235 220,217.5 220,182.5"
+        fill={COLORS.bg}
+        stroke={COLORS.purple}
+        strokeWidth="2"
+        filter="url(#glow-purple)"
+        animate={{ rotate: -360 }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        style={{ originX: "250px", originY: "200px" }}
+      />
 
-      {/* Opponent stick figure at far end (smaller due to perspective) */}
-      <motion.g
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: showScene ? 1 : 0, y: showScene ? 0 : -10 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-      >
-        {/* Head */}
-        <circle cx="200" cy="68" r="7" fill="none" stroke={COLORS.white} strokeWidth="1.5" />
-        {/* Body */}
-        <line x1="200" y1="75" x2="200" y2="95" stroke={COLORS.white} strokeWidth="1.5" />
-        {/* Left arm (static) */}
-        <line x1="200" y1="80" x2="186" y2="88" stroke={COLORS.white} strokeWidth="1.5" strokeLinecap="round" />
-        {/* Right arm (throwing arm) */}
-        <motion.path
-          d="M 200 80 Q 210 78 214 85"
-          fill="none"
-          stroke={COLORS.white}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          initial={{ d: "M 200 80 Q 210 78 214 85" }}
-          animate={isOpponentThrowing ? {
-            d: [
-              "M 200 80 Q 210 78 214 85",
-              "M 200 80 Q 206 70 200 62",
-              "M 200 80 Q 194 72 186 75",
-              "M 200 80 Q 210 78 214 85",
-            ]
-          } : { d: "M 200 80 Q 210 78 214 85" }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
+      {/* Inner glow circle */}
+      <circle
+        cx="250"
+        cy="200"
+        r="28"
+        fill={`${COLORS.purple}15`}
+      />
+
+      {/* Center icon */}
+      <g transform="translate(234, 184)">
+        <FlaskConical
+          size={32}
+          color={COLORS.pink}
+          strokeWidth={1.5}
         />
-        {/* Legs */}
-        <line x1="200" y1="95" x2="192" y2="105" stroke={COLORS.white} strokeWidth="1.5" strokeLinecap="round" />
-        <line x1="200" y1="95" x2="208" y2="105" stroke={COLORS.white} strokeWidth="1.5" strokeLinecap="round" />
-      </motion.g>
+      </g>
 
-      {/* Close player (full body, seen from behind/above) - larger, bottom center */}
-      <motion.g
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: showScene ? 1 : 0, y: showScene ? 0 : 20 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-      >
-        {/* Head (seen from behind - just circle) */}
-        <circle cx="200" cy="185" r="12" fill="none" stroke={COLORS.white} strokeWidth="2" />
-
-        {/* Neck */}
-        <line x1="200" y1="197" x2="200" y2="203" stroke={COLORS.white} strokeWidth="2" />
-
-        {/* Shoulders/upper body */}
-        <line x1="175" y1="210" x2="225" y2="210" stroke={COLORS.white} strokeWidth="2" strokeLinecap="round" />
-
-        {/* Torso */}
-        <line x1="200" y1="203" x2="200" y2="235" stroke={COLORS.white} strokeWidth="2" />
-
-        {/* Left arm (resting) */}
-        <motion.path
-          d="M 175 210 Q 165 225 170 240"
-          fill="none"
-          stroke={COLORS.white}
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-
-        {/* Right arm (throwing arm - animated) */}
-        <motion.path
-          d="M 225 210 Q 235 200 245 195"
-          fill="none"
-          stroke={COLORS.white}
-          strokeWidth="2"
-          strokeLinecap="round"
-          initial={{ d: "M 225 210 Q 235 220 240 230" }}
-          animate={isThrowing ? {
-            d: [
-              "M 225 210 Q 240 200 250 185",  // Wind up
-              "M 225 210 Q 250 190 260 170",  // Peak of throw
-              "M 225 210 Q 245 205 255 200",  // Follow through
-              "M 225 210 Q 235 220 240 230",  // Rest
-            ]
-          } : { d: "M 225 210 Q 235 220 240 230" }}
-          transition={{
-            duration: 1.0,
-            ease: [0.4, 0, 0.2, 1],
-            times: [0, 0.3, 0.6, 1]
-          }}
-        />
-
-        {/* Legs (slight perspective, spread stance) */}
-        <line x1="195" y1="235" x2="180" y2="270" stroke={COLORS.white} strokeWidth="2" strokeLinecap="round" />
-        <line x1="205" y1="235" x2="220" y2="270" stroke={COLORS.white} strokeWidth="2" strokeLinecap="round" />
-      </motion.g>
-
-      {/* Player's 3D cups (close to camera, bottom of table) */}
-      <motion.g
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showScene ? 1 : 0 }}
-        transition={{ duration: 0.5, delay: 0.15 }}
-      >
-        {/* 6 cups in triangle - larger due to being closer */}
-        {[
-          { cx: 155, cy: 185, size: 1.1 },
-          { cx: 200, cy: 185, size: 1.1 },
-          { cx: 245, cy: 185, size: 1.1 },
-          { cx: 177, cy: 198, size: 1.15 },
-          { cx: 223, cy: 198, size: 1.15 },
-          { cx: 200, cy: 210, size: 1.2 },
-        ].map((cup, i) => (
-          <g key={`near-${i}`}>
-            {/* Shadow/glow under cup */}
-            <ellipse
-              cx={cup.cx}
-              cy={cup.cy + 12 * cup.size}
-              rx={14 * cup.size}
-              ry={5 * cup.size}
-              fill={COLORS.purple}
-              opacity="0.15"
-              style={{ filter: "blur(4px)" }}
-            />
-            {/* Cup body (trapezoid shape for 3D) */}
-            <path
-              d={`M ${cup.cx - 10 * cup.size} ${cup.cy}
-                  L ${cup.cx - 12 * cup.size} ${cup.cy + 22 * cup.size}
-                  L ${cup.cx + 12 * cup.size} ${cup.cy + 22 * cup.size}
-                  L ${cup.cx + 10 * cup.size} ${cup.cy} Z`}
-              fill="url(#cupGradPurple)"
-              stroke={COLORS.purple}
-              strokeWidth="1"
-            />
-            {/* Cup rim (ellipse at top) */}
-            <ellipse
-              cx={cup.cx}
-              cy={cup.cy}
-              rx={10 * cup.size}
-              ry={4 * cup.size}
-              fill={COLORS.purple}
-              opacity="0.3"
-            />
-            <ellipse
-              cx={cup.cx}
-              cy={cup.cy}
-              rx={10 * cup.size}
-              ry={4 * cup.size}
-              fill="none"
-              stroke={COLORS.purple}
-              strokeWidth="1.5"
-            />
-            {/* Liquid inside hint */}
-            <ellipse
-              cx={cup.cx}
-              cy={cup.cy + 3 * cup.size}
-              rx={7 * cup.size}
-              ry={2.5 * cup.size}
-              fill={COLORS.purple}
-              opacity="0.5"
-            />
-          </g>
-        ))}
-      </motion.g>
+      {/* Pulsing core */}
+      <motion.circle
+        cx="250"
+        cy="200"
+        r="8"
+        fill={COLORS.pink}
+        opacity="0.8"
+        animate={{ scale: [1, 1.3, 1], opacity: [0.8, 0.4, 0.8] }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        filter="url(#glow-pink)"
+      />
     </motion.g>
   );
 }
 
 // ============================================
-// FLYING BALL (transitions to card deck)
+// CONNECTION BEAM
 // ============================================
-function FlyingBall({ phase }: { phase: Phase }) {
-  const controls = useAnimation();
+function ConnectionBeam({
+  nodeAngle,
+  color,
+  controls,
+  isLoaded,
+  delay,
+}: {
+  nodeAngle: number;
+  color: string;
+  controls: ReturnType<typeof useAnimation>;
+  isLoaded: boolean;
+  delay: number;
+}) {
+  const centerX = 250;
+  const centerY = 200;
+  const radius = 140;
+  const angleRad = (nodeAngle * Math.PI) / 180;
+  const endX = centerX + Math.cos(angleRad) * radius;
+  const endY = centerY + Math.sin(angleRad) * radius;
 
-  useEffect(() => {
-    const animate = async () => {
-      if (phase === "ball-throw-forward") {
-        // Ball starts from close player's hand (right side) and arcs to far cups
-        await controls.start({
-          cx: [260, 230, 200],
-          cy: [170, 80, 110],
-          r: [8, 6, 5],
-          opacity: 1,
-          transition: { duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }
-        });
-      } else if (phase === "ball-throw-back") {
-        // Opponent throws - ball comes toward camera, growing larger
-        await controls.start({
-          cx: [200, 200, 200],
-          cy: [85, 120, 150],
-          r: [5, 25, 100],
-          opacity: 1,
-          transition: { duration: 1.3, ease: "easeIn" }
-        });
-      } else if (phase === "ball-to-deck") {
-        // Morphing handled by card scene
-        controls.start({ opacity: 0, transition: { duration: 0.3 } });
-      } else if (!["ball-throw-forward", "ball-throw-back"].includes(phase)) {
-        controls.set({ opacity: 0, r: 8, cx: 260, cy: 170 });
-      }
-    };
-    animate();
-  }, [phase, controls]);
+  // Control point for curved beam
+  const midRadius = radius * 0.6;
+  const controlAngle = angleRad + 0.2;
+  const ctrlX = centerX + Math.cos(controlAngle) * midRadius;
+  const ctrlY = centerY + Math.sin(controlAngle) * midRadius;
 
+  const pathD = `M ${centerX} ${centerY} Q ${ctrlX} ${ctrlY} ${endX} ${endY}`;
+
+  return (
+    <g>
+      {/* Beam glow (background) */}
+      <motion.path
+        d={pathD}
+        fill="none"
+        stroke={color}
+        strokeWidth="4"
+        opacity="0.15"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={controls}
+        style={{ filter: "blur(4px)" }}
+      />
+
+      {/* Beam line */}
+      <motion.path
+        d={pathD}
+        fill="none"
+        stroke={color}
+        strokeWidth="2"
+        strokeLinecap="round"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={controls}
+        opacity="0.6"
+      />
+
+      {/* Traveling particles */}
+      {isLoaded && (
+        <>
+          <TravelingParticle path={pathD} color={color} delay={delay} duration={2} />
+          <TravelingParticle path={pathD} color={color} delay={delay + 1} duration={2} />
+        </>
+      )}
+    </g>
+  );
+}
+
+// ============================================
+// TRAVELING PARTICLE
+// ============================================
+function TravelingParticle({
+  path,
+  color,
+  delay,
+  duration,
+}: {
+  path: string;
+  color: string;
+  delay: number;
+  duration: number;
+}) {
   return (
     <motion.circle
-      animate={controls}
-      fill="url(#ballGlow)"
-      style={{
-        filter: `drop-shadow(0 0 15px ${COLORS.pink})`,
+      r="4"
+      fill={color}
+      filter="url(#glow-strong)"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: [0, 1, 1, 0] }}
+      transition={{
+        duration: duration,
+        repeat: Infinity,
+        delay: delay,
+        ease: "linear",
+        times: [0, 0.1, 0.9, 1],
       }}
-    />
+    >
+      <animateMotion
+        dur={`${duration}s`}
+        repeatCount="indefinite"
+        begin={`${delay}s`}
+        path={path}
+      />
+    </motion.circle>
   );
 }
 
 // ============================================
-// CARD SCENE (deck + dealt cards)
+// ORBITING NODE
 // ============================================
-function CardScene({ phase }: { phase: Phase }) {
-  const showDeck = ["ball-to-deck", "deal-cards", "cards-to-center"].includes(phase);
-  const showCards = phase === "deal-cards";
-  const convergeCards = phase === "cards-to-center";
+function OrbitingNode({
+  node,
+  controls,
+  isLoaded,
+  index,
+}: {
+  node: typeof NODES[0];
+  controls: ReturnType<typeof useAnimation>;
+  isLoaded: boolean;
+  index: number;
+}) {
+  const [isHovered, setIsHovered] = useState(false);
+  const centerX = 250;
+  const centerY = 200;
+  const radius = 140;
+  const angleRad = (node.angle * Math.PI) / 180;
+  const x = centerX + Math.cos(angleRad) * radius;
+  const y = centerY + Math.sin(angleRad) * radius;
 
-  // 8 card positions in a circle
-  const cardPositions = Array.from({ length: 8 }, (_, i) => {
-    const angle = (i * 45 - 90) * (Math.PI / 180); // Start from top, go clockwise
-    const radius = 70;
-    return {
-      x: 200 + Math.cos(angle) * radius,
-      y: 140 + Math.sin(angle) * radius,
-      rotation: i * 45,
-    };
-  });
-
-  return (
-    <motion.g>
-      {/* Central deck - morphs from ball */}
-      <motion.g
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{
-          opacity: showDeck ? 1 : 0,
-          scale: showDeck ? 1 : 0,
-        }}
-        transition={{ duration: 0.5, ease: "backOut" }}
-      >
-        {/* Deck shadow/glow */}
-        <motion.rect
-          x="175"
-          y="120"
-          width="50"
-          height="70"
-          rx="4"
-          fill={COLORS.purple}
-          opacity="0.2"
-          style={{ filter: "blur(10px)" }}
-        />
-        {/* Deck stack effect */}
-        {[0, 1, 2].map((i) => (
-          <motion.rect
-            key={i}
-            x={178 + i}
-            y={123 - i * 2}
-            width="44"
-            height="62"
-            rx="3"
-            fill={COLORS.dark}
-            stroke={COLORS.purple}
-            strokeWidth="1"
-            opacity={0.5 + i * 0.2}
-          />
-        ))}
-        {/* Top card */}
-        <motion.rect
-          x="180"
-          y="117"
-          width="40"
-          height="56"
-          rx="3"
-          fill="url(#cardGrad)"
-          stroke={COLORS.pink}
-          strokeWidth="1.5"
-        />
-        {/* Card back design */}
-        <motion.rect
-          x="186"
-          y="125"
-          width="28"
-          height="40"
-          rx="2"
-          fill="none"
-          stroke={COLORS.pink}
-          strokeWidth="0.5"
-          opacity="0.5"
-        />
-      </motion.g>
-
-      {/* Dealt cards */}
-      {cardPositions.map((pos, i) => (
-        <motion.g
-          key={i}
-          initial={{
-            x: 200,
-            y: 145,
-            opacity: 0,
-            scale: 0,
-            rotate: 0,
-          }}
-          animate={{
-            x: convergeCards ? 200 : showCards ? pos.x : 200,
-            y: convergeCards ? 145 : showCards ? pos.y : 145,
-            opacity: (showCards || convergeCards) ? 1 : 0,
-            scale: convergeCards ? 0 : showCards ? 0.8 : 0,
-            rotate: convergeCards ? 0 : showCards ? pos.rotation : 0,
-          }}
-          transition={{
-            duration: convergeCards ? 0.5 : 0.4,
-            delay: showCards ? i * 0.15 : 0,
-            ease: convergeCards ? "easeIn" : "backOut",
-          }}
-        >
-          {/* Card */}
-          <rect
-            x="-18"
-            y="-25"
-            width="36"
-            height="50"
-            rx="3"
-            fill={COLORS.dark}
-            stroke={i % 2 === 0 ? COLORS.pink : COLORS.purple}
-            strokeWidth="1.5"
-            style={{
-              filter: `drop-shadow(0 0 5px ${i % 2 === 0 ? COLORS.pink : COLORS.purple}40)`,
-            }}
-          />
-          {/* Card inner design */}
-          <rect
-            x="-12"
-            y="-18"
-            width="24"
-            height="36"
-            rx="2"
-            fill="none"
-            stroke={i % 2 === 0 ? COLORS.pink : COLORS.purple}
-            strokeWidth="0.5"
-            opacity="0.4"
-          />
-        </motion.g>
-      ))}
-    </motion.g>
-  );
-}
-
-// ============================================
-// DICE SCENE
-// ============================================
-function DiceScene({ phase }: { phase: Phase }) {
-  const showDice = phase === "dice-roll" || phase === "pause";
-
-  const dotPositions: Record<number, { x: number; y: number }[]> = {
-    5: [
-      { x: -8, y: -8 }, { x: 8, y: -8 },
-      { x: 0, y: 0 },
-      { x: -8, y: 8 }, { x: 8, y: 8 },
-    ],
-    3: [
-      { x: -8, y: -8 },
-      { x: 0, y: 0 },
-      { x: 8, y: 8 },
-    ],
-  };
+  const Icon = node.icon;
 
   return (
     <motion.g
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{
-        opacity: showDice ? 1 : 0,
-        scale: showDice ? 1 : 0,
-      }}
-      transition={{
-        duration: 0.6,
-        ease: "backOut",
-      }}
+      initial={{ scale: 0, opacity: 0 }}
+      animate={controls}
+      transition={{ delay: index * 0.1 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{ cursor: "pointer" }}
     >
-      {/* Die 1 */}
+      {/* Floating animation wrapper */}
       <motion.g
-        initial={{ x: 160, y: 140, rotate: -720 }}
-        animate={{
-          x: showDice ? 160 : 200,
-          y: showDice ? 140 : 145,
-          rotate: showDice ? -15 : -720,
+        animate={
+          isLoaded && !isHovered
+            ? {
+                y: [0, -8, 0],
+              }
+            : { y: 0 }
+        }
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: index * 0.4,
         }}
-        transition={{ duration: 1, ease: "easeOut" }}
       >
-        {/* Glow */}
-        <rect
-          x="-22"
-          y="-22"
-          width="44"
-          height="44"
-          rx="8"
-          fill={COLORS.pink}
-          opacity="0.3"
-          style={{ filter: "blur(8px)" }}
+        {/* Outer glow ring */}
+        <motion.circle
+          cx={x}
+          cy={y}
+          r="32"
+          fill="none"
+          stroke={node.color}
+          strokeWidth="1"
+          opacity={isHovered ? 0.8 : 0.3}
+          animate={isHovered ? { scale: 1.2 } : { scale: 1 }}
+          transition={{ duration: 0.3 }}
+          style={{ originX: `${x}px`, originY: `${y}px` }}
         />
-        {/* Die face */}
-        <rect
-          x="-20"
-          y="-20"
-          width="40"
-          height="40"
-          rx="6"
-          fill={COLORS.dark}
-          stroke={COLORS.pink}
+
+        {/* Node background */}
+        <motion.circle
+          cx={x}
+          cy={y}
+          r="26"
+          fill={COLORS.bg}
+          stroke={node.color}
           strokeWidth="2"
+          animate={isHovered ? { filter: "url(#glow-strong)" } : {}}
+          transition={{ duration: 0.3 }}
         />
-        {/* Dots */}
-        {dotPositions[5].map((dot, i) => (
-          <motion.circle
-            key={i}
-            cx={dot.x}
-            cy={dot.y}
-            r="4"
-            fill={COLORS.pink}
-            initial={{ scale: 0 }}
-            animate={{ scale: showDice ? 1 : 0 }}
-            transition={{ delay: 0.5 + i * 0.05, duration: 0.2, ease: "backOut" }}
+
+        {/* Inner glow */}
+        <circle
+          cx={x}
+          cy={y}
+          r="22"
+          fill={`${node.color}15`}
+        />
+
+        {/* Icon */}
+        <g transform={`translate(${x - 12}, ${y - 12})`}>
+          <Icon
+            size={24}
+            color={isHovered ? COLORS.white : node.color}
+            strokeWidth={1.5}
           />
-        ))}
+        </g>
+
+        {/* Label (appears on hover) */}
+        <motion.text
+          x={x}
+          y={y + 50}
+          textAnchor="middle"
+          fill={node.color}
+          fontSize="10"
+          fontFamily="monospace"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          {node.label.toUpperCase()}
+        </motion.text>
       </motion.g>
 
-      {/* Die 2 */}
-      <motion.g
-        initial={{ x: 240, y: 140, rotate: 720 }}
-        animate={{
-          x: showDice ? 240 : 200,
-          y: showDice ? 140 : 145,
-          rotate: showDice ? 10 : 720,
-        }}
-        transition={{ duration: 1, ease: "easeOut", delay: 0.1 }}
-      >
-        {/* Glow */}
-        <rect
-          x="-22"
-          y="-22"
-          width="44"
-          height="44"
-          rx="8"
-          fill={COLORS.green}
-          opacity="0.3"
-          style={{ filter: "blur(8px)" }}
-        />
-        {/* Die face */}
-        <rect
-          x="-20"
-          y="-20"
-          width="40"
-          height="40"
-          rx="6"
-          fill={COLORS.dark}
-          stroke={COLORS.green}
-          strokeWidth="2"
-        />
-        {/* Dots */}
-        {dotPositions[3].map((dot, i) => (
-          <motion.circle
-            key={i}
-            cx={dot.x}
-            cy={dot.y}
-            r="4"
-            fill={COLORS.green}
-            initial={{ scale: 0 }}
-            animate={{ scale: showDice ? 1 : 0 }}
-            transition={{ delay: 0.6 + i * 0.05, duration: 0.2, ease: "backOut" }}
-          />
-        ))}
-      </motion.g>
-
-      {/* Score display */}
-      <motion.text
-        x="200"
-        y="200"
-        textAnchor="middle"
-        fontSize="24"
-        fontWeight="bold"
-        fill="url(#scoreGrad)"
-        initial={{ opacity: 0, y: 210 }}
-        animate={{
-          opacity: showDice ? 1 : 0,
-          y: showDice ? 200 : 210,
-        }}
-        transition={{ delay: 1, duration: 0.4 }}
-        style={{
-          filter: `drop-shadow(0 0 10px ${COLORS.green}80)`,
-        }}
-      >
-        8!
-      </motion.text>
-
-      {/* Score gradient */}
-      <defs>
-        <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor={COLORS.green} />
-          <stop offset="100%" stopColor={COLORS.purple} />
-        </linearGradient>
-      </defs>
+      {/* Connection dot at node */}
+      <motion.circle
+        cx={x}
+        cy={y}
+        r="4"
+        fill={node.color}
+        animate={{ scale: [1, 1.3, 1], opacity: [0.8, 0.5, 0.8] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: index * 0.3 }}
+      />
     </motion.g>
   );
 }
+
+export default HeroAnimation;

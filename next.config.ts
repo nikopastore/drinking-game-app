@@ -15,7 +15,7 @@ const withPWA = withPWAInit({
 });
 
 const nextConfig: NextConfig = {
-  // Empty turbopack config to suppress warning
+  // Enable Turbopack
   turbopack: {},
   // Enable static export for Capacitor builds
   ...(isStaticExport && {

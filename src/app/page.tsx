@@ -2,14 +2,36 @@
 
 import { useState, useMemo } from "react";
 import { games } from "@/config/gameData";
-import { FilterState } from "@/types";
+import { FilterState, Game } from "@/types";
 import { GameCard } from "@/components/GameCard";
-import { FilterBar } from "@/components/FilterBar";
 import { Header } from "@/components/Header";
-import { HeroAnimation } from "@/components/HeroAnimation";
-import { Sparkles } from "lucide-react";
+import { SearchFilterModal } from "@/components/SearchFilterModal";
+import { ChevronRight } from "lucide-react";
+
+// Game row component for Netflix-style horizontal scroll
+function GameRow({ title, games: rowGames }: { title: string; games: Game[] }) {
+  if (rowGames.length === 0) return null;
+
+  return (
+    <div className="mb-8">
+      <div className="flex items-center justify-between mb-3 px-4">
+        <h2 className="text-lg font-bold text-white">{title}</h2>
+        <button className="flex items-center gap-1 text-sm text-gray-400 hover:text-neon-pink transition-colors">
+          See all
+          <ChevronRight className="h-4 w-4" />
+        </button>
+      </div>
+      <div className="flex gap-3 overflow-x-auto pb-4 px-4 scrollbar-hide">
+        {rowGames.map((game) => (
+          <GameCard key={game.id} game={game} size="medium" />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function HomePage() {
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [filters, setFilters] = useState<FilterState>({
     playerCount: null,
     materials: [],
@@ -17,131 +39,75 @@ export default function HomePage() {
     search: "",
   });
 
-  const filteredGames = useMemo(() => {
-    return games.filter((game) => {
-      // Search filter
-      if (filters.search) {
-        const searchLower = filters.search.toLowerCase();
-        if (
-          !game.name.toLowerCase().includes(searchLower) &&
-          !game.description.toLowerCase().includes(searchLower)
-        ) {
-          return false;
-        }
-      }
+  // Categorized games for different rows
+  const gameCategories = useMemo(() => {
+    // Popular/Featured - high drunkenness level games
+    const popular = games.filter((g) => g.drunkenness_level >= 4).slice(0, 10);
 
-      // Player count filter
-      if (filters.playerCount !== null) {
-        const meetsPlayerCount =
-          game.min_players <= filters.playerCount &&
-          (game.max_players === null || game.max_players >= filters.playerCount);
-        if (!meetsPlayerCount) return false;
-      }
+    // Card games
+    const cardGames = games.filter((g) => g.materials.includes("cards")).slice(0, 10);
 
-      // Materials filter (game must have at least one of the selected materials)
-      if (filters.materials.length > 0) {
-        // Special case: "no prop" filter
-        if (filters.materials.includes("no prop")) {
-          if (
-            game.materials.includes("no prop") ||
-            filters.materials.some(
-              (m) => m !== "no prop" && game.materials.includes(m)
-            )
-          ) {
-            // passes
-          } else {
-            return false;
-          }
-        } else {
-          const hasMatchingMaterial = filters.materials.some((m) =>
-            game.materials.includes(m)
-          );
-          if (!hasMatchingMaterial) return false;
-        }
-      }
+    // No props needed - easy to start
+    const noPropGames = games.filter((g) => g.materials.includes("no prop")).slice(0, 10);
 
-      // Alcohol type filter
-      if (filters.alcoholType !== null) {
-        if (
-          game.alcohol_type !== "any" &&
-          game.alcohol_type !== filters.alcoholType
-        ) {
-          return false;
-        }
-      }
+    // Beer games
+    const beerGames = games.filter((g) => g.alcohol_type === "beer").slice(0, 10);
 
-      return true;
-    });
-  }, [filters]);
+    // Large group games (6+)
+    const largeGroupGames = games
+      .filter((g) => g.max_players === null || g.max_players >= 6)
+      .slice(0, 10);
+
+    // Quick games (low drunkenness - good for starting)
+    const quickGames = games.filter((g) => g.drunkenness_level <= 2).slice(0, 10);
+
+    return {
+      popular,
+      cardGames,
+      noPropGames,
+      beerGames,
+      largeGroupGames,
+      quickGames,
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-dark-900">
-      <Header />
+      <Header onSearchClick={() => setIsSearchOpen(true)} />
 
-      <main className="max-w-7xl mx-auto px-4 py-6">
-        {/* Hero with Animation */}
-        <div className="mb-10">
-          {/* Animated Diagram */}
-          <HeroAnimation />
-
-          {/* Title below animation */}
-          <div className="text-center mt-6">
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-              Find Your Perfect{" "}
-              <span className="bg-gradient-to-r from-neon-pink to-neon-purple bg-clip-text text-transparent">
-                Party Game
-              </span>
-            </h1>
-            <p className="text-gray-400 text-base max-w-xl mx-auto">
-              {games.length} games with complete rules. No more Googling mid-party.
-            </p>
-          </div>
+      <main className="py-6">
+        {/* Hero Section - Compact */}
+        <div className="text-center mb-8 px-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
+            Find Your Perfect{" "}
+            <span className="bg-gradient-to-r from-neon-pink to-neon-purple bg-clip-text text-transparent">
+              Party Game
+            </span>
+          </h1>
+          <p className="text-gray-400 text-sm">
+            {games.length} games with complete rules
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Sidebar Filters */}
-          <aside className="lg:col-span-1">
-            <FilterBar filters={filters} onFilterChange={setFilters} />
-          </aside>
-
-          {/* Game Grid */}
-          <div className="lg:col-span-3">
-            {/* Results count */}
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-gray-400">
-                <span className="text-white font-semibold">
-                  {filteredGames.length}
-                </span>{" "}
-                games found
-              </p>
-              {filteredGames.length > 0 && (
-                <div className="flex items-center gap-2 text-sm text-neon-green">
-                  <Sparkles className="h-4 w-4" />
-                  <span>Click any game to view rules</span>
-                </div>
-              )}
-            </div>
-
-            {/* Grid */}
-            {filteredGames.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                {filteredGames.map((game) => (
-                  <GameCard key={game.id} game={game} />
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-16 bg-dark-800 rounded-xl border border-dark-600">
-                <p className="text-gray-400 text-lg mb-2">
-                  No games match your filters
-                </p>
-                <p className="text-gray-500 text-sm">
-                  Try adjusting your filters or search terms
-                </p>
-              </div>
-            )}
-          </div>
+        {/* Game Rows */}
+        <div className="space-y-2">
+          <GameRow title="🔥 Popular Games" games={gameCategories.popular} />
+          <GameRow title="🃏 Card Games" games={gameCategories.cardGames} />
+          <GameRow title="✋ No Props Needed" games={gameCategories.noPropGames} />
+          <GameRow title="🍺 Beer Games" games={gameCategories.beerGames} />
+          <GameRow title="👥 Large Groups" games={gameCategories.largeGroupGames} />
+          <GameRow title="⚡ Quick & Easy" games={gameCategories.quickGames} />
         </div>
       </main>
+
+      {/* Search/Filter Modal */}
+      <SearchFilterModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        games={games}
+        filters={filters}
+        onFilterChange={setFilters}
+      />
     </div>
   );
 }

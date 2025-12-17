@@ -1,109 +1,119 @@
 "use client";
 
 import { Game } from "@/types";
-import { Card, CardContent, Badge } from "@/components/ui";
-import { Users, Wine, Flame } from "lucide-react";
-import { formatPlayerCount, getDrunkennessLabel } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/components/auth";
+import { Flame } from "lucide-react";
 
 interface GameCardProps {
   game: Game;
+  size?: "small" | "medium" | "large";
 }
 
-export function GameCard({ game }: GameCardProps) {
+// Generate a consistent color based on slug for placeholder
+const getPlaceholderGradient = (slug: string): string => {
+  const colors = [
+    "from-pink-600 to-purple-800",
+    "from-blue-600 to-cyan-800",
+    "from-orange-600 to-red-800",
+    "from-green-600 to-teal-800",
+    "from-yellow-600 to-orange-800",
+    "from-indigo-600 to-blue-800",
+    "from-rose-600 to-pink-800",
+    "from-violet-600 to-purple-800",
+  ];
+
+  let hash = 0;
+  for (let i = 0; i < slug.length; i++) {
+    hash = slug.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  return colors[Math.abs(hash) % colors.length];
+};
+
+// Get emoji for game type based on materials/name
+const getGameEmoji = (game: Game): string => {
+  if (game.materials.includes("cards")) return "🃏";
+  if (game.materials.includes("ping pong balls")) return "🏓";
+  if (game.materials.includes("dice")) return "🎲";
+  if (game.materials.includes("cups")) return "🥤";
+  if (game.name.toLowerCase().includes("movie")) return "🎬";
+  if (game.name.toLowerCase().includes("music") || game.name.toLowerCase().includes("thunder")) return "🎵";
+  if (game.materials.includes("no prop")) return "🗣️";
+  return "🍻";
+};
+
+export function GameCard({ game, size = "medium" }: GameCardProps) {
   const router = useRouter();
   const { requireAuth } = useAuthContext();
 
-  const drunkennessColors: Record<number, "green" | "yellow" | "pink" | "purple"> = {
-    1: "green",
-    2: "green",
-    3: "yellow",
-    4: "pink",
-    5: "purple",
-  };
-
-  const alcoholTypeLabel: Record<string, string> = {
-    beer: "Beer/Seltzer",
-    liquor: "Hard Liquor",
-    any: "Any Drink",
-  };
-
   const handleClick = () => {
-    // Require auth before navigating to game
     if (requireAuth()) {
       router.push(`/game/${game.slug}`);
     }
   };
 
+  const sizeClasses = {
+    small: "w-28 h-40 sm:w-32 sm:h-44",
+    medium: "w-36 h-52 sm:w-40 sm:h-56",
+    large: "w-44 h-60 sm:w-48 sm:h-64",
+  };
+
+  const titleSizes = {
+    small: "text-xs",
+    medium: "text-sm",
+    large: "text-base",
+  };
+
+  const emojiSizes = {
+    small: "text-4xl",
+    medium: "text-5xl",
+    large: "text-6xl",
+  };
+
   return (
-    <div onClick={handleClick} className="cursor-pointer">
-      <Card hoverable className="h-full flex flex-col">
-        <CardContent className="flex flex-col h-full">
-          {/* Title */}
-          <h3 className="text-xl font-bold text-white mb-2 line-clamp-1">
-            {game.name}
-          </h3>
+    <div
+      onClick={handleClick}
+      className={`${sizeClasses[size]} flex-shrink-0 cursor-pointer group relative rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:z-10 hover:shadow-2xl hover:shadow-neon-pink/20`}
+    >
+      {/* Background Gradient Placeholder */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${getPlaceholderGradient(game.slug)}`}>
+        {/* Placeholder emoji */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-30">
+          <span className={emojiSizes[size]}>{getGameEmoji(game)}</span>
+        </div>
+      </div>
 
-          {/* Description */}
-          <p className="text-gray-400 text-sm mb-4 line-clamp-2 flex-grow">
-            {game.description}
-          </p>
+      {/* Gradient overlay for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
-          {/* Metadata badges */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {/* Player count */}
-            <Badge variant="blue" className="flex items-center gap-1">
-              <Users className="h-3 w-3" />
-              {formatPlayerCount(game.min_players, game.max_players)}
-            </Badge>
+      {/* Hover glow effect */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-neon-pink/30 to-transparent" />
 
-            {/* Alcohol type */}
-            <Badge variant="muted" className="flex items-center gap-1">
-              <Wine className="h-3 w-3" />
-              {alcoholTypeLabel[game.alcohol_type]}
-            </Badge>
-          </div>
+      {/* Content */}
+      <div className="absolute bottom-0 left-0 right-0 p-3">
+        {/* Drunkenness indicator */}
+        <div className="flex gap-0.5 mb-1.5">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Flame
+              key={i}
+              className={`h-3 w-3 ${
+                i < game.drunkenness_level
+                  ? "text-neon-pink drop-shadow-[0_0_4px_rgba(236,72,153,0.8)]"
+                  : "text-gray-600"
+              }`}
+            />
+          ))}
+        </div>
 
-          {/* Drunkenness level */}
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Flame
-                  key={i}
-                  className={`h-4 w-4 ${
-                    i < game.drunkenness_level
-                      ? "text-neon-pink"
-                      : "text-dark-600"
-                  }`}
-                />
-              ))}
-            </div>
-            <Badge variant={drunkennessColors[game.drunkenness_level]}>
-              {getDrunkennessLabel(game.drunkenness_level)}
-            </Badge>
-          </div>
+        {/* Title */}
+        <h3 className={`${titleSizes[size]} font-bold text-white leading-tight line-clamp-2 drop-shadow-lg`}>
+          {game.name}
+        </h3>
+      </div>
 
-          {/* Materials preview */}
-          {game.materials.length > 0 && game.materials[0] !== "no prop" && (
-            <div className="mt-3 pt-3 border-t border-dark-600">
-              <p className="text-xs text-muted">
-                Needs:{" "}
-                <span className="text-gray-300">
-                  {game.materials.slice(0, 3).join(", ")}
-                  {game.materials.length > 3 && ` +${game.materials.length - 3} more`}
-                </span>
-              </p>
-            </div>
-          )}
-
-          {game.materials[0] === "no prop" && (
-            <div className="mt-3 pt-3 border-t border-dark-600">
-              <Badge variant="green">No Props Needed</Badge>
-            </div>
-          )}
-        </CardContent>
-      </Card>
+      {/* Border on hover */}
+      <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-neon-pink/50 transition-colors duration-300" />
     </div>
   );
 }
