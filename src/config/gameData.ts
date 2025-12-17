@@ -79,6 +79,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     id: "seed-6",
     slug: "edward-40-hands",
     name: "Edward 40 Hands",
+    image: "/games/edward-40-hands-1.png",
     description:
       "Commitment is key. You can't use your hands until you finish your drinks.",
     rules_text:
