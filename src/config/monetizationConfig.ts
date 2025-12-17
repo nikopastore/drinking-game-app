@@ -8,11 +8,11 @@ export const affiliateLinks: Record<string, { url: string; label: string }> = {
     label: "Waterproof Cards",
   },
   "red solo cups": {
-    url: "https://www.amazon.com/s?k=red+solo+cups+bulk&tag=khanthebot-20",
+    url: "https://a.co/d/eUXpEON",
     label: "Red Solo Cups (Bulk)",
   },
   cups: {
-    url: "https://www.amazon.com/s?k=party+cups&tag=khanthebot-20",
+    url: "https://a.co/d/eUXpEON",
     label: "Party Cups",
   },
   "large cup": {
