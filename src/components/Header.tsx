@@ -16,7 +16,10 @@ export function Header({ onSearchClick }: HeaderProps) {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Wine className="h-7 w-7 text-neon-pink" />
-            <span className="text-lg font-bold bg-gradient-to-r from-neon-pink to-neon-purple bg-clip-text text-transparent">
+            <span
+              className="text-2xl bg-gradient-to-r from-neon-pink to-neon-purple bg-clip-text text-transparent"
+              style={{ fontFamily: "'Pacifico', cursive" }}
+            >
               SipWiki
             </span>
           </Link>
