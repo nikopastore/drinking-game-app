@@ -317,49 +317,73 @@ function DiceScene() {
 }
 
 function Die({ value, color }: { value: number; color: string }) {
-  // Die is 80x80px - dot positions in pixels from center (40,40)
-  // Using offset of 18px from center for corner dots
-  const c = 40; // center
-  const o = 18; // offset from center for corners
-
-  const dotPositions: Record<number, { x: number; y: number }[]> = {
-    1: [{ x: c, y: c }],
-    2: [{ x: c - o, y: c - o }, { x: c + o, y: c + o }],
-    3: [{ x: c - o, y: c - o }, { x: c, y: c }, { x: c + o, y: c + o }],
-    4: [{ x: c - o, y: c - o }, { x: c + o, y: c - o }, { x: c - o, y: c + o }, { x: c + o, y: c + o }],
-    5: [{ x: c - o, y: c - o }, { x: c + o, y: c - o }, { x: c, y: c }, { x: c - o, y: c + o }, { x: c + o, y: c + o }],
-    6: [{ x: c - o, y: c - o }, { x: c - o, y: c }, { x: c - o, y: c + o }, { x: c + o, y: c - o }, { x: c + o, y: c }, { x: c + o, y: c + o }],
-  };
-
-  const dots = dotPositions[value] || [];
-
   return (
     <div
-      className="relative w-20 h-20 rounded-xl border-2"
+      className="relative w-20 h-20 rounded-xl border-2 flex items-center justify-center"
       style={{
         background: `linear-gradient(145deg, ${color}15 0%, ${color}05 100%)`,
         borderColor: color,
         boxShadow: `0 0 30px ${color}40, inset 0 0 20px ${color}10`,
       }}
     >
-      {dots.map((dot, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-3 h-3 rounded-full"
-          style={{
-            left: dot.x,
-            top: dot.y,
-            transform: "translate(-50%, -50%)",
-            background: color,
-            boxShadow: `0 0 10px ${color}`,
-          }}
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.8 + i * 0.05, type: "spring" }}
-        />
-      ))}
+      {/* Grid container for dots - 3x3 grid */}
+      <div className="grid grid-cols-3 grid-rows-3 gap-1 w-14 h-14">
+        {getDotPattern(value).map((show, i) => (
+          <div key={i} className="flex items-center justify-center">
+            {show && (
+              <motion.div
+                className="w-3 h-3 rounded-full"
+                style={{
+                  background: color,
+                  boxShadow: `0 0 10px ${color}`,
+                }}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.8 + i * 0.05, type: "spring" }}
+              />
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
+}
+
+// Returns 9-element array for 3x3 grid: true = show dot, false = empty
+function getDotPattern(value: number): boolean[] {
+  const patterns: Record<number, boolean[]> = {
+    1: [
+      false, false, false,
+      false, true,  false,
+      false, false, false,
+    ],
+    2: [
+      true,  false, false,
+      false, false, false,
+      false, false, true,
+    ],
+    3: [
+      true,  false, false,
+      false, true,  false,
+      false, false, true,
+    ],
+    4: [
+      true,  false, true,
+      false, false, false,
+      true,  false, true,
+    ],
+    5: [
+      true,  false, true,
+      false, true,  false,
+      true,  false, true,
+    ],
+    6: [
+      true,  false, true,
+      true,  false, true,
+      true,  false, true,
+    ],
+  };
+  return patterns[value] || patterns[1];
 }
 
 // ============================================
