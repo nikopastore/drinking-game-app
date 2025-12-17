@@ -92,17 +92,35 @@ export function HeroAnimation() {
               style={{ overflow: "visible" }}
             >
               <defs>
-                {/* Gradients */}
-                <linearGradient id="tableGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor={COLORS.purple} stopOpacity="0.1" />
-                  <stop offset="50%" stopColor={COLORS.purple} stopOpacity="0.3" />
+                {/* Table gradient - 3D effect */}
+                <linearGradient id="tableGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor={COLORS.purple} stopOpacity="0.4" />
+                  <stop offset="50%" stopColor={COLORS.purple} stopOpacity="0.2" />
                   <stop offset="100%" stopColor={COLORS.purple} stopOpacity="0.1" />
                 </linearGradient>
+                {/* Table side gradient */}
+                <linearGradient id="tableSideGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor={COLORS.purple} stopOpacity="0.3" />
+                  <stop offset="100%" stopColor={COLORS.purple} stopOpacity="0.6" />
+                </linearGradient>
+                {/* Ball glow */}
                 <radialGradient id="ballGlow" cx="50%" cy="50%" r="50%">
                   <stop offset="0%" stopColor={COLORS.white} />
                   <stop offset="70%" stopColor={COLORS.pink} />
                   <stop offset="100%" stopColor={COLORS.pink} stopOpacity="0" />
                 </radialGradient>
+                {/* Cup gradients for 3D effect */}
+                <linearGradient id="cupGradPink" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor={COLORS.pink} stopOpacity="0.8" />
+                  <stop offset="50%" stopColor={COLORS.pink} stopOpacity="0.5" />
+                  <stop offset="100%" stopColor={COLORS.pink} stopOpacity="0.3" />
+                </linearGradient>
+                <linearGradient id="cupGradPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor={COLORS.purple} stopOpacity="0.8" />
+                  <stop offset="50%" stopColor={COLORS.purple} stopOpacity="0.5" />
+                  <stop offset="100%" stopColor={COLORS.purple} stopOpacity="0.3" />
+                </linearGradient>
+                {/* Card gradient */}
                 <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor={COLORS.purple} stopOpacity="0.4" />
                   <stop offset="100%" stopColor={COLORS.pink} stopOpacity="0.2" />
@@ -153,6 +171,8 @@ export function HeroAnimation() {
 // ============================================
 function BeerPongScene({ phase }: { phase: Phase }) {
   const showScene = ["beer-pong-setup", "ball-throw-forward", "ball-throw-back"].includes(phase);
+  const isThrowing = phase === "ball-throw-forward";
+  const isOpponentThrowing = phase === "ball-throw-back";
 
   return (
     <motion.g
@@ -160,112 +180,286 @@ function BeerPongScene({ phase }: { phase: Phase }) {
       animate={{ opacity: showScene ? 1 : 0 }}
       transition={{ duration: 0.4 }}
     >
-      {/* Table in perspective */}
+      {/* 3D Table - viewed from behind close player */}
+      {/* Table top surface */}
       <motion.path
-        d="M 50 220 L 350 220 L 300 120 L 100 120 Z"
+        d="M 80 220 L 320 220 L 280 95 L 120 95 Z"
         fill="url(#tableGrad)"
         stroke={COLORS.purple}
         strokeWidth="1"
+        strokeOpacity="0.8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: showScene ? 1 : 0 }}
+        transition={{ duration: 0.5 }}
+      />
+      {/* Table front edge (3D depth) */}
+      <motion.path
+        d="M 80 220 L 320 220 L 320 228 L 80 228 Z"
+        fill="url(#tableSideGrad)"
+        stroke={COLORS.purple}
+        strokeWidth="0.5"
         strokeOpacity="0.5"
-        initial={{ opacity: 0, pathLength: 0 }}
-        animate={{
-          opacity: showScene ? 1 : 0,
-          pathLength: showScene ? 1 : 0
-        }}
-        transition={{ duration: 0.8 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: showScene ? 1 : 0 }}
+        transition={{ duration: 0.5 }}
+      />
+      {/* Table left leg hint */}
+      <motion.line
+        x1="90" y1="228" x2="90" y2="250"
+        stroke={COLORS.purple}
+        strokeWidth="3"
+        strokeOpacity="0.4"
+        strokeLinecap="round"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: showScene ? 1 : 0 }}
+        transition={{ duration: 0.5 }}
+      />
+      {/* Table right leg hint */}
+      <motion.line
+        x1="310" y1="228" x2="310" y2="250"
+        stroke={COLORS.purple}
+        strokeWidth="3"
+        strokeOpacity="0.4"
+        strokeLinecap="round"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: showScene ? 1 : 0 }}
+        transition={{ duration: 0.5 }}
       />
 
-      {/* Player (over-shoulder view) - just shoulder/arm visible */}
-      <motion.g
-        initial={{ opacity: 0, x: -30 }}
-        animate={{
-          opacity: showScene ? 0.8 : 0,
-          x: showScene ? 0 : -30
-        }}
+      {/* Table center line */}
+      <motion.line
+        x1="200" y1="220" x2="200" y2="95"
+        stroke={COLORS.purple}
+        strokeWidth="1"
+        strokeOpacity="0.3"
+        strokeDasharray="4 4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: showScene ? 1 : 0 }}
         transition={{ duration: 0.5 }}
-      >
-        {/* Shoulder/body silhouette on left */}
-        <path
-          d="M -20 280 Q 30 200 60 160 L 80 170 Q 50 210 40 280 Z"
-          fill={COLORS.purple}
-          opacity="0.3"
-        />
-        {/* Arm throwing */}
-        <motion.line
-          x1="60"
-          y1="165"
-          x2="100"
-          y2="140"
-          stroke={COLORS.purple}
-          strokeWidth="4"
-          strokeLinecap="round"
-          animate={phase === "ball-throw-forward" ? {
-            x2: [100, 130, 100],
-            y2: [140, 120, 140],
-          } : {}}
-          transition={{ duration: 0.3 }}
-        />
-      </motion.g>
+      />
 
-      {/* Cups at far end (opponent's side) */}
+      {/* 3D Cups at far end (opponent's side) */}
       <motion.g
         initial={{ opacity: 0 }}
         animate={{ opacity: showScene ? 1 : 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
       >
-        {/* 6 cups in triangle - rendered small due to perspective */}
+        {/* 6 cups in triangle formation - 3D style */}
         {[
-          { cx: 180, cy: 130 }, { cx: 200, cy: 130 }, { cx: 220, cy: 130 },
-          { cx: 190, cy: 125 }, { cx: 210, cy: 125 },
-          { cx: 200, cy: 120 },
+          { cx: 175, cy: 112, size: 0.8 },
+          { cx: 200, cy: 112, size: 0.8 },
+          { cx: 225, cy: 112, size: 0.8 },
+          { cx: 187, cy: 104, size: 0.75 },
+          { cx: 213, cy: 104, size: 0.75 },
+          { cx: 200, cy: 96, size: 0.7 },
         ].map((cup, i) => (
           <g key={i}>
+            {/* Shadow/glow under cup */}
+            <ellipse
+              cx={cup.cx}
+              cy={cup.cy + 8 * cup.size}
+              rx={12 * cup.size}
+              ry={4 * cup.size}
+              fill={COLORS.pink}
+              opacity="0.15"
+              style={{ filter: "blur(3px)" }}
+            />
+            {/* Cup body (trapezoid shape for 3D) */}
+            <path
+              d={`M ${cup.cx - 8 * cup.size} ${cup.cy}
+                  L ${cup.cx - 10 * cup.size} ${cup.cy + 18 * cup.size}
+                  L ${cup.cx + 10 * cup.size} ${cup.cy + 18 * cup.size}
+                  L ${cup.cx + 8 * cup.size} ${cup.cy} Z`}
+              fill="url(#cupGradPink)"
+              stroke={COLORS.pink}
+              strokeWidth="1"
+            />
+            {/* Cup rim (ellipse at top) */}
             <ellipse
               cx={cup.cx}
               cy={cup.cy}
-              rx="8"
-              ry="4"
+              rx={8 * cup.size}
+              ry={3 * cup.size}
               fill={COLORS.pink}
-              opacity="0.6"
+              opacity="0.3"
             />
             <ellipse
               cx={cup.cx}
               cy={cup.cy}
-              rx="8"
-              ry="4"
+              rx={8 * cup.size}
+              ry={3 * cup.size}
               fill="none"
               stroke={COLORS.pink}
-              strokeWidth="1"
+              strokeWidth="1.5"
+            />
+            {/* Liquid inside hint */}
+            <ellipse
+              cx={cup.cx}
+              cy={cup.cy + 2 * cup.size}
+              rx={6 * cup.size}
+              ry={2 * cup.size}
+              fill={COLORS.pink}
+              opacity="0.5"
             />
           </g>
         ))}
       </motion.g>
 
-      {/* Opponent stick figure at far end */}
+      {/* Opponent stick figure at far end (smaller due to perspective) */}
       <motion.g
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showScene ? 0.7 : 0 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: showScene ? 1 : 0, y: showScene ? 0 : -10 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
       >
         {/* Head */}
-        <circle cx="200" cy="85" r="8" fill="none" stroke={COLORS.green} strokeWidth="1.5" />
+        <circle cx="200" cy="68" r="7" fill="none" stroke={COLORS.white} strokeWidth="1.5" />
         {/* Body */}
-        <line x1="200" y1="93" x2="200" y2="115" stroke={COLORS.green} strokeWidth="1.5" />
-        {/* Arms - animated when throwing back */}
-        <motion.line
-          x1="200"
-          y1="100"
-          x2="215"
-          y2="95"
-          stroke={COLORS.green}
+        <line x1="200" y1="75" x2="200" y2="95" stroke={COLORS.white} strokeWidth="1.5" />
+        {/* Left arm (static) */}
+        <line x1="200" y1="80" x2="186" y2="88" stroke={COLORS.white} strokeWidth="1.5" strokeLinecap="round" />
+        {/* Right arm (throwing arm) */}
+        <motion.path
+          d="M 200 80 Q 210 78 214 85"
+          fill="none"
+          stroke={COLORS.white}
           strokeWidth="1.5"
-          animate={phase === "ball-throw-back" ? {
-            x2: [215, 185, 215],
-            y2: [95, 85, 95],
-          } : {}}
-          transition={{ duration: 0.4 }}
+          strokeLinecap="round"
+          initial={{ d: "M 200 80 Q 210 78 214 85" }}
+          animate={isOpponentThrowing ? {
+            d: [
+              "M 200 80 Q 210 78 214 85",
+              "M 200 80 Q 206 70 200 62",
+              "M 200 80 Q 194 72 186 75",
+              "M 200 80 Q 210 78 214 85",
+            ]
+          } : { d: "M 200 80 Q 210 78 214 85" }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
         />
-        <line x1="200" y1="100" x2="185" y2="105" stroke={COLORS.green} strokeWidth="1.5" />
+        {/* Legs */}
+        <line x1="200" y1="95" x2="192" y2="105" stroke={COLORS.white} strokeWidth="1.5" strokeLinecap="round" />
+        <line x1="200" y1="95" x2="208" y2="105" stroke={COLORS.white} strokeWidth="1.5" strokeLinecap="round" />
+      </motion.g>
+
+      {/* Close player (full body, seen from behind/above) - larger, bottom center */}
+      <motion.g
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: showScene ? 1 : 0, y: showScene ? 0 : 20 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
+        {/* Head (seen from behind - just circle) */}
+        <circle cx="200" cy="185" r="12" fill="none" stroke={COLORS.white} strokeWidth="2" />
+
+        {/* Neck */}
+        <line x1="200" y1="197" x2="200" y2="203" stroke={COLORS.white} strokeWidth="2" />
+
+        {/* Shoulders/upper body */}
+        <line x1="175" y1="210" x2="225" y2="210" stroke={COLORS.white} strokeWidth="2" strokeLinecap="round" />
+
+        {/* Torso */}
+        <line x1="200" y1="203" x2="200" y2="235" stroke={COLORS.white} strokeWidth="2" />
+
+        {/* Left arm (resting) */}
+        <motion.path
+          d="M 175 210 Q 165 225 170 240"
+          fill="none"
+          stroke={COLORS.white}
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+
+        {/* Right arm (throwing arm - animated) */}
+        <motion.path
+          d="M 225 210 Q 235 200 245 195"
+          fill="none"
+          stroke={COLORS.white}
+          strokeWidth="2"
+          strokeLinecap="round"
+          initial={{ d: "M 225 210 Q 235 220 240 230" }}
+          animate={isThrowing ? {
+            d: [
+              "M 225 210 Q 240 200 250 185",  // Wind up
+              "M 225 210 Q 250 190 260 170",  // Peak of throw
+              "M 225 210 Q 245 205 255 200",  // Follow through
+              "M 225 210 Q 235 220 240 230",  // Rest
+            ]
+          } : { d: "M 225 210 Q 235 220 240 230" }}
+          transition={{
+            duration: 1.0,
+            ease: [0.4, 0, 0.2, 1],
+            times: [0, 0.3, 0.6, 1]
+          }}
+        />
+
+        {/* Legs (slight perspective, spread stance) */}
+        <line x1="195" y1="235" x2="180" y2="270" stroke={COLORS.white} strokeWidth="2" strokeLinecap="round" />
+        <line x1="205" y1="235" x2="220" y2="270" stroke={COLORS.white} strokeWidth="2" strokeLinecap="round" />
+      </motion.g>
+
+      {/* Player's 3D cups (close to camera, bottom of table) */}
+      <motion.g
+        initial={{ opacity: 0 }}
+        animate={{ opacity: showScene ? 1 : 0 }}
+        transition={{ duration: 0.5, delay: 0.15 }}
+      >
+        {/* 6 cups in triangle - larger due to being closer */}
+        {[
+          { cx: 155, cy: 185, size: 1.1 },
+          { cx: 200, cy: 185, size: 1.1 },
+          { cx: 245, cy: 185, size: 1.1 },
+          { cx: 177, cy: 198, size: 1.15 },
+          { cx: 223, cy: 198, size: 1.15 },
+          { cx: 200, cy: 210, size: 1.2 },
+        ].map((cup, i) => (
+          <g key={`near-${i}`}>
+            {/* Shadow/glow under cup */}
+            <ellipse
+              cx={cup.cx}
+              cy={cup.cy + 12 * cup.size}
+              rx={14 * cup.size}
+              ry={5 * cup.size}
+              fill={COLORS.purple}
+              opacity="0.15"
+              style={{ filter: "blur(4px)" }}
+            />
+            {/* Cup body (trapezoid shape for 3D) */}
+            <path
+              d={`M ${cup.cx - 10 * cup.size} ${cup.cy}
+                  L ${cup.cx - 12 * cup.size} ${cup.cy + 22 * cup.size}
+                  L ${cup.cx + 12 * cup.size} ${cup.cy + 22 * cup.size}
+                  L ${cup.cx + 10 * cup.size} ${cup.cy} Z`}
+              fill="url(#cupGradPurple)"
+              stroke={COLORS.purple}
+              strokeWidth="1"
+            />
+            {/* Cup rim (ellipse at top) */}
+            <ellipse
+              cx={cup.cx}
+              cy={cup.cy}
+              rx={10 * cup.size}
+              ry={4 * cup.size}
+              fill={COLORS.purple}
+              opacity="0.3"
+            />
+            <ellipse
+              cx={cup.cx}
+              cy={cup.cy}
+              rx={10 * cup.size}
+              ry={4 * cup.size}
+              fill="none"
+              stroke={COLORS.purple}
+              strokeWidth="1.5"
+            />
+            {/* Liquid inside hint */}
+            <ellipse
+              cx={cup.cx}
+              cy={cup.cy + 3 * cup.size}
+              rx={7 * cup.size}
+              ry={2.5 * cup.size}
+              fill={COLORS.purple}
+              opacity="0.5"
+            />
+          </g>
+        ))}
       </motion.g>
     </motion.g>
   );
@@ -280,28 +474,28 @@ function FlyingBall({ phase }: { phase: Phase }) {
   useEffect(() => {
     const animate = async () => {
       if (phase === "ball-throw-forward") {
-        // Ball goes forward toward cups
+        // Ball starts from close player's hand (right side) and arcs to far cups
         await controls.start({
-          cx: [100, 150, 200],
-          cy: [150, 100, 125],
-          r: [6, 5, 4],
+          cx: [260, 230, 200],
+          cy: [170, 80, 110],
+          r: [8, 6, 5],
           opacity: 1,
-          transition: { duration: 1.2, ease: "easeOut" }
+          transition: { duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }
         });
       } else if (phase === "ball-throw-back") {
-        // Ball comes back AT camera - gets bigger
+        // Opponent throws - ball comes toward camera, growing larger
         await controls.start({
           cx: [200, 200, 200],
-          cy: [125, 140, 160],
-          r: [4, 20, 80],
+          cy: [85, 120, 150],
+          r: [5, 25, 100],
           opacity: 1,
-          transition: { duration: 1.5, ease: "easeIn" }
+          transition: { duration: 1.3, ease: "easeIn" }
         });
       } else if (phase === "ball-to-deck") {
         // Morphing handled by card scene
         controls.start({ opacity: 0, transition: { duration: 0.3 } });
       } else if (!["ball-throw-forward", "ball-throw-back"].includes(phase)) {
-        controls.set({ opacity: 0, r: 6, cx: 100, cy: 150 });
+        controls.set({ opacity: 0, r: 8, cx: 260, cy: 170 });
       }
     };
     animate();
@@ -312,7 +506,7 @@ function FlyingBall({ phase }: { phase: Phase }) {
       animate={controls}
       fill="url(#ballGlow)"
       style={{
-        filter: `drop-shadow(0 0 10px ${COLORS.pink})`,
+        filter: `drop-shadow(0 0 15px ${COLORS.pink})`,
       }}
     />
   );
