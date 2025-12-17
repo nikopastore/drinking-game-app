@@ -79,13 +79,16 @@ export function HeroAnimation() {
 function CardsScene() {
   const cardCount = 5;
   const fanAngle = 8; // degrees between cards
+  const centerIndex = Math.floor(cardCount / 2); // Center card index (2)
 
   return (
     <div className="relative" style={{ perspective: "1000px" }}>
       {/* Card fan */}
       {[...Array(cardCount)].map((_, i) => {
-        const rotation = (i - Math.floor(cardCount / 2)) * fanAngle;
-        const isTopCard = i === cardCount - 1; // Last card is on top
+        const rotation = (i - centerIndex) * fanAngle;
+        const isCenterCard = i === centerIndex;
+        // Center card gets highest z-index so it appears on top
+        const zIndex = isCenterCard ? cardCount : i;
 
         return (
           <motion.div
@@ -97,12 +100,12 @@ function CardsScene() {
               left: "50%",
               marginLeft: -40,
               transformOrigin: "center bottom",
-              zIndex: i, // Stack cards so last one is on top
+              zIndex,
             }}
             initial={{ rotate: 0, y: 50, opacity: 0 }}
             animate={{
               rotate: rotation,
-              y: 0,
+              y: isCenterCard ? -10 : 0, // Center card raised slightly
               opacity: 1,
             }}
             transition={{
@@ -114,8 +117,8 @@ function CardsScene() {
             <PlayingCard
               suit={["♠", "♥", "♦", "♣", "♥"][i]}
               value={["10", "J", "Q", "K", "A"][i]}
-              isHighlighted={isTopCard}
-              flipDelay={isTopCard ? 1.0 : undefined}
+              isHighlighted={isCenterCard}
+              flipDelay={isCenterCard ? 1.0 : undefined}
             />
           </motion.div>
         );
