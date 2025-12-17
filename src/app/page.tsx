@@ -6,6 +6,7 @@ import { FilterState, Game } from "@/types";
 import { GameCard } from "@/components/GameCard";
 import { Header } from "@/components/Header";
 import { SearchFilterModal } from "@/components/SearchFilterModal";
+import { HeroAnimation } from "@/components/HeroAnimation";
 import { ChevronRight } from "lucide-react";
 
 // Game row component for Netflix-style horizontal scroll
@@ -76,17 +77,23 @@ export default function HomePage() {
       <Header onSearchClick={() => setIsSearchOpen(true)} />
 
       <main className="py-6">
-        {/* Hero Section - Compact */}
-        <div className="text-center mb-8 px-4">
-          <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
-            Find Your Perfect{" "}
-            <span className="bg-gradient-to-r from-neon-pink to-neon-purple bg-clip-text text-transparent">
-              Party Game
-            </span>
-          </h1>
-          <p className="text-gray-400 text-sm">
-            {games.length} games with complete rules
-          </p>
+        {/* Hero Section with Animation */}
+        <div className="mb-8">
+          {/* Animated Diagram */}
+          <HeroAnimation />
+
+          {/* Title below animation */}
+          <div className="text-center mt-4 px-4">
+            <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              Find Your Perfect{" "}
+              <span className="bg-gradient-to-r from-neon-pink to-neon-purple bg-clip-text text-transparent">
+                Party Game
+              </span>
+            </h1>
+            <p className="text-gray-400 text-sm">
+              {games.length} games with complete rules
+            </p>
+          </div>
         </div>
 
         {/* Game Rows */}
