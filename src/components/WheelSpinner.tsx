@@ -398,13 +398,11 @@ export function WheelSpinner({ games, onResult }: WheelSpinnerProps) {
         </div>
 
         {/* The Pointer/Ticker - Professional flapper style */}
+        {/* Container is FIXED - never moves */}
         <div
-          className={cn(
-            "absolute top-0 left-1/2 -translate-x-1/2 z-20",
-            tickerFlick && "animate-flick"
-          )}
+          className="absolute top-0 left-1/2 z-20"
           style={{
-            transformOrigin: "center bottom",
+            transform: "translateX(-50%)",
             filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.5))",
           }}
         >
@@ -426,21 +424,28 @@ export function WheelSpinner({ games, onResult }: WheelSpinnerProps) {
               </linearGradient>
             </defs>
 
-            {/* Pointer body */}
-            <path
-              d="M25 5 L15 55 Q15 60, 20 60 L30 60 Q35 60, 35 55 L25 5"
-              fill="url(#pointerBody)"
-              stroke="#7F1D1D"
-              strokeWidth="1"
-            />
+            {/* Pointer body - this part flicks */}
+            <g
+              className={tickerFlick ? "pointer-flick" : ""}
+              style={{
+                transformOrigin: "25px 55px",
+                transition: tickerFlick ? "none" : "transform 0.1s ease-out",
+              }}
+            >
+              <path
+                d="M25 5 L15 55 Q15 60, 20 60 L30 60 Q35 60, 35 55 L25 5"
+                fill="url(#pointerBody)"
+                stroke="#7F1D1D"
+                strokeWidth="1"
+              />
+              {/* Pointer shine */}
+              <path
+                d="M25 8 L18 50 L25 50 L25 8"
+                fill="url(#pointerShine)"
+              />
+            </g>
 
-            {/* Pointer shine */}
-            <path
-              d="M25 8 L18 50 L25 50 L25 8"
-              fill="url(#pointerShine)"
-            />
-
-            {/* Gold mounting bracket */}
+            {/* Gold mounting bracket - FIXED, never moves */}
             <ellipse
               cx="25"
               cy="62"
@@ -526,21 +531,15 @@ export function WheelSpinner({ games, onResult }: WheelSpinnerProps) {
       </div>
 
       {/* Custom CSS for animations */}
-      <style jsx>{`
-        @keyframes flick {
-          0%, 100% { transform: translateX(-50%) rotate(0deg); }
-          50% { transform: translateX(-50%) rotate(-20deg); }
+      <style jsx global>{`
+        @keyframes pointerFlick {
+          0% { transform: rotate(0deg); }
+          50% { transform: rotate(-15deg); }
+          100% { transform: rotate(0deg); }
         }
 
-        @keyframes settle {
-          0% { transform: rotate(var(--rotation)); }
-          30% { transform: rotate(calc(var(--rotation) - 3deg)); }
-          60% { transform: rotate(calc(var(--rotation) + 1.5deg)); }
-          100% { transform: rotate(var(--rotation)); }
-        }
-
-        .animate-flick {
-          animation: flick 0.08s ease-in-out;
+        .pointer-flick {
+          animation: pointerFlick 0.06s ease-out;
         }
       `}</style>
     </div>
