@@ -317,14 +317,18 @@ function DiceScene() {
 }
 
 function Die({ value, color }: { value: number; color: string }) {
-  // Dot positions as percentages within the inner padded area
+  // Die is 80x80px - dot positions in pixels from center (40,40)
+  // Using offset of 18px from center for corner dots
+  const c = 40; // center
+  const o = 18; // offset from center for corners
+
   const dotPositions: Record<number, { x: number; y: number }[]> = {
-    1: [{ x: 50, y: 50 }],
-    2: [{ x: 20, y: 20 }, { x: 80, y: 80 }],
-    3: [{ x: 20, y: 20 }, { x: 50, y: 50 }, { x: 80, y: 80 }],
-    4: [{ x: 20, y: 20 }, { x: 80, y: 20 }, { x: 20, y: 80 }, { x: 80, y: 80 }],
-    5: [{ x: 20, y: 20 }, { x: 80, y: 20 }, { x: 50, y: 50 }, { x: 20, y: 80 }, { x: 80, y: 80 }],
-    6: [{ x: 20, y: 20 }, { x: 20, y: 50 }, { x: 20, y: 80 }, { x: 80, y: 20 }, { x: 80, y: 50 }, { x: 80, y: 80 }],
+    1: [{ x: c, y: c }],
+    2: [{ x: c - o, y: c - o }, { x: c + o, y: c + o }],
+    3: [{ x: c - o, y: c - o }, { x: c, y: c }, { x: c + o, y: c + o }],
+    4: [{ x: c - o, y: c - o }, { x: c + o, y: c - o }, { x: c - o, y: c + o }, { x: c + o, y: c + o }],
+    5: [{ x: c - o, y: c - o }, { x: c + o, y: c - o }, { x: c, y: c }, { x: c - o, y: c + o }, { x: c + o, y: c + o }],
+    6: [{ x: c - o, y: c - o }, { x: c - o, y: c }, { x: c - o, y: c + o }, { x: c + o, y: c - o }, { x: c + o, y: c }, { x: c + o, y: c + o }],
   };
 
   const dots = dotPositions[value] || [];
@@ -338,25 +342,22 @@ function Die({ value, color }: { value: number; color: string }) {
         boxShadow: `0 0 30px ${color}40, inset 0 0 20px ${color}10`,
       }}
     >
-      {/* Inner container for dots - with padding to center them */}
-      <div className="absolute inset-2 relative">
-        {dots.map((dot, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-3 h-3 rounded-full"
-            style={{
-              left: `${dot.x}%`,
-              top: `${dot.y}%`,
-              transform: "translate(-50%, -50%)",
-              background: color,
-              boxShadow: `0 0 10px ${color}`,
-            }}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.8 + i * 0.05, type: "spring" }}
-          />
-        ))}
-      </div>
+      {dots.map((dot, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-3 h-3 rounded-full"
+          style={{
+            left: dot.x,
+            top: dot.y,
+            transform: "translate(-50%, -50%)",
+            background: color,
+            boxShadow: `0 0 10px ${color}`,
+          }}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.8 + i * 0.05, type: "spring" }}
+        />
+      ))}
     </div>
   );
 }
