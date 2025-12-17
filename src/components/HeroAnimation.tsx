@@ -67,7 +67,7 @@ function CardsScene() {
   const centerIndex = Math.floor(cardCount / 2); // Center card index (2)
 
   return (
-    <div className="relative -translate-y-4 md:translate-y-0" style={{ perspective: "1000px" }}>
+    <div className="relative -translate-y-8 md:-translate-y-6" style={{ perspective: "1000px" }}>
       {/* Card fan */}
       {[...Array(cardCount)].map((_, i) => {
         const rotation = (i - centerIndex) * fanAngle;
