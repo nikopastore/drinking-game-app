@@ -13,24 +13,39 @@ interface AuthModalProps {
 export function AuthModal({ isOpen, onClose, gameName }: AuthModalProps) {
   const { signInWithGoogle, signInWithApple } = useAuth();
   const [isLoading, setIsLoading] = useState<"google" | "apple" | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const handleGoogleSignIn = async () => {
     setIsLoading("google");
+    setError(null);
     try {
       await signInWithGoogle();
-    } catch (error) {
-      console.error("Google sign in error:", error);
+      // If we get here without redirect, something went wrong
+      setTimeout(() => {
+        setIsLoading(null);
+        setError("Sign in failed. Please try again.");
+      }, 5000);
+    } catch (err) {
+      console.error("Google sign in error:", err);
       setIsLoading(null);
+      setError(err instanceof Error ? err.message : "Failed to sign in with Google");
     }
   };
 
   const handleAppleSignIn = async () => {
     setIsLoading("apple");
+    setError(null);
     try {
       await signInWithApple();
-    } catch (error) {
-      console.error("Apple sign in error:", error);
+      // If we get here without redirect, something went wrong
+      setTimeout(() => {
+        setIsLoading(null);
+        setError("Sign in failed. Please try again.");
+      }, 5000);
+    } catch (err) {
+      console.error("Apple sign in error:", err);
       setIsLoading(null);
+      setError(err instanceof Error ? err.message : "Failed to sign in with Apple");
     }
   };
 
@@ -82,6 +97,13 @@ export function AuthModal({ isOpen, onClose, gameName }: AuthModalProps) {
             Continue with Apple
           </button>
         </div>
+
+        {/* Error Message */}
+        {error && (
+          <div className="w-full mt-4 p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
+            <p className="text-red-400 text-sm">{error}</p>
+          </div>
+        )}
 
         {/* Terms */}
         <p className="text-gray-500 text-xs mt-6">

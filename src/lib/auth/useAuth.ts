@@ -77,12 +77,17 @@ export function useAuth(): AuthState {
       ? `${window.location.origin}/auth/callback`
       : undefined;
 
-    await supabase.auth.signInWithOAuth({
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
         redirectTo: redirectUrl,
       },
     });
+
+    if (error) {
+      console.error("Google OAuth error:", error);
+      throw new Error(error.message || "Failed to sign in with Google. Please check Supabase configuration.");
+    }
   };
 
   const signInWithApple = async () => {
@@ -90,12 +95,17 @@ export function useAuth(): AuthState {
       ? `${window.location.origin}/auth/callback`
       : undefined;
 
-    await supabase.auth.signInWithOAuth({
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: "apple",
       options: {
         redirectTo: redirectUrl,
       },
     });
+
+    if (error) {
+      console.error("Apple OAuth error:", error);
+      throw new Error(error.message || "Failed to sign in with Apple. Please check Supabase configuration.");
+    }
   };
 
   const signOut = async () => {
