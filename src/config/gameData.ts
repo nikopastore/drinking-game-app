@@ -202,6 +202,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     max_players: 6,
     alcohol_type: "beer",
     drunkenness_level: 5,
+    image: "/games/civil-war-1.png",
   },
   {
     id: "seed-15",
