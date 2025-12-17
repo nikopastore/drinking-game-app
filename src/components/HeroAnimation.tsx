@@ -1,471 +1,515 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
-import { FlaskConical, Dice5, CreditCard, Users, GlassWater } from "lucide-react";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-// Color palette
 const COLORS = {
-  bg: "#020617", // slate-950
+  bg: "#0a0a0f",
   pink: "#ec4899",
   purple: "#a855f7",
   cyan: "#22d3ee",
   green: "#10b981",
+  red: "#ef4444",
   white: "#ffffff",
 };
 
-// Node configuration
-const NODES = [
-  { id: "dice", icon: Dice5, color: COLORS.pink, angle: 45, label: "Dice Games" },
-  { id: "cards", icon: CreditCard, color: COLORS.purple, angle: 135, label: "Card Games" },
-  { id: "cups", icon: GlassWater, color: COLORS.cyan, angle: 225, label: "Cup Games" },
-  { id: "group", icon: Users, color: COLORS.green, angle: 315, label: "Group Games" },
-];
+type Scene = "cards" | "dice" | "cups";
 
 export function HeroAnimation() {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const hubControls = useAnimation();
-  const beamControls = useAnimation();
-  const nodeControls = useAnimation();
+  const [currentScene, setCurrentScene] = useState<Scene>("cards");
+  const scenes: Scene[] = ["cards", "dice", "cups"];
 
-  // Entrance animation sequence
   useEffect(() => {
-    const runEntrance = async () => {
-      // Hub scales up
-      await hubControls.start({
-        scale: 1,
-        opacity: 1,
-        transition: { duration: 0.6, ease: "backOut" },
+    const interval = setInterval(() => {
+      setCurrentScene((prev) => {
+        const idx = scenes.indexOf(prev);
+        return scenes[(idx + 1) % scenes.length];
       });
-
-      // Beams draw
-      await beamControls.start({
-        pathLength: 1,
-        opacity: 1,
-        transition: { duration: 0.8, ease: "easeOut" },
-      });
-
-      // Nodes pop in
-      await nodeControls.start({
-        scale: 1,
-        opacity: 1,
-        transition: { duration: 0.5, ease: "backOut", staggerChildren: 0.1 },
-      });
-
-      setIsLoaded(true);
-    };
-
-    runEntrance();
-  }, [hubControls, beamControls, nodeControls]);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="relative w-full max-w-3xl mx-auto h-80 md:h-96">
-      {/* Background gradient glow */}
+    <div className="relative w-full max-w-2xl mx-auto h-64 md:h-80 overflow-hidden">
+      {/* Ambient glow */}
       <div
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-40"
         style={{
-          background: `radial-gradient(ellipse at center, ${COLORS.purple}20 0%, transparent 60%)`,
+          background: `radial-gradient(ellipse at center, ${COLORS.purple}25 0%, transparent 70%)`,
         }}
       />
 
-      <svg
-        viewBox="0 0 500 400"
-        className="w-full h-full"
-        style={{ overflow: "visible" }}
-      >
-        <defs>
-          {/* Glow filters */}
-          <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-          <filter id="glow-purple" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-          <filter id="glow-strong" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="8" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
+      {/* Scene container */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentScene}
+          className="absolute inset-0 flex items-center justify-center"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.1 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          {currentScene === "cards" && <CardsScene />}
+          {currentScene === "dice" && <DiceScene />}
+          {currentScene === "cups" && <CupsScene />}
+        </motion.div>
+      </AnimatePresence>
 
-          {/* Beam gradient */}
-          <linearGradient id="beamGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor={COLORS.purple} stopOpacity="0.8" />
-            <stop offset="100%" stopColor={COLORS.cyan} stopOpacity="0.3" />
-          </linearGradient>
-
-          {/* Particle gradient */}
-          <radialGradient id="particleGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor={COLORS.white} />
-            <stop offset="50%" stopColor={COLORS.pink} />
-            <stop offset="100%" stopColor={COLORS.pink} stopOpacity="0" />
-          </radialGradient>
-        </defs>
-
-        {/* Connection Beams */}
-        {NODES.map((node, i) => (
-          <ConnectionBeam
-            key={node.id}
-            nodeAngle={node.angle}
-            color={node.color}
-            controls={beamControls}
-            isLoaded={isLoaded}
-            delay={i * 0.2}
+      {/* Scene indicators */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        {scenes.map((scene) => (
+          <button
+            key={scene}
+            onClick={() => setCurrentScene(scene)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              currentScene === scene
+                ? "w-8 bg-gradient-to-r from-pink-500 to-purple-500"
+                : "w-1.5 bg-white/30 hover:bg-white/50"
+            }`}
           />
         ))}
-
-        {/* Central Hub */}
-        <CentralHub controls={hubControls} />
-
-        {/* Orbiting Nodes */}
-        {NODES.map((node, i) => (
-          <OrbitingNode
-            key={node.id}
-            node={node}
-            controls={nodeControls}
-            isLoaded={isLoaded}
-            index={i}
-          />
-        ))}
-      </svg>
-
-      {/* Labels (HTML overlay for better text rendering) */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="relative w-full h-full">
-          {/* Center label */}
-          <motion.div
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-12 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.5 }}
-          >
-            <span className="text-xs md:text-sm font-mono text-purple-400/80 tracking-wider">
-              SIPWIKI DATABASE
-            </span>
-          </motion.div>
-        </div>
       </div>
     </div>
   );
 }
 
 // ============================================
-// CENTRAL HUB
+// CARDS SCENE - Fanning cards with one flipping
 // ============================================
-function CentralHub({ controls }: { controls: ReturnType<typeof useAnimation> }) {
+function CardsScene() {
+  const cardCount = 5;
+  const fanAngle = 8; // degrees between cards
+
   return (
-    <motion.g
-      initial={{ scale: 0, opacity: 0 }}
-      animate={controls}
-      style={{ originX: "250px", originY: "200px" }}
-    >
-      {/* Outer rotating ring */}
-      <motion.circle
-        cx="250"
-        cy="200"
-        r="55"
-        fill="none"
-        stroke={COLORS.purple}
-        strokeWidth="1"
-        strokeDasharray="8 4"
-        opacity="0.4"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        style={{ originX: "250px", originY: "200px" }}
-      />
+    <div className="relative" style={{ perspective: "1000px" }}>
+      {/* Card fan */}
+      {[...Array(cardCount)].map((_, i) => {
+        const rotation = (i - Math.floor(cardCount / 2)) * fanAngle;
+        const isCenter = i === Math.floor(cardCount / 2);
 
-      {/* Middle pulsing ring */}
-      <motion.circle
-        cx="250"
-        cy="200"
-        r="45"
-        fill="none"
-        stroke={COLORS.cyan}
-        strokeWidth="2"
-        opacity="0.6"
-        animate={{ scale: [1, 1.1, 1], opacity: [0.6, 0.3, 0.6] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        filter="url(#glow-purple)"
-      />
+        return (
+          <motion.div
+            key={i}
+            className="absolute"
+            style={{
+              width: 80,
+              height: 112,
+              left: "50%",
+              marginLeft: -40,
+              transformOrigin: "center bottom",
+            }}
+            initial={{ rotate: 0, y: 50, opacity: 0 }}
+            animate={{
+              rotate: rotation,
+              y: 0,
+              opacity: 1,
+            }}
+            transition={{
+              delay: i * 0.1,
+              duration: 0.5,
+              ease: "backOut",
+            }}
+          >
+            <PlayingCard
+              suit={["♠", "♥", "♦", "♣"][i % 4]}
+              value={["A", "K", "Q", "J", "10"][i]}
+              isHighlighted={isCenter}
+              flipDelay={isCenter ? 0.8 : undefined}
+            />
+          </motion.div>
+        );
+      })}
 
-      {/* Inner hexagon */}
-      <motion.polygon
-        points="250,165 280,182.5 280,217.5 250,235 220,217.5 220,182.5"
-        fill={COLORS.bg}
-        stroke={COLORS.purple}
-        strokeWidth="2"
-        filter="url(#glow-purple)"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        style={{ originX: "250px", originY: "200px" }}
-      />
-
-      {/* Inner glow circle */}
-      <circle
-        cx="250"
-        cy="200"
-        r="28"
-        fill={`${COLORS.purple}15`}
-      />
-
-      {/* Center icon */}
-      <g transform="translate(234, 184)">
-        <FlaskConical
-          size={32}
-          color={COLORS.pink}
-          strokeWidth={1.5}
+      {/* Floating sparkles */}
+      {[...Array(6)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-1 h-1 rounded-full"
+          style={{
+            background: i % 2 === 0 ? COLORS.pink : COLORS.purple,
+            left: `${30 + i * 10}%`,
+            top: "20%",
+          }}
+          animate={{
+            y: [0, -20, 0],
+            opacity: [0, 1, 0],
+            scale: [0.5, 1, 0.5],
+          }}
+          transition={{
+            duration: 2,
+            delay: i * 0.3,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         />
-      </g>
-
-      {/* Pulsing core */}
-      <motion.circle
-        cx="250"
-        cy="200"
-        r="8"
-        fill={COLORS.pink}
-        opacity="0.8"
-        animate={{ scale: [1, 1.3, 1], opacity: [0.8, 0.4, 0.8] }}
-        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-        filter="url(#glow-pink)"
-      />
-    </motion.g>
+      ))}
+    </div>
   );
 }
 
-// ============================================
-// CONNECTION BEAM
-// ============================================
-function ConnectionBeam({
-  nodeAngle,
-  color,
-  controls,
-  isLoaded,
-  delay,
+function PlayingCard({
+  suit,
+  value,
+  isHighlighted,
+  flipDelay,
 }: {
-  nodeAngle: number;
-  color: string;
-  controls: ReturnType<typeof useAnimation>;
-  isLoaded: boolean;
-  delay: number;
+  suit: string;
+  value: string;
+  isHighlighted?: boolean;
+  flipDelay?: number;
 }) {
-  const centerX = 250;
-  const centerY = 200;
-  const radius = 140;
-  const angleRad = (nodeAngle * Math.PI) / 180;
-  const endX = centerX + Math.cos(angleRad) * radius;
-  const endY = centerY + Math.sin(angleRad) * radius;
+  const isRed = suit === "♥" || suit === "♦";
+  const [isFlipped, setIsFlipped] = useState(false);
 
-  // Control point for curved beam
-  const midRadius = radius * 0.6;
-  const controlAngle = angleRad + 0.2;
-  const ctrlX = centerX + Math.cos(controlAngle) * midRadius;
-  const ctrlY = centerY + Math.sin(controlAngle) * midRadius;
-
-  const pathD = `M ${centerX} ${centerY} Q ${ctrlX} ${ctrlY} ${endX} ${endY}`;
+  useEffect(() => {
+    if (flipDelay !== undefined) {
+      const timer = setTimeout(() => setIsFlipped(true), flipDelay * 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [flipDelay]);
 
   return (
-    <g>
-      {/* Beam glow (background) */}
-      <motion.path
-        d={pathD}
-        fill="none"
-        stroke={color}
-        strokeWidth="4"
-        opacity="0.15"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={controls}
-        style={{ filter: "blur(4px)" }}
-      />
-
-      {/* Beam line */}
-      <motion.path
-        d={pathD}
-        fill="none"
-        stroke={color}
-        strokeWidth="2"
-        strokeLinecap="round"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={controls}
-        opacity="0.6"
-      />
-
-      {/* Traveling particles */}
-      {isLoaded && (
-        <>
-          <TravelingParticle path={pathD} color={color} delay={delay} duration={2} />
-          <TravelingParticle path={pathD} color={color} delay={delay + 1} duration={2} />
-        </>
-      )}
-    </g>
-  );
-}
-
-// ============================================
-// TRAVELING PARTICLE
-// ============================================
-function TravelingParticle({
-  path,
-  color,
-  delay,
-  duration,
-}: {
-  path: string;
-  color: string;
-  delay: number;
-  duration: number;
-}) {
-  return (
-    <motion.circle
-      r="4"
-      fill={color}
-      filter="url(#glow-strong)"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: [0, 1, 1, 0] }}
-      transition={{
-        duration: duration,
-        repeat: Infinity,
-        delay: delay,
-        ease: "linear",
-        times: [0, 0.1, 0.9, 1],
-      }}
+    <motion.div
+      className="w-full h-full relative"
+      style={{ transformStyle: "preserve-3d" }}
+      animate={{ rotateY: isFlipped ? 180 : 0 }}
+      transition={{ duration: 0.6, ease: "easeInOut" }}
     >
-      <animateMotion
-        dur={`${duration}s`}
-        repeatCount="indefinite"
-        begin={`${delay}s`}
-        path={path}
-      />
-    </motion.circle>
-  );
-}
-
-// ============================================
-// ORBITING NODE
-// ============================================
-function OrbitingNode({
-  node,
-  controls,
-  isLoaded,
-  index,
-}: {
-  node: typeof NODES[0];
-  controls: ReturnType<typeof useAnimation>;
-  isLoaded: boolean;
-  index: number;
-}) {
-  const [isHovered, setIsHovered] = useState(false);
-  const centerX = 250;
-  const centerY = 200;
-  const radius = 140;
-  const angleRad = (node.angle * Math.PI) / 180;
-  const x = centerX + Math.cos(angleRad) * radius;
-  const y = centerY + Math.sin(angleRad) * radius;
-
-  const Icon = node.icon;
-
-  return (
-    <motion.g
-      initial={{ scale: 0, opacity: 0 }}
-      animate={controls}
-      transition={{ delay: index * 0.1 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      style={{ cursor: "pointer" }}
-    >
-      {/* Floating animation wrapper */}
-      <motion.g
-        animate={
-          isLoaded && !isHovered
-            ? {
-                y: [0, -8, 0],
-              }
-            : { y: 0 }
-        }
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: index * 0.4,
+      {/* Card Back */}
+      <div
+        className="absolute inset-0 rounded-lg border-2 flex items-center justify-center"
+        style={{
+          backfaceVisibility: "hidden",
+          background: `linear-gradient(135deg, ${COLORS.purple}40 0%, ${COLORS.pink}20 100%)`,
+          borderColor: isHighlighted ? COLORS.pink : `${COLORS.purple}60`,
+          boxShadow: isHighlighted
+            ? `0 0 20px ${COLORS.pink}50, 0 10px 40px rgba(0,0,0,0.4)`
+            : "0 10px 30px rgba(0,0,0,0.3)",
         }}
       >
-        {/* Outer glow ring */}
-        <motion.circle
-          cx={x}
-          cy={y}
-          r="32"
-          fill="none"
-          stroke={node.color}
-          strokeWidth="1"
-          opacity={isHovered ? 0.8 : 0.3}
-          animate={isHovered ? { scale: 1.2 } : { scale: 1 }}
-          transition={{ duration: 0.3 }}
-          style={{ originX: `${x}px`, originY: `${y}px` }}
+        {/* Back pattern */}
+        <div
+          className="w-12 h-16 rounded border"
+          style={{
+            borderColor: `${COLORS.purple}50`,
+            background: `repeating-linear-gradient(45deg, ${COLORS.purple}10, ${COLORS.purple}10 2px, transparent 2px, transparent 8px)`,
+          }}
         />
+      </div>
 
-        {/* Node background */}
-        <motion.circle
-          cx={x}
-          cy={y}
-          r="26"
-          fill={COLORS.bg}
-          stroke={node.color}
-          strokeWidth="2"
-          animate={isHovered ? { filter: "url(#glow-strong)" } : {}}
-          transition={{ duration: 0.3 }}
-        />
-
-        {/* Inner glow */}
-        <circle
-          cx={x}
-          cy={y}
-          r="22"
-          fill={`${node.color}15`}
-        />
-
-        {/* Icon */}
-        <g transform={`translate(${x - 12}, ${y - 12})`}>
-          <Icon
-            size={24}
-            color={isHovered ? COLORS.white : node.color}
-            strokeWidth={1.5}
-          />
-        </g>
-
-        {/* Label (appears on hover) */}
-        <motion.text
-          x={x}
-          y={y + 50}
-          textAnchor="middle"
-          fill={node.color}
-          fontSize="10"
-          fontFamily="monospace"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isHovered ? 1 : 0 }}
-          transition={{ duration: 0.2 }}
+      {/* Card Front */}
+      <div
+        className="absolute inset-0 rounded-lg border-2 bg-slate-900"
+        style={{
+          backfaceVisibility: "hidden",
+          transform: "rotateY(180deg)",
+          borderColor: isRed ? COLORS.pink : COLORS.white,
+          boxShadow: `0 0 20px ${isRed ? COLORS.pink : COLORS.purple}30, 0 10px 40px rgba(0,0,0,0.4)`,
+        }}
+      >
+        <div
+          className="absolute top-2 left-2 text-lg font-bold"
+          style={{ color: isRed ? COLORS.pink : COLORS.white }}
         >
-          {node.label.toUpperCase()}
-        </motion.text>
-      </motion.g>
+          {value}
+        </div>
+        <div
+          className="absolute top-6 left-2 text-sm"
+          style={{ color: isRed ? COLORS.pink : COLORS.white }}
+        >
+          {suit}
+        </div>
+        <div
+          className="absolute bottom-2 right-2 text-lg font-bold rotate-180"
+          style={{ color: isRed ? COLORS.pink : COLORS.white }}
+        >
+          {value}
+        </div>
+        <div
+          className="absolute text-3xl"
+          style={{
+            color: isRed ? COLORS.pink : COLORS.white,
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          {suit}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
-      {/* Connection dot at node */}
-      <motion.circle
-        cx={x}
-        cy={y}
-        r="4"
-        fill={node.color}
-        animate={{ scale: [1, 1.3, 1], opacity: [0.8, 0.5, 0.8] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: index * 0.3 }}
+// ============================================
+// DICE SCENE - Two dice tumbling and landing
+// ============================================
+function DiceScene() {
+  return (
+    <div className="relative flex items-center justify-center gap-6">
+      {/* Die 1 */}
+      <motion.div
+        initial={{ y: -100, rotate: -360, opacity: 0 }}
+        animate={{ y: 0, rotate: 0, opacity: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 10,
+          delay: 0.2,
+        }}
+      >
+        <Die value={5} color={COLORS.pink} />
+      </motion.div>
+
+      {/* Die 2 */}
+      <motion.div
+        initial={{ y: -100, rotate: 360, opacity: 0 }}
+        animate={{ y: 0, rotate: 0, opacity: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 10,
+          delay: 0.4,
+        }}
+      >
+        <Die value={3} color={COLORS.cyan} />
+      </motion.div>
+
+      {/* Score burst */}
+      <motion.div
+        className="absolute -top-8 text-4xl font-bold"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 1, type: "spring", stiffness: 200 }}
+        style={{
+          background: `linear-gradient(135deg, ${COLORS.green}, ${COLORS.cyan})`,
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          filter: `drop-shadow(0 0 20px ${COLORS.green}80)`,
+        }}
+      >
+        8!
+      </motion.div>
+
+      {/* Bounce particles */}
+      {[...Array(8)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-2 h-2 rounded-full"
+          style={{
+            background: i % 2 === 0 ? COLORS.pink : COLORS.cyan,
+            bottom: 0,
+          }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{
+            opacity: [0, 1, 0],
+            scale: [0, 1, 0],
+            x: Math.cos((i * Math.PI) / 4) * 60,
+            y: Math.sin((i * Math.PI) / 4) * -40 - 20,
+          }}
+          transition={{
+            duration: 0.8,
+            delay: 0.8 + i * 0.05,
+            ease: "easeOut",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function Die({ value, color }: { value: number; color: string }) {
+  const dotPositions: Record<number, { x: number; y: number }[]> = {
+    1: [{ x: 50, y: 50 }],
+    2: [{ x: 25, y: 25 }, { x: 75, y: 75 }],
+    3: [{ x: 25, y: 25 }, { x: 50, y: 50 }, { x: 75, y: 75 }],
+    4: [{ x: 25, y: 25 }, { x: 75, y: 25 }, { x: 25, y: 75 }, { x: 75, y: 75 }],
+    5: [{ x: 25, y: 25 }, { x: 75, y: 25 }, { x: 50, y: 50 }, { x: 25, y: 75 }, { x: 75, y: 75 }],
+    6: [{ x: 25, y: 25 }, { x: 25, y: 50 }, { x: 25, y: 75 }, { x: 75, y: 25 }, { x: 75, y: 50 }, { x: 75, y: 75 }],
+  };
+
+  const dots = dotPositions[value] || [];
+
+  return (
+    <div
+      className="relative w-20 h-20 rounded-xl border-2"
+      style={{
+        background: `linear-gradient(145deg, ${color}15 0%, ${color}05 100%)`,
+        borderColor: color,
+        boxShadow: `0 0 30px ${color}40, inset 0 0 20px ${color}10`,
+      }}
+    >
+      {/* Dots */}
+      {dots.map((dot, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-3 h-3 rounded-full"
+          style={{
+            left: `${dot.x}%`,
+            top: `${dot.y}%`,
+            transform: "translate(-50%, -50%)",
+            background: color,
+            boxShadow: `0 0 10px ${color}`,
+          }}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.8 + i * 0.05, type: "spring" }}
+        />
+      ))}
+
+      {/* Shine effect */}
+      <div
+        className="absolute top-1 left-1 w-4 h-4 rounded-full opacity-30"
+        style={{ background: `radial-gradient(circle, ${COLORS.white} 0%, transparent 70%)` }}
       />
-    </motion.g>
+    </div>
+  );
+}
+
+// ============================================
+// CUPS SCENE - Beer pong formation with ball
+// ============================================
+function CupsScene() {
+  // 6 cup triangle formation
+  const cupPositions = [
+    { x: 0, y: 0 },
+    { x: -30, y: 35 }, { x: 30, y: 35 },
+    { x: -60, y: 70 }, { x: 0, y: 70 }, { x: 60, y: 70 },
+  ];
+
+  return (
+    <div className="relative">
+      {/* Cups */}
+      <div className="relative" style={{ width: 180, height: 120 }}>
+        {cupPositions.map((pos, i) => (
+          <motion.div
+            key={i}
+            className="absolute"
+            style={{ left: 90 + pos.x - 20, top: pos.y }}
+            initial={{ y: 30, opacity: 0, scale: 0.8 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            transition={{
+              delay: i * 0.1,
+              type: "spring",
+              stiffness: 200,
+              damping: 15,
+            }}
+          >
+            <Cup />
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Bouncing ball */}
+      <motion.div
+        className="absolute w-5 h-5 rounded-full bg-white"
+        style={{
+          left: "50%",
+          marginLeft: -10,
+          top: -60,
+          boxShadow: `0 0 15px ${COLORS.white}, 0 0 30px ${COLORS.pink}50`,
+        }}
+        animate={{
+          y: [0, 80, 40, 70, 55],
+          x: [0, 30, 15, 5, 0],
+          scale: [1, 0.9, 1, 0.95, 1],
+        }}
+        transition={{
+          duration: 1.5,
+          delay: 0.8,
+          ease: "easeOut",
+          times: [0, 0.4, 0.6, 0.8, 1],
+        }}
+      />
+
+      {/* Splash effect */}
+      {[...Array(6)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-1.5 h-1.5 rounded-full"
+          style={{
+            background: COLORS.red,
+            left: "50%",
+            top: 0,
+          }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{
+            opacity: [0, 1, 0],
+            scale: [0, 1.5, 0],
+            x: Math.cos((i * Math.PI) / 3) * 25,
+            y: Math.sin((i * Math.PI) / 3) * 15 + 10,
+          }}
+          transition={{
+            duration: 0.5,
+            delay: 2.2 + i * 0.03,
+            ease: "easeOut",
+          }}
+        />
+      ))}
+
+      {/* "Nice shot!" text */}
+      <motion.div
+        className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-sm font-bold whitespace-nowrap"
+        style={{
+          color: COLORS.green,
+          textShadow: `0 0 20px ${COLORS.green}80`,
+        }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2.5, duration: 0.3 }}
+      >
+        Nice shot!
+      </motion.div>
+    </div>
+  );
+}
+
+function Cup() {
+  return (
+    <div className="relative w-10 h-12">
+      {/* Cup glow */}
+      <div
+        className="absolute inset-0 rounded-b-lg blur-md opacity-40"
+        style={{ background: COLORS.red }}
+      />
+
+      {/* Cup body - trapezoid shape */}
+      <svg viewBox="0 0 40 48" className="w-full h-full">
+        {/* Cup body */}
+        <path
+          d="M 5 0 L 35 0 L 38 48 L 2 48 Z"
+          fill={`${COLORS.red}90`}
+          stroke={COLORS.red}
+          strokeWidth="1"
+        />
+        {/* Liquid top ellipse */}
+        <ellipse
+          cx="20"
+          cy="6"
+          rx="15"
+          ry="5"
+          fill={COLORS.red}
+          opacity="0.7"
+        />
+        {/* Rim highlight */}
+        <ellipse
+          cx="20"
+          cy="2"
+          rx="14"
+          ry="4"
+          fill="none"
+          stroke={`${COLORS.red}`}
+          strokeWidth="2"
+        />
+        {/* Shine */}
+        <path
+          d="M 10 8 L 12 40"
+          stroke={`${COLORS.white}30`}
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </svg>
+    </div>
   );
 }
 

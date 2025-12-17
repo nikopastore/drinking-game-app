@@ -15,7 +15,7 @@ const withPWA = withPWAInit({
 });
 
 const nextConfig: NextConfig = {
-  // Enable Turbopack
+  // Required for Next.js 15+ with PWA plugin (which adds webpack config)
   turbopack: {},
   // Enable static export for Capacitor builds
   ...(isStaticExport && {
