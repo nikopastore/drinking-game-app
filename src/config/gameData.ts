@@ -20,6 +20,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     id: "seed-2",
     slug: "beer-pong",
     name: "Beer Pong",
+    image: "/games/bp-1.png",
     description:
       "The sport of kings. Throw ping pong balls into cups across a table. If you sink it, they drink it.",
     rules_text:
