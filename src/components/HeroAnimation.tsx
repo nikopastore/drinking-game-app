@@ -390,12 +390,17 @@ function getDotPattern(value: number): boolean[] {
 // CUPS SCENE - Beer pong formation with ball
 // ============================================
 function CupsScene() {
-  // 6 cup triangle formation
+  // 6 cup triangle formation - target is front center cup (index 4)
   const cupPositions = [
     { x: 0, y: 0 },
     { x: -30, y: 35 }, { x: 30, y: 35 },
     { x: -60, y: 70 }, { x: 0, y: 70 }, { x: 60, y: 70 },
   ];
+
+  // Target cup position (front center - index 4)
+  const targetCup = cupPositions[4];
+  const targetX = 90 + targetCup.x; // Center of cup
+  const targetY = targetCup.y + 6; // Into the cup opening
 
   return (
     <div className="relative">
@@ -415,24 +420,23 @@ function CupsScene() {
               damping: 15,
             }}
           >
-            <Cup />
+            <Cup isTarget={i === 4} />
           </motion.div>
         ))}
       </div>
 
-      {/* Bouncing ball */}
+      {/* Bouncing ball - lands in front center cup */}
       <motion.div
         className="absolute w-5 h-5 rounded-full bg-white"
         style={{
-          left: "50%",
-          marginLeft: -10,
+          left: targetX - 10,
           top: -60,
           boxShadow: `0 0 15px ${COLORS.white}, 0 0 30px ${COLORS.pink}50`,
         }}
         animate={{
-          y: [0, 80, 40, 70, 55],
-          x: [0, 30, 15, 5, 0],
-          scale: [1, 0.9, 1, 0.95, 1],
+          y: [0, targetY + 60, targetY + 30, targetY + 50, targetY + 45],
+          x: [0, 5, 2, 0, 0],
+          scale: [1, 0.9, 1, 0.95, 0.9],
         }}
         transition={{
           duration: 1.5,
@@ -442,22 +446,22 @@ function CupsScene() {
         }}
       />
 
-      {/* Splash effect */}
+      {/* Splash effect - from target cup */}
       {[...Array(6)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute w-1.5 h-1.5 rounded-full"
           style={{
             background: COLORS.red,
-            left: "50%",
-            top: 0,
+            left: targetX,
+            top: targetY + 70,
           }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{
             opacity: [0, 1, 0],
             scale: [0, 1.5, 0],
-            x: Math.cos((i * Math.PI) / 3) * 25,
-            y: Math.sin((i * Math.PI) / 3) * 15 + 10,
+            x: Math.cos((i * Math.PI) / 3) * 20,
+            y: Math.sin((i * Math.PI) / 3) * -15,
           }}
           transition={{
             duration: 0.5,
@@ -484,7 +488,7 @@ function CupsScene() {
   );
 }
 
-function Cup() {
+function Cup({ isTarget }: { isTarget?: boolean }) {
   return (
     <div className="relative w-10 h-12">
       {/* Cup glow */}
@@ -493,42 +497,78 @@ function Cup() {
         style={{ background: COLORS.red }}
       />
 
-      {/* Cup body - trapezoid shape */}
+      {/* Cup body - realistic red solo cup */}
       <svg viewBox="0 0 40 48" className="w-full h-full">
-        {/* Cup body */}
+        {/* Cup body - red exterior */}
         <path
-          d="M 5 0 L 35 0 L 38 48 L 2 48 Z"
-          fill={`${COLORS.red}90`}
-          stroke={COLORS.red}
-          strokeWidth="1"
+          d="M 5 4 L 35 4 L 37 48 L 3 48 Z"
+          fill="#dc2626"
         />
-        {/* Liquid top ellipse */}
+
+        {/* Cup ridges for texture */}
+        <path d="M 6 12 L 34 12" stroke="#b91c1c" strokeWidth="0.5" />
+        <path d="M 5.5 20 L 34.5 20" stroke="#b91c1c" strokeWidth="0.5" />
+        <path d="M 5 28 L 35 28" stroke="#b91c1c" strokeWidth="0.5" />
+
+        {/* White rim - top ring */}
+        <ellipse
+          cx="20"
+          cy="4"
+          rx="15"
+          ry="4"
+          fill="#f5f5f5"
+        />
+
+        {/* Inner white rim edge */}
+        <ellipse
+          cx="20"
+          cy="4"
+          rx="12"
+          ry="3"
+          fill="#e5e5e5"
+        />
+
+        {/* White interior visible from top */}
         <ellipse
           cx="20"
           cy="6"
-          rx="15"
-          ry="5"
-          fill={COLORS.red}
-          opacity="0.7"
+          rx="11"
+          ry="2.5"
+          fill="#fafafa"
         />
-        {/* Rim highlight */}
+
+        {/* Beer/liquid inside */}
         <ellipse
           cx="20"
-          cy="2"
-          rx="14"
-          ry="4"
-          fill="none"
-          stroke={`${COLORS.red}`}
-          strokeWidth="2"
+          cy="8"
+          rx="10"
+          ry="2"
+          fill="#fbbf24"
+          opacity="0.8"
         />
-        {/* Shine */}
+
+        {/* Highlight reflection on cup */}
         <path
-          d="M 10 8 L 12 40"
-          stroke={`${COLORS.white}30`}
+          d="M 9 10 L 10 42"
+          stroke="rgba(255,255,255,0.2)"
           strokeWidth="2"
           strokeLinecap="round"
         />
       </svg>
+
+      {/* Glow effect for target cup when ball lands */}
+      {isTarget && (
+        <motion.div
+          className="absolute inset-0 rounded-lg"
+          style={{
+            boxShadow: `0 0 20px ${COLORS.pink}`,
+            background: 'transparent'
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 0, 0.8, 0.4] }}
+          transition={{ delay: 2, duration: 0.5 }}
+        />
+      )}
     </div>
   );
 }
