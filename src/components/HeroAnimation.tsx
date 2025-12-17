@@ -158,7 +158,6 @@ function PlayingCard({
   isHighlighted?: boolean;
   flipDelay?: number;
 }) {
-  const isRed = suit === "♥" || suit === "♦";
   const [isFlipped, setIsFlipped] = useState(false);
 
   useEffect(() => {
@@ -177,58 +176,84 @@ function PlayingCard({
     >
       {/* Card Back */}
       <div
-        className="absolute inset-0 rounded-lg border-2 flex items-center justify-center"
+        className="absolute inset-0 rounded-lg border-2 flex items-center justify-center overflow-hidden"
         style={{
           backfaceVisibility: "hidden",
-          background: `linear-gradient(135deg, ${COLORS.purple}40 0%, ${COLORS.pink}20 100%)`,
+          background: `linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%)`,
           borderColor: isHighlighted ? COLORS.pink : `${COLORS.purple}60`,
           boxShadow: isHighlighted
             ? `0 0 20px ${COLORS.pink}50, 0 10px 40px rgba(0,0,0,0.4)`
             : "0 10px 30px rgba(0,0,0,0.3)",
         }}
       >
-        {/* Back pattern */}
-        <div
-          className="w-12 h-16 rounded border"
-          style={{
-            borderColor: `${COLORS.purple}50`,
-            background: `repeating-linear-gradient(45deg, ${COLORS.purple}10, ${COLORS.purple}10 2px, transparent 2px, transparent 8px)`,
-          }}
-        />
+        {/* SipWiki Logo on card back */}
+        <div className="flex flex-col items-center justify-center">
+          {/* Wine glass icon */}
+          <svg viewBox="0 0 40 50" className="w-8 h-10 mb-1">
+            <defs>
+              <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor={COLORS.pink} />
+                <stop offset="100%" stopColor={COLORS.purple} />
+              </linearGradient>
+            </defs>
+            {/* Glass bowl */}
+            <path
+              d="M10 2 L30 2 L27 22 Q25 30 20 34 Q15 30 13 22 Z"
+              fill="url(#cardGradient)"
+              opacity="0.9"
+            />
+            {/* Stem */}
+            <rect x="18" y="34" width="4" height="10" fill="url(#cardGradient)" />
+            {/* Base */}
+            <ellipse cx="20" cy="46" rx="10" ry="3" fill="url(#cardGradient)" />
+          </svg>
+          {/* SipWiki text */}
+          <span
+            className="text-[8px] font-bold tracking-tight"
+            style={{
+              background: `linear-gradient(135deg, ${COLORS.pink}, ${COLORS.purple})`,
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            SipWiki
+          </span>
+        </div>
       </div>
 
       {/* Card Front */}
       <div
-        className="absolute inset-0 rounded-lg border-2 bg-slate-900"
+        className="absolute inset-0 rounded-lg border-2"
         style={{
           backfaceVisibility: "hidden",
           transform: "rotateY(180deg)",
-          borderColor: isRed ? COLORS.pink : COLORS.white,
-          boxShadow: `0 0 20px ${isRed ? COLORS.pink : COLORS.purple}30, 0 10px 40px rgba(0,0,0,0.4)`,
+          background: "#1e1e2e",
+          borderColor: COLORS.purple,
+          boxShadow: `0 0 20px ${COLORS.purple}30, 0 10px 40px rgba(0,0,0,0.4)`,
         }}
       >
         <div
           className="absolute top-2 left-2 text-lg font-bold"
-          style={{ color: isRed ? COLORS.pink : COLORS.white }}
+          style={{ color: COLORS.white }}
         >
           {value}
         </div>
         <div
           className="absolute top-6 left-2 text-sm"
-          style={{ color: isRed ? COLORS.pink : COLORS.white }}
+          style={{ color: COLORS.white }}
         >
           {suit}
         </div>
         <div
           className="absolute bottom-2 right-2 text-lg font-bold rotate-180"
-          style={{ color: isRed ? COLORS.pink : COLORS.white }}
+          style={{ color: COLORS.white }}
         >
           {value}
         </div>
         <div
           className="absolute text-3xl"
           style={{
-            color: isRed ? COLORS.pink : COLORS.white,
+            color: COLORS.white,
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
