@@ -30,7 +30,7 @@ export function HeroAnimation() {
   }, []);
 
   return (
-    <div className="relative w-full max-w-2xl mx-auto h-44 md:h-52 overflow-hidden">
+    <div className="relative w-full max-w-2xl mx-auto h-52 md:h-60 overflow-visible">
       {/* Ambient glow */}
       <div
         className="absolute inset-0 opacity-40"
