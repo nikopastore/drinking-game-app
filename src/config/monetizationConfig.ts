@@ -4,8 +4,8 @@
 export const affiliateLinks: Record<string, { url: string; label: string }> = {
   // --- Core Supplies ---
   cards: {
-    url: "https://www.amazon.com/s?k=waterproof+playing+cards&tag=khanthebot-20",
-    label: "Waterproof Cards", // Upsell: Waterproof lasts longer for drinking games
+    url: "https://a.co/d/b2Y6Jm2",
+    label: "Waterproof Cards",
   },
   "red solo cups": {
     url: "https://www.amazon.com/s?k=red+solo+cups+bulk&tag=khanthebot-20",
