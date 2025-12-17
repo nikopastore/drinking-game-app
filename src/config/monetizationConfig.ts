@@ -4,57 +4,57 @@
 export const affiliateLinks: Record<string, { url: string; label: string }> = {
   // --- Core Supplies ---
   cards: {
-    url: "https://www.amazon.com/s?k=waterproof+playing+cards&tag=YOUR_TAG",
+    url: "https://www.amazon.com/s?k=waterproof+playing+cards&tag=khanthebot-20",
     label: "Waterproof Cards", // Upsell: Waterproof lasts longer for drinking games
   },
   "red solo cups": {
-    url: "https://www.amazon.com/s?k=red+solo+cups+bulk&tag=YOUR_TAG",
+    url: "https://www.amazon.com/s?k=red+solo+cups+bulk&tag=khanthebot-20",
     label: "Red Solo Cups (Bulk)",
   },
   cups: {
-    url: "https://www.amazon.com/s?k=party+cups&tag=YOUR_TAG",
+    url: "https://www.amazon.com/s?k=party+cups&tag=khanthebot-20",
     label: "Party Cups",
   },
   "large cup": {
-    url: "https://www.amazon.com/s?k=pimp+cup+party&tag=YOUR_TAG",
+    url: "https://www.amazon.com/s?k=pimp+cup+party&tag=khanthebot-20",
     label: "Giant Party Goblet", // Fun upsell for King's Cup
   },
   "ping pong balls": {
-    url: "https://www.amazon.com/s?k=beer+pong+balls&tag=YOUR_TAG",
+    url: "https://www.amazon.com/s?k=beer+pong+balls&tag=khanthebot-20",
     label: "Pro Ping Pong Balls",
   },
   dice: {
-    url: "https://www.amazon.com/s?k=drinking+dice&tag=YOUR_TAG",
+    url: "https://www.amazon.com/s?k=drinking+dice&tag=khanthebot-20",
     label: "Dice Set",
   },
   "shot glasses": {
-    url: "https://www.amazon.com/s?k=plastic+shot+glasses&tag=YOUR_TAG",
+    url: "https://www.amazon.com/s?k=plastic+shot+glasses&tag=khanthebot-20",
     label: "Shot Glasses (Unbreakable)",
   },
   "shot glass": {
-    url: "https://www.amazon.com/s?k=plastic+shot+glasses&tag=YOUR_TAG",
+    url: "https://www.amazon.com/s?k=plastic+shot+glasses&tag=khanthebot-20",
     label: "Shot Glasses (Unbreakable)",
   },
 
   // --- Game Specific Items ---
   "duct tape": {
-    url: "https://www.amazon.com/s?k=duct+tape+silver&tag=YOUR_TAG",
+    url: "https://www.amazon.com/s?k=duct+tape+silver&tag=khanthebot-20",
     label: "Heavy Duty Duct Tape", // For Wizard Staff/Edward 40 Hands
   },
   "jenga blocks": {
-    url: "https://www.amazon.com/s?k=giant+tumbling+tower&tag=YOUR_TAG",
+    url: "https://www.amazon.com/s?k=giant+tumbling+tower&tag=khanthebot-20",
     label: "Giant Wood Block Game", // High ticket item ($80+) vs normal Jenga ($15)
   },
   quarters: {
-    url: "https://www.amazon.com/s?k=coin+holder+dispenser&tag=YOUR_TAG",
+    url: "https://www.amazon.com/s?k=coin+holder+dispenser&tag=khanthebot-20",
     label: "Coin Dispenser", // Niche, but might sell
   },
   marker: {
-    url: "https://www.amazon.com/s?k=sharpie+markers&tag=YOUR_TAG",
+    url: "https://www.amazon.com/s?k=sharpie+markers&tag=khanthebot-20",
     label: "Permanent Markers",
   },
   "music speaker": {
-    url: "https://www.amazon.com/s?k=bluetooth+party+speaker&tag=YOUR_TAG",
+    url: "https://www.amazon.com/s?k=bluetooth+party+speaker&tag=khanthebot-20",
     label: "Loud Party Speaker", // High ticket item
   },
 };
