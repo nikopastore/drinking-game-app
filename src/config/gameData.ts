@@ -5,6 +5,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     id: "seed-1",
     slug: "kings-cup",
     name: "King's Cup",
+    image: "/games/kings-cup-1.png",
     description:
       "The quintessential card drinking game. Pull a card, follow the rule, and pray you don't draw the 4th King.",
     rules_text:
