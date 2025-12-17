@@ -64,6 +64,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     id: "seed-5",
     slug: "rage-cage",
     name: "Rage Cage (Stack Cup)",
+    image: "/games/rage-cage-1.png",
     description:
       "An intense, high-energy bouncing game involving stacking cups and chasing your neighbors.",
     rules_text:
