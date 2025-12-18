@@ -3,7 +3,7 @@ import { games } from "@/config/gameData";
 import { getAllCategorySlugs } from "@/config/categoryData";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://sipwiki.com";
+  const baseUrl = "https://sipwiki.app";
 
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [

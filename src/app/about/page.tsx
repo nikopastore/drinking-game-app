@@ -17,13 +17,13 @@ export const metadata: Metadata = {
   description:
     "SipWiki is the ultimate drinking game rules and party companion app. Learn about our mission to be the best resource for party games, drinking games, and icebreakers.",
   alternates: {
-    canonical: "https://sipwiki.com/about",
+    canonical: "https://sipwiki.app/about",
   },
   openGraph: {
     title: "About SipWiki - The #1 Drinking Game Rules App",
     description:
       "Learn about SipWiki, the ultimate drinking game rules and party companion app.",
-    url: "https://sipwiki.com/about",
+    url: "https://sipwiki.app/about",
   },
 };
 

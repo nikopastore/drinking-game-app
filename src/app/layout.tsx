@@ -21,7 +21,7 @@ const pacifico = Pacifico({
 
 export const metadata: Metadata = {
   // CRITICAL: This tells Google your canonical domain
-  metadataBase: new URL("https://sipwiki.com"),
+  metadataBase: new URL("https://sipwiki.app"),
 
   // Brand-first title for brand searches
   title: {
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "SipWiki",
-    url: "https://sipwiki.com",
+    url: "https://sipwiki.app",
   },
   twitter: {
     card: "summary_large_image",
@@ -88,7 +88,7 @@ export const metadata: Metadata = {
     creator: "@sipwiki",
   },
   alternates: {
-    canonical: "https://sipwiki.com",
+    canonical: "https://sipwiki.app",
   },
   verification: {
     // Add your Google Search Console verification code here
@@ -109,8 +109,8 @@ const organizationSchema = {
   "@type": "Organization",
   name: "SipWiki",
   alternateName: ["Sip Wiki", "SipWiki App"],
-  url: "https://sipwiki.com",
-  logo: "https://sipwiki.com/icon-512.png",
+  url: "https://sipwiki.app",
+  logo: "https://sipwiki.app/icon-512.png",
   description:
     "SipWiki is the #1 drinking game rules and party game companion app. Find rules for Beer Pong, King's Cup, Flip Cup, and 30+ more party games.",
   foundingDate: "2024",
@@ -128,13 +128,13 @@ const websiteSchema = {
   "@type": "WebSite",
   name: "SipWiki",
   alternateName: "Sip Wiki",
-  url: "https://sipwiki.com",
+  url: "https://sipwiki.app",
   description: "The #1 drinking game rules and party game companion app",
   potentialAction: {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate: "https://sipwiki.com/games?search={search_term_string}",
+      urlTemplate: "https://sipwiki.app/games?search={search_term_string}",
     },
     "query-input": "required name=search_term_string",
   },

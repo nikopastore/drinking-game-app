@@ -79,8 +79,8 @@ function generateGameJsonLd(game: ReturnType<typeof getGameBySlug>) {
     gameItem: game.materials.filter(m => m !== "no prop"),
     genre: categories.map(c => c.name),
     gamePlatform: "Tabletop",
-    url: `https://sipwiki.com/game/${game.slug}`,
-    ...(game.image && { image: `https://sipwiki.com${game.image}` }),
+    url: `https://sipwiki.app/game/${game.slug}`,
+    ...(game.image && { image: `https://sipwiki.app${game.image}` }),
   };
 }
 

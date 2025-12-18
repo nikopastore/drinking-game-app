@@ -1,11 +1,11 @@
 # SipWiki - Party Games & Drinking Game Rules
-# https://sipwiki.com
+# https://sipwiki.app
 
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://sipwiki.com/sitemap.xml
+Sitemap: https://sipwiki.app/sitemap.xml
 
 # Crawl-delay for politeness (optional)
 Crawl-delay: 1
