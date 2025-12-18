@@ -1,0 +1,9 @@
+INSTRUCTIONS: Replace this file with the actual Google verification file
+
+1. Go to Google Search Console
+2. Add property: https://sipwiki.com
+3. Choose "HTML file" verification method
+4. Download the file (looks like: googleXXXXXXXXXXXX.html)
+5. Rename it and place it in public/ folder
+6. Deploy your site
+7. Click "Verify" in Search Console

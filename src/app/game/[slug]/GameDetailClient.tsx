@@ -9,14 +9,15 @@ import {
   Flame,
   Play,
   ExternalLink,
-  ArrowLeft,
   ShoppingCart,
   Package,
+  ChevronRight,
 } from "lucide-react";
 import Link from "next/link";
 import { formatPlayerCount, getDrunkennessLabel } from "@/lib/utils";
 import { getAffiliateLink, nonAffiliateItems } from "@/config/monetizationConfig";
 import { CommentSection } from "@/components/CommentSection";
+import { getCategoriesForGame } from "@/config/categoryData";
 
 interface GameDetailClientProps {
   game: Game;
@@ -37,19 +38,45 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
     any: "Any Drink",
   };
 
+  const gameCategories = getCategoriesForGame(game);
+  const primaryCategory = gameCategories[0];
+
   return (
     <div className="min-h-screen bg-dark-900">
       <Header />
 
       <main className="max-w-4xl mx-auto px-4 py-8">
-        {/* Back button */}
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-6"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to Games
-        </Link>
+        {/* Breadcrumb Navigation for SEO */}
+        <nav className="mb-6" aria-label="Breadcrumb">
+          <ol className="flex items-center gap-2 text-sm flex-wrap">
+            <li>
+              <Link href="/" className="text-gray-400 hover:text-white transition-colors">
+                Home
+              </Link>
+            </li>
+            <ChevronRight className="h-4 w-4 text-gray-600 flex-shrink-0" />
+            <li>
+              <Link href="/games" className="text-gray-400 hover:text-white transition-colors">
+                Games
+              </Link>
+            </li>
+            {primaryCategory && (
+              <>
+                <ChevronRight className="h-4 w-4 text-gray-600 flex-shrink-0" />
+                <li>
+                  <Link
+                    href={`/games/${primaryCategory.slug}`}
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    {primaryCategory.name}
+                  </Link>
+                </li>
+              </>
+            )}
+            <ChevronRight className="h-4 w-4 text-gray-600 flex-shrink-0" />
+            <li className="text-neon-pink font-medium">{game.name}</li>
+          </ol>
+        </nav>
 
         {/* Header Section */}
         <div className="mb-8">
@@ -62,11 +89,28 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
           </div>
 
           {/* Title and metadata */}
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            {game.name}
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
+            {game.name} Rules
           </h1>
+          <p className="text-lg text-neon-pink mb-4">How to Play {game.name}</p>
 
           <p className="text-xl text-gray-400 mb-6">{game.description}</p>
+
+          {/* Category Tags */}
+          {gameCategories.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {gameCategories.map((cat) => (
+                <Link key={cat.slug} href={`/games/${cat.slug}`}>
+                  <Badge
+                    variant="muted"
+                    className="hover:bg-dark-600 transition-colors cursor-pointer"
+                  >
+                    {cat.icon} {cat.name}
+                  </Badge>
+                </Link>
+              ))}
+            </div>
+          )}
 
           {/* Metadata badges */}
           <div className="flex flex-wrap gap-3 mb-6">
