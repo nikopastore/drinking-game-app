@@ -330,20 +330,6 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     image: "/games/most-likely-to-1.png",
   },
   {
-    id: "seed-23",
-    slug: "would-you-rather",
-    name: "Would You Rather",
-    description:
-      "Would You Rather presents players with two challenging scenarios to choose between. After voting, those in the minority must drink. It sparks debate and reveals how differently people think!",
-    rules_text:
-      "**Setup:** One person poses a 'Would you rather...?' with two options.\n\n**Example Questions:**\n- 'Would you rather only whisper or only shout for the rest of your life?'\n- 'Would you rather fight one horse-sized duck or 100 duck-sized horses?'\n- 'Would you rather have telepathy or telekinesis?'\n\n**Voting:** On count of 3, everyone holds up 1 finger (option A) or 2 fingers (option B). Reveal simultaneously!\n\n**Minority Drinks:** The group with fewer votes is the minority - they each drink!\n\n**Ties:** If perfectly split, everyone drinks.\n\n**Discussion:** Often half the fun is debating why you chose your answer!\n\n**Rotate:** Next person poses a new question.\n\n**Tips:**\n- Start mild, escalate to weird/gross/difficult\n- 'Both good things' questions are interesting too\n- Some questions reveal surprising differences\n\n**No Winners:** It's not about winning - it's about the conversations and learning how weird your friends are!",
-    materials: ["no prop"],
-    min_players: 3,
-    max_players: null,
-    alcohol_type: "any",
-    drunkenness_level: 2,
-  },
-  {
     id: "seed-24",
     slug: "slap-cup",
     image: "/games/slap-cup-1.png",
@@ -446,20 +432,6 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     alcohol_type: "any",
     drunkenness_level: 4,
     image: "/games/beeramid-1.png",
-  },
-  {
-    id: "seed-31",
-    slug: "ace-race",
-    name: "Ace Race",
-    description:
-      "Ace Race (a.k.a. Horse Race) is a fast 'race track' card game where players bet on which suit will reach the finish line first as the dealer flips cards from the deck. Pick your suit and cheer it on!",
-    rules_text:
-      "**Setup:**\n- Pick a dealer and shuffle a standard deck\n- Remove the 4 Aces and line them up as 'racers' at the starting line\n- Deal a row of face-up cards (7-8 cards) as the 'race track' (finish line)\n\n**Betting:**\n- Everyone chooses a suit to bet on (hearts, diamonds, clubs, or spades)\n- Multiple players can bet on the same suit\n\n**Gameplay:**\n- Dealer flips cards from the deck one at a time\n- Each time a suit is flipped, move that suit's Ace one spot toward the finish\n- First Ace to reach or pass the finish line wins!\n\n**Drinking:**\n- Everyone who didn't pick the winning suit drinks\n- Optional: Bet sips (1-5) before the race - losers drink their bet amount\n\n**Optional - Stumble Rule:**\n- When an Ace reaches a new track card position, flip that track card\n- The suit shown on the track card moves BACK one space (stumbles)\n\n**Tips:**\n- Great spectator energy - cheer for your suit!\n- Fast rounds keep everyone engaged\n- Works well as a drinking tournament with multiple races\n\n**Playtime:** 5-10 min | **Difficulty:** Easy",
-    materials: ["cards"],
-    min_players: 4,
-    max_players: null,
-    alcohol_type: "any",
-    drunkenness_level: 3,
   },
   {
     id: "seed-32",

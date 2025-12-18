@@ -7,7 +7,7 @@ import { GameCard } from "@/components/GameCard";
 import { Header } from "@/components/Header";
 import { SearchFilterModal } from "@/components/SearchFilterModal";
 import { HeroAnimation } from "@/components/HeroAnimation";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Wine } from "lucide-react";
 
 // Game row component for Netflix-style horizontal scroll
 function GameRow({ title, games: rowGames }: { title: string; games: Game[] }) {
@@ -105,6 +105,21 @@ export default function HomePage() {
           <GameRow title="🍺 Beer Games" games={gameCategories.beerGames} />
           <GameRow title="👥 Large Groups" games={gameCategories.largeGroupGames} />
           <GameRow title="⚡ Quick & Easy" games={gameCategories.quickGames} />
+        </div>
+      
+        {/* Sip Factor Explanation */}
+        <div className="mt-8 mb-6 px-4">
+          <div className="max-w-md mx-auto text-center bg-dark-800/50 rounded-xl p-4 border border-gray-800">
+            <div className="flex justify-center gap-1 mb-2">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <Wine key={i} className="h-4 w-4 text-neon-pink" />
+              ))}
+            </div>
+            <p className="text-xs text-gray-400">
+              <span className="text-white font-medium">Sip Factor</span> indicates how much you'll drink.
+              More glasses = more sips!
+            </p>
+          </div>
         </div>
       </main>
 
