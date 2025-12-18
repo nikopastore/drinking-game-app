@@ -76,7 +76,7 @@ export function GameCard({ game, size = "medium", showSipFactor = false }: GameC
   };
 
   return (
-    <div className="flex flex-col flex-shrink-0 relative hover:z-10">
+    <div className="flex flex-col flex-shrink-0 relative hover:z-50">
       <div
         onClick={handleClick}
         className={`${sizeClasses[size]} cursor-pointer group relative rounded-xl overflow-hidden transition-all duration-150 hover:scale-105 hover:brightness-110 hover:shadow-xl hover:shadow-neon-pink/30 active:scale-95 active:brightness-90`}

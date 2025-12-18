@@ -44,7 +44,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     max_players: 8,
     alcohol_type: "any",
     drunkenness_level: 5,
-    image: "/games/ride-the-bus-1.png",
+    image: "/games/ride-the-bus-2.png",
   },
   {
     id: "seed-4",
@@ -357,7 +357,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     max_players: 10,
     alcohol_type: "any",
     drunkenness_level: 3,
-    image: "/games/horse-race-1.png",
+    image: "/games/horse-race-2.png",
   },
   {
     id: "seed-26",
@@ -401,7 +401,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     max_players: 8,
     alcohol_type: "any",
     drunkenness_level: 4,
-    image: "/games/irish-poker-1.png",
+    image: "/games/irish-poker-2.png",
   },
   {
     id: "seed-29",

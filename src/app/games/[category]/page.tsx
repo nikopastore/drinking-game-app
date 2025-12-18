@@ -7,10 +7,10 @@ import {
   getGamesForCategory,
   getAllCategorySlugs,
 } from "@/config/categoryData";
-import { Header } from "@/components/Header";
 import { GameCard } from "@/components/GameCard";
 import { Badge } from "@/components/ui";
-import { ArrowLeft, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import { CategoryPageClient } from "./CategoryPageClient";
 
 interface PageProps {
   params: Promise<{ category: string }>;
@@ -57,12 +57,9 @@ export default async function CategoryPage({ params }: PageProps) {
   const otherCategories = gameCategories.filter((c) => c.slug !== category);
 
   return (
-    <div className="min-h-screen bg-dark-900">
-      <Header />
-
-      <main className="max-w-7xl mx-auto px-4 py-8">
-        {/* Breadcrumb */}
-        <nav className="mb-6">
+    <CategoryPageClient>
+      {/* Breadcrumb */}
+      <nav className="mb-6">
           <ol className="flex items-center gap-2 text-sm">
             <li>
               <Link href="/" className="text-gray-400 hover:text-white transition-colors">
@@ -129,12 +126,11 @@ export default async function CategoryPage({ params }: PageProps) {
           </div>
         </div>
 
-        {/* SEO Content - unique per category */}
-        <div className="mt-12 prose prose-invert max-w-none">
-          <CategorySEOContent category={category} gamesCount={categoryGames.length} />
-        </div>
-      </main>
-    </div>
+      {/* SEO Content - unique per category */}
+      <div className="mt-12 prose prose-invert max-w-none">
+        <CategorySEOContent category={category} gamesCount={categoryGames.length} />
+      </div>
+    </CategoryPageClient>
   );
 }
 

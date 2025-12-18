@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Wine, Search, CircleDot, PlusCircle, ShoppingBag, Menu } from "lucide-react";
+import { Wine, Search, CircleDot, PlusCircle, Menu } from "lucide-react";
 import { Button } from "@/components/ui";
 import { useSidebar } from "@/components/Sidebar";
 
@@ -41,7 +41,21 @@ export function Header({ onSearchClick }: HeaderProps) {
             </Link>
           </div>
 
-          {/* Center Actions - Hidden on mobile (bottom nav used instead) */}
+          {/* Center: Spin Button - Hidden on mobile */}
+          <div className="hidden md:flex items-center">
+            <Link href="/spin">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="flex items-center gap-2 text-gray-300 hover:text-white hover:bg-dark-700"
+              >
+                <CircleDot className="h-5 w-5" />
+                <span>Spin</span>
+              </Button>
+            </Link>
+          </div>
+
+          {/* Right: Search + Create - Hidden on mobile */}
           <div className="hidden md:flex items-center gap-2">
             {/* Search Button */}
             <Button
@@ -54,42 +68,18 @@ export function Header({ onSearchClick }: HeaderProps) {
               <span>Search</span>
             </Button>
 
-            {/* Roulette/Spin Button */}
-            <Link href="/spin">
+            {/* Create/Submit Button */}
+            <Link href="/submit">
               <Button
                 variant="ghost"
                 size="sm"
-                className="flex items-center gap-2 text-gray-300 hover:text-white hover:bg-dark-700"
+                className="flex items-center gap-2 text-neon-pink hover:text-white hover:bg-neon-pink/20"
               >
-                <CircleDot className="h-5 w-5" />
-                <span>Spin</span>
-              </Button>
-            </Link>
-
-            {/* Shop Button */}
-            <Link href="/shop">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="flex items-center gap-2 text-gray-300 hover:text-white hover:bg-dark-700"
-              >
-                <ShoppingBag className="h-5 w-5" />
-                <span>Shop</span>
+                <PlusCircle className="h-5 w-5" />
+                <span>Create</span>
               </Button>
             </Link>
           </div>
-
-          {/* Right Action - Create/Submit - Hidden on mobile */}
-          <Link href="/submit" className="hidden md:block">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="flex items-center gap-2 text-neon-pink hover:text-white hover:bg-neon-pink/20"
-            >
-              <PlusCircle className="h-5 w-5" />
-              <span>Create</span>
-            </Button>
-          </Link>
 
           {/* Mobile placeholder for layout balance */}
           <div className="w-8 md:hidden" />
