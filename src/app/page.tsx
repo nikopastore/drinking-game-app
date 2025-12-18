@@ -14,7 +14,7 @@ function GameRow({ title, games: rowGames }: { title: string; games: Game[] }) {
   if (rowGames.length === 0) return null;
 
   return (
-    <div className="py-2">
+    <div className="py-4">
       <div className="flex items-center justify-between mb-3 px-4">
         <h2 className="text-lg font-bold text-white">{title}</h2>
         <button className="flex items-center gap-1 text-sm text-gray-400 hover:text-neon-pink transition-colors">
@@ -22,7 +22,7 @@ function GameRow({ title, games: rowGames }: { title: string; games: Game[] }) {
           <ChevronRight className="h-4 w-4" />
         </button>
       </div>
-      <div className="flex gap-4 px-4 overflow-x-auto scrollbar-hide">
+      <div className="flex gap-4 px-4 overflow-x-auto overflow-y-visible scrollbar-hide pb-2">
         {rowGames.map((game) => (
           <GameCard key={game.id} game={game} size="medium" showSipFactor />
         ))}
@@ -98,7 +98,7 @@ export default function HomePage() {
         </div>
 
         {/* Game Rows */}
-        <div className="space-y-2">
+        <div className="space-y-0">
           <GameRow title="🔥 Popular Games" games={gameCategories.popular} />
           <GameRow title="🃏 Card Games" games={gameCategories.cardGames} />
           <GameRow title="✋ No Props Needed" games={gameCategories.noPropGames} />
