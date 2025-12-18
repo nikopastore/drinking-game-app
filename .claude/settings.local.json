@@ -20,7 +20,13 @@
       "Bash(netstat:*)",
       "Bash(findstr:*)",
       "Bash(taskkill:*)",
-      "Bash(npx kill-port:*)"
+      "Bash(npx kill-port:*)",
+      "Bash(magick identify:*)",
+      "Bash(identify:*)",
+      "Bash(powershell -Command \"Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile(''c:\\Users\\nikop\\Documents\\GitHub\\drinking-game-app\\public\\games\\kings-cup-1.png''); Write-Host (''Width: '' + $img.Width + '', Height: '' + $img.Height); $img.Dispose()\")",
+      "Bash(powershell:*)",
+      "Bash(mv:*)",
+      "Bash(del /f /q \"c:\\Users\\nikop\\Documents\\GitHub\\drinking-game-app\\.next\\dev\\lock\")"
     ]
   }
 }

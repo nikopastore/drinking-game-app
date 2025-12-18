@@ -37,6 +37,15 @@ const alcoholOptions = [
   { label: "Liquor", value: "liquor" as const },
 ];
 
+const sipFactorOptions = [
+  { label: "Any", value: null },
+  { label: "1", value: 1 },
+  { label: "2", value: 2 },
+  { label: "3", value: 3 },
+  { label: "4", value: 4 },
+  { label: "5", value: 5 },
+];
+
 export function SearchFilterModal({
   isOpen,
   onClose,
@@ -89,6 +98,7 @@ export function SearchFilterModal({
       playerCount: null,
       materials: [],
       alcoholType: null,
+      sipFactor: null,
       search: "",
     });
   };
@@ -97,6 +107,7 @@ export function SearchFilterModal({
     filters.playerCount !== null ||
     filters.materials.length > 0 ||
     filters.alcoholType !== null ||
+    filters.sipFactor !== null ||
     localSearch !== "";
 
   // Filter games based on current filters
@@ -143,6 +154,13 @@ export function SearchFilterModal({
         game.alcohol_type !== "any" &&
         game.alcohol_type !== filters.alcoholType
       ) {
+        return false;
+      }
+    }
+
+    // Sip Factor filter - show games with at least this drunkenness level
+    if (filters.sipFactor !== null) {
+      if (game.drunkenness_level !== filters.sipFactor) {
         return false;
       }
     }
@@ -258,6 +276,37 @@ export function SearchFilterModal({
               </div>
             </div>
 
+            {/* Sip Factor */}
+            <div>
+              <label className="flex items-center gap-2 text-sm font-medium text-gray-400 mb-2">
+                <Wine className="h-4 w-4 text-neon-pink" />
+                Sip Factor
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {sipFactorOptions.map((option) => (
+                  <button
+                    key={option.label}
+                    onClick={() => updateFilter("sipFactor", option.value)}
+                    className={cn(
+                      "px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1",
+                      filters.sipFactor === option.value
+                        ? "bg-neon-pink text-white"
+                        : "bg-dark-700 text-gray-300 hover:bg-dark-600"
+                    )}
+                  >
+                    {option.value !== null && (
+                      <span className="flex">
+                        {Array.from({ length: option.value }).map((_, i) => (
+                          <Wine key={i} className="h-3 w-3" />
+                        ))}
+                      </span>
+                    )}
+                    {option.value === null && option.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Clear Filters */}
             {hasActiveFilters && (
               <button
@@ -280,7 +329,7 @@ export function SearchFilterModal({
               <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
                 {filteredGames.map((game) => (
                   <div key={game.id} onClick={onClose}>
-                    <GameCard game={game} size="medium" />
+                    <GameCard game={game} size="medium" showSipFactor />
                   </div>
                 ))}
               </div>

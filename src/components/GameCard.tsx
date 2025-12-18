@@ -3,12 +3,13 @@
 import { Game } from "@/types";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/components/auth";
-import { Flame } from "lucide-react";
+import { Flame, Wine } from "lucide-react";
 import Image from "next/image";
 
 interface GameCardProps {
   game: Game;
   size?: "small" | "medium" | "large";
+  showSipFactor?: boolean;
 }
 
 // Generate a consistent color based on slug for placeholder
@@ -44,7 +45,7 @@ const getGameEmoji = (game: Game): string => {
   return "🍻";
 };
 
-export function GameCard({ game, size = "medium" }: GameCardProps) {
+export function GameCard({ game, size = "medium", showSipFactor = false }: GameCardProps) {
   const router = useRouter();
   const { requireAuth } = useAuthContext();
 
@@ -72,63 +73,89 @@ export function GameCard({ game, size = "medium" }: GameCardProps) {
     large: "text-6xl",
   };
 
+  const iconSizes = {
+    small: "h-3 w-3",
+    medium: "h-3.5 w-3.5",
+    large: "h-4 w-4",
+  };
+
   return (
-    <div
-      onClick={handleClick}
-      className={`${sizeClasses[size]} flex-shrink-0 cursor-pointer group relative rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:z-10 hover:shadow-2xl hover:shadow-neon-pink/20`}
-    >
-      {/* Background - Image or Gradient Placeholder */}
-      {game.image ? (
-        <Image
-          src={game.image}
-          alt={game.name}
-          fill
-          className="object-cover"
-          sizes="(max-width: 640px) 144px, 192px"
-        />
-      ) : (
-        <div className={`absolute inset-0 bg-gradient-to-br ${getPlaceholderGradient(game.slug)}`}>
-          {/* Placeholder emoji */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-30">
-            <span className={emojiSizes[size]}>{getGameEmoji(game)}</span>
+    <div className="flex flex-col flex-shrink-0">
+      <div
+        onClick={handleClick}
+        className={`${sizeClasses[size]} cursor-pointer group relative rounded-xl overflow-hidden transition-all duration-300 hover:brightness-110 hover:shadow-xl hover:shadow-neon-pink/30`}
+      >
+        {/* Background - Image or Gradient Placeholder */}
+        {game.image ? (
+          <Image
+            src={game.image}
+            alt={game.name}
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 144px, 192px"
+          />
+        ) : (
+          <div className={`absolute inset-0 bg-gradient-to-br ${getPlaceholderGradient(game.slug)}`}>
+            {/* Placeholder emoji */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-30">
+              <span className={emojiSizes[size]}>{getGameEmoji(game)}</span>
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Gradient overlay for text readability - only for games without cover images */}
-      {!game.image && (
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-      )}
+        {/* Gradient overlay for text readability - only for games without cover images */}
+        {!game.image && (
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+        )}
 
-      {/* Hover glow effect */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-neon-pink/30 to-transparent" />
+        {/* Hover glow effect */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-neon-pink/30 to-transparent" />
 
-      {/* Content - only show for games without cover images */}
-      {!game.image && (
-        <div className="absolute bottom-0 left-0 right-0 p-3">
-          {/* Drunkenness indicator */}
-          <div className="flex gap-0.5 mb-1.5">
+        {/* Content - only show for games without cover images */}
+        {!game.image && (
+          <div className="absolute bottom-0 left-0 right-0 p-3">
+            {/* Drunkenness indicator */}
+            <div className="flex gap-0.5 mb-1.5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Flame
+                  key={i}
+                  className={`h-3 w-3 ${
+                    i < game.drunkenness_level
+                      ? "text-neon-pink drop-shadow-[0_0_4px_rgba(236,72,153,0.8)]"
+                      : "text-gray-600"
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Title */}
+            <h3 className={`${titleSizes[size]} font-bold text-white leading-tight line-clamp-2 drop-shadow-lg`}>
+              {game.name}
+            </h3>
+          </div>
+        )}
+
+        {/* Border on hover */}
+        <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-neon-pink/50 transition-colors duration-300" />
+      </div>
+
+      {/* Sip Factor Display - shown below the card */}
+      {showSipFactor && (
+        <div className="mt-2 flex justify-center">
+          <div className="flex items-center gap-0.5">
             {Array.from({ length: 5 }).map((_, i) => (
-              <Flame
+              <Wine
                 key={i}
-                className={`h-3 w-3 ${
+                className={`h-4 w-4 ${
                   i < game.drunkenness_level
-                    ? "text-neon-pink drop-shadow-[0_0_4px_rgba(236,72,153,0.8)]"
+                    ? "text-neon-pink drop-shadow-[0_0_6px_rgba(255,45,146,0.9)]"
                     : "text-gray-600"
                 }`}
               />
             ))}
           </div>
-
-          {/* Title */}
-          <h3 className={`${titleSizes[size]} font-bold text-white leading-tight line-clamp-2 drop-shadow-lg`}>
-            {game.name}
-          </h3>
         </div>
       )}
-
-      {/* Border on hover */}
-      <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-neon-pink/50 transition-colors duration-300" />
     </div>
   );
 }

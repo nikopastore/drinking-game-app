@@ -67,6 +67,7 @@ export interface FilterState {
   playerCount: number | null;
   materials: string[];
   alcoholType: "beer" | "liquor" | "any" | null;
+  sipFactor: number | null; // 1-5, null = any
   search: string;
 }
 
