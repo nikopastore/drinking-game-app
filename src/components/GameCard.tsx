@@ -2,7 +2,6 @@
 
 import { Game } from "@/types";
 import { useRouter } from "next/navigation";
-import { useAuthContext } from "@/components/auth";
 import { Flame, Wine } from "lucide-react";
 import Image from "next/image";
 
@@ -47,12 +46,9 @@ const getGameEmoji = (game: Game): string => {
 
 export function GameCard({ game, size = "medium", showSipFactor = false }: GameCardProps) {
   const router = useRouter();
-  const { requireAuth } = useAuthContext();
 
   const handleClick = () => {
-    if (requireAuth()) {
-      router.push(`/game/${game.slug}`);
-    }
+    router.push(`/game/${game.slug}`);
   };
 
   const sizeClasses = {

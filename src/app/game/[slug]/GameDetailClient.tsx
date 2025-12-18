@@ -18,12 +18,15 @@ import { formatPlayerCount, getDrunkennessLabel } from "@/lib/utils";
 import { getAffiliateLink, nonAffiliateItems } from "@/config/monetizationConfig";
 import { CommentSection } from "@/components/CommentSection";
 import { getCategoriesForGame } from "@/config/categoryData";
+import { useAuthContext, UnlockRulesCard } from "@/components/auth";
 
 interface GameDetailClientProps {
   game: Game;
 }
 
 export function GameDetailClient({ game }: GameDetailClientProps) {
+  const { isAuthenticated } = useAuthContext();
+
   const drunkennessColors: Record<number, "green" | "yellow" | "pink" | "purple"> = {
     1: "green",
     2: "green",
@@ -199,34 +202,42 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
           </CardContent>
         </Card>
 
-        {/* Rules Section */}
-        <Card className="mb-8">
-          <CardContent className="p-6">
-            <h2 className="text-xl font-bold text-white mb-4">How to Play</h2>
-            <div className="prose prose-invert max-w-none">
-              {game.rules_text.split("\n").map((line, index) => {
-                // Handle bold markdown
-                const formattedLine = line.replace(
-                  /\*\*(.*?)\*\*/g,
-                  '<strong class="text-neon-pink">$1</strong>'
-                );
+        {/* Rules Section - Locked for guests */}
+        {isAuthenticated ? (
+          <>
+            <Card className="mb-8">
+              <CardContent className="p-6">
+                <h2 className="text-xl font-bold text-white mb-4">How to Play</h2>
+                <div className="prose prose-invert max-w-none">
+                  {game.rules_text.split("\n").map((line, index) => {
+                    // Handle bold markdown
+                    const formattedLine = line.replace(
+                      /\*\*(.*?)\*\*/g,
+                      '<strong class="text-neon-pink">$1</strong>'
+                    );
 
-                return (
-                  <p
-                    key={index}
-                    className="text-gray-300 mb-3 leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: formattedLine }}
-                  />
-                );
-              })}
+                    return (
+                      <p
+                        key={index}
+                        className="text-gray-300 mb-3 leading-relaxed"
+                        dangerouslySetInnerHTML={{ __html: formattedLine }}
+                      />
+                    );
+                  })}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Comments Section */}
+            <div className="mb-24">
+              <CommentSection gameSlug={game.slug} />
             </div>
-          </CardContent>
-        </Card>
-
-        {/* Comments Section */}
-        <div className="mb-24">
-          <CommentSection gameSlug={game.slug} />
-        </div>
+          </>
+        ) : (
+          <div className="mb-24">
+            <UnlockRulesCard gameName={game.name} />
+          </div>
+        )}
 
         {/* Sticky Play Button */}
         <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-dark-900 via-dark-900 to-transparent">
