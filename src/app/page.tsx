@@ -63,6 +63,17 @@ export default function HomePage() {
     // Quick games (low drunkenness - good for starting)
     const quickGames = games.filter((g) => g.drunkenness_level <= 2).slice(0, 10);
 
+    // Games Around the World - internationally themed games
+    const worldGames = games.filter((g) =>
+      g.name.toLowerCase().includes("around the world") ||
+      g.name.toLowerCase().includes("irish") ||
+      g.name.toLowerCase().includes("mexican") ||
+      g.name.toLowerCase().includes("russian") ||
+      g.name.toLowerCase().includes("german") ||
+      g.name.toLowerCase().includes("japanese") ||
+      g.name.toLowerCase().includes("british")
+    ).slice(0, 10);
+
     return {
       popular,
       cardGames,
@@ -70,6 +81,7 @@ export default function HomePage() {
       beerGames,
       largeGroupGames,
       quickGames,
+      worldGames,
     };
   }, []);
 
@@ -103,6 +115,7 @@ export default function HomePage() {
           <GameRow title="🃏 Card Games" games={gameCategories.cardGames} />
           <GameRow title="✋ No Props Needed" games={gameCategories.noPropGames} />
           <GameRow title="🍺 Beer Games" games={gameCategories.beerGames} />
+          <GameRow title="🌍 Games Around the World" games={gameCategories.worldGames} />
           <GameRow title="👥 Large Groups" games={gameCategories.largeGroupGames} />
           <GameRow title="⚡ Quick & Easy" games={gameCategories.quickGames} />
         </div>
