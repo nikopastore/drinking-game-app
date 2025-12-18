@@ -25,8 +25,8 @@ function GameRow({
   if (rowGames.length === 0) return null;
 
   return (
-    <div className="group/row relative pt-2 pb-6 hover:z-20">
-      <div className="flex items-center justify-between mb-3 px-4">
+    <div className="pointer-events-none">
+      <div className="flex items-center justify-between mb-3 px-4 pointer-events-auto">
         <h2 className="text-lg font-bold text-white">{title}</h2>
         {categorySlug ? (
           <Link
@@ -46,7 +46,7 @@ function GameRow({
           </Link>
         )}
       </div>
-      <div className="flex gap-4 px-4 overflow-x-auto scrollbar-hide">
+      <div className="flex gap-4 px-4 pb-4 overflow-x-auto scrollbar-hide pointer-events-auto">
         {rowGames.map((game) => (
           <GameCard key={game.id} game={game} size="medium" showSipFactor />
         ))}

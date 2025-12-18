@@ -18,6 +18,36 @@ import {
   Skull,
 } from "lucide-react";
 
+// Custom 4-person icon for Large Groups
+function UsersGroup({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      {/* Back row - 2 people */}
+      <circle cx="7" cy="5" r="2" />
+      <circle cx="17" cy="5" r="2" />
+      {/* Front row - 2 people */}
+      <circle cx="4" cy="11" r="2" />
+      <circle cx="20" cy="11" r="2" />
+      {/* Body shapes */}
+      <path d="M7 9c-2 0-3 1-3 3v1" />
+      <path d="M17 9c2 0 3 1 3 3v1" />
+      <path d="M4 15c-1.5 0-2.5 1-2.5 2.5V19" />
+      <path d="M20 15c1.5 0 2.5 1 2.5 2.5V19" />
+      {/* Center connection */}
+      <path d="M9 19h6" />
+    </svg>
+  );
+}
+
 interface NavItem {
   href: string;
   label: string;
@@ -37,7 +67,7 @@ const categoryNavItems: NavItem[] = [
   { href: "/games/dice-games", label: "Dice Games", icon: <Dice5 className="h-5 w-5" /> },
   { href: "/games/no-props", label: "No Props", icon: <Hand className="h-5 w-5" /> },
   { href: "/games/two-player", label: "Two Player", icon: <Users className="h-5 w-5" /> },
-  { href: "/games/large-groups", label: "Large Groups", icon: <Users className="h-5 w-5" /> },
+  { href: "/games/large-groups", label: "Large Groups", icon: <UsersGroup className="h-5 w-5" /> },
   { href: "/games/beer-games", label: "Beer Games", icon: <Beer className="h-5 w-5" /> },
   { href: "/games/quick-easy", label: "Quick & Easy", icon: <Zap className="h-5 w-5" /> },
   { href: "/games/extreme", label: "Extreme", icon: <Skull className="h-5 w-5" /> },

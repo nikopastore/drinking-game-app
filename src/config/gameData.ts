@@ -239,6 +239,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     max_players: 6,
     alcohol_type: "any",
     drunkenness_level: 3,
+    image: "/games/drunk-jenga-1.png",
   },
   {
     id: "seed-17",
@@ -283,6 +284,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     max_players: null,
     alcohol_type: "any",
     drunkenness_level: 4,
+    image: "/games/roxanne-1.png",
   },
   {
     id: "seed-20",
@@ -372,6 +374,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     max_players: null,
     alcohol_type: "any",
     drunkenness_level: 3,
+    image: "/games/bite-the-bag-1.png",
   },
   {
     id: "seed-27",
@@ -506,6 +509,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     max_players: 10,
     alcohol_type: "beer",
     drunkenness_level: 4,
+    image: "/games/baseball-1.png",
   },
   {
     id: "seed-37",
@@ -520,6 +524,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     max_players: null,
     alcohol_type: "beer",
     drunkenness_level: 4,
+    image: "/games/7-11-doubles-1.png",
   },
   {
     id: "seed-38",
@@ -534,6 +539,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     max_players: null,
     alcohol_type: "any",
     drunkenness_level: 4,
+    image: "/games/titanic-1.png",
   },
   {
     id: "seed-39",
@@ -548,6 +554,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     max_players: 8,
     alcohol_type: "beer",
     drunkenness_level: 4,
+    image: "/games/landmines-1.png",
   },
 ];
 
