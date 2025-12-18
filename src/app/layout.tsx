@@ -91,8 +91,7 @@ export const metadata: Metadata = {
     canonical: "https://sipwiki.app",
   },
   verification: {
-    // Add your Google Search Console verification code here
-    // google: "your-verification-code",
+    google: "KC3FMAdS3TCHgFyNLYxcrvGnuk2NOyHOGmXZHEsfqz0",
   },
   other: {
     "mobile-web-app-capable": "yes",
