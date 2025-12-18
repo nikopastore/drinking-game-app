@@ -5,6 +5,8 @@ import { games } from "@/config/gameData";
 import { Game } from "@/types";
 import { Header } from "@/components/Header";
 import { WheelSpinner } from "@/components/WheelSpinner";
+import { Sidebar, useSidebar } from "@/components/Sidebar";
+import { MobileNav } from "@/components/MobileNav";
 import { Button, Card, CardContent, Badge, Modal } from "@/components/ui";
 import { Users, Package, Wine, PartyPopper, Play, RotateCcw, Flame } from "lucide-react";
 import Link from "next/link";
@@ -150,11 +152,20 @@ export default function SpinPage() {
     setSelectedGame(null);
   };
 
+  const { isExpanded } = useSidebar();
+
   return (
     <div className="min-h-screen bg-dark-900">
       <Header />
+      <Sidebar />
 
-      <main className="max-w-4xl mx-auto px-4 py-8">
+      <main
+        className={`
+          max-w-4xl mx-auto px-4 py-8 pb-24 md:pb-8
+          transition-all duration-300 ease-in-out
+          ${isExpanded ? "md:ml-56" : "md:ml-16"}
+        `}
+      >
         {/* Hero */}
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -384,6 +395,8 @@ export default function SpinPage() {
           )}
         </Modal>
       </main>
+
+      <MobileNav />
     </div>
   );
 }

@@ -1,26 +1,50 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import { games } from "@/config/gameData";
 import { FilterState, Game } from "@/types";
 import { GameCard } from "@/components/GameCard";
 import { Header } from "@/components/Header";
 import { SearchFilterModal } from "@/components/SearchFilterModal";
 import { HeroAnimation } from "@/components/HeroAnimation";
+import { Sidebar, useSidebar } from "@/components/Sidebar";
+import { MobileNav } from "@/components/MobileNav";
 import { ChevronRight, Wine } from "lucide-react";
 
 // Game row component for Netflix-style horizontal scroll
-function GameRow({ title, games: rowGames }: { title: string; games: Game[] }) {
+function GameRow({
+  title,
+  games: rowGames,
+  categorySlug,
+}: {
+  title: string;
+  games: Game[];
+  categorySlug?: string;
+}) {
   if (rowGames.length === 0) return null;
 
   return (
     <div className="py-4">
       <div className="flex items-center justify-between mb-3 px-4">
         <h2 className="text-lg font-bold text-white">{title}</h2>
-        <button className="flex items-center gap-1 text-sm text-gray-400 hover:text-neon-pink transition-colors">
-          See all
-          <ChevronRight className="h-4 w-4" />
-        </button>
+        {categorySlug ? (
+          <Link
+            href={`/games/${categorySlug}`}
+            className="flex items-center gap-1 text-sm text-gray-400 hover:text-neon-pink transition-colors"
+          >
+            See all
+            <ChevronRight className="h-4 w-4" />
+          </Link>
+        ) : (
+          <Link
+            href="/games"
+            className="flex items-center gap-1 text-sm text-gray-400 hover:text-neon-pink transition-colors"
+          >
+            See all
+            <ChevronRight className="h-4 w-4" />
+          </Link>
+        )}
       </div>
       <div className="flex gap-4 px-4 overflow-x-auto overflow-y-visible scrollbar-hide pb-2">
         {rowGames.map((game) => (
@@ -85,11 +109,20 @@ export default function HomePage() {
     };
   }, []);
 
+  const { isExpanded } = useSidebar();
+
   return (
     <div className="min-h-screen bg-dark-900">
       <Header onSearchClick={() => setIsSearchOpen(true)} />
+      <Sidebar />
 
-      <main className="py-3">
+      <main
+        className={`
+          py-3 pb-20 md:pb-3
+          transition-all duration-300 ease-in-out
+          ${isExpanded ? "md:ml-56" : "md:ml-16"}
+        `}
+      >
         {/* Hero Section with Animation */}
         <div className="mb-4">
           {/* Animated Diagram */}
@@ -111,13 +144,13 @@ export default function HomePage() {
 
         {/* Game Rows */}
         <div className="space-y-0">
-          <GameRow title="🔥 Popular Games" games={gameCategories.popular} />
-          <GameRow title="🃏 Card Games" games={gameCategories.cardGames} />
-          <GameRow title="✋ No Props Needed" games={gameCategories.noPropGames} />
-          <GameRow title="🍺 Beer Games" games={gameCategories.beerGames} />
+          <GameRow title="🔥 Popular Games" games={gameCategories.popular} categorySlug="extreme" />
+          <GameRow title="🃏 Card Games" games={gameCategories.cardGames} categorySlug="card-games" />
+          <GameRow title="✋ No Props Needed" games={gameCategories.noPropGames} categorySlug="no-props" />
+          <GameRow title="🍺 Beer Games" games={gameCategories.beerGames} categorySlug="beer-games" />
           <GameRow title="🌍 Games Around the World" games={gameCategories.worldGames} />
-          <GameRow title="👥 Large Groups" games={gameCategories.largeGroupGames} />
-          <GameRow title="⚡ Quick & Easy" games={gameCategories.quickGames} />
+          <GameRow title="👥 Large Groups" games={gameCategories.largeGroupGames} categorySlug="large-groups" />
+          <GameRow title="⚡ Quick & Easy" games={gameCategories.quickGames} categorySlug="quick-easy" />
         </div>
       
         {/* Sip Factor Explanation */}
@@ -144,6 +177,9 @@ export default function HomePage() {
         filters={filters}
         onFilterChange={setFilters}
       />
+
+      {/* Mobile Bottom Navigation */}
+      <MobileNav />
     </div>
   );
 }

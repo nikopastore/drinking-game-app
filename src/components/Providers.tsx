@@ -4,6 +4,7 @@ import { Suspense, useEffect, useState } from "react";
 import { useAppStore } from "@/lib/store";
 import { RatingModal } from "@/components/RatingModal";
 import { AuthProvider } from "@/components/auth";
+import { SidebarProvider } from "@/components/Sidebar";
 import { useRouter } from "next/navigation";
 
 function ProvidersContent({ children }: { children: React.ReactNode }) {
@@ -44,16 +45,18 @@ function ProvidersContent({ children }: { children: React.ReactNode }) {
 
   return (
     <AuthProvider>
-      {children}
-      {pendingRating && (
-        <RatingModal
-          isOpen={showRatingModal}
-          gameName={pendingRating.name}
-          gameSlug={pendingRating.slug}
-          onComplete={handleRatingComplete}
-          onSkip={handleRatingSkip}
-        />
-      )}
+      <SidebarProvider>
+        {children}
+        {pendingRating && (
+          <RatingModal
+            isOpen={showRatingModal}
+            gameName={pendingRating.name}
+            gameSlug={pendingRating.slug}
+            onComplete={handleRatingComplete}
+            onSkip={handleRatingSkip}
+          />
+        )}
+      </SidebarProvider>
     </AuthProvider>
   );
 }
