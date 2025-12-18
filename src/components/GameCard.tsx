@@ -137,8 +137,8 @@ export function GameCard({ game, size = "medium", showSipFactor = false }: GameC
 
       {/* Sip Factor Display - shown below the card */}
       {showSipFactor && (
-        <div className="mt-2 flex justify-center">
-          <div className="flex items-center gap-0.5">
+        <div className="mt-2 flex justify-center group/sip relative">
+          <div className="flex items-center gap-0.5 cursor-help">
             {Array.from({ length: 5 }).map((_, i) => (
               <Wine
                 key={i}
@@ -149,6 +149,11 @@ export function GameCard({ game, size = "medium", showSipFactor = false }: GameC
                 }`}
               />
             ))}
+          </div>
+          {/* Tooltip */}
+          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-dark-700 text-white text-xs rounded-lg opacity-0 invisible group-hover/sip:opacity-100 group-hover/sip:visible transition-all duration-200 whitespace-nowrap z-50 pointer-events-none border border-dark-600">
+            <span className="font-semibold text-neon-pink">Sip Factor:</span> How much you&apos;ll drink. More glasses = more sips!
+            <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-dark-700" />
           </div>
         </div>
       )}

@@ -255,9 +255,15 @@ export default function SpinPage() {
 
             {/* Sip Factor */}
             <div>
-              <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
+              <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3 group/sip relative cursor-help w-fit">
                 <Wine className="h-4 w-4 text-neon-pink" />
                 Sip Factor
+                <span className="text-gray-500 text-xs">(hover for info)</span>
+                {/* Tooltip */}
+                <div className="absolute bottom-full left-0 mb-2 px-3 py-2 bg-dark-700 text-white text-xs rounded-lg opacity-0 invisible group-hover/sip:opacity-100 group-hover/sip:visible transition-all duration-200 whitespace-nowrap z-50 pointer-events-none border border-dark-600">
+                  <span className="font-semibold text-neon-pink">Sip Factor</span> indicates how much you&apos;ll drink. More glasses = more sips!
+                  <div className="absolute top-full left-4 border-4 border-transparent border-t-dark-700" />
+                </div>
               </label>
               <div className="flex flex-wrap gap-2">
                 {sipFactorOptions.map((option) => (
