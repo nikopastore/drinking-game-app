@@ -467,6 +467,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     id: "seed-34",
     slug: "juggernaut",
     name: "Juggernaut",
+    image: "/games/juggernaut-1.png",
     description:
       "Juggernaut is an endurance-style flip-and-drink game where the 'Juggernaut' must drink based on card values while another player flips rapidly. How long can you last before passing the role?",
     rules_text:
