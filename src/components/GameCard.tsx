@@ -79,7 +79,7 @@ export function GameCard({ game, size = "medium", showSipFactor = false }: GameC
     <div className="flex flex-col flex-shrink-0 relative hover:z-50">
       <div
         onClick={handleClick}
-        className={`${sizeClasses[size]} cursor-pointer group relative rounded-xl overflow-hidden transition-all duration-150 hover:scale-105 hover:brightness-110 hover:shadow-xl hover:shadow-neon-pink/30 active:scale-95 active:brightness-90`}
+        className={`${sizeClasses[size]} cursor-pointer group relative rounded-xl overflow-hidden transition-all duration-150 hover:scale-[1.03] hover:brightness-110 hover:shadow-xl hover:shadow-neon-pink/30 active:scale-95 active:brightness-90`}
       >
         {/* Background - Image or Gradient Placeholder */}
         {game.image ? (

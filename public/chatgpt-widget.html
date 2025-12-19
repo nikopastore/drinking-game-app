@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SipWiki - Drinking Games</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #fff;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #ff2d92, #9333ea);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      color: #9ca3af;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+    }
+
+    .game-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .game-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(255, 45, 146, 0.2);
+    }
+
+    .game-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      background: linear-gradient(135deg, #ff2d92 0%, #9333ea 100%);
+    }
+
+    .game-content {
+      padding: 1rem;
+    }
+
+    .game-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .game-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      color: #d1d5db;
+    }
+
+    .badge.pink {
+      background: rgba(255, 45, 146, 0.2);
+      color: #ff2d92;
+    }
+
+    .sip-factor {
+      display: flex;
+      gap: 2px;
+    }
+
+    .sip-icon {
+      color: #ff2d92;
+      font-size: 0.875rem;
+    }
+
+    .sip-icon.empty {
+      opacity: 0.3;
+    }
+
+    .game-description {
+      color: #9ca3af;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(90deg, #ff2d92, #9333ea);
+      color: white;
+      font-weight: 600;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: opacity 0.2s, transform 0.2s;
+      width: 100%;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+      transform: scale(1.02);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      margin-top: 0.5rem;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 3rem;
+      color: #9ca3af;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(255, 45, 146, 0.3);
+      border-top-color: #ff2d92;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 2rem;
+      color: #9ca3af;
+    }
+
+    .games-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer a {
+      color: #ff2d92;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">SipWiki</div>
+      <div class="tagline">Your Ultimate Drinking Game Guide</div>
+    </div>
+
+    <div id="content">
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>Loading games...</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Powered by <a href="https://sipwiki.com" target="_blank">SipWiki.com</a></p>
+    </div>
+  </div>
+
+  <script>
+    const SIPWIKI_URL = 'https://sipwiki.com';
+
+    // Render a single game card
+    function renderGameCard(game) {
+      const sipIcons = Array.from({ length: 5 }, (_, i) =>
+        `<span class="sip-icon ${i >= game.sipFactor ? 'empty' : ''}">&#127863;</span>`
+      ).join('');
+
+      return `
+        <div class="game-card">
+          ${game.image ? `<img src="${game.image}" alt="${game.name}" class="game-image">` :
+            `<div class="game-image"></div>`}
+          <div class="game-content">
+            <h2 class="game-title">${game.name}</h2>
+            <div class="game-meta">
+              <span class="badge">&#128101; ${game.players} players</span>
+              <span class="badge pink">
+                <span class="sip-factor">${sipIcons}</span>
+              </span>
+            </div>
+            <p class="game-description">${game.description}</p>
+            <a href="${game.url}" target="_blank" class="btn">
+              &#127922; View Full Rules
+            </a>
+            ${game.rules ? `
+              <button class="btn btn-secondary" onclick="showRules('${game.slug}')">
+                &#128196; Quick Rules Preview
+              </button>
+            ` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    // Render multiple games
+    function renderGames(games) {
+      if (!games || games.length === 0) {
+        return `
+          <div class="empty-state">
+            <p>No games found. Try different criteria!</p>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="games-grid">
+          ${games.map(renderGameCard).join('')}
+        </div>
+      `;
+    }
+
+    // Show rules in an alert (simple implementation)
+    function showRules(slug) {
+      if (window.openai) {
+        window.openai.callTool('get_game_rules', { slug })
+          .then(result => {
+            console.log('Rules fetched:', result);
+          })
+          .catch(err => {
+            console.error('Error fetching rules:', err);
+          });
+      }
+    }
+
+    // Initialize widget
+    async function init() {
+      const contentEl = document.getElementById('content');
+
+      // Check if running inside ChatGPT
+      if (window.openai) {
+        try {
+          // Get the tool output data passed from ChatGPT
+          const data = await window.openai.getToolOutput();
+          console.log('Tool output received:', data);
+
+          if (data && data.games) {
+            contentEl.innerHTML = renderGames(data.games);
+          } else if (data && data.game) {
+            contentEl.innerHTML = renderGameCard(data.game);
+          } else {
+            contentEl.innerHTML = `
+              <div class="empty-state">
+                <p>Ask ChatGPT to search for drinking games!</p>
+                <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+                  Try: "Find a drinking game for 4 people with cards"
+                </p>
+              </div>
+            `;
+          }
+        } catch (error) {
+          console.error('Error loading data:', error);
+          contentEl.innerHTML = `
+            <div class="empty-state">
+              <p>Error loading games. Please try again.</p>
+            </div>
+          `;
+        }
+      } else {
+        // Not running in ChatGPT - show demo/placeholder
+        contentEl.innerHTML = `
+          <div class="empty-state">
+            <p>&#127922; This widget works inside ChatGPT!</p>
+            <p style="margin-top: 0.5rem; font-size: 0.875rem; color: #6b7280;">
+              Add SipWiki as a connector in ChatGPT to discover drinking games.
+            </p>
+            <a href="${SIPWIKI_URL}" target="_blank" class="btn" style="margin-top: 1rem; width: auto;">
+              Visit SipWiki.com
+            </a>
+          </div>
+        `;
+      }
+    }
+
+    // Run on load
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

@@ -16,7 +16,7 @@ export const affiliateLinks: Record<string, { url: string; label: string }> = {
     label: "Party Cups",
   },
   "large cup": {
-    url: "https://www.amazon.com/s?k=pimp+cup+party&tag=khanthebot-20",
+    url: "https://amzn.to/4p5Fexz",
     label: "Giant Party Goblet", // Fun upsell for King's Cup
   },
   "ping pong balls": {
@@ -38,7 +38,7 @@ export const affiliateLinks: Record<string, { url: string; label: string }> = {
 
   // --- Game Specific Items ---
   "duct tape": {
-    url: "https://www.amazon.com/s?k=duct+tape+silver&tag=khanthebot-20",
+    url: "https://amzn.to/4p5Fexz",
     label: "Heavy Duty Duct Tape", // For Wizard Staff/Edward 40 Hands
   },
   "jenga blocks": {

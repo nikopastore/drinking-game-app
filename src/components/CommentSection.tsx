@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Comment } from "@/types";
 import { Button, Textarea, Card, CardContent } from "@/components/ui";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
-import { User, Session } from "@supabase/supabase-js";
+import { useAuthContext } from "@/components/auth";
 import {
   MessageSquare,
   ThumbsUp,
@@ -21,7 +21,9 @@ interface CommentSectionProps {
 }
 
 export function CommentSection({ gameSlug }: CommentSectionProps) {
-  const [user, setUser] = useState<User | null>(null);
+  // Use shared auth context instead of managing own auth state
+  const { user } = useAuthContext();
+
   const [comments, setComments] = useState<Comment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [newComment, setNewComment] = useState("");
@@ -40,27 +42,6 @@ export function CommentSection({ gameSlug }: CommentSectionProps) {
       setIsLoading(false);
     }
   }, []);
-
-  // Check auth state
-  useEffect(() => {
-    if (!isConfigured) return;
-
-    const checkUser = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      setUser(user);
-    };
-    checkUser();
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event: unknown, session: Session | null) => {
-      setUser(session?.user ?? null);
-    });
-
-    return () => subscription.unsubscribe();
-  }, [supabase.auth, isConfigured]);
 
   // Fetch comments
   useEffect(() => {

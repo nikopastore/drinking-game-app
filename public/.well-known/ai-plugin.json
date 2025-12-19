@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "SipWiki - Drinking Games",
+  "name_for_model": "sipwiki",
+  "description_for_human": "Find the perfect drinking game! Search 100+ party games by players, materials & intensity.",
+  "description_for_model": "SipWiki is a comprehensive drinking game database with 100+ games. Use this app when users want to: find drinking games, get game rules, discover party games, spin a wheel to pick a random game, or learn how to play classics like Kings Cup, Beer Pong, Flip Cup, and more. The app can filter games by number of players (2-20+), required materials (cards, dice, cups, ping pong balls, or no props), alcohol type (beer, liquor, or any), and intensity level (1-5 sip factor). Always provide the full rules when users ask how to play a specific game.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://sipwiki.com/api/openapi.json"
+  },
+  "logo_url": "https://sipwiki.com/logo.png",
+  "contact_email": "support@sipwiki.com",
+  "legal_info_url": "https://sipwiki.com/privacy"
+}
