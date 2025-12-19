@@ -16,6 +16,8 @@ import {
   Dice5,
   Globe,
   Skull,
+  Calculator,
+  Sparkles,
 } from "lucide-react";
 
 // Custom 4-person icon for Large Groups
@@ -71,6 +73,11 @@ const categoryNavItems: NavItem[] = [
   { href: "/games/beer-games", label: "Beer Games", icon: <Beer className="h-5 w-5" /> },
   { href: "/games/quick-easy", label: "Quick & Easy", icon: <Zap className="h-5 w-5" /> },
   { href: "/games/extreme", label: "Extreme", icon: <Skull className="h-5 w-5" /> },
+];
+
+const toolsNavItems: NavItem[] = [
+  { href: "/party-planner", label: "Party Planner", icon: <Calculator className="h-5 w-5" /> },
+  { href: "/quiz/what-drinking-game-are-you", label: "Quiz", icon: <Sparkles className="h-5 w-5" /> },
 ];
 
 function NavItemButton({ item, isActive }: { item: NavItem; isActive: boolean }) {
@@ -155,6 +162,25 @@ export function Sidebar() {
             isActive={pathname === item.href}
           />
         ))}
+
+        {/* Tools Section */}
+        <div className="pt-2 mt-2 border-t border-dark-600">
+          {isExpanded && (
+            <div className="px-3 py-2">
+              <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Tools
+              </span>
+            </div>
+          )}
+
+          {toolsNavItems.map((item) => (
+            <NavItemButton
+              key={item.href}
+              item={item}
+              isActive={pathname === item.href || pathname.startsWith(item.href)}
+            />
+          ))}
+        </div>
       </nav>
     </aside>
   );
