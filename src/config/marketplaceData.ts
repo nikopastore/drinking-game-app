@@ -48,7 +48,7 @@ export const products: Product[] = [
     price: "$24.99",
     image: "/marketplace/glow-cups.jpg",
     category: "drinkware",
-    affiliateUrl: "https://www.amazon.com/s?k=led+party+cups&tag=khanthebot-20",
+    affiliateUrl: "https://www.amazon.com/s?k=led+party+cups&tag=sipwiki-20",
     badge: "trending",
   },
   {
@@ -58,7 +58,7 @@ export const products: Product[] = [
     price: "$19.99",
     image: "/marketplace/goblet.jpg",
     category: "drinkware",
-    affiliateUrl: "https://www.amazon.com/s?k=giant+beer+goblet&tag=khanthebot-20",
+    affiliateUrl: "https://www.amazon.com/s?k=giant+beer+goblet&tag=sipwiki-20",
   },
   {
     id: "4",
@@ -67,7 +67,7 @@ export const products: Product[] = [
     price: "$14.99",
     image: "/marketplace/shots.jpg",
     category: "drinkware",
-    affiliateUrl: "https://www.amazon.com/s?k=plastic+shot+glasses&tag=khanthebot-20",
+    affiliateUrl: "https://www.amazon.com/s?k=plastic+shot+glasses&tag=sipwiki-20",
   },
 
   // Party Games
@@ -107,7 +107,7 @@ export const products: Product[] = [
     price: "$44.99",
     image: "/marketplace/jenga.jpg",
     category: "party-games",
-    affiliateUrl: "https://www.amazon.com/s?k=giant+tumbling+tower&tag=khanthebot-20",
+    affiliateUrl: "https://www.amazon.com/s?k=giant+tumbling+tower&tag=sipwiki-20",
   },
 
   // Bar Tools
@@ -118,7 +118,7 @@ export const products: Product[] = [
     price: "$39.99",
     image: "/marketplace/bartender-kit.jpg",
     category: "bar-tools",
-    affiliateUrl: "https://www.amazon.com/s?k=bartender+kit&tag=khanthebot-20",
+    affiliateUrl: "https://www.amazon.com/s?k=bartender+kit&tag=sipwiki-20",
     badge: "trending",
   },
   {
@@ -128,7 +128,7 @@ export const products: Product[] = [
     price: "$12.99",
     image: "/marketplace/ice-mold.jpg",
     category: "bar-tools",
-    affiliateUrl: "https://www.amazon.com/s?k=ice+ball+mold&tag=khanthebot-20",
+    affiliateUrl: "https://www.amazon.com/s?k=ice+ball+mold&tag=sipwiki-20",
   },
   {
     id: "11",
@@ -137,7 +137,7 @@ export const products: Product[] = [
     price: "$24.99",
     image: "/marketplace/wine-opener.jpg",
     category: "bar-tools",
-    affiliateUrl: "https://www.amazon.com/s?k=electric+wine+opener&tag=khanthebot-20",
+    affiliateUrl: "https://www.amazon.com/s?k=electric+wine+opener&tag=sipwiki-20",
   },
 
   // Decor
@@ -148,7 +148,7 @@ export const products: Product[] = [
     price: "$29.99",
     image: "/marketplace/neon-sign.jpg",
     category: "decor",
-    affiliateUrl: "https://www.amazon.com/s?k=neon+bar+sign&tag=khanthebot-20",
+    affiliateUrl: "https://www.amazon.com/s?k=neon+bar+sign&tag=sipwiki-20",
     badge: "trending",
   },
   {
@@ -158,7 +158,7 @@ export const products: Product[] = [
     price: "$19.99",
     image: "/marketplace/led-strip.jpg",
     category: "decor",
-    affiliateUrl: "https://www.amazon.com/s?k=led+strip+lights+party&tag=khanthebot-20",
+    affiliateUrl: "https://www.amazon.com/s?k=led+strip+lights+party&tag=sipwiki-20",
   },
   {
     id: "14",
@@ -167,7 +167,7 @@ export const products: Product[] = [
     price: "$16.99",
     image: "/marketplace/disco-ball.jpg",
     category: "decor",
-    affiliateUrl: "https://www.amazon.com/s?k=disco+ball+light&tag=khanthebot-20",
+    affiliateUrl: "https://www.amazon.com/s?k=disco+ball+light&tag=sipwiki-20",
   },
 
   // Accessories
@@ -178,7 +178,7 @@ export const products: Product[] = [
     price: "$49.99",
     image: "/marketplace/speaker.jpg",
     category: "accessories",
-    affiliateUrl: "https://www.amazon.com/s?k=bluetooth+party+speaker&tag=khanthebot-20",
+    affiliateUrl: "https://www.amazon.com/s?k=bluetooth+party+speaker&tag=sipwiki-20",
     badge: "bestseller",
   },
   {
@@ -188,7 +188,7 @@ export const products: Product[] = [
     price: "$14.99",
     image: "/marketplace/beer-belt.jpg",
     category: "accessories",
-    affiliateUrl: "https://www.amazon.com/s?k=beer+belt+holster&tag=khanthebot-20",
+    affiliateUrl: "https://www.amazon.com/s?k=beer+belt+holster&tag=sipwiki-20",
     badge: "new",
   },
   {
@@ -198,7 +198,7 @@ export const products: Product[] = [
     price: "$18.99",
     image: "/marketplace/chiller.jpg",
     category: "accessories",
-    affiliateUrl: "https://www.amazon.com/s?k=drink+chiller+sticks&tag=khanthebot-20",
+    affiliateUrl: "https://www.amazon.com/s?k=drink+chiller+sticks&tag=sipwiki-20",
   },
 ];
 

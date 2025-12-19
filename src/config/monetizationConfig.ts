@@ -28,11 +28,11 @@ export const affiliateLinks: Record<string, { url: string; label: string }> = {
     label: "Dice Set",
   },
   "shot glasses": {
-    url: "https://www.amazon.com/s?k=plastic+shot+glasses&tag=khanthebot-20",
+    url: "https://www.amazon.com/s?k=plastic+shot+glasses&tag=sipwiki-20",
     label: "Shot Glasses (Unbreakable)",
   },
   "shot glass": {
-    url: "https://www.amazon.com/s?k=plastic+shot+glasses&tag=khanthebot-20",
+    url: "https://www.amazon.com/s?k=plastic+shot+glasses&tag=sipwiki-20",
     label: "Shot Glasses (Unbreakable)",
   },
 
@@ -42,19 +42,19 @@ export const affiliateLinks: Record<string, { url: string; label: string }> = {
     label: "Heavy Duty Duct Tape", // For Wizard Staff/Edward 40 Hands
   },
   "jenga blocks": {
-    url: "https://www.amazon.com/s?k=giant+tumbling+tower&tag=khanthebot-20",
+    url: "https://www.amazon.com/s?k=giant+tumbling+tower&tag=sipwiki-20",
     label: "Giant Wood Block Game", // High ticket item ($80+) vs normal Jenga ($15)
   },
   quarters: {
-    url: "https://www.amazon.com/s?k=coin+holder+dispenser&tag=khanthebot-20",
+    url: "https://www.amazon.com/s?k=coin+holder+dispenser&tag=sipwiki-20",
     label: "Coin Dispenser", // Niche, but might sell
   },
   marker: {
-    url: "https://www.amazon.com/s?k=sharpie+markers&tag=khanthebot-20",
+    url: "https://www.amazon.com/s?k=sharpie+markers&tag=sipwiki-20",
     label: "Permanent Markers",
   },
   "music speaker": {
-    url: "https://www.amazon.com/s?k=bluetooth+party+speaker&tag=khanthebot-20",
+    url: "https://www.amazon.com/s?k=bluetooth+party+speaker&tag=sipwiki-20",
     label: "Loud Party Speaker", // High ticket item
   },
 };

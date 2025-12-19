@@ -154,7 +154,7 @@ export default function ShopPage() {
               We&apos;re always adding new products. Check back soon or browse our full collection on Amazon.
             </p>
             <a
-              href="https://www.amazon.com/shop/influencer-khanthebot?tag=khanthebot-20"
+              href="https://www.amazon.com/shop/sipwiki?tag=sipwiki-20"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
