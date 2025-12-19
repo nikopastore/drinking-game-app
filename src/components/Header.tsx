@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Wine, Search, CircleDot, PlusCircle, Menu } from "lucide-react";
+import { Wine, Search, CircleDot, PlusCircle, Menu, Martini } from "lucide-react";
 import { Button } from "@/components/ui";
 import { useSidebar } from "@/components/Sidebar";
 
@@ -41,8 +41,8 @@ export function Header({ onSearchClick }: HeaderProps) {
             </Link>
           </div>
 
-          {/* Center: Spin Button - Hidden on mobile */}
-          <div className="hidden md:flex items-center">
+          {/* Center: Spin + Cocktails - Hidden on mobile */}
+          <div className="hidden md:flex items-center gap-1">
             <Link href="/spin">
               <Button
                 variant="ghost"
@@ -51,6 +51,16 @@ export function Header({ onSearchClick }: HeaderProps) {
               >
                 <CircleDot className="h-5 w-5" />
                 <span>Spin</span>
+              </Button>
+            </Link>
+            <Link href="/cocktails">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="flex items-center gap-2 text-gray-300 hover:text-white hover:bg-dark-700"
+              >
+                <Martini className="h-5 w-5" />
+                <span>Cocktails</span>
               </Button>
             </Link>
           </div>

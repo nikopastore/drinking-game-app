@@ -7,7 +7,8 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { games } from "@/config/gameData";
-import { Game } from "@/types";
+import { cocktails } from "@/config/cocktailData";
+import { Game, Cocktail } from "@/types";
 
 const SIPWIKI_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://sipwiki.com";
 
@@ -37,6 +38,51 @@ function formatGameFull(game: Game) {
   };
 }
 
+// Helper function to format cocktail for response
+function formatCocktailSummary(cocktail: Cocktail) {
+  const difficultyLabel = ["Easy", "Medium", "Hard"][cocktail.difficulty - 1];
+  return {
+    id: cocktail.id,
+    slug: cocktail.slug,
+    name: cocktail.name,
+    description: cocktail.description,
+    baseSpirit: cocktail.baseSpirit,
+    category: cocktail.category,
+    glass: cocktail.glass,
+    difficulty: difficultyLabel,
+    strength: cocktail.strength,
+    ingredientCount: cocktail.ingredients.length,
+    url: `${SIPWIKI_URL}/cocktails/${cocktail.slug}`,
+  };
+}
+
+function formatCocktailFull(cocktail: Cocktail) {
+  const difficultyLabel = ["Easy", "Medium", "Hard"][cocktail.difficulty - 1];
+  return {
+    ...formatCocktailSummary(cocktail),
+    ingredients: cocktail.ingredients.map((i) =>
+      `${i.amount}${i.unit ? ` ${i.unit}` : ""} ${i.name}`
+    ),
+    instructions: cocktail.instructions,
+    garnish: cocktail.garnish || "None",
+    tags: cocktail.tags,
+  };
+}
+
+// Cocktail categories
+const cocktailCategories = [
+  { slug: "vodka", name: "Vodka Cocktails", filter: (c: Cocktail) => c.baseSpirit === "vodka" },
+  { slug: "gin", name: "Gin Cocktails", filter: (c: Cocktail) => c.baseSpirit === "gin" },
+  { slug: "rum", name: "Rum Cocktails", filter: (c: Cocktail) => c.baseSpirit === "rum" },
+  { slug: "tequila", name: "Tequila Cocktails", filter: (c: Cocktail) => c.baseSpirit === "tequila" },
+  { slug: "whiskey", name: "Whiskey Cocktails", filter: (c: Cocktail) => c.baseSpirit === "whiskey" },
+  { slug: "classic", name: "Classic Cocktails", filter: (c: Cocktail) => c.category === "classic" },
+  { slug: "tropical", name: "Tropical Drinks", filter: (c: Cocktail) => c.category === "tropical" },
+  { slug: "shooters", name: "Shooters & Shots", filter: (c: Cocktail) => c.category === "shooter" },
+  { slug: "party", name: "Party Drinks", filter: (c: Cocktail) => c.category === "party" },
+  { slug: "mocktails", name: "Mocktails (Non-Alcoholic)", filter: (c: Cocktail) => c.category === "mocktail" },
+];
+
 // Category definitions
 const categories = [
   { slug: "card-games", name: "Card Games", filter: (g: Game) => g.materials.includes("cards") },
@@ -54,21 +100,22 @@ const categories = [
 const serverInfo = {
   name: "sipwiki",
   version: "1.0.0",
-  description: "Find the perfect drinking game for your party! Search 100+ games like Kings Cup, Beer Pong, Flip Cup, Never Have I Ever with complete rules. Filter by players, materials & intensity.",
+  description: "Find drinking games and cocktail recipes for your party! Search 100+ games like Kings Cup, Beer Pong with complete rules. Plus 50+ cocktail recipes from Margaritas to Mojitos. Filter by players, spirits, difficulty & more.",
   vendor: "SipWiki",
   homepage: SIPWIKI_URL,
-  categories: ["lifestyle", "games", "entertainment", "social"],
+  categories: ["lifestyle", "games", "entertainment", "social", "food-drink"],
   keywords: [
     "drinking games",
     "party games",
+    "cocktail recipes",
+    "how to make cocktails",
+    "margarita recipe",
+    "mojito recipe",
     "beer pong",
     "kings cup",
-    "flip cup",
-    "never have i ever",
-    "drinking game rules",
-    "party ideas",
-    "college games",
-    "bar games"
+    "mixed drinks",
+    "bartending",
+    "party ideas"
   ],
 };
 
@@ -160,6 +207,96 @@ const tools = [
   {
     name: "browse_game_categories",
     description: "Browse all drinking game categories: Card Games (Kings Cup, Ride the Bus), Cup Games (Beer Pong, Flip Cup), Dice Games, No Props Needed (Never Have I Ever, Most Likely To), Two Player games, Large Group games (6+ people), and Extreme/High Intensity games. See how many games are in each category.",
+    inputSchema: {
+      type: "object",
+      properties: {},
+    },
+  },
+  // COCKTAIL TOOLS
+  {
+    name: "search_cocktail_recipes",
+    description: "Search 50+ cocktail recipes including classics like Margarita, Mojito, Old Fashioned, Moscow Mule, Martini, Cosmopolitan, and more. Filter by base spirit (vodka, gin, rum, tequila, whiskey), category (classic, tropical, shooter, party, mocktail), difficulty (easy, medium, hard), and strength. Find the perfect drink for any occasion.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        spirit: {
+          type: "string",
+          enum: ["vodka", "gin", "rum", "tequila", "whiskey", "brandy", "none", "various"],
+          description: "Base spirit for the cocktail (use 'none' for mocktails/non-alcoholic)",
+        },
+        category: {
+          type: "string",
+          enum: ["classic", "tropical", "shooter", "party", "mocktail", "beer-cocktail", "wine-cocktail"],
+          description: "Type of cocktail",
+        },
+        difficulty: {
+          type: "number",
+          minimum: 1,
+          maximum: 3,
+          description: "Difficulty level: 1=easy, 2=medium, 3=hard",
+        },
+        strength: {
+          type: "number",
+          minimum: 1,
+          maximum: 5,
+          description: "Alcohol strength: 1=light, 5=strong (1 for mocktails)",
+        },
+        search: {
+          type: "string",
+          description: "Search by name, ingredient, or tag (e.g., 'vodka', 'lime', 'refreshing')",
+        },
+        limit: {
+          type: "number",
+          description: "Maximum results to return (default: 10)",
+        },
+      },
+    },
+  },
+  {
+    name: "get_cocktail_recipe",
+    description: "Get the complete recipe for a specific cocktail including all ingredients with measurements, step-by-step instructions, glass type, garnish, and pro tips. Works for classics like Margarita, Mojito, Old Fashioned, Martini, Moscow Mule, Pina Colada, Long Island Iced Tea, and 50+ more.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        slug: {
+          type: "string",
+          description: "The cocktail's URL slug (e.g., 'margarita', 'moscow-mule', 'old-fashioned')",
+        },
+        name: {
+          type: "string",
+          description: "The cocktail's name (will search if slug not provided)",
+        },
+      },
+    },
+  },
+  {
+    name: "random_cocktail",
+    description: "Can't decide what to drink? Get a random cocktail recipe! Optionally filter by spirit, category, or difficulty. Perfect for trying something new or letting fate choose your next drink.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        spirit: {
+          type: "string",
+          enum: ["vodka", "gin", "rum", "tequila", "whiskey", "brandy", "none"],
+          description: "Base spirit preference",
+        },
+        category: {
+          type: "string",
+          enum: ["classic", "tropical", "shooter", "party", "mocktail"],
+          description: "Type of cocktail",
+        },
+        difficulty: {
+          type: "number",
+          minimum: 1,
+          maximum: 3,
+          description: "Maximum difficulty level",
+        },
+      },
+    },
+  },
+  {
+    name: "browse_cocktail_categories",
+    description: "Browse all cocktail categories: Vodka Cocktails (Cosmopolitan, Moscow Mule), Gin Cocktails (Martini, Negroni), Rum Cocktails (Mojito, Pina Colada), Tequila Cocktails (Margarita, Paloma), Whiskey Cocktails (Old Fashioned, Manhattan), Tropical drinks, Shooters, Party punches, and Mocktails. See how many recipes are in each category.",
     inputSchema: {
       type: "object",
       properties: {},
@@ -382,12 +519,196 @@ function executeTool(name: string, args: Record<string, unknown>): { content: Ar
       };
     }
 
+    // COCKTAIL TOOL HANDLERS
+    case "search_cocktail_recipes": {
+      const { spirit, category, difficulty, strength, search, limit = 10 } = args as {
+        spirit?: Cocktail["baseSpirit"];
+        category?: Cocktail["category"];
+        difficulty?: number;
+        strength?: number;
+        search?: string;
+        limit?: number;
+      };
+
+      let filtered = [...cocktails];
+
+      if (spirit) {
+        filtered = filtered.filter((c) => c.baseSpirit === spirit);
+      }
+
+      if (category) {
+        filtered = filtered.filter((c) => c.category === category);
+      }
+
+      if (difficulty) {
+        filtered = filtered.filter((c) => c.difficulty === difficulty);
+      }
+
+      if (strength) {
+        filtered = filtered.filter((c) => c.strength === strength);
+      }
+
+      if (search) {
+        const searchLower = search.toLowerCase();
+        filtered = filtered.filter(
+          (c) =>
+            c.name.toLowerCase().includes(searchLower) ||
+            c.description.toLowerCase().includes(searchLower) ||
+            c.tags.some((t) => t.toLowerCase().includes(searchLower)) ||
+            c.ingredients.some((i) => i.name.toLowerCase().includes(searchLower))
+        );
+      }
+
+      const results = filtered.slice(0, limit).map(formatCocktailSummary);
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: results.length > 0
+              ? `Found ${filtered.length} cocktail recipes${filtered.length > limit ? ` (showing first ${limit})` : ""}:\n\n${results
+                  .map(
+                    (c, i) =>
+                      `${i + 1}. **${c.name}** (${c.baseSpirit === "none" ? "Non-Alcoholic" : c.baseSpirit}, ${c.difficulty})\n   ${c.description}\n   Glass: ${c.glass} | Strength: ${"🍸".repeat(c.strength)}\n   [View Recipe](${c.url})`
+                  )
+                  .join("\n\n")}`
+              : "No cocktails found matching your criteria. Try adjusting your filters!",
+          },
+        ],
+      };
+    }
+
+    case "get_cocktail_recipe": {
+      const { slug, name: cocktailName } = args as { slug?: string; name?: string };
+
+      let cocktail: Cocktail | undefined;
+
+      if (slug) {
+        cocktail = cocktails.find((c) => c.slug === slug);
+      } else if (cocktailName) {
+        const nameLower = cocktailName.toLowerCase();
+        cocktail = cocktails.find(
+          (c) =>
+            c.name.toLowerCase() === nameLower ||
+            c.name.toLowerCase().includes(nameLower)
+        );
+      }
+
+      if (!cocktail) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: `Cocktail not found. Try searching for cocktails with the search_cocktail_recipes tool.`,
+            },
+          ],
+        };
+      }
+
+      const formatted = formatCocktailFull(cocktail);
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: `# ${formatted.name}\n\n` +
+              `${formatted.description}\n\n` +
+              `**Base Spirit:** ${formatted.baseSpirit === "none" ? "Non-Alcoholic" : formatted.baseSpirit.charAt(0).toUpperCase() + formatted.baseSpirit.slice(1)}\n` +
+              `**Glass:** ${formatted.glass}\n` +
+              `**Difficulty:** ${formatted.difficulty}\n` +
+              `**Strength:** ${"🍸".repeat(formatted.strength)} (${formatted.strength}/5)\n\n` +
+              `## Ingredients\n${formatted.ingredients.map((i) => `- ${i}`).join("\n")}\n\n` +
+              `## Instructions\n${formatted.instructions.map((s, i) => `${i + 1}. ${s}`).join("\n")}\n\n` +
+              `**Garnish:** ${formatted.garnish}\n\n` +
+              `---\n[View on SipWiki](${formatted.url})`,
+          },
+        ],
+      };
+    }
+
+    case "random_cocktail": {
+      const { spirit, category, difficulty } = args as {
+        spirit?: Cocktail["baseSpirit"];
+        category?: Cocktail["category"];
+        difficulty?: number;
+      };
+
+      let filtered = [...cocktails];
+
+      if (spirit) {
+        filtered = filtered.filter((c) => c.baseSpirit === spirit);
+      }
+
+      if (category) {
+        filtered = filtered.filter((c) => c.category === category);
+      }
+
+      if (difficulty) {
+        filtered = filtered.filter((c) => c.difficulty <= difficulty);
+      }
+
+      if (filtered.length === 0) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: "🍹 No cocktails match your criteria! Try removing some filters.",
+            },
+          ],
+        };
+      }
+
+      const randomIndex = Math.floor(Math.random() * filtered.length);
+      const cocktail = filtered[randomIndex];
+      const formatted = formatCocktailFull(cocktail);
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: `🍹 **The bartender recommends...**\n\n` +
+              `# ${formatted.name}\n\n` +
+              `${formatted.description}\n\n` +
+              `**Glass:** ${formatted.glass} | **Difficulty:** ${formatted.difficulty} | **Strength:** ${"🍸".repeat(formatted.strength)}\n\n` +
+              `## Ingredients\n${formatted.ingredients.map((i) => `- ${i}`).join("\n")}\n\n` +
+              `## Quick Instructions\n${formatted.instructions.slice(0, 4).map((s, i) => `${i + 1}. ${s}`).join("\n")}${formatted.instructions.length > 4 ? "\n..." : ""}\n\n` +
+              `---\n[Full Recipe on SipWiki](${formatted.url})`,
+          },
+        ],
+      };
+    }
+
+    case "browse_cocktail_categories": {
+      const categoryList = cocktailCategories.map((cat) => {
+        const count = cocktails.filter(cat.filter).length;
+        return {
+          slug: cat.slug,
+          name: cat.name,
+          count: count,
+        };
+      });
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: `# Cocktail Categories\n\n` +
+              `Browse our collection of ${cocktails.length} cocktail recipes:\n\n` +
+              categoryList
+                .map((c) => `- **${c.name}** - ${c.count} recipes`)
+                .join("\n") +
+              `\n\n---\n[Explore all cocktails on SipWiki](${SIPWIKI_URL}/cocktails)`,
+          },
+        ],
+      };
+    }
+
     default:
       return {
         content: [
           {
             type: "text",
-            text: `Unknown tool: ${name}. Available tools: search_drinking_games, get_drinking_game_rules, spin_the_wheel, browse_game_categories`,
+            text: `Unknown tool: ${name}. Available tools: search_drinking_games, get_drinking_game_rules, spin_the_wheel, browse_game_categories, search_cocktail_recipes, get_cocktail_recipe, random_cocktail, browse_cocktail_categories`,
           },
         ],
       };
@@ -488,5 +809,6 @@ export async function GET() {
     mcp_endpoint: "/api/mcp",
     tools: tools.map((t) => ({ name: t.name, description: t.description })),
     total_games: games.length,
+    total_cocktails: cocktails.length,
   });
 }

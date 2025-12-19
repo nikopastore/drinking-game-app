@@ -87,3 +87,36 @@ export interface Friend {
   display_name: string | null;
   avatar_url: string | null;
 }
+
+// Cocktail types
+export interface Ingredient {
+  name: string;
+  amount: string;
+  unit?: string;
+}
+
+export interface Cocktail {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  image?: string;
+  ingredients: Ingredient[];
+  instructions: string[];
+  glass: string;
+  garnish?: string;
+  baseSpirit: "vodka" | "gin" | "rum" | "tequila" | "whiskey" | "brandy" | "none" | "various";
+  category: "classic" | "tropical" | "shooter" | "party" | "mocktail" | "beer-cocktail" | "wine-cocktail";
+  difficulty: 1 | 2 | 3; // 1=easy, 2=medium, 3=hard
+  strength: 1 | 2 | 3 | 4 | 5; // alcohol strength
+  tags: string[];
+  created_at: string;
+}
+
+export interface CocktailFilterState {
+  baseSpirit: Cocktail["baseSpirit"] | null;
+  category: Cocktail["category"] | null;
+  difficulty: number | null;
+  strength: number | null;
+  search: string;
+}
