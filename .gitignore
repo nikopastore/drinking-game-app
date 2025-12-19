@@ -54,3 +54,4 @@ public/worker-*.js.map
 /ios
 
 certificates
+.vercel

@@ -6,13 +6,13 @@
     "version": "1.0.0",
     "contact": {
       "name": "SipWiki Support",
-      "email": "support@sipwiki.com",
-      "url": "https://sipwiki.com"
+      "email": "support@sipwiki.app",
+      "url": "https://sipwiki.app"
     }
   },
   "servers": [
     {
-      "url": "https://sipwiki.com/api"
+      "url": "https://sipwiki.app/api"
     }
   ],
   "paths": {

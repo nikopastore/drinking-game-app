@@ -9,9 +9,9 @@
   },
   "api": {
     "type": "openapi",
-    "url": "https://sipwiki.com/openapi.json"
+    "url": "https://sipwiki.app/openapi.json"
   },
-  "logo_url": "https://sipwiki.com/logo.png",
-  "contact_email": "support@sipwiki.com",
-  "legal_info_url": "https://sipwiki.com/privacy"
+  "logo_url": "https://sipwiki.app/logo.png",
+  "contact_email": "support@sipwiki.app",
+  "legal_info_url": "https://sipwiki.app/privacy"
 }
