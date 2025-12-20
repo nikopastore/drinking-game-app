@@ -143,7 +143,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "slow-paced-drinking-games"
   ];
 
-  const guideSlugs = [...guideSlugsB1, ...guideSlugsB2];
+  // Batch 3 - Gemini-researched high-quality guides (10)
+  const guideSlugsB3 = [
+    "uno-drinking-game-rules", "wizard-staff-drinking-game", "beerio-kart-rules",
+    "drunk-mario-kart-rules", "office-drinking-game", "friends-tv-show-drinking-game",
+    "the-bachelor-drinking-game", "game-of-thrones-drinking-game",
+    "marvel-movie-drinking-game", "disney-drinking-game"
+  ];
+
+  const guideSlugs = [...guideSlugsB1, ...guideSlugsB2, ...guideSlugsB3];
 
   const guidePages: MetadataRoute.Sitemap = guideSlugs.map((slug) => ({
     url: `${baseUrl}/guides/${slug}`,
