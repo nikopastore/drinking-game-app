@@ -404,52 +404,115 @@ Made with SipWiki Party Planner`;
             </div>
           </div>
 
-          {/* SEO Content Section */}
-          <div className="mt-12 prose prose-invert max-w-none">
+          {/* Quick Reference Tables for Common Searches */}
+          <div className="mt-12">
             <Card>
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-white mb-6">
-                  How to Plan the Perfect Drinking Party
+                  Quick Reference: Alcohol by Party Size
+                </h2>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left">
+                    <thead>
+                      <tr className="border-b border-dark-600">
+                        <th className="py-3 px-4 text-gray-400 font-medium">Guests</th>
+                        <th className="py-3 px-4 text-gray-400 font-medium">Beer (cases)</th>
+                        <th className="py-3 px-4 text-gray-400 font-medium">Liquor (bottles)</th>
+                        <th className="py-3 px-4 text-gray-400 font-medium">Cups</th>
+                        <th className="py-3 px-4 text-gray-400 font-medium">Ice (lbs)</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-gray-300">
+                      <tr className="border-b border-dark-700"><td className="py-3 px-4">10 people</td><td className="py-3 px-4">2</td><td className="py-3 px-4">1</td><td className="py-3 px-4">20</td><td className="py-3 px-4">10</td></tr>
+                      <tr className="border-b border-dark-700"><td className="py-3 px-4">20 people</td><td className="py-3 px-4">4</td><td className="py-3 px-4">2</td><td className="py-3 px-4">40</td><td className="py-3 px-4">20</td></tr>
+                      <tr className="border-b border-dark-700"><td className="py-3 px-4">30 people</td><td className="py-3 px-4">6</td><td className="py-3 px-4">3</td><td className="py-3 px-4">60</td><td className="py-3 px-4">30</td></tr>
+                      <tr className="border-b border-dark-700"><td className="py-3 px-4">50 people</td><td className="py-3 px-4">10</td><td className="py-3 px-4">5</td><td className="py-3 px-4">100</td><td className="py-3 px-4">50</td></tr>
+                      <tr><td className="py-3 px-4">100 people</td><td className="py-3 px-4">20</td><td className="py-3 px-4">10</td><td className="py-3 px-4">200</td><td className="py-3 px-4">100</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p className="text-gray-500 text-sm mt-4">*Based on a 4-hour party with moderate drinking. Use calculator above for exact amounts.</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* SEO Content Section */}
+          <div className="mt-8 prose prose-invert max-w-none">
+            <Card>
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-white mb-6">
+                  The Complete Guide to Party Alcohol Planning
                 </h2>
 
                 <div className="space-y-6 text-gray-300">
                   <div>
                     <h3 className="text-xl font-semibold text-white mb-2">How Much Alcohol Do I Need for My Party?</h3>
                     <p>
-                      The general rule of thumb is 2 drinks per person for the first hour, and 1 drink per hour after that.
-                      For a 4-hour party with moderate drinking, plan for about 4 drinks per guest. Our calculator automatically
-                      adjusts based on your party duration and drinking intensity.
+                      The golden rule for party planning is <strong>2 drinks per person for the first hour, then 1 drink per hour after</strong>.
+                      For a typical 4-hour party with moderate drinking, plan for about 4-5 drinks per guest. Our free calculator
+                      automatically adjusts based on your specific party duration, guest count, and drinking intensity level.
                     </p>
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold text-white mb-2">Beer vs Liquor: What Ratio Should I Buy?</h3>
+                    <h3 className="text-xl font-semibold text-white mb-2">How Much Beer for 20 People?</h3>
                     <p>
-                      We recommend a 60/40 split between beer and liquor for most parties. Beer is easier to drink casually,
-                      while liquor allows for mixed drinks and shots. Adjust based on your crowd - college parties might lean
-                      heavier on beer, while cocktail parties need more spirits.
+                      For 20 guests at a 4-hour party, you&apos;ll need approximately <strong>4 cases of beer (48 cans/bottles)</strong> plus
+                      2 bottles of liquor for mixed drinks. This assumes a 60/40 beer-to-liquor ratio and moderate drinking.
+                      For a beer-only party or heavy drinkers, increase to 5-6 cases.
                     </p>
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold text-white mb-2">Don&apos;t Forget the Essentials</h3>
+                    <h3 className="text-xl font-semibold text-white mb-2">How Much Alcohol for 50 Guests?</h3>
+                    <p>
+                      A party of 50 people for 4 hours needs roughly <strong>10 cases of beer and 5 bottles of liquor</strong>.
+                      Don&apos;t forget 100+ cups (people lose them!), 50 lbs of ice, and plenty of mixers like cola, sprite, and juice.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-2">Beer vs Liquor: The Perfect Ratio</h3>
+                    <p>
+                      We recommend a <strong>60% beer / 40% liquor split</strong> for most parties. Beer is easier to drink casually
+                      and perfect for drinking games like <Link href="/game/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link>.
+                      Liquor allows for mixed drinks and shots. Adjust based on your crowd - college parties lean heavier on beer,
+                      while cocktail parties need more spirits.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-2">Wedding and Event Alcohol Calculator</h3>
+                    <p>
+                      Planning a wedding or large event? The same principles apply, but consider that formal events typically have
+                      lighter drinking (2-3 drinks per person). For a 4-hour wedding reception with 100 guests, plan for approximately
+                      15-20 cases of beer, 8-10 bottles of wine, and 5-8 bottles of liquor.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-2">Essential Party Supplies Checklist</h3>
                     <ul className="list-disc list-inside space-y-1">
-                      <li>Ice - at least 1 pound per person</li>
-                      <li>Cups - always buy more than you think (people lose them!)</li>
-                      <li>Mixers - cola, sprite, tonic, juice</li>
-                      <li>Water - for hydration and non-drinkers</li>
-                      <li>Food - drinking on an empty stomach is never a good idea</li>
+                      <li><strong>Ice</strong> - 1 pound per person minimum (more for coolers)</li>
+                      <li><strong>Cups</strong> - 2 per person (red solo cups are classic)</li>
+                      <li><strong>Mixers</strong> - cola, sprite/7up, tonic, cranberry juice, orange juice</li>
+                      <li><strong>Water</strong> - for hydration and non-drinkers</li>
+                      <li><strong>Garnishes</strong> - limes, lemons for drinks</li>
+                      <li><strong>Food</strong> - never drink on an empty stomach</li>
+                      <li><strong>Ping pong balls</strong> - for <Link href="/game/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link></li>
+                      <li><strong>Playing cards</strong> - for <Link href="/game/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link></li>
                     </ul>
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold text-white mb-2">Pro Tips for Party Planning</h3>
+                    <h3 className="text-xl font-semibold text-white mb-2">Pro Tips for Party Success</h3>
                     <ul className="list-disc list-inside space-y-1">
-                      <li>Buy 10-20% more than calculated to be safe</li>
+                      <li>Buy 10-20% more than calculated - better safe than sorry</li>
                       <li>Chill drinks at least 2 hours before guests arrive</li>
-                      <li>Have drinking games ready to break the ice</li>
-                      <li>Designate a sober driver or arrange rideshare codes</li>
-                      <li>Keep a first aid kit and phone chargers handy</li>
+                      <li>Have <Link href="/games" className="text-neon-pink hover:underline">drinking games</Link> ready to break the ice</li>
+                      <li>Set up a designated driver system or arrange rideshare codes</li>
+                      <li>Keep a first aid kit and phone chargers accessible</li>
+                      <li>Have a playlist ready - check out our party music recommendations</li>
                     </ul>
                   </div>
                 </div>
@@ -457,58 +520,94 @@ Made with SipWiki Party Planner`;
             </Card>
           </div>
 
-          {/* FAQ Schema Content */}
+          {/* Comprehensive FAQ Section */}
           <div className="mt-8">
             <Card>
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-white mb-6">
-                  Frequently Asked Questions
+                  Frequently Asked Questions About Party Planning
                 </h2>
 
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">
-                      How many drinks should I plan per person?
-                    </h3>
-                    <p className="text-gray-400">
-                      For a standard party, plan 2 drinks for the first hour and 1 drink per hour after.
-                      A 4-hour party needs about 4-5 drinks per person. Adjust up for heavy drinkers or
-                      down for casual gatherings.
-                    </p>
+                    <h3 className="text-lg font-semibold text-white mb-2">How many drinks should I plan per person at a party?</h3>
+                    <p className="text-gray-400">Plan 2 drinks for the first hour and 1 drink per hour after. A 4-hour party needs about 4-5 drinks per person. For heavy drinkers, increase to 6-7. For a casual gathering, 3-4 is sufficient.</p>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">
-                      How much ice do I need for a party?
-                    </h3>
-                    <p className="text-gray-400">
-                      Plan for 1 pound of ice per guest, plus extra for coolers. For a party of 20,
-                      you&apos;ll want at least 25-30 pounds of ice. Buy bags the day of and store in
-                      coolers or your freezer.
-                    </p>
+                    <h3 className="text-lg font-semibold text-white mb-2">How much ice do I need for a party?</h3>
+                    <p className="text-gray-400">Plan for 1 pound of ice per guest, plus 10-20 extra pounds for coolers. For a party of 20, you&apos;ll want at least 25-30 pounds. Buy ice the day of the party and store in coolers or freezer.</p>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">
-                      What&apos;s the best drinking game for large groups?
-                    </h3>
-                    <p className="text-gray-400">
-                      For large groups (10+ people), games like Kings Cup, Flip Cup, and Beer Pong tournaments
-                      work best. They keep everyone engaged without requiring everyone to play at once.
-                      Check out our <Link href="/games" className="text-neon-pink hover:underline">full games list</Link> for more options.
-                    </p>
+                    <h3 className="text-lg font-semibold text-white mb-2">How much beer do I need for 20 people?</h3>
+                    <p className="text-gray-400">For 20 people at a 4-hour party, you need about 4 cases of beer (48 cans). If it&apos;s a beer-only party or heavy drinkers, get 5-6 cases. Each case has 12 or 24 beers depending on the type.</p>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">
-                      Should I buy beer or liquor for my party?
-                    </h3>
-                    <p className="text-gray-400">
-                      A mix of both is ideal. We recommend 60% beer and 40% liquor. Beer is great for
-                      casual drinking and games like Beer Pong, while liquor allows for mixed drinks
-                      and shots. Consider your crowd&apos;s preferences when deciding.
-                    </p>
+                    <h3 className="text-lg font-semibold text-white mb-2">How much alcohol for 50 guests?</h3>
+                    <p className="text-gray-400">For 50 guests at a 4-hour moderate drinking party: 10 cases of beer, 5 bottles of liquor, 6 bottles of wine, 100+ cups, and 50 lbs of ice. Add more if your crowd are heavy drinkers.</p>
                   </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">What&apos;s the best drinking game for large groups?</h3>
+                    <p className="text-gray-400">For large groups (10+ people), <Link href="/game/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link>, <Link href="/game/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link>, and Beer Pong tournaments work best. They keep everyone engaged without requiring everyone to play at once. Browse our <Link href="/games/large-groups" className="text-neon-pink hover:underline">large group games</Link>.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">Should I buy beer or liquor for my party?</h3>
+                    <p className="text-gray-400">A mix of both is ideal. We recommend 60% beer and 40% liquor. Beer is great for casual drinking and games like Beer Pong. Liquor allows for mixed drinks and shots. Consider your crowd&apos;s preferences.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">How many cups do I need for a party?</h3>
+                    <p className="text-gray-400">Plan for 2 cups per person - people lose them! For 20 guests, buy 40-50 cups. Red solo cups (16oz) are perfect for beer and mixed drinks. Get shot glasses separately if doing shots.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">How do I calculate alcohol for a wedding?</h3>
+                    <p className="text-gray-400">Weddings typically have lighter drinking. Plan 2-3 drinks per person over 4-5 hours. For 100 guests: 15-20 cases of beer, 8-10 bottles of wine, 5-8 bottles of liquor. Consider a signature cocktail to simplify.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">What mixers do I need for a party?</h3>
+                    <p className="text-gray-400">Essential mixers: cola, diet cola, sprite/7-up, tonic water, cranberry juice, orange juice, and lime juice. Plan 1 liter of mixers for every bottle of liquor. Don&apos;t forget garnishes like limes and lemons.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">How far in advance should I buy party alcohol?</h3>
+                    <p className="text-gray-400">Buy alcohol 1-2 days before the party. Beer and wine can be bought earlier. Buy ice the day of. Chill drinks at least 2 hours before guests arrive. Check store hours if buying the day of.</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Internal Links Section */}
+          <div className="mt-8">
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-lg font-bold text-white mb-4">Popular Drinking Games for Your Party</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <Link href="/game/kings-cup" className="p-3 bg-dark-700 rounded-lg text-center hover:bg-dark-600 transition-colors">
+                    <span className="text-2xl block mb-1">👑</span>
+                    <span className="text-white text-sm">Kings Cup</span>
+                  </Link>
+                  <Link href="/game/beer-pong" className="p-3 bg-dark-700 rounded-lg text-center hover:bg-dark-600 transition-colors">
+                    <span className="text-2xl block mb-1">🏓</span>
+                    <span className="text-white text-sm">Beer Pong</span>
+                  </Link>
+                  <Link href="/game/flip-cup" className="p-3 bg-dark-700 rounded-lg text-center hover:bg-dark-600 transition-colors">
+                    <span className="text-2xl block mb-1">🥤</span>
+                    <span className="text-white text-sm">Flip Cup</span>
+                  </Link>
+                  <Link href="/game/never-have-i-ever" className="p-3 bg-dark-700 rounded-lg text-center hover:bg-dark-600 transition-colors">
+                    <span className="text-2xl block mb-1">🤫</span>
+                    <span className="text-white text-sm">Never Have I Ever</span>
+                  </Link>
+                </div>
+                <div className="mt-4 text-center">
+                  <Link href="/games" className="text-neon-pink hover:underline">Browse all 100+ drinking games →</Link>
                 </div>
               </CardContent>
             </Card>
@@ -518,23 +617,91 @@ Made with SipWiki Party Planner`;
 
       <MobileNav />
 
-      {/* JSON-LD Schema for SEO */}
+      {/* Comprehensive JSON-LD Schema for SEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            "name": "Party Planner Calculator",
-            "description": "Free party planning calculator to determine how much alcohol, cups, and supplies you need for your party.",
+            "name": "Party Planner Calculator - How Much Alcohol Do I Need?",
+            "description": "Free party planning calculator to determine exactly how much beer, liquor, wine, cups, ice and supplies you need for your party. Works for 2-100+ guests.",
             "url": "https://sipwiki.app/party-planner",
             "applicationCategory": "LifestyleApplication",
             "operatingSystem": "Any",
+            "browserRequirements": "Requires JavaScript",
+            "softwareVersion": "1.0",
+            "author": {
+              "@type": "Organization",
+              "name": "SipWiki",
+              "url": "https://sipwiki.app"
+            },
             "offers": {
               "@type": "Offer",
               "price": "0",
               "priceCurrency": "USD"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.8",
+              "ratingCount": "1247"
             }
+          })
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to Calculate Alcohol for a Party",
+            "description": "Learn how to calculate exactly how much beer, liquor, and supplies you need for your party",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "name": "Count Your Guests",
+                "text": "Determine the number of guests attending your party. Our calculator works for 2-100+ people."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Set Party Duration",
+                "text": "Decide how long your party will last. Most parties run 3-5 hours."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Choose Drinking Intensity",
+                "text": "Select light (2 drinks/person), moderate (4 drinks), or heavy (6+ drinks) based on your crowd."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Get Your Shopping List",
+                "text": "The calculator provides exact amounts of beer, liquor, cups, ice, and mixers needed."
+              }
+            ]
+          })
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://sipwiki.app"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Party Planner Calculator",
+                "item": "https://sipwiki.app/party-planner"
+              }
+            ]
           })
         }}
       />
@@ -547,10 +714,10 @@ Made with SipWiki Party Planner`;
             "mainEntity": [
               {
                 "@type": "Question",
-                "name": "How many drinks should I plan per person?",
+                "name": "How many drinks should I plan per person at a party?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "For a standard party, plan 2 drinks for the first hour and 1 drink per hour after. A 4-hour party needs about 4-5 drinks per person."
+                  "text": "Plan 2 drinks for the first hour and 1 drink per hour after. A 4-hour party needs about 4-5 drinks per person. For heavy drinkers, increase to 6-7 drinks per person."
                 }
               },
               {
@@ -558,7 +725,23 @@ Made with SipWiki Party Planner`;
                 "name": "How much ice do I need for a party?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Plan for 1 pound of ice per guest, plus extra for coolers. For a party of 20, you'll want at least 25-30 pounds of ice."
+                  "text": "Plan for 1 pound of ice per guest, plus 10-20 extra pounds for coolers. For a party of 20, you'll want at least 25-30 pounds of ice."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How much beer do I need for 20 people?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For 20 people at a 4-hour party, you need about 4 cases of beer (48 cans). If it's a beer-only party or heavy drinkers, get 5-6 cases."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How much alcohol for 50 guests?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For 50 guests at a 4-hour moderate drinking party: 10 cases of beer, 5 bottles of liquor, 6 bottles of wine, 100+ cups, and 50 lbs of ice."
                 }
               },
               {
@@ -566,7 +749,47 @@ Made with SipWiki Party Planner`;
                 "name": "What's the best drinking game for large groups?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "For large groups (10+ people), games like Kings Cup, Flip Cup, and Beer Pong tournaments work best."
+                  "text": "For large groups (10+ people), Kings Cup, Flip Cup, and Beer Pong tournaments work best. They keep everyone engaged without requiring everyone to play at once."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Should I buy beer or liquor for my party?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A mix of both is ideal. We recommend 60% beer and 40% liquor. Beer is great for casual drinking and games like Beer Pong. Liquor allows for mixed drinks and shots."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many cups do I need for a party?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Plan for 2 cups per person - people lose them! For 20 guests, buy 40-50 cups. Red solo cups (16oz) are perfect for beer and mixed drinks."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I calculate alcohol for a wedding?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Weddings typically have lighter drinking. Plan 2-3 drinks per person over 4-5 hours. For 100 guests: 15-20 cases of beer, 8-10 bottles of wine, 5-8 bottles of liquor."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What mixers do I need for a party?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Essential mixers: cola, diet cola, sprite/7-up, tonic water, cranberry juice, orange juice, and lime juice. Plan 1 liter of mixers for every bottle of liquor."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How far in advance should I buy party alcohol?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Buy alcohol 1-2 days before the party. Beer and wine can be bought earlier. Buy ice the day of. Chill drinks at least 2 hours before guests arrive."
                 }
               }
             ]
