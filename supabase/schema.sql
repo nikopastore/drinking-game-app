@@ -309,3 +309,103 @@ CREATE TRIGGER update_user_profiles_updated_at
   BEFORE UPDATE ON user_profiles
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at_column();
+
+-- ============================================
+-- FAVORITES TABLE (for games and cocktails)
+-- ============================================
+CREATE TABLE IF NOT EXISTS favorites (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  item_type TEXT NOT NULL CHECK (item_type IN ('game', 'cocktail')),
+  item_slug TEXT NOT NULL,
+  item_name TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(user_id, item_type, item_slug)
+);
+
+CREATE INDEX idx_favorites_user_id ON favorites(user_id);
+CREATE INDEX idx_favorites_item_type ON favorites(item_type);
+CREATE INDEX idx_favorites_user_type ON favorites(user_id, item_type);
+
+-- ============================================
+-- FAVORITES RLS POLICIES
+-- ============================================
+ALTER TABLE favorites ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can read their own favorites"
+  ON favorites FOR SELECT
+  USING (auth.uid() = user_id);
+
+CREATE POLICY "Authenticated users can insert favorites"
+  ON favorites FOR INSERT
+  WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can delete their own favorites"
+  ON favorites FOR DELETE
+  USING (auth.uid() = user_id);
+
+-- ============================================
+-- FAVORITES FUNCTIONS
+-- ============================================
+
+-- Function to toggle favorite
+CREATE OR REPLACE FUNCTION toggle_favorite(
+  p_user_id UUID,
+  p_item_type TEXT,
+  p_item_slug TEXT,
+  p_item_name TEXT
+)
+RETURNS BOOLEAN AS $$
+DECLARE
+  v_exists BOOLEAN;
+BEGIN
+  SELECT EXISTS(
+    SELECT 1 FROM favorites
+    WHERE user_id = p_user_id
+    AND item_type = p_item_type
+    AND item_slug = p_item_slug
+  ) INTO v_exists;
+
+  IF v_exists THEN
+    DELETE FROM favorites
+    WHERE user_id = p_user_id
+    AND item_type = p_item_type
+    AND item_slug = p_item_slug;
+    RETURN FALSE; -- Removed from favorites
+  ELSE
+    INSERT INTO favorites (user_id, item_type, item_slug, item_name)
+    VALUES (p_user_id, p_item_type, p_item_slug, p_item_name);
+    RETURN TRUE; -- Added to favorites
+  END IF;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Function to get user's favorites by type
+CREATE OR REPLACE FUNCTION get_user_favorites(p_user_id UUID, p_item_type TEXT)
+RETURNS TABLE (
+  item_slug TEXT,
+  item_name TEXT,
+  created_at TIMESTAMPTZ
+) AS $$
+BEGIN
+  RETURN QUERY
+  SELECT f.item_slug, f.item_name, f.created_at
+  FROM favorites f
+  WHERE f.user_id = p_user_id
+  AND f.item_type = p_item_type
+  ORDER BY f.created_at DESC;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Function to check if item is favorited
+CREATE OR REPLACE FUNCTION is_favorited(p_user_id UUID, p_item_type TEXT, p_item_slug TEXT)
+RETURNS BOOLEAN AS $$
+BEGIN
+  RETURN EXISTS(
+    SELECT 1 FROM favorites
+    WHERE user_id = p_user_id
+    AND item_type = p_item_type
+    AND item_slug = p_item_slug
+  );
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;

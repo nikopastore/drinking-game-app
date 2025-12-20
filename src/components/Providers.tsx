@@ -5,6 +5,8 @@ import { useAppStore } from "@/lib/store";
 import { RatingModal } from "@/components/RatingModal";
 import { AuthProvider } from "@/components/auth";
 import { SidebarProvider } from "@/components/Sidebar";
+import { ModeProvider } from "@/contexts/ModeContext";
+import { FavoritesProvider } from "@/components/favorites";
 import { useRouter } from "next/navigation";
 
 function ProvidersContent({ children }: { children: React.ReactNode }) {
@@ -45,18 +47,22 @@ function ProvidersContent({ children }: { children: React.ReactNode }) {
 
   return (
     <AuthProvider>
-      <SidebarProvider>
-        {children}
-        {pendingRating && (
-          <RatingModal
-            isOpen={showRatingModal}
-            gameName={pendingRating.name}
-            gameSlug={pendingRating.slug}
-            onComplete={handleRatingComplete}
-            onSkip={handleRatingSkip}
-          />
-        )}
-      </SidebarProvider>
+      <FavoritesProvider>
+        <ModeProvider>
+          <SidebarProvider>
+            {children}
+            {pendingRating && (
+              <RatingModal
+                isOpen={showRatingModal}
+                gameName={pendingRating.name}
+                gameSlug={pendingRating.slug}
+                onComplete={handleRatingComplete}
+                onSkip={handleRatingSkip}
+              />
+            )}
+          </SidebarProvider>
+        </ModeProvider>
+      </FavoritesProvider>
     </AuthProvider>
   );
 }

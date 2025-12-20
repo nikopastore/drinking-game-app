@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Flame, Search, CircleDot, ShoppingBag } from "lucide-react";
+import { Flame, Search, CircleDot, ShoppingBag, Martini } from "lucide-react";
+import { useMode } from "@/contexts/ModeContext";
 
 interface NavItem {
   href: string;
@@ -10,15 +11,22 @@ interface NavItem {
   icon: React.ReactNode;
 }
 
-const navItems: NavItem[] = [
-  { href: "/games", label: "Games", icon: <Flame className="h-6 w-6" /> },
-  { href: "/search", label: "Search", icon: <Search className="h-6 w-6" /> },
-  { href: "/spin", label: "Spin", icon: <CircleDot className="h-6 w-6" /> },
-  { href: "/shop", label: "Shop", icon: <ShoppingBag className="h-6 w-6" /> },
-];
-
 export function MobileNav() {
   const pathname = usePathname();
+  const { mode } = useMode();
+
+  // Dynamic nav items based on mode
+  const navItems: NavItem[] = [
+    mode === "games"
+      ? { href: "/games", label: "Games", icon: <Flame className="h-6 w-6" /> }
+      : { href: "/cocktails", label: "Cocktails", icon: <Martini className="h-6 w-6" /> },
+    { href: "/search", label: "Search", icon: <Search className="h-6 w-6" /> },
+    { href: "/spin", label: "Spin", icon: <CircleDot className="h-6 w-6" /> },
+    { href: "/shop", label: "Shop", icon: <ShoppingBag className="h-6 w-6" /> },
+  ];
+
+  // Use different accent color based on mode
+  const accentColor = mode === "games" ? "text-neon-pink" : "text-neon-purple";
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-dark-900 border-t border-dark-600 safe-area-bottom">
@@ -34,12 +42,12 @@ export function MobileNav() {
                 flex flex-col items-center justify-center gap-1 flex-1 py-2 px-1
                 transition-colors duration-200
                 ${isActive
-                  ? "text-neon-pink"
+                  ? accentColor
                   : "text-gray-400 hover:text-white active:text-white"
                 }
               `}
             >
-              <span className={isActive ? "text-neon-pink" : ""}>
+              <span className={isActive ? accentColor : ""}>
                 {item.icon}
               </span>
               <span className="text-xs font-medium">{item.label}</span>
