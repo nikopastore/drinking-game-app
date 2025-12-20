@@ -95,8 +95,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // All guide slugs
-  const guideSlugs = [
+  // All guide slugs (Batch 1 - 49 guides)
+  const guideSlugsB1 = [
     "flip-cup-rules", "rage-cage-rules", "quarters-rules", "never-have-i-ever-questions",
     "most-likely-to-questions", "drunk-jenga-rules", "ride-the-bus-rules", "power-hour-rules",
     "civil-war-rules", "slap-cup-rules", "drinking-games-for-couples", "drinking-games-for-parties",
@@ -113,6 +113,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "video-game-drinking-games", "drinking-game-ideas", "fun-drinking-games",
     "drinking-games-for-3", "drinking-games-for-4", "drinking-games-for-5"
   ];
+
+  // Batch 2 - 50 more guides
+  const guideSlugsB2 = [
+    // Game rules (10)
+    "waterfall-rules", "across-the-bridge-rules", "baseball-drinking-game-rules",
+    "buzz-drinking-game-rules", "century-club-rules", "thunderstruck-rules",
+    "roxanne-drinking-game-rules", "titanic-drinking-game-rules", "avalanche-drinking-game-rules",
+    "drink-or-dare-rules",
+    // Location/setting (10)
+    "apartment-drinking-games", "dorm-drinking-games", "backyard-drinking-games",
+    "pool-party-drinking-games", "beach-drinking-games", "boat-drinking-games",
+    "bar-drinking-games", "hotel-drinking-games", "road-trip-drinking-games",
+    "cabin-drinking-games",
+    // Occasions (10)
+    "21st-birthday-drinking-games", "fourth-of-july-drinking-games", "thanksgiving-drinking-games",
+    "valentines-day-drinking-games", "graduation-drinking-games", "game-night-drinking-games",
+    "girls-night-drinking-games", "guys-night-drinking-games", "date-night-drinking-games",
+    "reunion-drinking-games",
+    // Social dynamics (10)
+    "icebreaker-drinking-games", "drinking-games-for-strangers", "drinking-games-for-best-friends",
+    "drinking-games-for-coworkers", "drinking-games-for-introverts", "drinking-games-to-get-to-know-people",
+    "flirty-drinking-games", "drinking-games-for-new-couples", "drinking-games-for-roommates",
+    "virtual-drinking-games",
+    // Time/intensity (10)
+    "5-minute-drinking-games", "drinking-games-under-30-minutes", "all-night-drinking-games",
+    "low-key-drinking-games", "intense-drinking-games", "chill-drinking-games",
+    "high-energy-drinking-games", "drinking-games-for-lightweights", "drinking-games-that-get-you-drunk-fast",
+    "slow-paced-drinking-games"
+  ];
+
+  const guideSlugs = [...guideSlugsB1, ...guideSlugsB2];
 
   const guidePages: MetadataRoute.Sitemap = guideSlugs.map((slug) => ({
     url: `${baseUrl}/guides/${slug}`,
