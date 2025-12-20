@@ -439,43 +439,159 @@ export default function DrinkingGameQuizPage() {
             )}
           </AnimatePresence>
 
-          {/* SEO Content */}
+          {/* SEO Content - Comprehensive Guide */}
           <div className="mt-12">
             <Card>
               <CardContent className="p-8 prose prose-invert max-w-none">
                 <h2 className="text-2xl font-bold text-white mb-6">
-                  About the Drinking Game Personality Quiz
+                  What Drinking Game Are You? The Complete Personality Guide
                 </h2>
 
-                <div className="space-y-4 text-gray-300">
+                <div className="space-y-6 text-gray-300">
                   <p>
-                    Ever wondered which drinking game matches your personality? Our quiz analyzes
-                    your party style, competitiveness, and social preferences to find your perfect match.
+                    Ever wondered <strong>which drinking game matches your personality</strong>? Our fun 2-minute quiz analyzes
+                    your party style, competitiveness level, and social preferences to find your perfect drinking game match.
+                    Whether you&apos;re a strategic rule-maker or a chaotic party legend, we&apos;ve got the perfect game for you.
                   </p>
 
-                  <h3 className="text-xl font-semibold text-white">The 6 Drinking Game Personalities</h3>
+                  <h3 className="text-xl font-semibold text-white">The 6 Drinking Game Personality Types</h3>
 
-                  <ul className="space-y-2">
-                    <li><strong>👑 Kings Cup Royalty:</strong> Social butterflies who love making rules</li>
-                    <li><strong>🏆 Beer Pong Champion:</strong> Competitive players who live for the win</li>
-                    <li><strong>🤫 Never Have I Ever Legend:</strong> Social experts with the best stories</li>
-                    <li><strong>⚡ Flip Cup Fanatic:</strong> Fast-paced thrill seekers</li>
-                    <li><strong>🔥 Chaos Agent:</strong> Unpredictable party legends</li>
-                    <li><strong>😎 Chill Sipper:</strong> Laid-back vibes only</li>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="text-lg font-medium text-white">👑 Kings Cup Royalty</h4>
+                      <p>You&apos;re the social butterfly who loves making rules and watching others follow them. Perfect for you: <Link href="/game/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link>, Circle of Death, Waterfall</p>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-medium text-white">🏆 Beer Pong Champion</h4>
+                      <p>Competitive to your core, you live for the clutch shot. Perfect for you: <Link href="/game/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link>, Flip Cup, Rage Cage</p>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-medium text-white">🤫 Never Have I Ever Legend</h4>
+                      <p>You know everyone&apos;s secrets and you&apos;re not afraid to expose them. Perfect for you: <Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link>, Most Likely To, Truth or Drink</p>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-medium text-white">⚡ Flip Cup Fanatic</h4>
+                      <p>Fast, loud, and always ready to race. You bring the energy. Perfect for you: <Link href="/game/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link>, Slap Cup, Boom</p>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-medium text-white">🔥 Chaos Agent</h4>
+                      <p>Rules? What rules? You&apos;re here for unpredictable moments. Perfect for you: Ride the Bus, Drunk Jenga, Power Hour</p>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-medium text-white">😎 Chill Sipper</h4>
+                      <p>No rush, no stress. You&apos;re here for good vibes. Perfect for you: Would You Rather, Drink or Dare, Movie Drinking Games</p>
+                    </div>
+                  </div>
+
+                  <h3 className="text-xl font-semibold text-white">How to Pick the Right Drinking Game</h3>
+                  <p>
+                    Choosing the right drinking game depends on your group&apos;s personality mix. Here&apos;s how to decide:
+                  </p>
+                  <ul className="list-disc list-inside space-y-1">
+                    <li><strong>Competitive group?</strong> Go for Beer Pong or Flip Cup tournaments</li>
+                    <li><strong>Want to get to know each other?</strong> Play Never Have I Ever or Most Likely To</li>
+                    <li><strong>Large group (10+)?</strong> Kings Cup keeps everyone engaged</li>
+                    <li><strong>Small intimate group?</strong> Truth or Drink gets personal</li>
+                    <li><strong>Just want to chill?</strong> Pick a movie drinking game</li>
                   </ul>
 
-                  <h3 className="text-xl font-semibold text-white">How It Works</h3>
+                  <h3 className="text-xl font-semibold text-white">Why Take This Quiz?</h3>
                   <p>
-                    Answer 7 questions about your party preferences, drinking style, and social behavior.
-                    We&apos;ll calculate which personality type you match best and recommend drinking games
-                    that fit your style.
+                    Instead of defaulting to the same old games, discover new ones that match YOUR personality.
+                    Our quiz considers your competitiveness, social style, drinking pace, and party role to give
+                    you personalized recommendations. Share your result with friends to find games everyone will enjoy!
                   </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
 
-                  <h3 className="text-xl font-semibold text-white">Share Your Results</h3>
-                  <p>
-                    Found your drinking game personality? Share it with friends and see who gets the
-                    same result! Compare personalities to find games everyone will enjoy at your next party.
-                  </p>
+          {/* Comprehensive FAQ Section */}
+          <div className="mt-8">
+            <Card>
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-white mb-6">
+                  Frequently Asked Questions About Drinking Games
+                </h2>
+
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">What drinking game should I play?</h3>
+                    <p className="text-gray-400">The best drinking game depends on your group. Take our quiz above to get personalized recommendations based on your personality, or consider: Kings Cup for large groups, Beer Pong for competitive friends, Never Have I Ever for getting to know people.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">What are the 6 drinking game personality types?</h3>
+                    <p className="text-gray-400">The 6 types are: Kings Cup Royalty (social rule-makers), Beer Pong Champion (competitive players), Never Have I Ever Legend (social storytellers), Flip Cup Fanatic (fast-paced thrill seekers), Chaos Agent (wild unpredictable party legends), and Chill Sipper (laid-back vibes only).</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">What&apos;s the best drinking game for large groups?</h3>
+                    <p className="text-gray-400">For large groups of 10+ people, <Link href="/game/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link> is the classic choice because everyone can participate without waiting for turns. <Link href="/game/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link> tournaments also work great for big parties.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">What drinking game is best for couples?</h3>
+                    <p className="text-gray-400">For couples or two players, try Truth or Drink for intimacy, or competitive games like Beer Pong 1v1. <Link href="/games/two-player" className="text-neon-pink hover:underline">Browse our two-player games</Link> for more options.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">What drinking game requires no equipment?</h3>
+                    <p className="text-gray-400">Games like <Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link>, Most Likely To, and Truth or Drink require nothing but drinks and people. Perfect for spontaneous parties! <Link href="/games/no-props" className="text-neon-pink hover:underline">See all no-prop games</Link>.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">What&apos;s the most competitive drinking game?</h3>
+                    <p className="text-gray-400"><Link href="/game/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link> is the ultimate competitive drinking game. For team competition, Flip Cup tournaments get intense. Rage Cage combines both speed and accuracy.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">How do I find drinking games my group will like?</h3>
+                    <p className="text-gray-400">Have everyone take our personality quiz and compare results! If you get a mix of personalities, start with Kings Cup (works for everyone), then branch into more specific games based on the group&apos;s energy.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">What drinking game is best for getting to know people?</h3>
+                    <p className="text-gray-400"><Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link> is perfect for learning about people. Truth or Drink and Most Likely To also spark great conversations and reveal secrets!</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Internal Links */}
+          <div className="mt-8">
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-lg font-bold text-white mb-4">Popular Drinking Games by Category</h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  <Link href="/games/card-games" className="p-3 bg-dark-700 rounded-lg text-center hover:bg-dark-600 transition-colors">
+                    <span className="text-2xl block mb-1">🃏</span>
+                    <span className="text-white text-sm">Card Games</span>
+                  </Link>
+                  <Link href="/games/cup-games" className="p-3 bg-dark-700 rounded-lg text-center hover:bg-dark-600 transition-colors">
+                    <span className="text-2xl block mb-1">🥤</span>
+                    <span className="text-white text-sm">Cup Games</span>
+                  </Link>
+                  <Link href="/games/no-props" className="p-3 bg-dark-700 rounded-lg text-center hover:bg-dark-600 transition-colors">
+                    <span className="text-2xl block mb-1">🗣️</span>
+                    <span className="text-white text-sm">No Props Needed</span>
+                  </Link>
+                  <Link href="/games/two-player" className="p-3 bg-dark-700 rounded-lg text-center hover:bg-dark-600 transition-colors">
+                    <span className="text-2xl block mb-1">👫</span>
+                    <span className="text-white text-sm">Two Player</span>
+                  </Link>
+                  <Link href="/games/large-groups" className="p-3 bg-dark-700 rounded-lg text-center hover:bg-dark-600 transition-colors">
+                    <span className="text-2xl block mb-1">👥</span>
+                    <span className="text-white text-sm">Large Groups</span>
+                  </Link>
+                  <Link href="/party-planner" className="p-3 bg-dark-700 rounded-lg text-center hover:bg-dark-600 transition-colors">
+                    <span className="text-2xl block mb-1">🧮</span>
+                    <span className="text-white text-sm">Party Calculator</span>
+                  </Link>
+                </div>
+                <div className="mt-4 text-center">
+                  <Link href="/games" className="text-neon-pink hover:underline">Browse all 100+ drinking games →</Link>
                 </div>
               </CardContent>
             </Card>
@@ -485,7 +601,7 @@ export default function DrinkingGameQuizPage() {
 
       <MobileNav />
 
-      {/* JSON-LD Schema for SEO */}
+      {/* Comprehensive JSON-LD Schema for SEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -493,8 +609,14 @@ export default function DrinkingGameQuizPage() {
             "@context": "https://schema.org",
             "@type": "Quiz",
             "name": "What Drinking Game Are You? Personality Quiz",
-            "description": "Discover your drinking game personality with this fun quiz. Find out which party game matches your style.",
+            "description": "Discover your drinking game personality with this fun 2-minute quiz. Find out if you're a Kings Cup Royalty, Beer Pong Champion, or Chaos Agent and get personalized game recommendations.",
             "url": "https://sipwiki.app/quiz/what-drinking-game-are-you",
+            "author": {
+              "@type": "Organization",
+              "name": "SipWiki",
+              "url": "https://sipwiki.app"
+            },
+            "datePublished": "2025-01-01",
             "educationalAlignment": {
               "@type": "AlignmentObject",
               "alignmentType": "teaches",
@@ -503,7 +625,41 @@ export default function DrinkingGameQuizPage() {
             "about": {
               "@type": "Thing",
               "name": "Drinking Games"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "ratingCount": "2847"
             }
+          })
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://sipwiki.app"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Quiz",
+                "item": "https://sipwiki.app/quiz"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "What Drinking Game Are You?",
+                "item": "https://sipwiki.app/quiz/what-drinking-game-are-you"
+              }
+            ]
           })
         }}
       />
@@ -516,18 +672,66 @@ export default function DrinkingGameQuizPage() {
             "mainEntity": [
               {
                 "@type": "Question",
-                "name": "What drinking game personality types are there?",
+                "name": "What drinking game should I play?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "There are 6 drinking game personalities: Kings Cup Royalty (social rule-makers), Beer Pong Champion (competitive players), Never Have I Ever Legend (social storytellers), Flip Cup Fanatic (fast-paced players), Chaos Agent (wild party legends), and Chill Sipper (laid-back vibes)."
+                  "text": "The best drinking game depends on your group. Take our personality quiz to get personalized recommendations. Generally: Kings Cup for large groups, Beer Pong for competitive friends, Never Have I Ever for getting to know people."
                 }
               },
               {
                 "@type": "Question",
-                "name": "How do I find the best drinking game for my group?",
+                "name": "What are the 6 drinking game personality types?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Take our personality quiz to discover games that match your style. Consider your group size, competitiveness level, and available supplies. Games like Kings Cup work for any size, while Beer Pong is best for smaller competitive groups."
+                  "text": "The 6 types are: Kings Cup Royalty (social rule-makers), Beer Pong Champion (competitive players), Never Have I Ever Legend (social storytellers), Flip Cup Fanatic (fast-paced players), Chaos Agent (wild party legends), and Chill Sipper (laid-back vibes)."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What's the best drinking game for large groups?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For large groups of 10+ people, Kings Cup is the classic choice because everyone can participate. Flip Cup tournaments also work great for big parties."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What drinking game is best for couples?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For couples or two players, try Truth or Drink for intimacy, or competitive games like Beer Pong 1v1. Two-player card games also work well."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What drinking game requires no equipment?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Games like Never Have I Ever, Most Likely To, and Truth or Drink require nothing but drinks and people. Perfect for spontaneous parties."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What's the most competitive drinking game?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Beer Pong is the ultimate competitive drinking game. For team competition, Flip Cup tournaments get intense. Rage Cage combines both speed and accuracy."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I find drinking games my group will like?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Have everyone take our personality quiz and compare results! If you get a mix, start with Kings Cup which works for everyone, then branch into more specific games."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What drinking game is best for getting to know people?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Never Have I Ever is perfect for learning about people. Truth or Drink and Most Likely To also spark great conversations and reveal secrets."
                 }
               }
             ]

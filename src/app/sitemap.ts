@@ -43,6 +43,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    // SEO Tool Pages - High Priority
+    {
+      url: `${baseUrl}/party-planner`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/quiz/what-drinking-game-are-you`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
   ];
 
   // Category pages
