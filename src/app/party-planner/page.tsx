@@ -97,7 +97,8 @@ export default function PartyPlannerPage() {
     // Suggest games based on group size
     const suggestedGames = games
       .filter(game => {
-        const [min, max] = game.players.split("-").map(n => parseInt(n) || 99);
+        const min = game.min_players;
+        const max = game.max_players || 99;
         return plan.guests >= min && plan.guests <= max;
       })
       .slice(0, 5);
@@ -391,7 +392,9 @@ Made with SipWiki Party Planner`;
                           className="flex items-center justify-between p-3 bg-dark-700/50 rounded-lg hover:bg-dark-600 transition-colors"
                         >
                           <span className="text-white">{game.name}</span>
-                          <Badge variant="purple">{game.players} players</Badge>
+                          <Badge variant="purple">
+                            {game.min_players}{game.max_players ? `-${game.max_players}` : "+"} players
+                          </Badge>
                         </Link>
                       ))}
                     </div>
