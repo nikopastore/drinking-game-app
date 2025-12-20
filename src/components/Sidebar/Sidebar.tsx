@@ -18,6 +18,7 @@ import {
   Skull,
   Calculator,
   Sparkles,
+  CircleDot,
 } from "lucide-react";
 
 // Custom 4-person icon for Large Groups
@@ -59,6 +60,7 @@ interface NavItem {
 const topNavItems: NavItem[] = [
   { href: "/favorites", label: "Favourites", icon: <Star className="h-5 w-5" /> },
   { href: "/recent", label: "Recent", icon: <Clock className="h-5 w-5" /> },
+  { href: "/spin", label: "Spin", icon: <CircleDot className="h-5 w-5" /> },
   { href: "/shop", label: "Shop", icon: <ShoppingBag className="h-5 w-5" /> },
 ];
 
