@@ -95,6 +95,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  // All guide slugs
+  const guideSlugs = [
+    "flip-cup-rules", "rage-cage-rules", "quarters-rules", "never-have-i-ever-questions",
+    "most-likely-to-questions", "drunk-jenga-rules", "ride-the-bus-rules", "power-hour-rules",
+    "civil-war-rules", "slap-cup-rules", "drinking-games-for-couples", "drinking-games-for-parties",
+    "college-drinking-games", "drinking-games-for-beginners", "best-card-drinking-games",
+    "best-dice-drinking-games", "drinking-games-for-small-groups", "outdoor-drinking-games",
+    "camping-drinking-games", "tailgate-drinking-games", "bachelor-party-drinking-games",
+    "bachelorette-party-drinking-games", "birthday-drinking-games", "new-years-eve-drinking-games",
+    "super-bowl-drinking-games", "halloween-drinking-games", "christmas-drinking-games",
+    "st-patricks-day-drinking-games", "drinking-games-with-shots", "beer-drinking-games",
+    "wine-drinking-games", "easy-drinking-games", "quick-drinking-games", "team-drinking-games",
+    "competitive-drinking-games", "classic-drinking-games", "unique-drinking-games",
+    "house-party-drinking-games", "pregaming-drinking-games", "truth-or-dare-drinking-game",
+    "movie-drinking-games", "tv-show-drinking-games", "sports-drinking-games",
+    "video-game-drinking-games", "drinking-game-ideas", "fun-drinking-games",
+    "drinking-games-for-3", "drinking-games-for-4", "drinking-games-for-5"
+  ];
+
+  const guidePages: MetadataRoute.Sitemap = guideSlugs.map((slug) => ({
+    url: `${baseUrl}/guides/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.85,
+  }));
+
   // Category pages
   const categoryPages: MetadataRoute.Sitemap = getAllCategorySlugs().map(
     (slug) => ({
@@ -113,5 +139,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  return [...staticPages, ...categoryPages, ...gamePages];
+  return [...staticPages, ...guidePages, ...categoryPages, ...gamePages];
 }
