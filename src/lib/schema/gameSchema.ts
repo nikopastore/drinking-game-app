@@ -1,7 +1,7 @@
 import { Game } from "@/types";
 import { WithContext, Game as GameSchema, HowTo } from "schema-dts";
 
-interface GameSchemaOptions {
+export interface GameSchemaOptions {
   game: Game;
   url: string;
   imageUrl?: string;

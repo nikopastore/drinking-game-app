@@ -266,14 +266,20 @@ export default function CocktailsGuidePage() {
           <div className="my-12">
             <h2 className="text-2xl font-bold text-white mb-6">Cocktail Comparison: Find Your Perfect Drink</h2>
             <ComparisonTable
-              headers={["Cocktail", "Base Spirit", "Difficulty", "Best For", "Flavor Profile"]}
+              columns={[
+                { header: "Cocktail" },
+                { header: "Base Spirit" },
+                { header: "Difficulty" },
+                { header: "Best For" },
+                { header: "Flavor Profile" },
+              ]}
               rows={[
-                ["Margarita", "Tequila", "Easy", "Parties, Summer", "Sweet, Sour, Salty"],
-                ["Old Fashioned", "Whiskey", "Easy", "Sipping, Winter", "Strong, Bitter, Sweet"],
-                ["Mojito", "Rum", "Medium", "Summer, Daytime", "Fresh, Minty, Citrus"],
-                ["Martini", "Gin/Vodka", "Medium", "Sophisticated Occasions", "Dry, Herbal, Clean"],
-                ["Espresso Martini", "Vodka", "Medium", "After Dinner", "Coffee, Sweet, Strong"],
-                ["Negroni", "Gin", "Easy", "Aperitif", "Bitter, Herbal, Complex"],
+                { label: "Margarita", values: ["", "Tequila", "Easy", "Parties, Summer", "Sweet, Sour, Salty"] },
+                { label: "Old Fashioned", values: ["", "Whiskey", "Easy", "Sipping, Winter", "Strong, Bitter, Sweet"] },
+                { label: "Mojito", values: ["", "Rum", "Medium", "Summer, Daytime", "Fresh, Minty, Citrus"] },
+                { label: "Martini", values: ["", "Gin/Vodka", "Medium", "Sophisticated Occasions", "Dry, Herbal, Clean"] },
+                { label: "Espresso Martini", values: ["", "Vodka", "Medium", "After Dinner", "Coffee, Sweet, Strong"] },
+                { label: "Negroni", values: ["", "Gin", "Easy", "Aperitif", "Bitter, Herbal, Complex"] },
               ]}
             />
           </div>

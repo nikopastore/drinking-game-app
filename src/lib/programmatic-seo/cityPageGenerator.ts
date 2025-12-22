@@ -135,7 +135,7 @@ function generateLocalTips(game: Game, city: City): string {
   return `### ${cityName}-Specific Tips
 
 **Weather Considerations:**
-${getWeatherTip(city)}
+${getWeatherTip(game, city)}
 
 **Transportation:**
 ${cityName} offers multiple options for safe travel after playing ${gameName}:
@@ -156,23 +156,24 @@ ${city.collegeCity ? '- **College events:** Tailgates, spring fest, start of sem
 - Tip your bartenders if playing at bars`;
 }
 
-function getWeatherTip(city: City): string {
+function getWeatherTip(game: Game, city: City): string {
   const cityName = city.name;
+  const gameName = game.name;
 
   // Climate-based tips
   if (['Phoenix', 'Tucson', 'Las Vegas', 'San Diego', 'Los Angeles', 'Miami', 'Tampa'].includes(city.name)) {
-    return `${cityName}'s warm climate means year-round outdoor ${game.name} is possible. Bring sunscreen for daytime games and take advantage of rooftop venues.`;
+    return `${cityName}'s warm climate means year-round outdoor ${gameName} is possible. Bring sunscreen for daytime games and take advantage of rooftop venues.`;
   }
 
   if (['Seattle', 'Portland'].includes(city.name)) {
-    return `${cityName}'s rainy weather means most ${game.name} happens indoors. Covered patios are popular during summer months.`;
+    return `${cityName}'s rainy weather means most ${gameName} happens indoors. Covered patios are popular during summer months.`;
   }
 
   if (['Chicago', 'Detroit', 'Minneapolis', 'Boston', 'Madison'].includes(city.name)) {
-    return `${cityName}'s harsh winters push ${game.name} indoors Oct-April. Summer brings amazing outdoor beer garden setups.`;
+    return `${cityName}'s harsh winters push ${gameName} indoors Oct-April. Summer brings amazing outdoor beer garden setups.`;
   }
 
-  return `${cityName} has seasonal variations - outdoor ${game.name} is popular in warm months, while bars and basements host games year-round.`;
+  return `${cityName} has seasonal variations - outdoor ${gameName} is popular in warm months, while bars and basements host games year-round.`;
 }
 
 function generateConclusion(game: Game, city: City): string {

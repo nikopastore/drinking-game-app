@@ -1,6 +1,6 @@
 import { WithContext, Article, FAQPage, Question } from "schema-dts";
 
-interface ArticleSchemaOptions {
+export interface ArticleSchemaOptions {
   title: string;
   description: string;
   url: string;
@@ -74,7 +74,7 @@ interface FAQItem {
   answer: string;
 }
 
-interface FAQSchemaOptions {
+export interface FAQSchemaOptions {
   faqs: FAQItem[];
   url: string;
 }

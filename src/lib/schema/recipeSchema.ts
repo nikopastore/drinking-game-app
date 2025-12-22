@@ -1,7 +1,7 @@
 import { Cocktail } from "@/types";
 import { WithContext, Recipe } from "schema-dts";
 
-interface RecipeSchemaOptions {
+export interface RecipeSchemaOptions {
   cocktail: Cocktail;
   url: string;
   imageUrl?: string;
