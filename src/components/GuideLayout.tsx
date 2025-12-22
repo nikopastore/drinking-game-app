@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowRight, Play, Home, BookOpen } from "lucide-react";
 
 interface RelatedGame {
@@ -29,8 +30,41 @@ export function GuideLayout({
   primaryGame,
   relatedGames = [],
 }: GuideLayoutProps) {
+  const pathname = usePathname();
+
+  // Generate BreadcrumbList schema
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://sipwiki.app"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Guides",
+        "item": "https://sipwiki.app/guides"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": breadcrumb,
+        "item": `https://sipwiki.app${pathname}`
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-dark-900">
+      {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Sticky CTA Banner - Only shows when there's a primary game */}
       {primaryGame && (
         <div className="sticky top-14 z-20 bg-gradient-to-r from-neon-pink/90 to-neon-purple/90 backdrop-blur-sm border-b border-white/10">

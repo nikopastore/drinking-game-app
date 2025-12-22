@@ -24,9 +24,57 @@ export default function FlipCupRulesPage() {
     ]
   };
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many people do you need for Flip Cup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Minimum 6 players (3 per team), but Flip Cup is best with 10-16 players. You can play with more if you have a long enough table."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if the cup falls off the table in Flip Cup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pick it up and try again. The cup must land on the table to count. There's no penalty for drops, just keep flipping until you get it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you use two hands to flip the cup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard Flip Cup rules say one hand only. Using two hands is considered cheating in most games, though house rules may vary."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much beer do you put in a Flip Cup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fill cups about 1/4 full (roughly 3-4 oz). This is enough to drink quickly but not so much that players get too intoxicated too fast."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the best Flip Cup strategy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Put your best flipper in the anchor (last) position. Stay calm when flipping - rushing causes mistakes. Practice the flipping motion with your wrist, not your whole arm."
+        }
+      }
+    ]
+  };
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <GuideLayout
         title="Flip Cup Rules: How to Play & Win"
         description="Flip Cup is the ultimate team relay drinking game. Fast-paced, loud, and incredibly fun - it's a party staple for a reason. Learn the official rules and dominate your next party."

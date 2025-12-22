@@ -21,6 +21,21 @@ export function useMode() {
   return ctx;
 }
 
+// Helper to set cookie
+function setModeCookie(mode: AppMode) {
+  // Set cookie with 1 year expiry
+  const expires = new Date();
+  expires.setFullYear(expires.getFullYear() + 1);
+  document.cookie = `sipwiki-mode=${mode};path=/;expires=${expires.toUTCString()};SameSite=Lax`;
+}
+
+// Helper to get cookie
+function getModeCookie(): AppMode | null {
+  if (typeof document === "undefined") return null;
+  const match = document.cookie.match(/sipwiki-mode=(games|cocktails)/);
+  return match ? (match[1] as AppMode) : null;
+}
+
 interface ModeProviderProps {
   children: ReactNode;
 }
@@ -33,23 +48,24 @@ export function ModeProvider({ children }: ModeProviderProps) {
   useEffect(() => {
     if (pathname.startsWith("/cocktail") || pathname.startsWith("/cocktails")) {
       setModeState("cocktails");
-    } else if (pathname.startsWith("/game") || pathname.startsWith("/games") || pathname === "/") {
+    } else if (pathname.startsWith("/game") || pathname.startsWith("/games")) {
       setModeState("games");
     }
-    // For other routes (spin, shop, favorites), keep current mode
+    // For other routes (spin, shop, favorites, home), keep current mode from cookie/state
   }, [pathname]);
 
-  // Load preference from localStorage on mount
+  // Load preference from cookie on mount
   useEffect(() => {
-    const saved = localStorage.getItem("sipwiki-mode");
-    if (saved === "games" || saved === "cocktails") {
+    const saved = getModeCookie();
+    if (saved) {
       setModeState(saved);
     }
   }, []);
 
-  // Save preference to localStorage
+  // Save preference to cookie and localStorage
   const setMode = (newMode: AppMode) => {
     setModeState(newMode);
+    setModeCookie(newMode);
     localStorage.setItem("sipwiki-mode", newMode);
   };
 

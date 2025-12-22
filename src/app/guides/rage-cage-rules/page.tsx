@@ -18,9 +18,49 @@ export default function RageCageRulesPage() {
     { "@type": "HowToStep", "text": "Stacked player drinks a center cup and continues. Game ends when center is empty" }
   ]};
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What's the difference between Rage Cage and Slap Cup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In Rage Cage, you stack your cup on top of your neighbor's cup. In Slap Cup, you slap their cup away instead. Both are intense elimination games, but Rage Cage has the iconic stacking tower that grows throughout the game."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many people do you need for Rage Cage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rage Cage works best with 6-15 players. Fewer than 6 and there's not enough chaos; more than 15 and people wait too long between turns. 8-12 is the sweet spot."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the death cup in Rage Cage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The death cup is a completely full cup placed in the center of the other cups. If you get stacked into the death cup, you have to drink the entire thing and you're eliminated from the game."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you stack on the first bounce in Rage Cage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If you make it on your first bounce, you can pass your cup to ANYONE at the table, not just your neighbor. This is a strategic advantage - you can set up a stack on a slow player across the table."
+        }
+      }
+    ]
+  };
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <GuideLayout
         title="Rage Cage Rules: The Ultimate Guide to Stack Cup"
         description="Rage Cage (also called Stack Cup or Boom Cup) is one of the most intense drinking games ever invented. Two balls racing around the circle, stacking on slow players - it's pure chaos and absolutely electric at parties."

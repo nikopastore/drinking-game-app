@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { games } from "@/config/gameData";
 import { getAllCategorySlugs } from "@/config/categoryData";
+import { cocktails } from "@/config/cocktailData";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://sipwiki.app";
@@ -51,14 +52,51 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
     },
     {
+      url: `${baseUrl}/drink-calculator`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/alcohol-calculator`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/quiz`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/quiz/what-drinking-game-are-you`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.95,
     },
+    {
+      url: `${baseUrl}/quiz/what-cocktail-are-you`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/drinking-quiz`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
     // SEO Guide Pages - High Priority
     {
       url: `${baseUrl}/guides`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    // Cocktails Section - High Priority
+    {
+      url: `${baseUrl}/cocktails`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
@@ -178,5 +216,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  return [...staticPages, ...guidePages, ...categoryPages, ...gamePages];
+  // Cocktail recipe pages
+  const cocktailPages: MetadataRoute.Sitemap = cocktails.map((cocktail) => ({
+    url: `${baseUrl}/cocktails/${cocktail.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.85,
+  }));
+
+  return [...staticPages, ...guidePages, ...categoryPages, ...gamePages, ...cocktailPages];
 }

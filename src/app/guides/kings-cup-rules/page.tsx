@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { GuideLayout } from "@/components/GuideLayout";
+import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -132,6 +133,19 @@ export default function KingsCupRulesPage() {
           { name: "Beeramid", slug: "beeramid", description: "Card pyramid drinking game" },
         ]}
       >
+        {/* Quick Answer for AI Overviews & Featured Snippets */}
+        <QuickAnswer
+          question="What are the rules for Kings Cup?"
+          answer="Kings Cup is a card drinking game where players draw cards from a circle around a center cup. Each card has a specific rule: Ace=Waterfall (everyone drinks until person to right stops), 2=You (pick someone to drink), 3=Me (you drink), 4=Floor (last to touch floor drinks), 5=Guys drink, 6=Girls drink, 7=Heaven (point up), 8=Mate (pick drinking buddy), 9=Rhyme, 10=Categories, Jack=Make a Rule, Queen=Question Master, King=Pour into center cup (4th King drinks it all)."
+          tips={[
+            "Best with 4-10 players, works with 2+",
+            "Game lasts 20-45 minutes",
+            "Don't break the circle or you drink",
+            "Fourth King ends the game"
+          ]}
+          variant="primary"
+        />
+
         <h2>What You&apos;ll Need to Play Kings Cup</h2>
         <ul>
           <li><strong>1 standard deck of cards</strong> (52 cards, no jokers)</li>

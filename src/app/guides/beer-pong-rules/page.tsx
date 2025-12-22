@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { GuideLayout } from "@/components/GuideLayout";
+import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -135,6 +136,19 @@ export default function BeerPongRulesPage() {
           { name: "Slap Cup", slug: "slap-cup", description: "Competitive cup bouncing" },
         ]}
       >
+        {/* Quick Answer for AI Overviews & Featured Snippets */}
+        <QuickAnswer
+          question="How do you play Beer Pong?"
+          answer="Beer Pong is played with two teams at opposite ends of a table. Arrange 10 cups in a triangle formation on each side, filled 1/3 with beer. Teams take turns throwing ping pong balls into opponent's cups. When a ball lands in a cup, the defending team drinks and removes it. First team to eliminate all opponent's cups wins. Get 2 re-racks per game to reorganize remaining cups."
+          tips={[
+            "Elbow must stay behind table edge when shooting",
+            "Bounce shots count as 2 cups but can be swatted",
+            "Losing team gets redemption shots if they miss none",
+            "Standard table is 8 feet long"
+          ]}
+          variant="primary"
+        />
+
         <h2>What You&apos;ll Need for Beer Pong</h2>
         <ul>
           <li><strong>20 plastic cups</strong> - 16oz Solo cups are standard (10 per team)</li>

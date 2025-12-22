@@ -7,5 +7,8 @@ Allow: /
 # Sitemap location
 Sitemap: https://sipwiki.app/sitemap.xml
 
+# LLM-specific content (for AI assistants and language models)
+# See: https://sipwiki.app/llms.txt
+
 # Crawl-delay for politeness (optional)
 Crawl-delay: 1

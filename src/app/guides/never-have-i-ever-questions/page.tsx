@@ -11,6 +11,45 @@ export const metadata: Metadata = {
 };
 
 export default function NeverHaveIEverQuestionsPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do you play Never Have I Ever drinking game?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Everyone holds up 5-10 fingers. One person says 'Never have I ever...' followed by something. Anyone who HAS done that thing drinks and puts a finger down. First person to run out of fingers loses. The game reveals secrets and gets more interesting as it goes!"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are good Never Have I Ever questions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Good questions reveal interesting things without being too invasive. Examples: Never have I ever traveled outside the country, Never have I ever gotten a tattoo, Never have I ever been on TV. For adults, spicier questions like 'Never have I ever had a one-night stand' work well."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the difference between clean and dirty Never Have I Ever?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Clean questions are safe for any group (work, family) - things like travel, hobbies, and life experiences. Dirty/spicy questions are for adult parties and involve dating, relationships, and more personal topics. Choose based on your group!"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many fingers do you start with in Never Have I Ever?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Traditionally you start with 10 fingers (both hands up). For shorter games, start with 5 fingers. When you've done something mentioned, put a finger down and drink. First person with no fingers left loses!"
+        }
+      }
+    ]
+  };
+
   const cleanQuestions = [
     "Never have I ever been on TV",
     "Never have I ever broken a bone",
@@ -51,16 +90,18 @@ export default function NeverHaveIEverQuestionsPage() {
   ];
 
   return (
-    <GuideLayout
-      title="200+ Never Have I Ever Questions for Every Occasion"
-      description="Never Have I Ever is the ultimate party game for learning surprising things about your friends. Whether you want clean questions for a casual hangout or spicy questions for adults, we've got you covered."
-      breadcrumb="Never Have I Ever Questions"
-      primaryGame={{ name: "Never Have I Ever", slug: "never-have-i-ever" }}
-      relatedGames={[
-        { name: "Truth or Drink", slug: "truth-or-drink", description: "Answer or drink" },
-        { name: "Most Likely To", slug: "most-likely-to", description: "Vote on who fits" },
-      ]}
-    >
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <GuideLayout
+        title="200+ Never Have I Ever Questions for Every Occasion"
+        description="Never Have I Ever is the ultimate party game for learning surprising things about your friends. Whether you want clean questions for a casual hangout or spicy questions for adults, we've got you covered."
+        breadcrumb="Never Have I Ever Questions"
+        primaryGame={{ name: "Never Have I Ever", slug: "never-have-i-ever" }}
+        relatedGames={[
+          { name: "Truth or Drink", slug: "truth-or-drink", description: "Answer or drink" },
+          { name: "Most Likely To", slug: "most-likely-to", description: "Vote on who fits" },
+        ]}
+      >
       <h2>How to Play Never Have I Ever</h2>
       <ol>
         <li>Everyone holds up 5-10 fingers</li>
@@ -108,6 +149,7 @@ export default function NeverHaveIEverQuestionsPage() {
       </ul>
 
       <p>Play our <Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever game</Link> with built-in questions!</p>
-    </GuideLayout>
+      </GuideLayout>
+    </>
   );
 }

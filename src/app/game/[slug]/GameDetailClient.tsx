@@ -19,6 +19,7 @@ import { getAffiliateLink, nonAffiliateItems } from "@/config/monetizationConfig
 import { CommentSection } from "@/components/CommentSection";
 import { getCategoriesForGame } from "@/config/categoryData";
 import { useAuthContext, UnlockRulesCard } from "@/components/auth";
+import { FavoriteButton } from "@/components/favorites";
 
 interface GameDetailClientProps {
   game: Game;
@@ -92,10 +93,20 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
           </div>
 
           {/* Title and metadata */}
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
-            {game.name} Rules
-          </h1>
-          <p className="text-lg text-neon-pink mb-4">How to Play {game.name}</p>
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
+                {game.name} Rules
+              </h1>
+              <p className="text-lg text-neon-pink mb-4">How to Play {game.name}</p>
+            </div>
+            <FavoriteButton
+              type="game"
+              slug={game.slug}
+              name={game.name}
+              size="lg"
+            />
+          </div>
 
           <p className="text-xl text-gray-400 mb-6">{game.description}</p>
 
