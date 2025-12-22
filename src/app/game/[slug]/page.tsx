@@ -103,29 +103,19 @@ export default async function GameDetailPage({ params }: PageProps) {
 
   // Generate comprehensive schema using enhanced generators
   const gameJsonLd = generateGameSchema({
-    name: game.name,
-    description: game.description,
-    image: game.image,
-    minPlayers: game.min_players,
-    maxPlayers: game.max_players || undefined,
-    materials: game.materials.filter(m => m !== "no prop"),
-    categories: categories.map(c => c.name),
+    game: game,
     url: `https://sipwiki.app/game/${game.slug}`,
+    imageUrl: game.image,
     aggregateRating: {
       ratingValue: 4.5, // Could pull from actual ratings
-      ratingCount: 100,
-      bestRating: 5,
-      worstRating: 1
+      ratingCount: 100
     }
   });
 
   const howToJsonLd = generateGameHowToSchema({
-    name: game.name,
-    description: game.description,
-    rulesText: game.rules_text,
-    materials: game.materials.filter(m => m !== "no prop"),
-    difficulty: game.drunkenness_level >= 4 ? "Hard" : game.drunkenness_level >= 3 ? "Medium" : "Easy",
-    timeRequired: "PT30M"
+    game: game,
+    url: `https://sipwiki.app/game/${game.slug}`,
+    imageUrl: game.image
   });
 
   const faqJsonLd = generateGameFAQJsonLd(game);
