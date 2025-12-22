@@ -36,17 +36,20 @@ export default function KingsCupVsRideTheBusPage() {
 
       <ComparisonTable
         title="Kings Cup vs Ride the Bus: Quick Comparison"
-        items={[
-          { feature: "Players", option1: "4-10 (best 6-8)", option2: "4-8 (best 5-7)" },
-          { feature: "Game Type", option1: "Rule-based circle", option2: "Guessing with pyramid" },
-          { feature: "Game Length", option1: "30-60 minutes", option2: "20-40 minutes" },
-          { feature: "Drinking Pace", option1: "Moderate - spread throughout", option2: "Escalating - brutal at end" },
-          { feature: "Skill Required", option1: "Low - luck + creativity", option2: "Medium - probability helps" },
-          { feature: "Social Interaction", option1: "Very High - mini-games", option2: "Medium - individual guessing" },
-          { feature: "Customization", option1: "Highly customizable", option2: "Fixed structure" },
+        columns={[
+          { header: "Feature" },
+          { header: "Kings Cup" },
+          { header: "Ride the Bus" },
         ]}
-        option1Label="Kings Cup"
-        option2Label="Ride the Bus"
+        rows={[
+          { label: "Players", values: ["", "4-10 (best 6-8)", "4-8 (best 5-7)"] },
+          { label: "Game Type", values: ["", "Rule-based circle", "Guessing with pyramid"] },
+          { label: "Game Length", values: ["", "30-60 minutes", "20-40 minutes"] },
+          { label: "Drinking Pace", values: ["", "Moderate - spread throughout", "Escalating - brutal at end"] },
+          { label: "Skill Required", values: ["", "Low - luck + creativity", "Medium - probability helps"] },
+          { label: "Social Interaction", values: ["", "Very High - mini-games", "Medium - individual guessing"] },
+          { label: "Customization", values: ["", "Highly customizable", "Fixed structure"] },
+        ]}
       />
 
       <h2>The Core Differences</h2>

@@ -36,17 +36,20 @@ export default function FlipCupVsSlapCupPage() {
 
       <ComparisonTable
         title="Flip Cup vs Slap Cup: Quick Comparison"
-        items={[
-          { feature: "Game Type", option1: "Team relay race", option2: "Elimination circle game" },
-          { feature: "Players", option1: "8-20+ (2 teams)", option2: "8-20 (circle)" },
-          { feature: "Game Length", option1: "2-5 minutes", option2: "10-20 minutes" },
-          { feature: "Win Condition", option1: "First team finishes", option2: "Last player standing" },
-          { feature: "Team Dynamic", option1: "Cooperative", option2: "Individual" },
-          { feature: "Skill Required", option1: "Low - easy flipping", option2: "Medium - bouncing speed" },
-          { feature: "Intensity", option1: "High energy friendly", option2: "Maximum chaos aggressive" },
+        columns={[
+          { header: "Feature" },
+          { header: "Flip Cup" },
+          { header: "Slap Cup" },
         ]}
-        option1Label="Flip Cup"
-        option2Label="Slap Cup"
+        rows={[
+          { label: "Game Type", values: ["", "Team relay race", "Elimination circle game"] },
+          { label: "Players", values: ["", "8-20+ (2 teams)", "8-20 (circle)"] },
+          { label: "Game Length", values: ["", "2-5 minutes", "10-20 minutes"] },
+          { label: "Win Condition", values: ["", "First team finishes", "Last player standing"] },
+          { label: "Team Dynamic", values: ["", "Cooperative", "Individual"] },
+          { label: "Skill Required", values: ["", "Low - easy flipping", "Medium - bouncing speed"] },
+          { label: "Intensity", values: ["", "High energy friendly", "Maximum chaos aggressive"] },
+        ]}
       />
 
       <h2>The Core Differences</h2>

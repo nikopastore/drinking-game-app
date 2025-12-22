@@ -36,17 +36,20 @@ export default function BeerPongVsChandelierPage() {
 
       <ComparisonTable
         title="Beer Pong vs Chandelier: Quick Comparison"
-        items={[
-          { feature: "Players", option1: "4 (2v2 teams)", option2: "6-12 (circle)" },
-          { feature: "Game Length", option1: "15-30 minutes", option2: "5-10 minutes" },
-          { feature: "Space Needed", option1: "8-foot table", option2: "Large table/floor space" },
-          { feature: "Skill Type", option1: "Throwing accuracy", option2: "Bouncing + flipping speed" },
-          { feature: "Strategy", option1: "High - targeting, defense", option2: "Medium - cup selection" },
-          { feature: "Tournament Friendly", option1: "Excellent - brackets", option2: "Good - quick rounds" },
-          { feature: "Party Size", option1: "Better for 4-8 (2v2 + spectators)", option2: "Better for 8-15 (all playing)" },
+        columns={[
+          { header: "Feature" },
+          { header: "Beer Pong" },
+          { header: "Chandelier" },
         ]}
-        option1Label="Beer Pong"
-        option2Label="Chandelier"
+        rows={[
+          { label: "Players", values: ["", "4 (2v2 teams)", "6-12 (circle)"] },
+          { label: "Game Length", values: ["", "15-30 minutes", "5-10 minutes"] },
+          { label: "Space Needed", values: ["", "8-foot table", "Large table/floor space"] },
+          { label: "Skill Type", values: ["", "Throwing accuracy", "Bouncing + flipping speed"] },
+          { label: "Strategy", values: ["", "High - targeting, defense", "Medium - cup selection"] },
+          { label: "Tournament Friendly", values: ["", "Excellent - brackets", "Good - quick rounds"] },
+          { label: "Party Size", values: ["", "Better for 4-8 (2v2 + spectators)", "Better for 8-15 (all playing)"] },
+        ]}
       />
 
       <h2>The Core Differences</h2>
