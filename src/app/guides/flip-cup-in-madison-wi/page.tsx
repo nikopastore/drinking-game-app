@@ -106,7 +106,7 @@ export default function FlipCupInMadisonPage() {
                 </p>
               </div>
               <div className="p-4 bg-dark-800 rounded-lg border border-dark-600">
-                <h4 className="text-lg font-semibold text-white mb-2">University Avenue</h3>
+                <h4 className="text-lg font-semibold text-white mb-2">University Avenue</h4>
                 <p className="text-sm text-gray-300">
                   Sports bars and breweries with organized Flip Cup leagues. More laid-back than State Street chaos.
                 </p>

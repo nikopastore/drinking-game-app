@@ -292,7 +292,7 @@ export default function NeverHaveIEverInLosAngelesPage() {
               LA has specific drinking culture:
             </p>
             <ul>
-              <li>Craft cocktails > cheap beer (image matters here)</li>
+              <li>Craft cocktails {'>'}  cheap beer (image matters here)</li>
               <li>Low-calorie options popular (body-conscious city)</li>
               <li>Mezcal and natural wine are trendy</li>
               <li>Green juice between rounds is totally normal</li>

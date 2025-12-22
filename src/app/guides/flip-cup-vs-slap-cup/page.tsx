@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://sipwiki.app/guides/flip-cup-vs-slap-cup" },
 };
 
-export default function FlipCupVsSlap CupPage() {
+export default function FlipCupVsSlapCupPage() {
   return (
     <GuideLayout
       title="Flip Cup vs Slap Cup: Complete Comparison"
