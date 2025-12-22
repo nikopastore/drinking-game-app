@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { GuideLayout } from "@/components/GuideLayout";
+import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {

@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { GuideLayout } from "@/components/GuideLayout";
+import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -13,6 +14,18 @@ export const metadata: Metadata = {
 export default function DrinkingGamesForPartiesPage() {
   return (
     <GuideLayout title="25 Best Drinking Games for Parties" description="A great party needs great games. Not just any games - ones that scale to your crowd, match your energy, and keep everyone involved. This is the complete party host's guide to drinking games." breadcrumb="Party Drinking Games" relatedGames={[{ name: "Flip Cup", slug: "flip-cup", description: "Team relay" }, { name: "Kings Cup", slug: "kings-cup", description: "Card classic" }, { name: "Beer Pong", slug: "beer-pong", description: "The GOAT" }]}>
+      <QuickAnswer
+        question="What are the best drinking games for parties?"
+        answer="Best party drinking games: (1) Beer Pong - 2v2 classic, everyone knows it, (2) Flip Cup - team relay for 8-20+, (3) Rage Cage - high energy elimination, (4) Kings Cup - card game for 5-15, (5) Never Have I Ever - no props needed. Choose based on party size: small (2-6) = Beer Pong/Kings Cup, medium (6-12) = Rage Cage/Chandelier, large (10+) = Flip Cup/Civil War. High energy parties need Rage Cage or Flip Cup. Chill vibes use Kings Cup or Never Have I Ever."
+        tips={[
+          "Have 2-3 games ready for different energy levels",
+          "Team games work better than turn-based for big groups",
+          "Start with Kings Cup as people arrive",
+          "Beer Pong is eternal - always set up a table"
+        ]}
+        variant="primary"
+      />
+
       <h2>Party Game Philosophy</h2>
       <p>The best party games share these traits:</p>
       <ul>

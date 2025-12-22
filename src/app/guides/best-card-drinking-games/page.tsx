@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { GuideLayout } from "@/components/GuideLayout";
+import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -13,6 +14,18 @@ export const metadata: Metadata = {
 export default function BestCardDrinkingGamesPage() {
   return (
     <GuideLayout title="15 Best Card Drinking Games" description="A standard deck of cards is the ultimate drinking game toolkit - portable, cheap, and capable of endless game variations. Here's your complete guide to mastering card-based drinking games." breadcrumb="Card Drinking Games" relatedGames={[{ name: "Kings Cup", slug: "kings-cup", description: "The classic" }, { name: "Ride the Bus", slug: "ride-the-bus", description: "Guessing game" }, { name: "Beeramid", slug: "beeramid", description: "Bluffing pyramid" }]}>
+      <QuickAnswer
+        question="What are the best drinking games with cards?"
+        answer="Top card drinking games: (1) Kings Cup - card circle game where each rank has a rule, 4th King drinks the center cup, (2) Ride the Bus - guess card properties through 4 rounds, loser 'rides the bus', (3) Beeramid - pyramid bluffing game, (4) Fuck the Dealer - guess the card value, (5) Irish Poker - red/black guessing game. All you need is a standard 52-card deck. Kings Cup is most popular for groups of 4-10. Ride the Bus works best for 4-8 players."
+        tips={[
+          "Waterproof plastic cards last longer for drinking games",
+          "Kings Cup is the most popular card game",
+          "Learn 3-4 games and you're set for any party",
+          "Cards are portable - fits in any pocket"
+        ]}
+        variant="primary"
+      />
+
       <h2>Why a Deck of Cards Is All You Need</h2>
       <p>Cards have been the backbone of drinking games for centuries, and for good reason:</p>
       <ul>
