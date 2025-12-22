@@ -34,11 +34,11 @@ export default function FlipCupInAnnArborPage() {
   const articleSchema = generateArticleSchema({
     title: "Flip Cup in Ann Arbor, MI: The Complete Local Guide",
     description: "Comprehensive guide to playing Flip Cup in Ann Arbor, including where to play, local variations, and tips from U-M students.",
-    author: "SipWiki",
+    author: { name: "SipWiki" },
     publishDate: "2025-01-15",
     url: "https://sipwiki.app/guides/flip-cup-in-ann-arbor-mi",
-    images: ["/games/flip-cup-2.png"],
-    categories: ["Drinking Games", "Party Games", "Ann Arbor", "College", "City Guides"],
+    imageUrl: "/games/flip-cup-2.png",
+    keywords: ["Drinking Games", "Party Games", "Ann Arbor", "College", "City Guides"],
   });
 
   return (

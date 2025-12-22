@@ -34,11 +34,11 @@ export default function FlipCupInMadisonPage() {
   const articleSchema = generateArticleSchema({
     title: "Flip Cup in Madison, WI: The Complete Local Guide",
     description: "Comprehensive guide to playing Flip Cup in Madison, including where to play, local variations, and tips from UW-Madison students and alumni.",
-    author: "SipWiki",
+    author: { name: "SipWiki" },
     publishDate: "2025-01-15",
     url: "https://sipwiki.app/guides/flip-cup-in-madison-wi",
-    images: ["/games/flip-cup-2.png"],
-    categories: ["Drinking Games", "Party Games", "Madison", "College", "City Guides"],
+    imageUrl: "/games/flip-cup-2.png",
+    keywords: ["Drinking Games", "Party Games", "Madison", "College", "City Guides"],
   });
 
   return (

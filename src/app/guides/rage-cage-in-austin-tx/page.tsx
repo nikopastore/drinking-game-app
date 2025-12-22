@@ -34,11 +34,11 @@ export default function RageCageInAustinPage() {
   const articleSchema = generateArticleSchema({
     title: "Rage Cage in Austin, TX: The Complete Local Guide",
     description: "Comprehensive guide to playing Rage Cage in Austin, including where to play, local variations, and tips from UT Austin students and locals.",
-    author: "SipWiki",
+    author: { name: "SipWiki" },
     publishDate: "2025-01-15",
     url: "https://sipwiki.app/guides/rage-cage-in-austin-tx",
-    images: ["/games/rage-cage-1.png"],
-    categories: ["Drinking Games", "Party Games", "Austin", "College", "City Guides"],
+    imageUrl: "/games/rage-cage-1.png",
+    keywords: ["Drinking Games", "Party Games", "Austin", "College", "City Guides"],
   });
 
   return (

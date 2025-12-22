@@ -32,11 +32,11 @@ export default function KingsCupInNewYorkPage() {
   const articleSchema = generateArticleSchema({
     title: "King's Cup in New York, NY: The Complete Local Guide",
     description: "Comprehensive guide to playing King's Cup in New York, including where to play, local variations, and tips from NYC players.",
-    author: "SipWiki",
+    author: { name: "SipWiki" },
     publishDate: "2025-01-15",
     url: "https://sipwiki.app/guides/kings-cup-in-new-york-ny",
-    images: ["/games/kings-cup-1.png"],
-    categories: ["Drinking Games", "Party Games", "New York", "City Guides"],
+    imageUrl: "/games/kings-cup-1.png",
+    keywords: ["Drinking Games", "Party Games", "New York", "City Guides"],
   });
 
   return (

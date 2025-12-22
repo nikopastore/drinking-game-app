@@ -32,11 +32,11 @@ export default function NeverHaveIEverInLosAngelesPage() {
   const articleSchema = generateArticleSchema({
     title: "Never Have I Ever in Los Angeles, CA: The Complete Local Guide",
     description: "Comprehensive guide to playing Never Have I Ever in Los Angeles, including where to play, local variations, and celebrity-worthy questions.",
-    author: "SipWiki",
+    author: { name: "SipWiki" },
     publishDate: "2025-01-15",
     url: "https://sipwiki.app/guides/never-have-i-ever-in-los-angeles-ca",
-    images: ["/games/never-have-i-ever-1.png"],
-    categories: ["Drinking Games", "Party Games", "Los Angeles", "City Guides"],
+    imageUrl: "/games/never-have-i-ever-1.png",
+    keywords: ["Drinking Games", "Party Games", "Los Angeles", "City Guides"],
   });
 
   return (

@@ -36,11 +36,11 @@ export default function CocktailsGuidePage() {
   const articleSchema = generateArticleSchema({
     title: "Complete Guide to Cocktails: Recipes, Techniques & Tips",
     description: "Comprehensive cocktail guide with 50+ recipes, bartending techniques, ingredient guides, and expert mixing tips for home bartenders and professionals.",
-    author: "SipWiki",
+    author: { name: "SipWiki" },
     publishDate: "2025-01-15",
     url: "https://sipwiki.app/guides/cocktails",
-    images: ["/cocktails/margarita.jpg"],
-    categories: ["Cocktails", "Bartending", "Recipes", "Mixology"],
+    imageUrl: "/cocktails/margarita.jpg",
+    keywords: ["Cocktails", "Bartending", "Recipes", "Mixology"],
   });
 
   return (

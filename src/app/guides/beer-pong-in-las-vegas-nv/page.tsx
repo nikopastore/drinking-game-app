@@ -32,11 +32,11 @@ export default function BeerPongInLasVegasPage() {
   const articleSchema = generateArticleSchema({
     title: "Beer Pong in Las Vegas, NV: The Complete Local Guide",
     description: "Comprehensive guide to playing Beer Pong in Las Vegas, including where to play, casino tournaments, and Vegas-specific variations.",
-    author: "SipWiki",
+    author: { name: "SipWiki" },
     publishDate: "2025-01-15",
     url: "https://sipwiki.app/guides/beer-pong-in-las-vegas-nv",
-    images: ["/games/bp-1.png"],
-    categories: ["Drinking Games", "Party Games", "Las Vegas", "City Guides"],
+    imageUrl: "/games/bp-1.png",
+    keywords: ["Drinking Games", "Party Games", "Las Vegas", "City Guides"],
   });
 
   return (

@@ -32,11 +32,11 @@ export default function KingsCupInMiamiPage() {
   const articleSchema = generateArticleSchema({
     title: "King's Cup in Miami, FL: The Complete Local Guide",
     description: "Comprehensive guide to playing King's Cup in Miami, including South Beach parties, Wynwood venues, and Miami-specific variations.",
-    author: "SipWiki",
+    author: { name: "SipWiki" },
     publishDate: "2025-01-15",
     url: "https://sipwiki.app/guides/kings-cup-in-miami-fl",
-    images: ["/games/kings-cup-1.png"],
-    categories: ["Drinking Games", "Party Games", "Miami", "City Guides"],
+    imageUrl: "/games/kings-cup-1.png",
+    keywords: ["Drinking Games", "Party Games", "Miami", "City Guides"],
   });
 
   return (
