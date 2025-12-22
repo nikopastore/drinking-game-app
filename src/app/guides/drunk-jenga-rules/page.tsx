@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { GuideLayout } from "@/components/GuideLayout";
+import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -40,6 +41,18 @@ export default function DrunkJengaRulesPage() {
         { name: "Truth or Drink", slug: "truth-or-drink", description: "Answer or drink" },
       ]}
     >
+      <QuickAnswer
+        question="How do you play Drunk Jenga?"
+        answer="Drunk Jenga adds drinking rules to classic Jenga. Setup: Write challenges/rules on each block with permanent marker (one side only), stack tower with rules facing random directions. Gameplay: Pull a block with one hand, read the rule aloud, follow it, then place on top. Rules include 'Take 2 drinks,' 'Give 3 drinks,' 'Waterfall,' 'Make a rule,' 'Never Have I Ever,' etc. Whoever knocks the tower over finishes their drink. Best with 2-8 players. Takes 30-60 minutes."
+        tips={[
+          "Balance rule difficulty - not every block should be extreme",
+          "Keep some blocks blank for free passes",
+          "Use permanent marker so rules last",
+          "Popular rules: Thumb Master, Waterfall, Truth or Dare"
+        ]}
+        variant="primary"
+      />
+
       <h2>What You Need</h2>
       <ul>
         <li><strong>Jenga set</strong> - Standard or giant size</li>

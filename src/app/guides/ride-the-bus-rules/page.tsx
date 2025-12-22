@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { GuideLayout } from "@/components/GuideLayout";
+import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -23,6 +24,18 @@ export default function RideTheBusRulesPage() {
         { name: "Irish Poker", slug: "irish-poker", description: "Guessing card game" },
       ]}
     >
+      <QuickAnswer
+        question="How do you play Ride the Bus?"
+        answer="Ride the Bus is a card drinking game with 3 rounds. Round 1: Each player answers 4 questions (Red/Black? Higher/Lower? Inside/Outside? Suit?) - wrong = drink. Round 2: Pyramid - dealer builds 5-4-3-2-1 card pyramid. Flip cards bottom to top, match your cards to give drinks (row # = drink count). Round 3: Player with most cards 'rides the bus' - flip 4 cards one by one. Face card or Ace? Start over! Make it through all 4 number cards to escape. Perfect for 4-8 players."
+        tips={[
+          "Higher/Lower: Cards 2-7 guess higher, 8-A guess lower",
+          "Pyramid bluffing is risky but can save drinks",
+          "The bus ride can take 10+ attempts - brutal!",
+          "Some play escalating drinks (1,2,3,4 for each round)"
+        ]}
+        variant="primary"
+      />
+
       <h2>What You Need</h2>
       <ul>
         <li><strong>Standard deck of cards</strong></li>

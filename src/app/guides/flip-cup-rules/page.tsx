@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { GuideLayout } from "@/components/GuideLayout";
+import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -86,6 +87,18 @@ export default function FlipCupRulesPage() {
           { name: "Beer Pong", slug: "beer-pong", description: "Classic cup game" },
         ]}
       >
+        <QuickAnswer
+          question="How do you play Flip Cup?"
+          answer="Flip Cup is a team relay race drinking game. Setup: Two equal teams line up on opposite sides of a table, each player has a cup filled 1/4 with beer. Gameplay: First players tap cups together, drink, then flip their cup upside-down to land right-side up by flicking the rim. Once successful, the next teammate goes. First team to have all players finish drinking and flipping wins. The game requires 6+ players (3 per team minimum) and takes 5-15 minutes per round."
+          tips={[
+            "Use one finger to flick the cup rim, not your whole hand",
+            "Fill cups only 1/4 full for faster rounds",
+            "Put your best flipper in the anchor (last) position",
+            "Practice the flip motion before starting - wrist control is key"
+          ]}
+          variant="primary"
+        />
+
         <h2>What You Need for Flip Cup</h2>
         <ul>
           <li><strong>Plastic cups</strong> - Solo cups work best (one per player)</li>

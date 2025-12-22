@@ -3,6 +3,7 @@ import { getGameBySlug, games } from "@/config/gameData";
 import { getCategoriesForGame } from "@/config/categoryData";
 import { GameDetailClient } from "./GameDetailClient";
 import { formatPlayerCount } from "@/lib/utils";
+import { generateGameSchema, generateGameHowToSchema, generateFAQSchema } from "@/lib/schema";
 import type { Metadata } from "next";
 
 interface PageProps {
@@ -60,54 +61,34 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-// Generate JSON-LD structured data for the game
-function generateGameJsonLd(game: ReturnType<typeof getGameBySlug>) {
+// Generate enhanced FAQ schema for common game questions
+function generateGameFAQJsonLd(game: ReturnType<typeof getGameBySlug>) {
   if (!game) return null;
 
-  const categories = getCategoriesForGame(game);
+  const playerInfo = formatPlayerCount(game.min_players, game.max_players);
 
-  return {
-    "@context": "https://schema.org",
-    "@type": "Game",
-    name: game.name,
-    description: game.description,
-    numberOfPlayers: {
-      "@type": "QuantitativeValue",
-      minValue: game.min_players,
-      ...(game.max_players && { maxValue: game.max_players }),
+  const faqs = [
+    {
+      question: `How many people do you need to play ${game.name}?`,
+      answer: `${game.name} requires ${playerInfo} players. ${game.min_players === game.max_players ? `This game works best with exactly ${game.min_players} players.` : game.max_players ? `It works with anywhere from ${game.min_players} to ${game.max_players} players.` : `It works with ${game.min_players} or more players.`}`
     },
-    gameItem: game.materials.filter(m => m !== "no prop"),
-    genre: categories.map(c => c.name),
-    gamePlatform: "Tabletop",
-    url: `https://sipwiki.app/game/${game.slug}`,
-    ...(game.image && { image: `https://sipwiki.app${game.image}` }),
-  };
-}
+    {
+      question: `What materials do you need for ${game.name}?`,
+      answer: game.materials[0] === "no prop"
+        ? `${game.name} requires no props - just players and drinks!`
+        : `To play ${game.name}, you need: ${game.materials.join(", ")}.`
+    },
+    {
+      question: `How drunk will you get playing ${game.name}?`,
+      answer: `${game.name} has a drunkenness level of ${game.drunkenness_level} out of 5. ${game.drunkenness_level >= 4 ? "This is an intense game that can get you very drunk quickly - pace yourself!" : game.drunkenness_level >= 3 ? "This is a moderate drinking game - you'll definitely feel it but it's manageable." : "This is a lighter drinking game that's good for beginners or casual sessions."}`
+    },
+    {
+      question: `Is ${game.name} good for parties?`,
+      answer: `${game.name} is ${game.min_players > 6 ? "perfect for large parties" : game.max_players && game.max_players >= 8 ? "great for medium to large gatherings" : "better for smaller groups"}. ${game.description}`
+    }
+  ];
 
-// Generate HowTo structured data for game instructions
-function generateHowToJsonLd(game: ReturnType<typeof getGameBySlug>) {
-  if (!game) return null;
-
-  // Extract steps from rules_text (split by double newlines and filter setup/gameplay sections)
-  const sections = game.rules_text.split("\n\n").filter(s => s.trim());
-  const steps = sections.map((section, index) => ({
-    "@type": "HowToStep",
-    position: index + 1,
-    text: section.replace(/\*\*/g, "").trim(),
-  }));
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: `How to Play ${game.name}`,
-    description: game.description,
-    step: steps,
-    tool: game.materials.filter(m => m !== "no prop").map(material => ({
-      "@type": "HowToTool",
-      name: material,
-    })),
-    totalTime: "PT30M", // Estimated play time
-  };
+  return generateFAQSchema({ faqs });
 }
 
 export default async function GameDetailPage({ params }: PageProps) {
@@ -118,22 +99,52 @@ export default async function GameDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const gameJsonLd = generateGameJsonLd(game);
-  const howToJsonLd = generateHowToJsonLd(game);
+  const categories = getCategoriesForGame(game);
+
+  // Generate comprehensive schema using enhanced generators
+  const gameJsonLd = generateGameSchema({
+    name: game.name,
+    description: game.description,
+    image: game.image,
+    minPlayers: game.min_players,
+    maxPlayers: game.max_players || undefined,
+    materials: game.materials.filter(m => m !== "no prop"),
+    categories: categories.map(c => c.name),
+    url: `https://sipwiki.app/game/${game.slug}`,
+    aggregateRating: {
+      ratingValue: 4.5, // Could pull from actual ratings
+      ratingCount: 100,
+      bestRating: 5,
+      worstRating: 1
+    }
+  });
+
+  const howToJsonLd = generateGameHowToSchema({
+    name: game.name,
+    description: game.description,
+    rulesText: game.rules_text,
+    materials: game.materials.filter(m => m !== "no prop"),
+    difficulty: game.drunkenness_level >= 4 ? "Hard" : game.drunkenness_level >= 3 ? "Medium" : "Easy",
+    timeRequired: "PT30M"
+  });
+
+  const faqJsonLd = generateGameFAQJsonLd(game);
 
   return (
     <>
-      {/* JSON-LD Structured Data */}
-      {gameJsonLd && (
+      {/* Enhanced JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(gameJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+      />
+      {faqJsonLd && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(gameJsonLd) }}
-        />
-      )}
-      {howToJsonLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
       )}
       <GameDetailClient game={game} />

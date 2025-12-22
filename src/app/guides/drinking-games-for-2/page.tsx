@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { GuideLayout } from "@/components/GuideLayout";
+import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -37,6 +38,13 @@ export const metadata: Metadata = {
 };
 
 export default function DrinkingGamesFor2Page() {
+  const quickAnswerTips = [
+    "Truth or Drink works great for couples getting to know each other",
+    "Never Have I Ever reveals fun secrets",
+    "Card games like Higher/Lower are easy with just a deck",
+    "Speed Quarters is competitive and fast-paced"
+  ];
+
   const games = [
     {
       name: "Truth or Drink",
@@ -218,6 +226,13 @@ export default function DrinkingGamesFor2Page() {
           { name: "Ride the Bus", slug: "ride-the-bus", description: "Card guessing game" },
         ]}
       >
+        <QuickAnswer
+          question="What are the best drinking games for 2 people?"
+          answer="Top drinking games for 2 people: (1) Truth or Drink - ask questions or drink instead of answering, (2) Never Have I Ever - reveal experiences, (3) Higher or Lower - guess cards, (4) Ride the Bus - multi-round card game, (5) Quarters - bounce coin into cup, (6) Two Truths and a Lie - guess wrong and drink. No-prop options work best for spontaneous games. Card games like Higher/Lower need just a deck. All take 15-45 minutes and perfect for couples or friends."
+          tips={quickAnswerTips}
+          variant="primary"
+        />
+
         <h2>Why Two-Player Drinking Games Are Great</h2>
         <p>Sometimes you don&apos;t need a whole party. Two-player drinking games are perfect for:</p>
         <ul>

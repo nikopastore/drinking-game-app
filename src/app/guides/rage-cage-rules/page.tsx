@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { GuideLayout } from "@/components/GuideLayout";
+import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -72,6 +73,18 @@ export default function RageCageRulesPage() {
           { name: "Chandelier", slug: "chandelier", description: "Circle cup game" },
         ]}
       >
+        <QuickAnswer
+          question="How do you play Rage Cage?"
+          answer="Rage Cage (Stack Cup) is an elimination drinking game for 6-15 players. Setup: Place 20+ cups filled with beer in the center with one 'death cup' full in the middle. Two players start with empty cups and ping pong balls. Bounce the ball into your cup - if successful, pass it left (or anywhere if first try). If you make it before the player to your left, stack your cup on theirs! Stacked players must drink a center cup and continue. Game ends when only the death cup remains - last person to get stacked drinks it."
+          tips={[
+            "Best with 8-12 players for optimal chaos",
+            "Make it on first bounce = pass to anyone, not just left",
+            "Aim for the cup rim, ball bounces easier",
+            "Stay focused - hesitation gets you stacked"
+          ]}
+          variant="primary"
+        />
+
         <h2>What You Need</h2>
         <ul>
           <li><strong>20-30 plastic cups</strong></li>
