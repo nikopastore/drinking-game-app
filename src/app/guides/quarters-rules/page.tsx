@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { GuideLayout } from "@/components/GuideLayout";
+import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -22,6 +23,18 @@ export default function QuartersRulesPage() {
         { name: "Beer Pong", slug: "beer-pong", description: "Classic throwing game" },
       ]}
     >
+      <QuickAnswer
+        question="How do you play Quarters drinking game?"
+        answer="Quarters rules: Bounce a quarter off the table into a shot glass. Make it = choose someone to drink and keep shooting. Miss = pass the quarter clockwise. Make 3 in a row = create a new rule. Key technique: Drop the quarter from 6-8 inches, aim for sweet spot 4-6 inches from glass. Speed Quarters variation: Two quarters, race around the circle. Wall Quarters: Bounce off wall first for extra difficulty. Classic bar skill game that rewards practice."
+        tips={[
+          "Find your sweet spot 4-6 inches from the glass",
+          "Drop from 6-8 inches height for best bounce",
+          "3 makes in a row = create a rule",
+          "Speed Quarters = two coins racing around circle"
+        ]}
+        variant="primary"
+      />
+
       <h2>What You Need</h2>
       <ul>
         <li><strong>1 quarter</strong> - U.S. quarter works best (size/weight), but any coin works</li>

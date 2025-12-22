@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { GuideLayout } from "@/components/GuideLayout";
+import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -254,6 +255,18 @@ export default function DrinkingGamesWithoutCardsPage() {
           { name: "Cheers to the Governor", slug: "cheers-to-the-governor", description: "Count to 21 with rules" },
         ]}
       >
+        <QuickAnswer
+          question="What are the best drinking games without cards?"
+          answer="Best no-prop drinking games: (1) Never Have I Ever - confession game, drink if you've done it, (2) Most Likely To - vote and majority drinks, (3) Medusa - eye contact game, (4) Cheers to the Governor - count to 21 with rules, (5) Truth or Drink - questions or drinking penalty. These games need zero equipment, just drinks and friends. Perfect for spontaneous parties, traveling, bars, or when you forgot supplies. Never Have I Ever works for 3-20+ people. Most Likely To scales infinitely."
+          tips={[
+            "Zero setup - start playing in seconds",
+            "Work anywhere - bars, camping, hotels",
+            "Never Have I Ever is the easiest to teach",
+            "Most Likely To reveals hilarious truths"
+          ]}
+          variant="primary"
+        />
+
         <h2>Why No-Prop Drinking Games Are the Best</h2>
         <p>Sometimes the best parties are unplanned. These games are perfect because:</p>
         <ul>

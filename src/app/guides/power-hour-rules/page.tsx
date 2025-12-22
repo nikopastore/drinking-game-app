@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { GuideLayout } from "@/components/GuideLayout";
+import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -22,6 +23,18 @@ export default function PowerHourRulesPage() {
         { name: "Roxanne", slug: "roxanne", description: "Song drinking game" },
       ]}
     >
+      <QuickAnswer
+        question="What are the Power Hour rules?"
+        answer="Power Hour rules: Take a shot of beer (1.5 oz) every minute for 60 minutes straight. Set a timer or use a playlist that changes songs every minute. That's 60 shots total, about 6-7 beers in an hour. Making it to 60 minutes = you win. Century Club is the extreme version: 100 shots in 100 minutes (about 10 beers). Use Power Hour playlists on YouTube/Spotify with automatic minute markers. Hydrate between rounds."
+        tips={[
+          "60 shots = about 6-7 beers total",
+          "Use Power Hour playlists for automatic timing",
+          "Start hydrated - this is endurance drinking",
+          "Century Club (100 minutes) for the truly brave"
+        ]}
+        variant="primary"
+      />
+
       <h2>What You Need</h2>
       <ul>
         <li><strong>Shot glasses</strong> (or a marked cup)</li>

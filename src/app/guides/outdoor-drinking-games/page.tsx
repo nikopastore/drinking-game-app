@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { GuideLayout } from "@/components/GuideLayout";
+import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -13,6 +14,18 @@ export const metadata: Metadata = {
 export default function OutdoorDrinkingGamesPage() {
   return (
     <GuideLayout title="15 Best Outdoor Drinking Games" description="Sun's out, drinks out! When the weather's nice and you've got space to spread out, these are the games that make outdoor gatherings legendary." breadcrumb="Outdoor Games" relatedGames={[{ name: "Flip Cup", slug: "flip-cup", description: "Works anywhere" }, { name: "Beer Pong", slug: "beer-pong", description: "Classic outdoor game" }]}>
+      <QuickAnswer
+        question="What are the best outdoor drinking games?"
+        answer="Best outdoor drinking games: (1) Cornhole with drinking rules - bag on board = opponent drinks 1, in hole = drinks 3, (2) KanJam - frisbee game with drinking penalties, (3) Beer Pong - outdoor table setup, (4) Flip Cup - works anywhere with a table, (5) Spikeball - miss = drink. Lawn games (Cornhole, Ladder Toss, Washers) are perfect for backyards and BBQs. No equipment? Play Flip Cup, Never Have I Ever, or Thunderstruck outdoors. Outdoor advantages: space to move, no noise complaints, multiple games simultaneously."
+        tips={[
+          "Cornhole is easiest to set up for drinking",
+          "Keep coolers in shade - drinks stay cold longer",
+          "Run multiple games simultaneously in large yards",
+          "No noise complaints outdoors - get loud!"
+        ]}
+        variant="primary"
+      />
+
       <h2>Why Outdoor Games Hit Different</h2>
       <p>Outdoor drinking games have advantages indoor games can&apos;t match:</p>
       <ul>

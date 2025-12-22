@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { GuideLayout } from "@/components/GuideLayout";
+import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -13,6 +14,18 @@ export const metadata: Metadata = {
 export default function CollegeDrinkingGamesPage() {
   return (
     <GuideLayout title="20 Best College Drinking Games" description="College is where drinking game skills are forged. From legendary basement tournaments to keeping it quiet for the RA, here's everything you need to know." breadcrumb="College Drinking Games" relatedGames={[{ name: "Beer Pong", slug: "beer-pong", description: "The undisputed king" }, { name: "Flip Cup", slug: "flip-cup", description: "Team relay classic" }, { name: "Rage Cage", slug: "rage-cage", description: "Intense elimination" }]}>
+      <QuickAnswer
+        question="What are the best college drinking games?"
+        answer="Best college drinking games: (1) Beer Pong - 2v2 classic, dominates basement parties, (2) Flip Cup - team relay, bonding machine, (3) Rage Cage - elimination chaos for 6-15, (4) Kings Cup - card game that works in dorms, (5) Thunderstruck - music game for tailgates. Dorm-friendly (quiet): Kings Cup, Ride the Bus, Never Have I Ever, Truth or Drink. Basement/frat games: Beer Pong tournaments, Civil War, Baseball. Tailgates: Flip Cup, Cornhole, Slap Cup. RA-proof tip: card games are quietest."
+        tips={[
+          "Master Beer Pong, Flip Cup, Kings Cup first",
+          "Dorm games = card games (quieter for RAs)",
+          "Frat basements = tournaments and brackets",
+          "Tailgates = team games like Flip Cup"
+        ]}
+        variant="primary"
+      />
+
       <h2>The Essential Tier (Learn These First)</h2>
       <p>If you only learn a few games, make it these:</p>
 

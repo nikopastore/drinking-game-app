@@ -235,6 +235,18 @@ export default function DrinkingGamesLargeGroupsPage() {
           { name: "Kings Cup", slug: "kings-cup", description: "Card-based circle game" },
         ]}
       >
+        <QuickAnswer
+          question="What are the best drinking games for large groups?"
+          answer="Best large group drinking games: (1) Flip Cup - team relay for 8-20+ people, (2) Rage Cage - elimination game for 6-15, (3) Kings Cup - circle game for 5-15, (4) Most Likely To - voting game for 8-30+, (5) Slap Cup - elimination for 8-20. Team games (Flip Cup, Civil War) work best for 10+ people. Circle games (Never Have I Ever, Cheers to the Governor) scale infinitely. Elimination games (Rage Cage, Slap Cup) create dramatic moments. For 20+ people, run multiple game stations simultaneously."
+          tips={[
+            "Team games > turn-based for big groups",
+            "Run multiple game stations for 20+ people",
+            "Start simple (Most Likely To) then escalate to Rage Cage",
+            "Designate a game master to explain rules"
+          ]}
+          variant="primary"
+        />
+
         <h2>What Makes a Great Large Group Drinking Game?</h2>
         <p>Not all drinking games work with big crowds. The best large group games have:</p>
         <ul>
