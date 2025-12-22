@@ -88,7 +88,7 @@ function generateGameFAQJsonLd(game: ReturnType<typeof getGameBySlug>) {
     }
   ];
 
-  return generateFAQSchema({ faqs });
+  return generateFAQSchema({ faqs, url: `https://sipwiki.app/game/${game.slug}` });
 }
 
 export default async function GameDetailPage({ params }: PageProps) {
