@@ -27,7 +27,11 @@
       "Bash(mv:*)",
       "Bash(del /f /q \"c:\\Users\\nikop\\Documents\\GitHub\\drinking-game-app\\.next\\dev\\lock\")",
       "Skill(superpowers:writing-skills)",
-      "Skill(superpowers:writing-skills:*)"
+      "Skill(superpowers:writing-skills:*)",
+      "Bash(npx next build)",
+      "Bash(npx next build:*)",
+      "Bash(dir:*)",
+      "Bash(comm -13:*)"
     ]
   }
 }
