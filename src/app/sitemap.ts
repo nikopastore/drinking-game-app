@@ -212,6 +212,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "drinking-games-for-11-12", "drinking-games-for-13-15", "drinking-games-for-16-20"
   ];
 
+  // Batch 8 - New comparison guides, game rules, sports, and seasonal content
+  const guideSlugsB8 = [
+    // Game comparison guides (9)
+    "beer-pong-vs-civil-war", "chandelier-vs-slap-cup", "irish-poker-vs-ride-the-bus",
+    "three-man-vs-7-11-doubles", "wizard-staff-vs-power-hour", "edward-40-hands-vs-wizard-staff",
+    "most-likely-to-vs-never-have-i-ever", "medusa-vs-buffalo", "truth-or-drink-vs-drink-or-dare",
+    // Game rule guides (12)
+    "buffalo-rules", "cheers-to-the-governor-rules", "7-11-doubles-rules", "landmines-rules",
+    "around-the-world-rules", "chems-rules", "horse-race-rules", "medusa-rules",
+    "never-have-i-ever-rules", "most-likely-to-rules", "truth-or-drink-rules",
+    // Sports drinking game guides (5)
+    "world-series-drinking-games", "nba-finals-drinking-games", "college-football-drinking-games",
+    "stanley-cup-drinking-games", "olympics-drinking-games",
+    // Seasonal content (5)
+    "cinco-de-mayo-drinking-games", "easter-drinking-games", "spring-break-drinking-games",
+    "labor-day-drinking-games", "memorial-day-drinking-games"
+  ];
+
   // Batch 4 - Regional city guides (19 cities)
   const guideSlugsB4 = [
     // Original 8
@@ -225,7 +243,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "beer-pong-in-las-vegas-nv", "beer-pong-in-new-york-city-ny", "beer-pong-in-los-angeles-ca"
   ];
 
-  const guideSlugs = [...guideSlugsB1, ...guideSlugsB2, ...guideSlugsB3, ...guideSlugsB4, ...guideSlugsB5, ...guideSlugsB6, ...guideSlugsB7];
+  const guideSlugs = [...guideSlugsB1, ...guideSlugsB2, ...guideSlugsB3, ...guideSlugsB4, ...guideSlugsB5, ...guideSlugsB6, ...guideSlugsB7, ...guideSlugsB8];
 
   const guidePages: MetadataRoute.Sitemap = guideSlugs.map((slug) => ({
     url: `${baseUrl}/guides/${slug}`,
