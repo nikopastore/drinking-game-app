@@ -34,7 +34,10 @@
       "Bash(comm -13:*)",
       "Bash(cat:*)",
       "Bash(find:*)",
-      "Bash(xargs cat:*)"
+      "Bash(xargs cat:*)",
+      "Bash(npm run build:mobile:*)",
+      "Bash(if exist \"src\\app\\auth\\callback\\route.ts\" del \"src\\app\\auth\\callback\\route.ts\")",
+      "Bash(npx cap:*)"
     ]
   }
 }

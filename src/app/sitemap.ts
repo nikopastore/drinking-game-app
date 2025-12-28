@@ -1,3 +1,6 @@
+// Force static generation for mobile builds
+export const dynamic = "force-static";
+
 import { MetadataRoute } from "next";
 import { games } from "@/config/gameData";
 import { getAllCategorySlugs } from "@/config/categoryData";
