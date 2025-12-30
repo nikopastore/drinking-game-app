@@ -90,6 +90,18 @@ export function CocktailDetailClient({ cocktail }: CocktailDetailClientProps) {
           Back
         </button>
 
+        {/* Hero Image */}
+        {cocktail.image && (
+          <div className="relative h-64 md:h-80 w-full rounded-xl overflow-hidden mb-8">
+            <img
+              src={cocktail.image}
+              alt={cocktail.name}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent" />
+          </div>
+        )}
+
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-start justify-between mb-4">
