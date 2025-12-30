@@ -92,11 +92,11 @@ export function CocktailDetailClient({ cocktail }: CocktailDetailClientProps) {
 
         {/* Hero Image */}
         {cocktail.image && (
-          <div className="relative h-72 md:h-96 w-full rounded-xl overflow-hidden mb-8 bg-dark-700">
+          <div className="relative aspect-[4/3] md:aspect-[16/9] w-full max-h-96 rounded-xl overflow-hidden mb-8 bg-dark-700">
             <img
               src={cocktail.image}
               alt={cocktail.name}
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain p-4"
             />
             <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-dark-900 to-transparent" />
           </div>

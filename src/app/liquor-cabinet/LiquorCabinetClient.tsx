@@ -26,11 +26,11 @@ function CocktailMatchCard({ match }: { match: CocktailMatch }) {
     <Link href={`/cocktails/${match.cocktail.slug}`}>
       <Card className="h-full hover:border-neon-purple/50 transition-all duration-200 hover:shadow-lg hover:shadow-neon-purple/20 cursor-pointer group">
         {match.cocktail.image && (
-          <div className="relative h-32 w-full overflow-hidden bg-dark-700 rounded-t-xl">
+          <div className="relative aspect-[4/5] w-full overflow-hidden bg-dark-700 rounded-t-xl">
             <img
               src={match.cocktail.image}
               alt={match.cocktail.name}
-              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
             />
           </div>
         )}
