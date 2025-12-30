@@ -7,6 +7,7 @@ export const cocktails: Cocktail[] = [
     slug: "moscow-mule",
     name: "Moscow Mule",
     description: "A refreshing vodka cocktail with ginger beer and lime, traditionally served in a copper mug.",
+    image: "/cocktails/moscow-mule.jpg",
     ingredients: [
       { name: "Vodka", amount: "2", unit: "oz" },
       { name: "Ginger Beer", amount: "4", unit: "oz" },
@@ -32,6 +33,7 @@ export const cocktails: Cocktail[] = [
     slug: "cosmopolitan",
     name: "Cosmopolitan",
     description: "A sophisticated pink cocktail made famous by Sex and the City. Tart, sweet, and elegant.",
+    image: "/cocktails/cosmopolitan.jpg",
     ingredients: [
       { name: "Vodka", amount: "1.5", unit: "oz" },
       { name: "Cointreau", amount: "0.75", unit: "oz" },
@@ -58,6 +60,7 @@ export const cocktails: Cocktail[] = [
     slug: "vodka-martini",
     name: "Vodka Martini",
     description: "The iconic James Bond drink. Clean, crisp, and sophisticated - shaken or stirred.",
+    image: "/cocktails/vodka-martini.jpg",
     ingredients: [
       { name: "Vodka", amount: "2.5", unit: "oz" },
       { name: "Dry Vermouth", amount: "0.5", unit: "oz" },
@@ -82,6 +85,7 @@ export const cocktails: Cocktail[] = [
     slug: "bloody-mary",
     name: "Bloody Mary",
     description: "The ultimate brunch cocktail. Savory, spicy, and the perfect hangover cure.",
+    image: "/cocktails/bloody-mary.jpg",
     ingredients: [
       { name: "Vodka", amount: "1.5", unit: "oz" },
       { name: "Tomato Juice", amount: "3", unit: "oz" },
@@ -111,6 +115,7 @@ export const cocktails: Cocktail[] = [
     slug: "screwdriver",
     name: "Screwdriver",
     description: "Simple, refreshing, and perfect for day drinking. Just vodka and OJ.",
+    image: "/cocktails/screwdriver.jpg",
     ingredients: [
       { name: "Vodka", amount: "2", unit: "oz" },
       { name: "Orange Juice", amount: "4", unit: "oz" },
@@ -135,6 +140,7 @@ export const cocktails: Cocktail[] = [
     slug: "espresso-martini",
     name: "Espresso Martini",
     description: "The perfect pick-me-up cocktail. Rich coffee flavor meets smooth vodka.",
+    image: "/cocktails/espresso-martini.jpg",
     ingredients: [
       { name: "Vodka", amount: "2", unit: "oz" },
       { name: "Coffee Liqueur", amount: "0.5", unit: "oz" },
@@ -163,6 +169,7 @@ export const cocktails: Cocktail[] = [
     slug: "gin-and-tonic",
     name: "Gin & Tonic",
     description: "The quintessential British highball. Crisp, botanical, and utterly refreshing.",
+    image: "/cocktails/gin-and-tonic.jpg",
     ingredients: [
       { name: "Gin", amount: "2", unit: "oz" },
       { name: "Tonic Water", amount: "4", unit: "oz" },
@@ -187,6 +194,7 @@ export const cocktails: Cocktail[] = [
     slug: "classic-martini",
     name: "Classic Martini",
     description: "The king of cocktails. Gin, vermouth, and a twist - nothing more, nothing less.",
+    image: "/cocktails/classic-martini.jpg",
     ingredients: [
       { name: "Gin", amount: "2.5", unit: "oz" },
       { name: "Dry Vermouth", amount: "0.5", unit: "oz" },
@@ -211,6 +219,7 @@ export const cocktails: Cocktail[] = [
     slug: "negroni",
     name: "Negroni",
     description: "A perfectly balanced Italian aperitif. Bitter, sweet, and boozy in equal measure.",
+    image: "/cocktails/negroni.jpg",
     ingredients: [
       { name: "Gin", amount: "1", unit: "oz" },
       { name: "Campari", amount: "1", unit: "oz" },
@@ -235,6 +244,7 @@ export const cocktails: Cocktail[] = [
     slug: "tom-collins",
     name: "Tom Collins",
     description: "A refreshing gin sour topped with soda. Light, citrusy, and perfect for summer.",
+    image: "/cocktails/tom-collins.jpg",
     ingredients: [
       { name: "Gin", amount: "2", unit: "oz" },
       { name: "Lemon Juice", amount: "1", unit: "oz" },
@@ -261,6 +271,7 @@ export const cocktails: Cocktail[] = [
     slug: "french-75",
     name: "French 75",
     description: "Elegant gin and champagne cocktail. Named after a WWI artillery gun for its kick.",
+    image: "/cocktails/french-75.jpg",
     ingredients: [
       { name: "Gin", amount: "1.5", unit: "oz" },
       { name: "Lemon Juice", amount: "0.75", unit: "oz" },
@@ -289,6 +300,7 @@ export const cocktails: Cocktail[] = [
     slug: "mojito",
     name: "Mojito",
     description: "Cuba's gift to cocktails. Fresh mint, lime, rum, and soda - pure refreshment.",
+    image: "/cocktails/mojito.jpg",
     ingredients: [
       { name: "White Rum", amount: "2", unit: "oz" },
       { name: "Fresh Mint", amount: "8-10", unit: "leaves" },
@@ -316,6 +328,7 @@ export const cocktails: Cocktail[] = [
     slug: "daiquiri",
     name: "Daiquiri",
     description: "The original rum sour. Simple, balanced, and dangerously drinkable.",
+    image: "/cocktails/daiquiri.jpg",
     ingredients: [
       { name: "White Rum", amount: "2", unit: "oz" },
       { name: "Lime Juice", amount: "1", unit: "oz" },
@@ -340,6 +353,7 @@ export const cocktails: Cocktail[] = [
     slug: "pina-colada",
     name: "Pina Colada",
     description: "Tropical paradise in a glass. Creamy coconut and pineapple with rum.",
+    image: "/cocktails/pina-colada.jpg",
     ingredients: [
       { name: "White Rum", amount: "2", unit: "oz" },
       { name: "Coconut Cream", amount: "2", unit: "oz" },
@@ -365,6 +379,7 @@ export const cocktails: Cocktail[] = [
     slug: "dark-n-stormy",
     name: "Dark 'n' Stormy",
     description: "Dark rum meets spicy ginger beer. A Bermuda classic with serious depth.",
+    image: "/cocktails/dark-n-stormy.jpg",
     ingredients: [
       { name: "Dark Rum", amount: "2", unit: "oz" },
       { name: "Ginger Beer", amount: "4", unit: "oz" },
@@ -390,6 +405,7 @@ export const cocktails: Cocktail[] = [
     slug: "mai-tai",
     name: "Mai Tai",
     description: "The ultimate tiki cocktail. Complex, tropical, and perfect for luau vibes.",
+    image: "/cocktails/mai-tai.jpg",
     ingredients: [
       { name: "White Rum", amount: "1", unit: "oz" },
       { name: "Dark Rum", amount: "1", unit: "oz" },
@@ -417,6 +433,7 @@ export const cocktails: Cocktail[] = [
     slug: "cuba-libre",
     name: "Cuba Libre",
     description: "Rum and coke elevated with fresh lime. Simple but satisfying.",
+    image: "/cocktails/cuba-libre.jpg",
     ingredients: [
       { name: "White Rum", amount: "2", unit: "oz" },
       { name: "Cola", amount: "4", unit: "oz" },
@@ -444,6 +461,7 @@ export const cocktails: Cocktail[] = [
     slug: "margarita",
     name: "Margarita",
     description: "The world's most popular cocktail. Tangy lime, smooth tequila, and a salted rim.",
+    image: "/cocktails/margarita.jpg",
     ingredients: [
       { name: "Tequila", amount: "2", unit: "oz" },
       { name: "Lime Juice", amount: "1", unit: "oz" },
@@ -469,6 +487,7 @@ export const cocktails: Cocktail[] = [
     slug: "tequila-sunrise",
     name: "Tequila Sunrise",
     description: "Beautiful layered cocktail that looks like a sunrise. Sweet, fruity, and Instagram-worthy.",
+    image: "/cocktails/tequila-sunrise.jpg",
     ingredients: [
       { name: "Tequila", amount: "2", unit: "oz" },
       { name: "Orange Juice", amount: "4", unit: "oz" },
@@ -494,6 +513,7 @@ export const cocktails: Cocktail[] = [
     slug: "paloma",
     name: "Paloma",
     description: "Mexico's favorite tequila cocktail. Grapefruit, lime, and a hint of salt.",
+    image: "/cocktails/paloma.jpg",
     ingredients: [
       { name: "Tequila", amount: "2", unit: "oz" },
       { name: "Grapefruit Soda", amount: "4", unit: "oz" },
@@ -520,6 +540,7 @@ export const cocktails: Cocktail[] = [
     slug: "tommy's-margarita",
     name: "Tommy's Margarita",
     description: "A modern classic using agave instead of triple sec. Pure tequila flavor shines.",
+    image: "/cocktails/tommys-margarita.jpg",
     ingredients: [
       { name: "Tequila", amount: "2", unit: "oz" },
       { name: "Lime Juice", amount: "1", unit: "oz" },
@@ -546,6 +567,7 @@ export const cocktails: Cocktail[] = [
     slug: "old-fashioned",
     name: "Old Fashioned",
     description: "The original cocktail. Whiskey, sugar, bitters - timeless sophistication.",
+    image: "/cocktails/old-fashioned.jpg",
     ingredients: [
       { name: "Bourbon", amount: "2", unit: "oz" },
       { name: "Sugar Cube", amount: "1" },
@@ -572,6 +594,7 @@ export const cocktails: Cocktail[] = [
     slug: "whiskey-sour",
     name: "Whiskey Sour",
     description: "A perfectly balanced whiskey cocktail. Sweet, sour, and silky smooth.",
+    image: "/cocktails/whiskey-sour.jpg",
     ingredients: [
       { name: "Bourbon", amount: "2", unit: "oz" },
       { name: "Lemon Juice", amount: "0.75", unit: "oz" },
@@ -598,6 +621,7 @@ export const cocktails: Cocktail[] = [
     slug: "manhattan",
     name: "Manhattan",
     description: "The sophisticated older sibling of the Martini. Whiskey, vermouth, and bitters.",
+    image: "/cocktails/manhattan.jpg",
     ingredients: [
       { name: "Rye Whiskey", amount: "2", unit: "oz" },
       { name: "Sweet Vermouth", amount: "1", unit: "oz" },
@@ -623,6 +647,7 @@ export const cocktails: Cocktail[] = [
     slug: "mint-julep",
     name: "Mint Julep",
     description: "The Kentucky Derby classic. Bourbon and fresh mint over crushed ice.",
+    image: "/cocktails/mint-julep.jpg",
     ingredients: [
       { name: "Bourbon", amount: "2.5", unit: "oz" },
       { name: "Fresh Mint", amount: "8-10", unit: "leaves" },
@@ -649,6 +674,7 @@ export const cocktails: Cocktail[] = [
     slug: "irish-coffee",
     name: "Irish Coffee",
     description: "Warm, cozy, and caffeinated. Irish whiskey, coffee, and cream.",
+    image: "/cocktails/irish-coffee.jpg",
     ingredients: [
       { name: "Irish Whiskey", amount: "1.5", unit: "oz" },
       { name: "Hot Coffee", amount: "4", unit: "oz" },
@@ -675,6 +701,7 @@ export const cocktails: Cocktail[] = [
     slug: "boulevardier",
     name: "Boulevardier",
     description: "A Negroni's whiskey-based cousin. Rich, bitter, and complex.",
+    image: "/cocktails/boulevardier.jpg",
     ingredients: [
       { name: "Bourbon", amount: "1.5", unit: "oz" },
       { name: "Sweet Vermouth", amount: "1", unit: "oz" },
@@ -702,6 +729,7 @@ export const cocktails: Cocktail[] = [
     slug: "sidecar",
     name: "Sidecar",
     description: "A classic brandy sour with Cointreau. Elegant and citrus-forward.",
+    image: "/cocktails/sidecar.jpg",
     ingredients: [
       { name: "Cognac", amount: "2", unit: "oz" },
       { name: "Cointreau", amount: "0.75", unit: "oz" },
@@ -726,6 +754,7 @@ export const cocktails: Cocktail[] = [
     slug: "brandy-alexander",
     name: "Brandy Alexander",
     description: "A creamy, dessert-like cocktail. Perfect after-dinner indulgence.",
+    image: "/cocktails/brandy-alexander.jpg",
     ingredients: [
       { name: "Cognac", amount: "1.5", unit: "oz" },
       { name: "Creme de Cacao", amount: "1", unit: "oz" },
@@ -752,6 +781,7 @@ export const cocktails: Cocktail[] = [
     slug: "b-52",
     name: "B-52",
     description: "A layered shooter with coffee, Irish cream, and orange liqueur.",
+    image: "/cocktails/b-52.jpg",
     ingredients: [
       { name: "Kahlua", amount: "0.5", unit: "oz" },
       { name: "Baileys", amount: "0.5", unit: "oz" },
@@ -776,6 +806,7 @@ export const cocktails: Cocktail[] = [
     slug: "kamikaze",
     name: "Kamikaze",
     description: "A classic vodka shooter. Tart, sweet, and packs a punch.",
+    image: "/cocktails/kamikaze.jpg",
     ingredients: [
       { name: "Vodka", amount: "1", unit: "oz" },
       { name: "Triple Sec", amount: "1", unit: "oz" },
@@ -798,6 +829,7 @@ export const cocktails: Cocktail[] = [
     slug: "lemon-drop-shot",
     name: "Lemon Drop Shot",
     description: "Sweet and sour vodka shot with a sugar-coated lemon chaser.",
+    image: "/cocktails/lemon-drop-shot.jpg",
     ingredients: [
       { name: "Vodka", amount: "1.5", unit: "oz" },
       { name: "Lemon Juice", amount: "0.5", unit: "oz" },
@@ -822,6 +854,7 @@ export const cocktails: Cocktail[] = [
     slug: "jello-shot",
     name: "Jello Shot",
     description: "The ultimate party shot. Vodka-infused jello in endless flavor combinations.",
+    image: "/cocktails/jello-shot.jpg",
     ingredients: [
       { name: "Vodka", amount: "1", unit: "cup" },
       { name: "Water", amount: "1", unit: "cup (boiling)" },
@@ -848,6 +881,7 @@ export const cocktails: Cocktail[] = [
     slug: "jungle-juice",
     name: "Jungle Juice",
     description: "The legendary party punch. A fruity, boozy mix that serves a crowd.",
+    image: "/cocktails/jungle-juice.jpg",
     ingredients: [
       { name: "Vodka", amount: "1", unit: "handle" },
       { name: "Rum", amount: "750", unit: "ml" },
@@ -875,6 +909,7 @@ export const cocktails: Cocktail[] = [
     slug: "long-island-iced-tea",
     name: "Long Island Iced Tea",
     description: "Deceptively strong but tastes like iced tea. Five spirits in one glass.",
+    image: "/cocktails/long-island-iced-tea.jpg",
     ingredients: [
       { name: "Vodka", amount: "0.5", unit: "oz" },
       { name: "Gin", amount: "0.5", unit: "oz" },
@@ -905,6 +940,7 @@ export const cocktails: Cocktail[] = [
     slug: "sex-on-the-beach",
     name: "Sex on the Beach",
     description: "Fruity, fun, and easy to drink. A beach vacation in a glass.",
+    image: "/cocktails/sex-on-the-beach.jpg",
     ingredients: [
       { name: "Vodka", amount: "1.5", unit: "oz" },
       { name: "Peach Schnapps", amount: "0.75", unit: "oz" },
@@ -933,6 +969,7 @@ export const cocktails: Cocktail[] = [
     slug: "virgin-mojito",
     name: "Virgin Mojito",
     description: "All the refreshing mint and lime without the alcohol. Perfect for designated drivers.",
+    image: "/cocktails/virgin-mojito.jpg",
     ingredients: [
       { name: "Fresh Mint", amount: "8-10", unit: "leaves" },
       { name: "Lime Juice", amount: "1", unit: "oz" },
@@ -959,6 +996,7 @@ export const cocktails: Cocktail[] = [
     slug: "shirley-temple",
     name: "Shirley Temple",
     description: "The classic kiddie cocktail. Sweet, fizzy, and topped with cherries.",
+    image: "/cocktails/shirley-temple.jpg",
     ingredients: [
       { name: "Ginger Ale", amount: "4", unit: "oz" },
       { name: "Lemon-Lime Soda", amount: "2", unit: "oz" },
@@ -984,6 +1022,7 @@ export const cocktails: Cocktail[] = [
     slug: "arnold-palmer",
     name: "Arnold Palmer",
     description: "Half iced tea, half lemonade. Named after the legendary golfer.",
+    image: "/cocktails/arnold-palmer.jpg",
     ingredients: [
       { name: "Iced Tea", amount: "4", unit: "oz" },
       { name: "Lemonade", amount: "4", unit: "oz" },
@@ -1009,6 +1048,7 @@ export const cocktails: Cocktail[] = [
     slug: "michelada",
     name: "Michelada",
     description: "A spicy Mexican beer cocktail. Like a Bloody Mary with beer.",
+    image: "/cocktails/michelada.jpg",
     ingredients: [
       { name: "Mexican Lager", amount: "12", unit: "oz" },
       { name: "Lime Juice", amount: "1", unit: "oz" },
@@ -1037,6 +1077,7 @@ export const cocktails: Cocktail[] = [
     slug: "black-velvet",
     name: "Black Velvet",
     description: "A luxurious mix of stout and champagne. Surprisingly delicious.",
+    image: "/cocktails/black-velvet.jpg",
     ingredients: [
       { name: "Stout Beer", amount: "4", unit: "oz" },
       { name: "Champagne", amount: "4", unit: "oz" },
@@ -1058,6 +1099,7 @@ export const cocktails: Cocktail[] = [
     slug: "shandy",
     name: "Shandy",
     description: "A refreshing beer and lemonade mix. Perfect for hot summer days.",
+    image: "/cocktails/shandy.jpg",
     ingredients: [
       { name: "Lager Beer", amount: "6", unit: "oz" },
       { name: "Lemonade", amount: "6", unit: "oz" },
@@ -1083,6 +1125,7 @@ export const cocktails: Cocktail[] = [
     slug: "amaretto-sour",
     name: "Amaretto Sour",
     description: "Sweet almond liqueur balanced with citrus. Smooth and approachable.",
+    image: "/cocktails/amaretto-sour.jpg",
     ingredients: [
       { name: "Amaretto", amount: "1.5", unit: "oz" },
       { name: "Bourbon", amount: "0.75", unit: "oz" },
@@ -1110,6 +1153,7 @@ export const cocktails: Cocktail[] = [
     slug: "aperol-spritz",
     name: "Aperol Spritz",
     description: "Italy's favorite aperitivo. Light, bitter-sweet, and bubbly.",
+    image: "/cocktails/aperol-spritz.jpg",
     ingredients: [
       { name: "Aperol", amount: "2", unit: "oz" },
       { name: "Prosecco", amount: "3", unit: "oz" },
@@ -1135,6 +1179,7 @@ export const cocktails: Cocktail[] = [
     slug: "white-russian",
     name: "White Russian",
     description: "The Dude's drink of choice. Vodka, coffee liqueur, and cream.",
+    image: "/cocktails/white-russian.jpg",
     ingredients: [
       { name: "Vodka", amount: "2", unit: "oz" },
       { name: "Coffee Liqueur", amount: "1", unit: "oz" },
@@ -1159,6 +1204,7 @@ export const cocktails: Cocktail[] = [
     slug: "hurricane",
     name: "Hurricane",
     description: "A New Orleans classic. Fruity, potent, and perfect for Mardi Gras.",
+    image: "/cocktails/hurricane.jpg",
     ingredients: [
       { name: "Light Rum", amount: "2", unit: "oz" },
       { name: "Dark Rum", amount: "2", unit: "oz" },
@@ -1187,6 +1233,7 @@ export const cocktails: Cocktail[] = [
     slug: "pisco-sour",
     name: "Pisco Sour",
     description: "Peru's national cocktail. Tangy, frothy, and utterly unique.",
+    image: "/cocktails/pisco-sour.jpg",
     ingredients: [
       { name: "Pisco", amount: "2", unit: "oz" },
       { name: "Lime Juice", amount: "1", unit: "oz" },
@@ -1214,6 +1261,7 @@ export const cocktails: Cocktail[] = [
     slug: "caipirinha",
     name: "Caipirinha",
     description: "Brazil's national cocktail. Muddled lime, sugar, and cachaca.",
+    image: "/cocktails/caipirinha.jpg",
     ingredients: [
       { name: "Cachaca", amount: "2", unit: "oz" },
       { name: "Lime", amount: "1", unit: "whole, quartered" },
@@ -1239,6 +1287,7 @@ export const cocktails: Cocktail[] = [
     slug: "singapore-sling",
     name: "Singapore Sling",
     description: "A complex gin-based classic from Singapore's Raffles Hotel.",
+    image: "/cocktails/singapore-sling.jpg",
     ingredients: [
       { name: "Gin", amount: "1.5", unit: "oz" },
       { name: "Cherry Heering", amount: "0.5", unit: "oz" },
@@ -1268,6 +1317,7 @@ export const cocktails: Cocktail[] = [
     slug: "sazerac",
     name: "Sazerac",
     description: "New Orleans' official cocktail. Rye, absinthe rinse, and Peychaud's bitters.",
+    image: "/cocktails/sazerac.jpg",
     ingredients: [
       { name: "Rye Whiskey", amount: "2", unit: "oz" },
       { name: "Sugar Cube", amount: "1" },
