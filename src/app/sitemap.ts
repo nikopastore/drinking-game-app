@@ -1,3 +1,6 @@
+// Force static generation for mobile builds
+export const dynamic = "force-static";
+
 import { MetadataRoute } from "next";
 import { games } from "@/config/gameData";
 import { getAllCategorySlugs } from "@/config/categoryData";
@@ -181,15 +184,69 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "slow-paced-drinking-games"
   ];
 
-  // Batch 3 - Gemini-researched high-quality guides (10)
+  // Batch 3 - Gemini-researched high-quality guides (10) + comparison guides
   const guideSlugsB3 = [
     "uno-drinking-game-rules", "wizard-staff-drinking-game", "beerio-kart-rules",
     "drunk-mario-kart-rules", "office-drinking-game", "friends-tv-show-drinking-game",
     "the-bachelor-drinking-game", "game-of-thrones-drinking-game",
-    "marvel-movie-drinking-game", "disney-drinking-game"
+    "marvel-movie-drinking-game", "disney-drinking-game",
+    // Comparison guides (SEO for "vs" queries)
+    "beer-pong-vs-flip-cup", "kings-cup-vs-ride-the-bus-comparison",
+    "rage-cage-vs-slap-cup", "quarters-vs-power-hour", "never-have-i-ever-vs-truth-or-dare",
+    "flip-cup-vs-rage-cage", "drunk-jenga-vs-kings-cup"
   ];
 
-  const guideSlugs = [...guideSlugsB1, ...guideSlugsB2, ...guideSlugsB3];
+  // Batch 5 - Trending TV/Movie drinking games
+  const guideSlugsB5 = [
+    "squid-game-drinking-game", "the-bear-drinking-game", "wednesday-drinking-game",
+    "barbie-movie-drinking-game", "love-is-blind-drinking-game", "stranger-things-drinking-game"
+  ];
+
+  // Batch 6 - Video game drinking games
+  const guideSlugsB6 = [
+    "smash-bros-drinking-game", "mario-party-drinking-game", "call-of-duty-drinking-game",
+    "fortnite-drinking-game", "rocket-league-drinking-game"
+  ];
+
+  // Batch 7 - Player count guides (drinking games for X people)
+  const guideSlugsB7 = [
+    "drinking-games-for-1", "drinking-games-for-6", "drinking-games-for-7",
+    "drinking-games-for-8", "drinking-games-for-9", "drinking-games-for-10",
+    "drinking-games-for-11-12", "drinking-games-for-13-15", "drinking-games-for-16-20"
+  ];
+
+  // Batch 8 - New comparison guides, game rules, sports, and seasonal content
+  const guideSlugsB8 = [
+    // Game comparison guides (9)
+    "beer-pong-vs-civil-war", "chandelier-vs-slap-cup", "irish-poker-vs-ride-the-bus",
+    "three-man-vs-7-11-doubles", "wizard-staff-vs-power-hour", "edward-40-hands-vs-wizard-staff",
+    "most-likely-to-vs-never-have-i-ever", "medusa-vs-buffalo", "truth-or-drink-vs-drink-or-dare",
+    // Game rule guides (12)
+    "buffalo-rules", "cheers-to-the-governor-rules", "7-11-doubles-rules", "landmines-rules",
+    "around-the-world-rules", "chems-rules", "horse-race-rules", "medusa-rules",
+    "never-have-i-ever-rules", "most-likely-to-rules", "truth-or-drink-rules",
+    // Sports drinking game guides (5)
+    "world-series-drinking-games", "nba-finals-drinking-games", "college-football-drinking-games",
+    "stanley-cup-drinking-games", "olympics-drinking-games",
+    // Seasonal content (5)
+    "cinco-de-mayo-drinking-games", "easter-drinking-games", "spring-break-drinking-games",
+    "labor-day-drinking-games", "memorial-day-drinking-games"
+  ];
+
+  // Batch 4 - Regional city guides (19 cities)
+  const guideSlugsB4 = [
+    // Original 8
+    "beer-pong-in-chicago-il", "beer-pong-in-denver-co", "beer-pong-in-seattle-wa",
+    "beer-pong-in-atlanta-ga", "beer-pong-in-nashville-tn", "beer-pong-in-san-diego-ca",
+    "beer-pong-in-phoenix-az", "beer-pong-in-portland-or",
+    // Added 11 more major cities
+    "beer-pong-in-austin-tx", "beer-pong-in-san-francisco-ca", "beer-pong-in-minneapolis-mn",
+    "beer-pong-in-philadelphia-pa", "beer-pong-in-dallas-tx", "beer-pong-in-houston-tx",
+    "beer-pong-in-miami-fl", "beer-pong-in-washington-dc", "beer-pong-in-boston-ma",
+    "beer-pong-in-las-vegas-nv", "beer-pong-in-new-york-city-ny", "beer-pong-in-los-angeles-ca"
+  ];
+
+  const guideSlugs = [...guideSlugsB1, ...guideSlugsB2, ...guideSlugsB3, ...guideSlugsB4, ...guideSlugsB5, ...guideSlugsB6, ...guideSlugsB7, ...guideSlugsB8];
 
   const guidePages: MetadataRoute.Sitemap = guideSlugs.map((slug) => ({
     url: `${baseUrl}/guides/${slug}`,
@@ -224,5 +281,155 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  return [...staticPages, ...guidePages, ...categoryPages, ...gamePages, ...cocktailPages];
+  // Blog pages - High priority for SEO
+  const blogPages: MetadataRoute.Sitemap = [
+    // Blog index
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
+    // Safety guides
+    {
+      url: `${baseUrl}/blog/safety/how-to-host-safe-drinking-party`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog/safety/know-your-limits`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/blog/safety/non-alcoholic-alternatives`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    },
+    // Buying guides
+    {
+      url: `${baseUrl}/blog/buying-guides/best-beer-pong-tables`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog/buying-guides/best-party-cups`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/blog/buying-guides/party-supplies-checklist`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+    // Tutorials
+    {
+      url: `${baseUrl}/blog/tutorials/beer-pong-tournament-setup`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog/tutorials/diy-beer-pong-table`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/blog/tutorials/virtual-drinking-games`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+    // Seasonal content
+    {
+      url: `${baseUrl}/blog/seasonal/super-bowl-2025-drinking-games`,
+      lastModified: new Date(),
+      changeFrequency: "yearly" as const,
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/blog/seasonal/summer-bbq-drinking-games`,
+      lastModified: new Date(),
+      changeFrequency: "yearly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog/seasonal/march-madness-drinking-games`,
+      lastModified: new Date(),
+      changeFrequency: "yearly" as const,
+      priority: 0.9,
+    },
+    // More buying guides
+    {
+      url: `${baseUrl}/blog/buying-guides/best-led-beer-pong-tables`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/blog/buying-guides/best-outdoor-drinking-games`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    },
+    // Party tips
+    {
+      url: `${baseUrl}/blog/party-tips/21st-birthday-party-ideas`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog/party-tips/tailgate-party-guide`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/blog/party-tips/small-apartment-party-hacks`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/blog/party-tips/house-party-essentials`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+    // More seasonal content
+    {
+      url: `${baseUrl}/blog/seasonal/fourth-of-july-drinking-games`,
+      lastModified: new Date(),
+      changeFrequency: "yearly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog/seasonal/halloween-drinking-games-2025`,
+      lastModified: new Date(),
+      changeFrequency: "yearly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog/seasonal/thanksgiving-drinking-games`,
+      lastModified: new Date(),
+      changeFrequency: "yearly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog/seasonal/new-years-eve-drinking-games-2025`,
+      lastModified: new Date(),
+      changeFrequency: "yearly" as const,
+      priority: 0.95,
+    },
+  ];
+
+  return [...staticPages, ...guidePages, ...categoryPages, ...gamePages, ...cocktailPages, ...blogPages];
 }

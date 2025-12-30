@@ -5,6 +5,9 @@
  * It exposes SipWiki's drinking game data as tools that ChatGPT can use.
  */
 
+// Force static export for mobile builds - API not available in mobile app
+export const dynamic = "force-static";
+
 import { NextRequest, NextResponse } from "next/server";
 import { games } from "@/config/gameData";
 import { cocktails } from "@/config/cocktailData";

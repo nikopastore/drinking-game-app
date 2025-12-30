@@ -27,7 +27,17 @@
       "Bash(mv:*)",
       "Bash(del /f /q \"c:\\Users\\nikop\\Documents\\GitHub\\drinking-game-app\\.next\\dev\\lock\")",
       "Skill(superpowers:writing-skills)",
-      "Skill(superpowers:writing-skills:*)"
+      "Skill(superpowers:writing-skills:*)",
+      "Bash(npx next build)",
+      "Bash(npx next build:*)",
+      "Bash(dir:*)",
+      "Bash(comm -13:*)",
+      "Bash(cat:*)",
+      "Bash(find:*)",
+      "Bash(xargs cat:*)",
+      "Bash(npm run build:mobile:*)",
+      "Bash(if exist \"src\\app\\auth\\callback\\route.ts\" del \"src\\app\\auth\\callback\\route.ts\")",
+      "Bash(npx cap:*)"
     ]
   }
 }
