@@ -28,6 +28,7 @@ import {
   Wheat,
   FlaskConical,
   PartyPopper,
+  Archive,
 } from "lucide-react";
 
 // Custom 4-person icon for Large Groups
@@ -66,11 +67,19 @@ interface NavItem {
   icon: React.ReactNode;
 }
 
-// Shared nav items (appear in both modes)
-const sharedNavItems: NavItem[] = [
+// Shared nav items for Games mode
+const gamesSharedNavItems: NavItem[] = [
   { href: "/favorites", label: "Favourites", icon: <Star className="h-5 w-5" /> },
   { href: "/recent", label: "Recent", icon: <Clock className="h-5 w-5" /> },
   { href: "/spin", label: "Spin", icon: <CircleDot className="h-5 w-5" /> },
+  { href: "/shop", label: "Shop", icon: <ShoppingBag className="h-5 w-5" /> },
+];
+
+// Shared nav items for Cocktails mode
+const cocktailsSharedNavItems: NavItem[] = [
+  { href: "/favorites", label: "Favourites", icon: <Star className="h-5 w-5" /> },
+  { href: "/recent", label: "Recent", icon: <Clock className="h-5 w-5" /> },
+  { href: "/liquor-cabinet", label: "Liquor Cabinet", icon: <Archive className="h-5 w-5" /> },
   { href: "/shop", label: "Shop", icon: <ShoppingBag className="h-5 w-5" /> },
 ];
 
@@ -164,7 +173,8 @@ export function Sidebar() {
   const { mode } = useMode();
   const pathname = usePathname();
 
-  // Select category and tools items based on mode
+  // Select items based on mode
+  const sharedNavItems = mode === "games" ? gamesSharedNavItems : cocktailsSharedNavItems;
   const categoryItems = mode === "games" ? gamesCategoryItems : cocktailsCategoryItems;
   const toolsItems = mode === "games" ? gamesToolsItems : cocktailsToolsItems;
   const categoryLabel = mode === "games" ? "Game Categories" : "Spirit Categories";

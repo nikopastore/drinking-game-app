@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Flame, Search, CircleDot, ShoppingBag, Martini } from "lucide-react";
+import { Flame, Search, CircleDot, ShoppingBag, Martini, Archive } from "lucide-react";
 import { useMode } from "@/contexts/ModeContext";
 
 interface NavItem {
@@ -21,7 +21,9 @@ export function MobileNav() {
       ? { href: "/games", label: "Games", icon: <Flame className="h-6 w-6" /> }
       : { href: "/cocktails", label: "Cocktails", icon: <Martini className="h-6 w-6" /> },
     { href: "/search", label: "Search", icon: <Search className="h-6 w-6" /> },
-    { href: "/spin", label: "Spin", icon: <CircleDot className="h-6 w-6" /> },
+    mode === "games"
+      ? { href: "/spin", label: "Spin", icon: <CircleDot className="h-6 w-6" /> }
+      : { href: "/liquor-cabinet", label: "Cabinet", icon: <Archive className="h-6 w-6" /> },
     { href: "/shop", label: "Shop", icon: <ShoppingBag className="h-6 w-6" /> },
   ];
 

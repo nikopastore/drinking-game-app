@@ -70,13 +70,13 @@ function CocktailCard({ cocktail }: { cocktail: Cocktail }) {
       <Card className="h-full hover:border-neon-pink/50 transition-all duration-200 hover:shadow-lg hover:shadow-neon-pink/20 cursor-pointer group overflow-hidden">
         {/* Cocktail Image */}
         {cocktail.image && (
-          <div className="relative h-40 w-full overflow-hidden">
+          <div className="relative h-52 w-full overflow-hidden bg-dark-700">
             <img
               src={cocktail.image}
               alt={cocktail.name}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-dark-800 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-dark-800 to-transparent" />
           </div>
         )}
         <CardContent className="p-4">

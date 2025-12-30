@@ -156,7 +156,7 @@ export function FavoritesClient() {
             {favoritedCocktails.map((cocktail) => (
               <Link
                 key={cocktail.item_slug}
-                href={`/cocktail/${cocktail.item_slug}`}
+                href={`/cocktails/${cocktail.item_slug}`}
                 className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-gradient-to-br from-purple-600 to-pink-800 hover:scale-[1.03] transition-all duration-150"
               >
                 <div className="absolute inset-0 flex items-center justify-center opacity-30">
