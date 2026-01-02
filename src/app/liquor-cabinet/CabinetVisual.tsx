@@ -191,14 +191,15 @@ function BottleImage({
   const depthScale = 0.75 + (shelfIndex * 0.125);
   const height = baseHeight * depthScale;
 
+  // Top shelf (index 2) - tooltip goes below, less lift on hover
+  const isTopShelf = shelfIndex === 2;
+  const hoverLift = isTopShelf ? 8 : 15;
+
   return (
     <div
-      className="absolute transition-all duration-300 ease-out cursor-pointer"
+      className="transition-all duration-300 ease-out cursor-pointer relative"
       style={{
-        left: `${position.x}%`,
-        bottom: 0,
-        transform: `translateX(-50%) ${isHovered ? 'translateY(-20px) scale(1.1)' : 'translateY(0) scale(1)'}`,
-        zIndex: isHovered ? 100 : 10 + shelfIndex * 10 + Math.round(position.z),
+        transform: `translateX(-50%) ${isHovered ? `translateY(-${hoverLift}px) scale(1.08)` : 'translateY(0) scale(1)'}`,
         filter: isHovered
           ? 'drop-shadow(0 25px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 20px rgba(168,85,247,0.4))'
           : 'drop-shadow(0 10px 20px rgba(0,0,0,0.4))',
@@ -206,6 +207,32 @@ function BottleImage({
       onMouseEnter={() => onHover(item)}
       onMouseLeave={() => onHover(null)}
     >
+      {/* Hover detail card - positioned ABOVE for bottom/middle shelves */}
+      {isHovered && !isTopShelf && (
+        <div
+          className="absolute left-1/2 -translate-x-1/2 bottom-full mb-3 px-4 py-2.5 rounded-xl whitespace-nowrap"
+          style={{
+            zIndex: 1001,
+            background: 'linear-gradient(135deg, rgba(20,10,30,0.98), rgba(30,15,45,0.98))',
+            border: '1px solid rgba(168,85,247,0.4)',
+            boxShadow: '0 15px 50px rgba(0,0,0,0.6), 0 0 30px rgba(168,85,247,0.3)',
+            backdropFilter: 'blur(10px)',
+          }}
+        >
+          <p className="text-white font-semibold text-sm">{item}</p>
+          <p className="text-purple-300 text-xs mt-0.5">{label}</p>
+          {/* Arrow pointing down */}
+          <div
+            className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0"
+            style={{
+              borderLeft: '8px solid transparent',
+              borderRight: '8px solid transparent',
+              borderTop: '8px solid rgba(30,15,45,0.98)',
+            }}
+          />
+        </div>
+      )}
+
       {/* Bottle image */}
       <div
         className="relative"
@@ -220,11 +247,12 @@ function BottleImage({
         />
       </div>
 
-      {/* Hover detail card */}
-      {isHovered && (
+      {/* Hover detail card - positioned BELOW for top shelf */}
+      {isHovered && isTopShelf && (
         <div
-          className="absolute left-1/2 -translate-x-1/2 bottom-full mb-3 px-4 py-2.5 rounded-xl whitespace-nowrap z-50"
+          className="absolute left-1/2 -translate-x-1/2 top-full mt-3 px-4 py-2.5 rounded-xl whitespace-nowrap"
           style={{
+            zIndex: 1001,
             background: 'linear-gradient(135deg, rgba(20,10,30,0.98), rgba(30,15,45,0.98))',
             border: '1px solid rgba(168,85,247,0.4)',
             boxShadow: '0 15px 50px rgba(0,0,0,0.6), 0 0 30px rgba(168,85,247,0.3)',
@@ -233,13 +261,13 @@ function BottleImage({
         >
           <p className="text-white font-semibold text-sm">{item}</p>
           <p className="text-purple-300 text-xs mt-0.5">{label}</p>
-          {/* Arrow */}
+          {/* Arrow pointing up */}
           <div
-            className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0"
+            className="absolute left-1/2 -translate-x-1/2 bottom-full w-0 h-0"
             style={{
               borderLeft: '8px solid transparent',
               borderRight: '8px solid transparent',
-              borderTop: '8px solid rgba(30,15,45,0.98)',
+              borderBottom: '8px solid rgba(30,15,45,0.98)',
             }}
           />
         </div>
@@ -415,18 +443,19 @@ export function CabinetVisual({ items, onAddClick }: CabinetVisualProps) {
           <GlassShelf key={i} index={i} />
         ))}
 
-        {/* Bottles on shelves */}
-        {shelfItems.map((shelf, shelfIndex) => (
-          <div
-            key={shelfIndex}
-            className="absolute left-4 right-4"
-            style={{
-              bottom: `${10 + shelfIndex * 30}%`,
-              height: '28%',
-            }}
-          >
-            {shelf.map(({ item, position }) => (
-              <div key={item} className="bottle-item">
+        {/* All bottles in single container for proper z-index stacking */}
+        <div className="absolute inset-4 bottom-4" style={{ zIndex: 50 }}>
+          {shelfItems.map((shelf, shelfIndex) =>
+            shelf.map(({ item, position }) => (
+              <div
+                key={item}
+                className="bottle-item absolute"
+                style={{
+                  left: `${position.x}%`,
+                  bottom: `${8 + shelfIndex * 30}%`,
+                  zIndex: hoveredItem === item ? 1000 : 10 + shelfIndex * 10 + Math.round(position.z),
+                }}
+              >
                 <BottleImage
                   item={item}
                   isHovered={hoveredItem === item}
@@ -435,9 +464,9 @@ export function CabinetVisual({ items, onAddClick }: CabinetVisualProps) {
                   shelfIndex={shelfIndex}
                 />
               </div>
-            ))}
-          </div>
-        ))}
+            ))
+          )}
+        </div>
 
         {/* Empty state */}
         {isEmpty && (
