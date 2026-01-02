@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Plus, X } from "lucide-react";
+import { Plus } from "lucide-react";
+import Image from "next/image";
 import { ingredientCategories } from "@/config/cabinetIngredients";
 
 interface CabinetVisualProps {
@@ -9,45 +10,85 @@ interface CabinetVisualProps {
   onAddClick: () => void;
 }
 
-// Bottle style configurations
-type BottleType = "tall" | "whiskey" | "wine" | "champagne" | "round" | "liqueur" | "bitters";
+// Map ingredients to bottle images
+const bottleImages: Record<string, string> = {
+  // Vodka
+  "Vodka": "/bottles/vodka.png",
+  "Flavored Vodka": "/bottles/vodka.png",
 
-interface BottleStyle {
-  type: BottleType;
-  liquidColor: string;
-  glassColor: string;
-  label: string;
-}
+  // Gin
+  "Gin (London Dry)": "/bottles/gin.png",
+  "Gin (Other)": "/bottles/gin.png",
 
-const categoryBottleStyles: Record<string, BottleStyle> = {
-  "Spirits": { type: "tall", liquidColor: "rgba(255,255,255,0.15)", glassColor: "rgba(255,255,255,0.1)", label: "Spirit" },
-  "Liqueurs": { type: "liqueur", liquidColor: "rgba(219,39,119,0.4)", glassColor: "rgba(255,255,255,0.12)", label: "Liqueur" },
-  "Mixers": { type: "round", liquidColor: "rgba(34,211,238,0.3)", glassColor: "rgba(255,255,255,0.15)", label: "Mixer" },
-  "Fresh & Citrus": { type: "round", liquidColor: "rgba(250,204,21,0.4)", glassColor: "rgba(255,255,255,0.12)", label: "Fresh" },
-  "Syrups & Sweeteners": { type: "bitters", liquidColor: "rgba(245,158,11,0.5)", glassColor: "rgba(255,255,255,0.1)", label: "Syrup" },
-  "Beer & Wine": { type: "wine", liquidColor: "rgba(127,29,29,0.6)", glassColor: "rgba(255,255,255,0.08)", label: "Wine" },
-  "Bitters & Extras": { type: "bitters", liquidColor: "rgba(180,83,9,0.6)", glassColor: "rgba(255,255,255,0.1)", label: "Bitters" },
-};
+  // Rum
+  "Rum (White)": "/bottles/vodka.png",
+  "Rum (Dark)": "/bottles/brandy.png",
+  "Rum (Spiced)": "/bottles/brandy.png",
+  "Rum (Coconut)": "/bottles/vodka.png",
 
-// Spirit-specific overrides
-const spiritStyles: Record<string, Partial<BottleStyle>> = {
-  "Vodka": { type: "tall", liquidColor: "rgba(255,255,255,0.08)" },
-  "Gin (London Dry)": { type: "tall", liquidColor: "rgba(200,255,220,0.12)" },
-  "Bourbon": { type: "whiskey", liquidColor: "rgba(180,100,20,0.5)" },
-  "Rye Whiskey": { type: "whiskey", liquidColor: "rgba(160,90,20,0.5)" },
-  "Scotch": { type: "whiskey", liquidColor: "rgba(200,120,30,0.45)" },
-  "Irish Whiskey": { type: "whiskey", liquidColor: "rgba(190,110,25,0.45)" },
-  "Tequila (Blanco)": { type: "tall", liquidColor: "rgba(255,255,255,0.1)" },
-  "Tequila (Reposado)": { type: "tall", liquidColor: "rgba(230,200,150,0.25)" },
-  "Rum (White)": { type: "tall", liquidColor: "rgba(255,255,255,0.08)" },
-  "Rum (Dark)": { type: "tall", liquidColor: "rgba(100,50,20,0.5)" },
-  "Rum (Spiced)": { type: "tall", liquidColor: "rgba(139,69,19,0.45)" },
-  "Champagne/Prosecco": { type: "champagne", liquidColor: "rgba(255,223,128,0.3)" },
-  "Red Wine": { type: "wine", liquidColor: "rgba(100,20,30,0.7)" },
-  "White Wine": { type: "wine", liquidColor: "rgba(255,240,200,0.25)" },
-  "Rosé Wine": { type: "wine", liquidColor: "rgba(255,150,150,0.35)" },
-  "Beer (Lager)": { type: "round", liquidColor: "rgba(255,200,50,0.5)" },
-  "Beer (IPA)": { type: "round", liquidColor: "rgba(200,140,30,0.55)" },
+  // Tequila
+  "Tequila (Blanco)": "/bottles/tequila.png",
+  "Tequila (Reposado)": "/bottles/tequila.png",
+  "Tequila (Añejo)": "/bottles/tequila.png",
+  "Mezcal": "/bottles/tequila.png",
+
+  // Whiskey
+  "Bourbon": "/bottles/whiskey.png",
+  "Rye Whiskey": "/bottles/whiskey.png",
+  "Scotch": "/bottles/whiskey.png",
+  "Irish Whiskey": "/bottles/whiskey.png",
+  "Canadian Whisky": "/bottles/whiskey.png",
+  "Japanese Whisky": "/bottles/whiskey.png",
+
+  // Brandy & Cognac
+  "Cognac": "/bottles/cognac.png",
+  "Brandy": "/bottles/brandy.png",
+  "Pisco": "/bottles/brandy.png",
+
+  // Liqueurs
+  "Triple Sec": "/bottles/liqueur.png",
+  "Cointreau": "/bottles/liqueur.png",
+  "Grand Marnier": "/bottles/liqueur.png",
+  "Blue Curaçao": "/bottles/liqueur.png",
+  "Kahlúa": "/bottles/liqueur.png",
+  "Baileys": "/bottles/liqueur.png",
+  "Amaretto": "/bottles/liqueur.png",
+  "Frangelico": "/bottles/liqueur.png",
+  "Chambord": "/bottles/liqueur.png",
+  "St-Germain": "/bottles/liqueur.png",
+  "Midori": "/bottles/liqueur.png",
+  "Crème de Menthe": "/bottles/liqueur.png",
+  "Crème de Cacao": "/bottles/liqueur.png",
+  "Maraschino Liqueur": "/bottles/liqueur.png",
+  "Campari": "/bottles/liqueur.png",
+  "Aperol": "/bottles/liqueur.png",
+  "Drambuie": "/bottles/liqueur.png",
+  "Galliano": "/bottles/liqueur.png",
+  "Jägermeister": "/bottles/liqueur.png",
+  "Absinthe": "/bottles/gin.png",
+
+  // Wine & Champagne
+  "Red Wine": "/bottles/wine-red.png",
+  "White Wine": "/bottles/wine-red.png",
+  "Rosé Wine": "/bottles/wine-red.png",
+  "Champagne/Prosecco": "/bottles/champagne.png",
+  "Dry Vermouth": "/bottles/wine-red.png",
+  "Sweet Vermouth": "/bottles/wine-red.png",
+
+  // Beer
+  "Beer (Lager)": "/bottles/beer.png",
+  "Beer (IPA)": "/bottles/beer.png",
+  "Beer (Stout)": "/bottles/beer.png",
+  "Beer (Wheat)": "/bottles/beer.png",
+
+  // Default fallbacks by category
+  "_Spirits": "/bottles/vodka.png",
+  "_Liqueurs": "/bottles/liqueur.png",
+  "_Beer & Wine": "/bottles/wine-red.png",
+  "_Mixers": "/bottles/vodka.png",
+  "_Fresh & Citrus": "/bottles/vodka.png",
+  "_Syrups & Sweeteners": "/bottles/liqueur.png",
+  "_Bitters & Extras": "/bottles/liqueur.png",
 };
 
 function getCategoryForItem(item: string): string {
@@ -59,199 +100,119 @@ function getCategoryForItem(item: string): string {
   return "Spirits";
 }
 
-function getBottleStyle(item: string): BottleStyle {
-  const category = getCategoryForItem(item);
-  const baseStyle = categoryBottleStyles[category] || categoryBottleStyles["Spirits"];
-  const override = spiritStyles[item];
+function getBottleImage(item: string): string {
+  // Direct match
+  if (bottleImages[item]) {
+    return bottleImages[item];
+  }
 
-  return {
-    ...baseStyle,
-    ...override,
-  };
+  // Category fallback
+  const category = getCategoryForItem(item);
+  const categoryKey = `_${category}`;
+  if (bottleImages[categoryKey]) {
+    return bottleImages[categoryKey];
+  }
+
+  // Ultimate fallback
+  return "/bottles/vodka.png";
 }
 
-// 3D Bottle Component with CSS
-function Bottle3D({
+function getCategoryLabel(item: string): string {
+  const category = getCategoryForItem(item);
+  const labels: Record<string, string> = {
+    "Spirits": "Spirit",
+    "Liqueurs": "Liqueur",
+    "Mixers": "Mixer",
+    "Fresh & Citrus": "Fresh",
+    "Syrups & Sweeteners": "Syrup",
+    "Beer & Wine": "Beverage",
+    "Bitters & Extras": "Bitters",
+  };
+  return labels[category] || "Item";
+}
+
+// Real bottle component using images
+function BottleImage({
   item,
-  style,
   isHovered,
   onHover,
   position,
   shelfIndex,
 }: {
   item: string;
-  style: BottleStyle;
   isHovered: boolean;
   onHover: (item: string | null) => void;
   position: { x: number; z: number };
   shelfIndex: number;
 }) {
-  const heights: Record<BottleType, number> = {
-    tall: 140,
-    whiskey: 110,
-    wine: 130,
-    champagne: 135,
-    round: 80,
-    liqueur: 100,
-    bitters: 70,
-  };
+  const imageSrc = getBottleImage(item);
+  const label = getCategoryLabel(item);
 
-  const widths: Record<BottleType, number> = {
-    tall: 36,
-    whiskey: 44,
-    wine: 34,
-    champagne: 32,
-    round: 50,
-    liqueur: 38,
-    bitters: 28,
-  };
-
-  const height = heights[style.type];
-  const width = widths[style.type];
-
-  // Depth factor based on shelf (back = smaller, front = larger)
-  const depthScale = 0.85 + (shelfIndex * 0.075);
-  const scaledHeight = height * depthScale;
-  const scaledWidth = width * depthScale;
+  // Depth scaling - back shelves have smaller bottles
+  const baseHeight = 120;
+  const depthScale = 0.75 + (shelfIndex * 0.125);
+  const height = baseHeight * depthScale;
 
   return (
     <div
       className="absolute transition-all duration-300 ease-out cursor-pointer"
       style={{
         left: `${position.x}%`,
-        bottom: `${8 + shelfIndex * 2}px`,
-        transform: `translateX(-50%) ${isHovered ? 'translateY(-24px) scale(1.08)' : 'translateY(0) scale(1)'}`,
+        bottom: 0,
+        transform: `translateX(-50%) ${isHovered ? 'translateY(-20px) scale(1.1)' : 'translateY(0) scale(1)'}`,
         zIndex: isHovered ? 100 : 10 + shelfIndex * 10 + Math.round(position.z),
-        filter: isHovered ? `drop-shadow(0 20px 40px ${style.liquidColor.replace('0.', '0.6')})` : 'none',
+        filter: isHovered
+          ? 'drop-shadow(0 25px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 20px rgba(168,85,247,0.4))'
+          : 'drop-shadow(0 10px 20px rgba(0,0,0,0.4))',
       }}
       onMouseEnter={() => onHover(item)}
       onMouseLeave={() => onHover(null)}
     >
-      {/* Bottle */}
+      {/* Bottle image */}
       <div
         className="relative"
-        style={{ width: scaledWidth, height: scaledHeight }}
+        style={{ height: `${height}px`, width: `${height * 0.4}px` }}
       >
-        {/* Glass bottle body */}
-        <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-b-lg overflow-hidden"
-          style={{
-            width: scaledWidth,
-            height: scaledHeight * 0.7,
-            background: `
-              linear-gradient(135deg,
-                ${style.glassColor} 0%,
-                rgba(255,255,255,0.03) 30%,
-                ${style.glassColor} 70%,
-                rgba(255,255,255,0.15) 100%
-              )
-            `,
-            boxShadow: `
-              inset -2px 0 8px rgba(255,255,255,0.1),
-              inset 2px 0 8px rgba(0,0,0,0.2),
-              0 4px 20px rgba(0,0,0,0.4)
-            `,
-            borderRadius: style.type === 'round' ? '30%' : style.type === 'whiskey' ? '4px' : '6px',
-          }}
-        >
-          {/* Liquid inside */}
-          <div
-            className="absolute bottom-0 left-0 right-0"
-            style={{
-              height: '75%',
-              background: `linear-gradient(to top, ${style.liquidColor}, ${style.liquidColor.replace(')', ', 0.1)')})`,
-              borderRadius: 'inherit',
-            }}
-          />
-          {/* Glass reflection */}
-          <div
-            className="absolute top-2 left-1 bottom-4 w-1 rounded-full"
-            style={{
-              background: 'linear-gradient(to bottom, rgba(255,255,255,0.3), rgba(255,255,255,0.05))',
-            }}
-          />
-          {/* Label */}
-          <div
-            className="absolute left-1/2 -translate-x-1/2 bg-white/90 rounded-sm flex items-center justify-center"
-            style={{
-              width: scaledWidth * 0.7,
-              height: scaledHeight * 0.15,
-              top: '35%',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.2)',
-            }}
-          >
-            <span className="text-[6px] font-medium text-gray-700 uppercase tracking-wider truncate px-1">
-              {item.length > 10 ? item.substring(0, 8) + '..' : item}
-            </span>
-          </div>
-        </div>
-
-        {/* Bottle neck */}
-        <div
-          className="absolute left-1/2 -translate-x-1/2"
-          style={{
-            width: scaledWidth * 0.35,
-            height: scaledHeight * 0.25,
-            bottom: scaledHeight * 0.65,
-            background: `
-              linear-gradient(135deg,
-                ${style.glassColor} 0%,
-                rgba(255,255,255,0.05) 50%,
-                ${style.glassColor} 100%
-              )
-            `,
-            borderRadius: '3px 3px 0 0',
-            boxShadow: 'inset -1px 0 4px rgba(255,255,255,0.1)',
-          }}
-        />
-
-        {/* Cap/Cork */}
-        <div
-          className="absolute left-1/2 -translate-x-1/2"
-          style={{
-            width: scaledWidth * 0.3,
-            height: scaledHeight * 0.08,
-            bottom: scaledHeight * 0.88,
-            background: style.type === 'wine' || style.type === 'whiskey'
-              ? 'linear-gradient(to right, #8B4513, #A0522D, #8B4513)'
-              : 'linear-gradient(to right, #374151, #4B5563, #374151)',
-            borderRadius: '2px',
-            boxShadow: '0 -1px 2px rgba(0,0,0,0.3)',
-          }}
+        <Image
+          src={imageSrc}
+          alt={item}
+          fill
+          className="object-contain"
+          sizes={`${Math.round(height * 0.4)}px`}
         />
       </div>
 
       {/* Hover detail card */}
       {isHovered && (
         <div
-          className="absolute left-1/2 -translate-x-1/2 bottom-full mb-4 px-3 py-2 rounded-lg whitespace-nowrap z-50 animate-in fade-in slide-in-from-bottom-2 duration-200"
+          className="absolute left-1/2 -translate-x-1/2 bottom-full mb-3 px-4 py-2.5 rounded-xl whitespace-nowrap z-50"
           style={{
-            background: 'linear-gradient(135deg, rgba(30,27,75,0.98), rgba(15,10,26,0.98))',
-            border: '1px solid rgba(168,85,247,0.3)',
-            boxShadow: '0 10px 40px rgba(0,0,0,0.5), 0 0 20px rgba(168,85,247,0.2)',
+            background: 'linear-gradient(135deg, rgba(20,10,30,0.98), rgba(30,15,45,0.98))',
+            border: '1px solid rgba(168,85,247,0.4)',
+            boxShadow: '0 15px 50px rgba(0,0,0,0.6), 0 0 30px rgba(168,85,247,0.3)',
+            backdropFilter: 'blur(10px)',
           }}
         >
           <p className="text-white font-semibold text-sm">{item}</p>
-          <p className="text-purple-300 text-xs">{style.label}</p>
+          <p className="text-purple-300 text-xs mt-0.5">{label}</p>
+          {/* Arrow */}
           <div
             className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0"
             style={{
-              borderLeft: '6px solid transparent',
-              borderRight: '6px solid transparent',
-              borderTop: '6px solid rgba(30,27,75,0.98)',
+              borderLeft: '8px solid transparent',
+              borderRight: '8px solid transparent',
+              borderTop: '8px solid rgba(30,15,45,0.98)',
             }}
           />
         </div>
       )}
 
-      {/* Glow under bottle on hover */}
+      {/* Glow effect under bottle */}
       {isHovered && (
         <div
-          className="absolute left-1/2 -translate-x-1/2 -bottom-2 rounded-full blur-xl animate-pulse"
+          className="absolute left-1/2 -translate-x-1/2 -bottom-3 w-16 h-8 rounded-full blur-xl"
           style={{
-            width: scaledWidth * 1.5,
-            height: 16,
-            background: style.liquidColor.replace('0.', '0.8'),
+            background: 'radial-gradient(ellipse, rgba(168,85,247,0.6), transparent)',
           }}
         />
       )}
@@ -260,52 +221,56 @@ function Bottle3D({
 }
 
 // Glass shelf component
-function GlassShelf({ index, totalShelves }: { index: number; totalShelves: number }) {
-  // Back shelves are narrower (perspective)
-  const widthPercent = 75 + (index * 8);
+function GlassShelf({ index }: { index: number }) {
+  // Perspective: back shelves narrower
+  const widthPercent = 70 + (index * 10);
   const leftOffset = (100 - widthPercent) / 2;
 
   return (
     <div
-      className="absolute left-0 right-0"
+      className="absolute left-0 right-0 pointer-events-none"
       style={{
-        bottom: `${10 + index * 33}%`,
-        height: '4px',
-        zIndex: index * 10,
+        bottom: `${8 + index * 30}%`,
+        height: '6px',
+        zIndex: index * 5,
       }}
     >
-      {/* Shelf surface */}
+      {/* Main shelf surface */}
       <div
         className="absolute h-full"
         style={{
           left: `${leftOffset}%`,
           width: `${widthPercent}%`,
-          background: 'linear-gradient(to bottom, rgba(255,255,255,0.15), rgba(255,255,255,0.05))',
+          background: 'linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 100%)',
           boxShadow: `
-            0 2px 10px rgba(0,0,0,0.3),
-            inset 0 1px 0 rgba(255,255,255,0.2)
+            0 2px 15px rgba(0,0,0,0.4),
+            inset 0 1px 0 rgba(255,255,255,0.15),
+            inset 0 -1px 0 rgba(0,0,0,0.2)
           `,
-          borderRadius: '1px',
+          borderRadius: '2px',
         }}
       />
+
       {/* LED underglow */}
       <div
-        className="absolute h-6 blur-md"
+        className="absolute blur-lg"
         style={{
-          left: `${leftOffset + 2}%`,
-          width: `${widthPercent - 4}%`,
-          top: '4px',
-          background: 'linear-gradient(to bottom, rgba(168,85,247,0.4), transparent)',
+          left: `${leftOffset + 3}%`,
+          width: `${widthPercent - 6}%`,
+          top: '6px',
+          height: '20px',
+          background: 'linear-gradient(180deg, rgba(168,85,247,0.5) 0%, rgba(168,85,247,0.1) 50%, transparent 100%)',
         }}
       />
-      {/* Shelf edge highlight */}
+
+      {/* Edge highlight */}
       <div
         className="absolute h-px"
         style={{
           left: `${leftOffset}%`,
           width: `${widthPercent}%`,
           top: 0,
-          background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent)',
+          background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 20%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.3) 80%, transparent 100%)',
         }}
       />
     </div>
@@ -321,35 +286,21 @@ export function CabinetVisual({ items, onAddClick }: CabinetVisualProps) {
 
     if (items.length === 0) return shelves;
 
-    // Sort items by bottle height (tall bottles to back)
-    const sortedItems = [...items].sort((a, b) => {
-      const styleA = getBottleStyle(a);
-      const styleB = getBottleStyle(b);
-      const heightOrder: Record<BottleType, number> = {
-        tall: 5, champagne: 4, wine: 3, whiskey: 2, liqueur: 1, round: 0, bitters: 0
-      };
-      return heightOrder[styleB.type] - heightOrder[styleA.type];
-    });
+    // Distribute items across shelves, balancing them
+    items.forEach((item, idx) => {
+      // Distribute evenly, starting from back shelf
+      const shelfIdx = idx % 3;
+      const itemsOnShelf = shelves[shelfIdx].length;
 
-    // Distribute to shelves (tall to back, short to front)
-    sortedItems.forEach((item, idx) => {
-      const style = getBottleStyle(item);
-      const heightOrder: Record<BottleType, number> = {
-        tall: 2, champagne: 2, wine: 1, whiskey: 1, liqueur: 0, round: 0, bitters: 0
-      };
-      let shelfIdx = heightOrder[style.type];
-
-      // Balance shelves
-      const minShelf = shelves.reduce((min, shelf, i) =>
-        shelf.length < shelves[min].length ? i : min, shelfIdx);
-      shelfIdx = minShelf;
-
-      // Natural positioning with slight randomness
-      const baseSpacing = 100 / (Math.max(shelves[shelfIdx].length + 2, 4));
-      const x = 15 + (shelves[shelfIdx].length * baseSpacing) + (Math.random() * 5 - 2.5);
+      // Calculate position with natural spacing
+      const maxPerShelf = Math.ceil(items.length / 3) + 1;
+      const spacing = 70 / maxPerShelf;
+      const baseX = 15 + (itemsOnShelf * spacing);
+      const randomOffset = (Math.random() - 0.5) * 8;
+      const x = Math.max(12, Math.min(88, baseX + randomOffset));
       const z = Math.random() * 5;
 
-      shelves[shelfIdx].push({ item, position: { x: Math.min(85, Math.max(15, x)), z } });
+      shelves[shelfIdx].push({ item, position: { x, z } });
     });
 
     return shelves;
@@ -358,23 +309,23 @@ export function CabinetVisual({ items, onAddClick }: CabinetVisualProps) {
   const isEmpty = items.length === 0;
 
   return (
-    <div className="relative w-full max-w-2xl mx-auto">
+    <div className="relative w-full max-w-3xl mx-auto">
       {/* Cabinet container */}
       <div
         className="relative rounded-2xl overflow-hidden cursor-pointer group"
         style={{
-          height: '400px',
+          height: '450px',
           background: `
             linear-gradient(180deg,
-              rgba(30,20,10,0.95) 0%,
-              rgba(10,10,15,1) 40%,
-              rgba(5,5,8,1) 100%
+              rgba(25,15,10,1) 0%,
+              rgba(12,8,15,1) 30%,
+              rgba(8,5,12,1) 100%
             )
           `,
           boxShadow: `
-            0 25px 60px -12px rgba(0, 0, 0, 0.7),
-            inset 0 1px 0 rgba(255,255,255,0.05),
-            inset 0 -50px 80px -40px rgba(168,85,247,0.1)
+            0 30px 80px -20px rgba(0, 0, 0, 0.8),
+            inset 0 1px 0 rgba(255,255,255,0.03),
+            inset 0 -100px 100px -80px rgba(168,85,247,0.08)
           `,
         }}
         onClick={(e) => {
@@ -382,55 +333,68 @@ export function CabinetVisual({ items, onAddClick }: CabinetVisualProps) {
           onAddClick();
         }}
       >
-        {/* Ambient top light (bar lighting) */}
+        {/* Ambient warm light from top (bar lighting) */}
         <div
-          className="absolute top-0 left-0 right-0 h-32 pointer-events-none"
+          className="absolute top-0 left-0 right-0 h-40 pointer-events-none"
           style={{
             background: `
-              radial-gradient(ellipse 80% 50% at 50% 0%,
-                rgba(255,180,100,0.15) 0%,
-                rgba(255,150,50,0.05) 40%,
-                transparent 70%
+              radial-gradient(ellipse 100% 80% at 50% -20%,
+                rgba(255,200,120,0.12) 0%,
+                rgba(255,160,80,0.06) 30%,
+                transparent 60%
               )
             `,
           }}
         />
 
-        {/* Mirror/glass back panel effect */}
+        {/* Side ambient lights */}
         <div
-          className="absolute inset-x-8 top-8 bottom-16 rounded-lg pointer-events-none"
+          className="absolute top-0 left-0 bottom-0 w-20 pointer-events-none"
+          style={{
+            background: 'linear-gradient(90deg, rgba(168,85,247,0.03) 0%, transparent 100%)',
+          }}
+        />
+        <div
+          className="absolute top-0 right-0 bottom-0 w-20 pointer-events-none"
+          style={{
+            background: 'linear-gradient(-90deg, rgba(168,85,247,0.03) 0%, transparent 100%)',
+          }}
+        />
+
+        {/* Mirror/glass back panel */}
+        <div
+          className="absolute inset-x-6 top-6 bottom-20 rounded-lg pointer-events-none"
           style={{
             background: `
               linear-gradient(180deg,
-                rgba(255,255,255,0.02) 0%,
-                rgba(255,255,255,0.01) 50%,
-                rgba(168,85,247,0.03) 100%
+                rgba(255,255,255,0.015) 0%,
+                rgba(255,255,255,0.005) 50%,
+                rgba(168,85,247,0.02) 100%
               )
             `,
-            border: '1px solid rgba(255,255,255,0.03)',
+            border: '1px solid rgba(255,255,255,0.02)',
           }}
         />
 
         {/* Glass shelves */}
         {[0, 1, 2].map((i) => (
-          <GlassShelf key={i} index={i} totalShelves={3} />
+          <GlassShelf key={i} index={i} />
         ))}
 
         {/* Bottles on shelves */}
         {shelfItems.map((shelf, shelfIndex) => (
           <div
             key={shelfIndex}
-            className="absolute left-0 right-0"
+            className="absolute left-4 right-4"
             style={{
-              bottom: `${12 + shelfIndex * 33}%`,
-              height: '30%',
+              bottom: `${10 + shelfIndex * 30}%`,
+              height: '28%',
             }}
           >
             {shelf.map(({ item, position }) => (
               <div key={item} className="bottle-item">
-                <Bottle3D
+                <BottleImage
                   item={item}
-                  style={getBottleStyle(item)}
                   isHovered={hoveredItem === item}
                   onHover={setHoveredItem}
                   position={position}
@@ -444,44 +408,44 @@ export function CabinetVisual({ items, onAddClick }: CabinetVisualProps) {
         {/* Empty state */}
         {isEmpty && (
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            {/* Ghost bottles silhouette */}
-            <div className="flex gap-4 mb-6 opacity-20">
-              {[1, 2, 3].map((i) => (
+            {/* Ghost bottle silhouettes */}
+            <div className="flex items-end gap-6 mb-8 opacity-15">
+              {[90, 110, 80, 100, 70].map((h, i) => (
                 <div
                   key={i}
-                  className="rounded-lg"
+                  className="rounded-t-lg"
                   style={{
-                    width: 30 + i * 5,
-                    height: 80 + i * 15,
-                    background: 'linear-gradient(to top, rgba(168,85,247,0.3), transparent)',
-                    border: '1px dashed rgba(168,85,247,0.3)',
+                    width: h * 0.3,
+                    height: h,
+                    background: `linear-gradient(180deg, rgba(168,85,247,0.3) 0%, rgba(168,85,247,0.1) 100%)`,
+                    border: '1px dashed rgba(168,85,247,0.4)',
                   }}
                 />
               ))}
             </div>
-            <p className="text-gray-500 text-sm mb-2">Your cabinet is empty</p>
-            <div className="px-5 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl text-white font-medium flex items-center gap-2 shadow-lg shadow-purple-500/25">
-              <Plus className="h-4 w-4" />
+            <p className="text-gray-500 text-sm mb-3">Your cabinet is empty</p>
+            <button className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl text-white font-semibold flex items-center gap-2 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-shadow">
+              <Plus className="h-5 w-5" />
               Stock Your Cabinet
-            </div>
+            </button>
           </div>
         )}
 
         {/* Hover overlay for editing */}
         {!isEmpty && (
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/30 backdrop-blur-[2px] pointer-events-none">
-            <div className="px-5 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl text-white font-medium flex items-center gap-2 shadow-lg shadow-purple-500/30 transform scale-95 group-hover:scale-100 transition-transform">
-              <Plus className="h-4 w-4" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/40 backdrop-blur-[3px] pointer-events-none">
+            <div className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl text-white font-semibold flex items-center gap-2 shadow-xl shadow-purple-500/40 transform scale-95 group-hover:scale-100 transition-transform">
+              <Plus className="h-5 w-5" />
               Edit Cabinet
             </div>
           </div>
         )}
 
-        {/* Bottle count */}
+        {/* Bottle count badge */}
         {!isEmpty && (
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-black/40 backdrop-blur-sm rounded-full border border-white/10">
-            <span className="text-purple-300 font-medium text-sm">{items.length}</span>
-            <span className="text-gray-400 text-sm ml-1.5">bottles</span>
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-5 py-2 bg-black/50 backdrop-blur-md rounded-full border border-white/10">
+            <span className="text-purple-300 font-bold text-sm">{items.length}</span>
+            <span className="text-gray-400 text-sm ml-2">bottles</span>
           </div>
         )}
       </div>
