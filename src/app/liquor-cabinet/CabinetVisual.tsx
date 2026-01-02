@@ -11,53 +11,61 @@ interface CabinetVisualProps {
 }
 
 // Map ingredients to bottle images
-// Based on actual bottle images:
-// - vodka.png: Belvedere Vodka (tall, clear, frosted, elegant)
-// - whiskey.png: Jack Daniel's (square, black label, amber)
+// Available bottles:
+// - absolut-vodka.png: Absolut Vodka (tall, blue text, clear)
+// - grey-goose.png: Grey Goose (frosted, elegant)
+// - vodka.png: Belvedere Vodka (tall, frosted)
 // - gin.png: Tanqueray (green, cocktail shaker shape)
-// - tequila.png: Jose Cuervo (tall, gold tequila)
-// - champagne.png: Moët & Chandon (dark green, gold foil)
-// - wine-red.png: Bordeaux red wine (dark green, high shoulders)
-// - beer.png: Brown longneck beer bottle
-// - cognac.png: Hennessy V.S. (curved, amber-brown)
-// - brandy.png: St-Rémy VSOP (rounded, golden-amber)
-// - liqueur.png: Cointreau (square, amber glass)
+// - tequila.png: Jose Cuervo (tall, gold)
+// - whiskey.png: Jack Daniel's (square, black label)
+// - cognac.png: Hennessy (curved, amber)
+// - brandy.png: St-Rémy VSOP (rounded, golden)
+// - cointreau.png: Cointreau (square, orange)
+// - amaretto.png: Disaronno (square, amber)
+// - dry-vermouth.png: Martini Bianco (white label)
+// - sweet-vermouth.png: Martini Rosso (red label)
+// - champagne.png: Moët (green, gold foil)
+// - champagne-large.png: Large champagne
+// - wine-red.png: Bordeaux red wine
+// - beer.png: Brown longneck
+// - beer-bottle.png: Generic beer
+// - becks-beer.png: Beck's green bottle
 
 const bottleImages: Record<string, string> = {
-  // Spirits (exact names from cabinetIngredients.ts)
-  "Vodka": "/bottles/vodka.png",
+  // Spirits
+  "Vodka": "/bottles/absolut-vodka.png",
   "Gin (London Dry)": "/bottles/gin.png",
   "Gin (Other)": "/bottles/gin.png",
-  "White Rum": "/bottles/vodka.png",  // Clear bottle works for white rum
-  "Dark Rum": "/bottles/brandy.png",  // Amber colored bottle
-  "Spiced Rum": "/bottles/brandy.png",  // Amber colored bottle
+  "White Rum": "/bottles/grey-goose.png",  // Clear/frosted bottle
+  "Dark Rum": "/bottles/cognac.png",  // Amber bottle
+  "Spiced Rum": "/bottles/brandy.png",  // Golden bottle
   "Tequila (Blanco)": "/bottles/tequila.png",
   "Tequila (Reposado)": "/bottles/tequila.png",
-  "Bourbon": "/bottles/whiskey.png",  // Jack Daniel's style
+  "Bourbon": "/bottles/whiskey.png",
   "Rye Whiskey": "/bottles/whiskey.png",
   "Scotch": "/bottles/whiskey.png",
   "Irish Whiskey": "/bottles/whiskey.png",
-  "Brandy/Cognac": "/bottles/cognac.png",  // Hennessy style
+  "Brandy/Cognac": "/bottles/cognac.png",
 
-  // Liqueurs (exact names from cabinetIngredients.ts)
-  "Triple Sec/Cointreau": "/bottles/liqueur.png",  // Cointreau bottle!
-  "Amaretto": "/bottles/brandy.png",  // Amber bottle
-  "Kahlúa/Coffee Liqueur": "/bottles/brandy.png",  // Dark bottle
-  "Baileys/Irish Cream": "/bottles/liqueur.png",
-  "Campari": "/bottles/liqueur.png",
-  "Aperol": "/bottles/liqueur.png",
-  "Chambord": "/bottles/liqueur.png",
-  "Blue Curaçao": "/bottles/gin.png",  // Blue/green colored
-  "Peach Schnapps": "/bottles/vodka.png",  // Clear bottle
-  "Midori": "/bottles/gin.png",  // Green bottle
-  "Crème de Menthe": "/bottles/gin.png",  // Green bottle
-  "Crème de Cacao": "/bottles/brandy.png",  // Brown bottle
-  "Maraschino Liqueur": "/bottles/vodka.png",  // Clear bottle
-  "St-Germain/Elderflower": "/bottles/vodka.png",  // Clear bottle
-  "Grand Marnier": "/bottles/cognac.png",  // Cognac-style bottle
+  // Liqueurs
+  "Triple Sec/Cointreau": "/bottles/cointreau.png",
+  "Amaretto": "/bottles/amaretto.png",
+  "Kahlúa/Coffee Liqueur": "/bottles/brandy.png",  // Dark amber
+  "Baileys/Irish Cream": "/bottles/brandy.png",
+  "Campari": "/bottles/wine-red.png",  // Red bottle
+  "Aperol": "/bottles/tequila.png",  // Orange bottle
+  "Chambord": "/bottles/wine-red.png",  // Dark purple
+  "Blue Curaçao": "/bottles/gin.png",  // Blue/green
+  "Peach Schnapps": "/bottles/vodka.png",
+  "Midori": "/bottles/gin.png",  // Green
+  "Crème de Menthe": "/bottles/gin.png",  // Green
+  "Crème de Cacao": "/bottles/brandy.png",  // Brown
+  "Maraschino Liqueur": "/bottles/vodka.png",  // Clear
+  "St-Germain/Elderflower": "/bottles/vodka.png",  // Clear
+  "Grand Marnier": "/bottles/cognac.png",  // Cognac-style
 
-  // Mixers (exact names from cabinetIngredients.ts)
-  "Ginger Beer": "/bottles/beer.png",
+  // Mixers
+  "Ginger Beer": "/bottles/beer-bottle.png",
   "Tonic Water": "/bottles/vodka.png",
   "Soda Water/Club Soda": "/bottles/vodka.png",
   "Cola": "/bottles/beer.png",
@@ -72,7 +80,7 @@ const bottleImages: Record<string, string> = {
   "Cream/Half & Half": "/bottles/vodka.png",
   "Milk": "/bottles/vodka.png",
 
-  // Fresh & Citrus - use vodka (clear) as generic
+  // Fresh & Citrus
   "Lime Juice (Fresh)": "/bottles/vodka.png",
   "Lemon Juice (Fresh)": "/bottles/vodka.png",
   "Orange (Fresh)": "/bottles/tequila.png",
@@ -91,20 +99,20 @@ const bottleImages: Record<string, string> = {
   "Orgeat": "/bottles/vodka.png",
   "Falernum": "/bottles/vodka.png",
 
-  // Beer & Wine (exact names from cabinetIngredients.ts)
-  "Lager Beer": "/bottles/beer.png",
+  // Beer & Wine
+  "Lager Beer": "/bottles/becks-beer.png",
   "Stout/Porter": "/bottles/beer.png",
-  "Champagne/Prosecco": "/bottles/champagne.png",
+  "Champagne/Prosecco": "/bottles/champagne-large.png",
   "Red Wine": "/bottles/wine-red.png",
-  "White Wine": "/bottles/wine-red.png",
+  "White Wine": "/bottles/champagne.png",
   "Rosé Wine": "/bottles/wine-red.png",
 
-  // Bitters & Extras (exact names from cabinetIngredients.ts)
-  "Angostura Bitters": "/bottles/brandy.png",  // Small amber bottle
+  // Bitters & Extras
+  "Angostura Bitters": "/bottles/brandy.png",
   "Orange Bitters": "/bottles/brandy.png",
-  "Peychaud's Bitters": "/bottles/wine-red.png",  // Red bottle
-  "Dry Vermouth": "/bottles/wine-red.png",
-  "Sweet Vermouth": "/bottles/wine-red.png",
+  "Peychaud's Bitters": "/bottles/wine-red.png",
+  "Dry Vermouth": "/bottles/dry-vermouth.png",
+  "Sweet Vermouth": "/bottles/sweet-vermouth.png",
   "Eggs": "/bottles/vodka.png",
   "Worcestershire Sauce": "/bottles/brandy.png",
   "Hot Sauce/Tabasco": "/bottles/wine-red.png",
@@ -112,12 +120,12 @@ const bottleImages: Record<string, string> = {
   "Sugar": "/bottles/vodka.png",
 
   // Default fallbacks by category
-  "_Spirits": "/bottles/vodka.png",
-  "_Liqueurs": "/bottles/liqueur.png",
+  "_Spirits": "/bottles/absolut-vodka.png",
+  "_Liqueurs": "/bottles/cointreau.png",
   "_Beer & Wine": "/bottles/wine-red.png",
   "_Mixers": "/bottles/vodka.png",
   "_Fresh & Citrus": "/bottles/vodka.png",
-  "_Syrups & Sweeteners": "/bottles/liqueur.png",
+  "_Syrups & Sweeteners": "/bottles/tequila.png",
   "_Bitters & Extras": "/bottles/brandy.png",
 };
 
@@ -342,7 +350,7 @@ export function CabinetVisual({ items, onAddClick }: CabinetVisualProps) {
     <div className="relative w-full max-w-3xl mx-auto">
       {/* Cabinet container */}
       <div
-        className="relative rounded-2xl overflow-hidden cursor-pointer group"
+        className="relative rounded-2xl overflow-hidden"
         style={{
           height: '450px',
           background: `
@@ -357,10 +365,6 @@ export function CabinetVisual({ items, onAddClick }: CabinetVisualProps) {
             inset 0 1px 0 rgba(255,255,255,0.03),
             inset 0 -100px 100px -80px rgba(168,85,247,0.08)
           `,
-        }}
-        onClick={(e) => {
-          if ((e.target as HTMLElement).closest('.bottle-item')) return;
-          onAddClick();
         }}
       >
         {/* Ambient warm light from top (bar lighting) */}
@@ -393,7 +397,7 @@ export function CabinetVisual({ items, onAddClick }: CabinetVisualProps) {
 
         {/* Mirror/glass back panel */}
         <div
-          className="absolute inset-x-6 top-6 bottom-20 rounded-lg pointer-events-none"
+          className="absolute inset-x-6 top-6 bottom-6 rounded-lg pointer-events-none"
           style={{
             background: `
               linear-gradient(180deg,
@@ -454,31 +458,36 @@ export function CabinetVisual({ items, onAddClick }: CabinetVisualProps) {
               ))}
             </div>
             <p className="text-gray-500 text-sm mb-3">Your cabinet is empty</p>
-            <button className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl text-white font-semibold flex items-center gap-2 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-shadow">
+            <button
+              onClick={onAddClick}
+              className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl text-white font-semibold flex items-center gap-2 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-shadow"
+            >
               <Plus className="h-5 w-5" />
               Stock Your Cabinet
             </button>
           </div>
         )}
-
-        {/* Hover overlay for editing */}
-        {!isEmpty && (
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/40 backdrop-blur-[3px] pointer-events-none">
-            <div className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl text-white font-semibold flex items-center gap-2 shadow-xl shadow-purple-500/40 transform scale-95 group-hover:scale-100 transition-transform">
-              <Plus className="h-5 w-5" />
-              Edit Cabinet
-            </div>
-          </div>
-        )}
-
-        {/* Bottle count badge */}
-        {!isEmpty && (
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-5 py-2 bg-black/50 backdrop-blur-md rounded-full border border-white/10">
-            <span className="text-purple-300 font-bold text-sm">{items.length}</span>
-            <span className="text-gray-400 text-sm ml-2">bottles</span>
-          </div>
-        )}
       </div>
+
+      {/* Controls below cabinet (moved outside) */}
+      {!isEmpty && (
+        <div className="flex items-center justify-between mt-4 px-2">
+          {/* Bottle count badge */}
+          <div className="px-5 py-2.5 bg-dark-800 rounded-xl border border-dark-600">
+            <span className="text-purple-400 font-bold text-lg">{items.length}</span>
+            <span className="text-gray-400 text-sm ml-2">bottles in cabinet</span>
+          </div>
+
+          {/* Edit button */}
+          <button
+            onClick={onAddClick}
+            className="px-5 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl text-white font-semibold flex items-center gap-2 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 hover:scale-105 transition-all"
+          >
+            <Plus className="h-5 w-5" />
+            Edit Cabinet
+          </button>
+        </div>
+      )}
     </div>
   );
 }
