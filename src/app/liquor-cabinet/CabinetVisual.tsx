@@ -11,75 +11,105 @@ interface CabinetVisualProps {
 }
 
 // Map ingredients to bottle images
-const bottleImages: Record<string, string> = {
-  // Vodka
-  "Vodka": "/bottles/vodka.png",
-  "Flavored Vodka": "/bottles/vodka.png",
+// Based on actual bottle images:
+// - vodka.png: Belvedere Vodka (tall, clear, frosted, elegant)
+// - whiskey.png: Jack Daniel's (square, black label, amber)
+// - gin.png: Tanqueray (green, cocktail shaker shape)
+// - tequila.png: Jose Cuervo (tall, gold tequila)
+// - champagne.png: Moët & Chandon (dark green, gold foil)
+// - wine-red.png: Bordeaux red wine (dark green, high shoulders)
+// - beer.png: Brown longneck beer bottle
+// - cognac.png: Hennessy V.S. (curved, amber-brown)
+// - brandy.png: St-Rémy VSOP (rounded, golden-amber)
+// - liqueur.png: Cointreau (square, amber glass)
 
-  // Gin
+const bottleImages: Record<string, string> = {
+  // Spirits (exact names from cabinetIngredients.ts)
+  "Vodka": "/bottles/vodka.png",
   "Gin (London Dry)": "/bottles/gin.png",
   "Gin (Other)": "/bottles/gin.png",
-
-  // Rum
-  "Rum (White)": "/bottles/vodka.png",
-  "Rum (Dark)": "/bottles/brandy.png",
-  "Rum (Spiced)": "/bottles/brandy.png",
-  "Rum (Coconut)": "/bottles/vodka.png",
-
-  // Tequila
+  "White Rum": "/bottles/vodka.png",  // Clear bottle works for white rum
+  "Dark Rum": "/bottles/brandy.png",  // Amber colored bottle
+  "Spiced Rum": "/bottles/brandy.png",  // Amber colored bottle
   "Tequila (Blanco)": "/bottles/tequila.png",
   "Tequila (Reposado)": "/bottles/tequila.png",
-  "Tequila (Añejo)": "/bottles/tequila.png",
-  "Mezcal": "/bottles/tequila.png",
-
-  // Whiskey
-  "Bourbon": "/bottles/whiskey.png",
+  "Bourbon": "/bottles/whiskey.png",  // Jack Daniel's style
   "Rye Whiskey": "/bottles/whiskey.png",
   "Scotch": "/bottles/whiskey.png",
   "Irish Whiskey": "/bottles/whiskey.png",
-  "Canadian Whisky": "/bottles/whiskey.png",
-  "Japanese Whisky": "/bottles/whiskey.png",
+  "Brandy/Cognac": "/bottles/cognac.png",  // Hennessy style
 
-  // Brandy & Cognac
-  "Cognac": "/bottles/cognac.png",
-  "Brandy": "/bottles/brandy.png",
-  "Pisco": "/bottles/brandy.png",
-
-  // Liqueurs
-  "Triple Sec": "/bottles/liqueur.png",
-  "Cointreau": "/bottles/liqueur.png",
-  "Grand Marnier": "/bottles/liqueur.png",
-  "Blue Curaçao": "/bottles/liqueur.png",
-  "Kahlúa": "/bottles/liqueur.png",
-  "Baileys": "/bottles/liqueur.png",
-  "Amaretto": "/bottles/liqueur.png",
-  "Frangelico": "/bottles/liqueur.png",
-  "Chambord": "/bottles/liqueur.png",
-  "St-Germain": "/bottles/liqueur.png",
-  "Midori": "/bottles/liqueur.png",
-  "Crème de Menthe": "/bottles/liqueur.png",
-  "Crème de Cacao": "/bottles/liqueur.png",
-  "Maraschino Liqueur": "/bottles/liqueur.png",
+  // Liqueurs (exact names from cabinetIngredients.ts)
+  "Triple Sec/Cointreau": "/bottles/liqueur.png",  // Cointreau bottle!
+  "Amaretto": "/bottles/brandy.png",  // Amber bottle
+  "Kahlúa/Coffee Liqueur": "/bottles/brandy.png",  // Dark bottle
+  "Baileys/Irish Cream": "/bottles/liqueur.png",
   "Campari": "/bottles/liqueur.png",
   "Aperol": "/bottles/liqueur.png",
-  "Drambuie": "/bottles/liqueur.png",
-  "Galliano": "/bottles/liqueur.png",
-  "Jägermeister": "/bottles/liqueur.png",
-  "Absinthe": "/bottles/gin.png",
+  "Chambord": "/bottles/liqueur.png",
+  "Blue Curaçao": "/bottles/gin.png",  // Blue/green colored
+  "Peach Schnapps": "/bottles/vodka.png",  // Clear bottle
+  "Midori": "/bottles/gin.png",  // Green bottle
+  "Crème de Menthe": "/bottles/gin.png",  // Green bottle
+  "Crème de Cacao": "/bottles/brandy.png",  // Brown bottle
+  "Maraschino Liqueur": "/bottles/vodka.png",  // Clear bottle
+  "St-Germain/Elderflower": "/bottles/vodka.png",  // Clear bottle
+  "Grand Marnier": "/bottles/cognac.png",  // Cognac-style bottle
 
-  // Wine & Champagne
+  // Mixers (exact names from cabinetIngredients.ts)
+  "Ginger Beer": "/bottles/beer.png",
+  "Tonic Water": "/bottles/vodka.png",
+  "Soda Water/Club Soda": "/bottles/vodka.png",
+  "Cola": "/bottles/beer.png",
+  "Lemon-Lime Soda": "/bottles/vodka.png",
+  "Cranberry Juice": "/bottles/wine-red.png",
+  "Orange Juice": "/bottles/tequila.png",
+  "Pineapple Juice": "/bottles/tequila.png",
+  "Grapefruit Juice": "/bottles/tequila.png",
+  "Tomato Juice": "/bottles/wine-red.png",
+  "Apple Juice": "/bottles/tequila.png",
+  "Coconut Cream": "/bottles/vodka.png",
+  "Cream/Half & Half": "/bottles/vodka.png",
+  "Milk": "/bottles/vodka.png",
+
+  // Fresh & Citrus - use vodka (clear) as generic
+  "Lime Juice (Fresh)": "/bottles/vodka.png",
+  "Lemon Juice (Fresh)": "/bottles/vodka.png",
+  "Orange (Fresh)": "/bottles/tequila.png",
+  "Lime (Fresh)": "/bottles/gin.png",
+  "Lemon (Fresh)": "/bottles/tequila.png",
+  "Mint (Fresh)": "/bottles/gin.png",
+  "Cucumber": "/bottles/gin.png",
+  "Ginger (Fresh)": "/bottles/tequila.png",
+
+  // Syrups & Sweeteners
+  "Simple Syrup": "/bottles/vodka.png",
+  "Grenadine": "/bottles/wine-red.png",
+  "Honey Syrup": "/bottles/tequila.png",
+  "Agave Nectar": "/bottles/tequila.png",
+  "Maple Syrup": "/bottles/brandy.png",
+  "Orgeat": "/bottles/vodka.png",
+  "Falernum": "/bottles/vodka.png",
+
+  // Beer & Wine (exact names from cabinetIngredients.ts)
+  "Lager Beer": "/bottles/beer.png",
+  "Stout/Porter": "/bottles/beer.png",
+  "Champagne/Prosecco": "/bottles/champagne.png",
   "Red Wine": "/bottles/wine-red.png",
   "White Wine": "/bottles/wine-red.png",
   "Rosé Wine": "/bottles/wine-red.png",
-  "Champagne/Prosecco": "/bottles/champagne.png",
+
+  // Bitters & Extras (exact names from cabinetIngredients.ts)
+  "Angostura Bitters": "/bottles/brandy.png",  // Small amber bottle
+  "Orange Bitters": "/bottles/brandy.png",
+  "Peychaud's Bitters": "/bottles/wine-red.png",  // Red bottle
   "Dry Vermouth": "/bottles/wine-red.png",
   "Sweet Vermouth": "/bottles/wine-red.png",
-
-  // Beer
-  "Beer (Lager)": "/bottles/beer.png",
-  "Beer (IPA)": "/bottles/beer.png",
-  "Beer (Stout)": "/bottles/beer.png",
-  "Beer (Wheat)": "/bottles/beer.png",
+  "Eggs": "/bottles/vodka.png",
+  "Worcestershire Sauce": "/bottles/brandy.png",
+  "Hot Sauce/Tabasco": "/bottles/wine-red.png",
+  "Salt": "/bottles/vodka.png",
+  "Sugar": "/bottles/vodka.png",
 
   // Default fallbacks by category
   "_Spirits": "/bottles/vodka.png",
@@ -88,7 +118,7 @@ const bottleImages: Record<string, string> = {
   "_Mixers": "/bottles/vodka.png",
   "_Fresh & Citrus": "/bottles/vodka.png",
   "_Syrups & Sweeteners": "/bottles/liqueur.png",
-  "_Bitters & Extras": "/bottles/liqueur.png",
+  "_Bitters & Extras": "/bottles/brandy.png",
 };
 
 function getCategoryForItem(item: string): string {
