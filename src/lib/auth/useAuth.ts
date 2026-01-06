@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { User, AuthChangeEvent, Session } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/client";
 import { UserProfile } from "@/types";
@@ -20,7 +20,8 @@ export function useAuth(): AuthState {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const supabase = createClient();
+  // Get singleton Supabase client - memoized to ensure stable reference
+  const supabase = useMemo(() => createClient(), []);
 
   const fetchProfile = useCallback(async (userId: string) => {
     const { data } = await supabase
@@ -41,9 +42,33 @@ export function useAuth(): AuthState {
   }, [user, fetchProfile]);
 
   useEffect(() => {
-    // Get initial session
+    // Get initial session from cookies/storage (faster than getUser which hits server)
     const initAuth = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
+      console.log("[useAuth] initAuth starting...");
+
+      // First try getSession (reads from storage, faster)
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      console.log("[useAuth] getSession result:", {
+        hasSession: !!session,
+        hasUser: !!session?.user,
+        userId: session?.user?.id?.slice(0, 8),
+        error: sessionError?.message
+      });
+
+      if (session?.user) {
+        setUser(session.user);
+        await fetchProfile(session.user.id);
+        setLoading(false);
+        return;
+      }
+
+      // Fallback: try getUser if no session found (validates with server)
+      const { data: { user }, error } = await supabase.auth.getUser();
+      console.log("[useAuth] getUser result:", {
+        hasUser: !!user,
+        userId: user?.id?.slice(0, 8),
+        error: error?.message
+      });
       setUser(user);
 
       if (user) {
@@ -58,6 +83,7 @@ export function useAuth(): AuthState {
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event: AuthChangeEvent, session: Session | null) => {
+        console.log("[useAuth] onAuthStateChange:", { event, hasSession: !!session });
         const newUser = session?.user ?? null;
         setUser(newUser);
 

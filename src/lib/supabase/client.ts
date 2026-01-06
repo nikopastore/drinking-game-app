@@ -1,4 +1,5 @@
 import { createBrowserClient } from "@supabase/ssr";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
 // Check if Supabase is configured
 export function isSupabaseConfigured(): boolean {
@@ -8,38 +9,54 @@ export function isSupabaseConfigured(): boolean {
   );
 }
 
-export function createClient() {
+// Singleton client instance
+let supabaseClient: SupabaseClient | null = null;
+
+// Mock client for when Supabase is not configured
+const mockClient = {
+  auth: {
+    getUser: async () => ({ data: { user: null }, error: null }),
+    getSession: async () => ({ data: { session: null }, error: null }),
+    onAuthStateChange: () => ({
+      data: { subscription: { unsubscribe: () => {} } },
+    }),
+    signInWithOAuth: async () => ({ error: new Error("Supabase not configured") }),
+    signInWithOtp: async () => ({ error: new Error("Supabase not configured") }),
+    signOut: async () => ({ error: null }),
+    exchangeCodeForSession: async () => ({ data: { user: null, session: null }, error: new Error("Supabase not configured") }),
+  },
+  from: () => ({
+    select: () => ({
+      eq: () => ({
+        order: () => Promise.resolve({ data: [], error: null }),
+        single: () => Promise.resolve({ data: null, error: null }),
+      }),
+    }),
+    insert: () => Promise.resolve({ error: new Error("Supabase not configured") }),
+    upsert: () => Promise.resolve({ error: new Error("Supabase not configured") }),
+    delete: () => ({
+      eq: () => ({
+        eq: () => Promise.resolve({ error: null }),
+      }),
+    }),
+  }),
+  rpc: () => Promise.resolve({ error: null }),
+} as unknown as SupabaseClient;
+
+export function createClient(): SupabaseClient {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!url || !key) {
-    // Return a mock client that throws helpful errors
-    return {
-      auth: {
-        getUser: async () => ({ data: { user: null }, error: null }),
-        onAuthStateChange: () => ({
-          data: { subscription: { unsubscribe: () => {} } },
-        }),
-        signInWithOAuth: async () => ({ error: new Error("Supabase not configured") }),
-        signInWithOtp: async () => ({ error: new Error("Supabase not configured") }),
-      },
-      from: () => ({
-        select: () => ({
-          eq: () => ({
-            order: () => Promise.resolve({ data: [], error: null }),
-            single: () => Promise.resolve({ data: null, error: null }),
-          }),
-        }),
-        insert: () => Promise.resolve({ error: new Error("Supabase not configured") }),
-        delete: () => ({
-          eq: () => ({
-            eq: () => Promise.resolve({ error: null }),
-          }),
-        }),
-      }),
-      rpc: () => Promise.resolve({ error: null }),
-    } as unknown as ReturnType<typeof createBrowserClient>;
+    return mockClient;
   }
 
-  return createBrowserClient(url, key);
+  // Return existing singleton if available
+  if (supabaseClient) {
+    return supabaseClient;
+  }
+
+  // Create and cache the singleton
+  supabaseClient = createBrowserClient(url, key);
+  return supabaseClient;
 }

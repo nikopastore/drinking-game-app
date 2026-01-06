@@ -15,9 +15,17 @@ export default function AuthCallbackPage() {
       const code = searchParams.get("code");
       const next = searchParams.get("next") ?? "/";
 
+      console.log("[Auth Callback] Starting with code:", code ? "present" : "missing");
+
       if (code) {
         const supabase = createClient();
         const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+
+        console.log("[Auth Callback] exchangeCodeForSession result:", {
+          hasUser: !!data?.user,
+          hasSession: !!data?.session,
+          error: error?.message,
+        });
 
         if (!error && data.user) {
           // Create or update user profile
