@@ -4,6 +4,9 @@
 User-agent: *
 Allow: /
 
+# Block static assets (fonts, chunks, etc.) - not useful for indexing
+Disallow: /_next/static/
+
 # Sitemap location
 Sitemap: https://sipwiki.app/sitemap.xml
 
