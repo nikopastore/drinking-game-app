@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Play, Home, BookOpen } from "lucide-react";
+import { ShareButton } from "@/components/ShareButton";
 
 interface RelatedGame {
   name: string;
@@ -104,9 +105,17 @@ export function GuideLayout({
       {/* Main Content */}
       <article className="max-w-4xl mx-auto px-4 py-8">
         <header className="mb-8">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-            {title}
-          </h1>
+          <div className="flex items-start justify-between gap-4">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+              {title}
+            </h1>
+            <ShareButton
+              title={`${title} - SipWiki`}
+              text={description.slice(0, 100)}
+              url={`https://sipwiki.app${pathname}`}
+              variant="compact"
+            />
+          </div>
           <p className="text-lg text-gray-300 leading-relaxed">
             {description}
           </p>

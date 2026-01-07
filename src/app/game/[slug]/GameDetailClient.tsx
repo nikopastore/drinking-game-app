@@ -20,6 +20,7 @@ import { CommentSection } from "@/components/CommentSection";
 import { getCategoriesForGame } from "@/config/categoryData";
 import { useAuthContext, UnlockRulesCard } from "@/components/auth";
 import { FavoriteButton } from "@/components/favorites";
+import { ShareButton } from "@/components/ShareButton";
 
 interface GameDetailClientProps {
   game: Game;
@@ -100,12 +101,20 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
               </h1>
               <p className="text-lg text-neon-pink mb-4">How to Play {game.name}</p>
             </div>
-            <FavoriteButton
-              type="game"
-              slug={game.slug}
-              name={game.name}
-              size="lg"
-            />
+            <div className="flex items-center gap-2">
+              <ShareButton
+                title={`${game.name} Rules - SipWiki`}
+                text={`Learn how to play ${game.name}! Complete rules and instructions.`}
+                url={`https://sipwiki.app/game/${game.slug}`}
+                variant="compact"
+              />
+              <FavoriteButton
+                type="game"
+                slug={game.slug}
+                name={game.name}
+                size="lg"
+              />
+            </div>
           </div>
 
           <p className="text-xl text-gray-400 mb-6">{game.description}</p>
