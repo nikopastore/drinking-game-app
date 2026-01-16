@@ -5,6 +5,7 @@ import { Game } from "@/types";
 import { Button, Card, CardContent } from "@/components/ui";
 import { useAppStore } from "@/lib/store";
 import { formatElapsedTime } from "@/lib/utils";
+import { formatMarkdownBold } from "@/lib/sanitize";
 import { Timer, X, Wine, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -103,17 +104,14 @@ export function LiveModeClient({ game }: LiveModeClientProps) {
             </h2>
             <div className="space-y-4">
               {game.rules_text.split("\n").map((line, index) => {
-                // Handle bold markdown
-                const formattedLine = line.replace(
-                  /\*\*(.*?)\*\*/g,
-                  '<strong class="text-neon-pink">$1</strong>'
-                );
+                // Handle bold markdown with XSS sanitization
+                const sanitizedLine = formatMarkdownBold(line);
 
                 return (
                   <p
                     key={index}
                     className="text-gray-300 text-lg leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: formattedLine }}
+                    dangerouslySetInnerHTML={{ __html: sanitizedLine }}
                   />
                 );
               })}

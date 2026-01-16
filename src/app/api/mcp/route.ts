@@ -12,6 +12,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { games } from "@/config/gameData";
 import { cocktails } from "@/config/cocktailData";
 import { Game, Cocktail } from "@/types";
+import { createCorsHeaders, handleCorsPreflightRequest } from "@/lib/cors";
 
 const SIPWIKI_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://sipwiki.com";
 
@@ -718,8 +719,17 @@ function executeTool(name: string, args: Record<string, unknown>): { content: Ar
   }
 }
 
+/**
+ * Handle CORS preflight requests
+ */
+export async function OPTIONS(request: NextRequest) {
+  return handleCorsPreflightRequest(request);
+}
+
 // Handle MCP protocol requests
 export async function POST(request: NextRequest) {
+  const corsHeaders = createCorsHeaders(request);
+
   try {
     const body = await request.json();
     const { method, params, id } = body;
@@ -779,15 +789,18 @@ export async function POST(request: NextRequest) {
             error: { code: -32601, message: `Method not found: ${method}` },
             id,
           },
-          { status: 400 }
+          { status: 400, headers: corsHeaders }
         );
     }
 
-    return NextResponse.json({
-      jsonrpc: "2.0",
-      result,
-      id,
-    });
+    return NextResponse.json(
+      {
+        jsonrpc: "2.0",
+        result,
+        id,
+      },
+      { headers: corsHeaders }
+    );
   } catch (error) {
     console.error("MCP API error:", error);
     return NextResponse.json(
@@ -796,22 +809,27 @@ export async function POST(request: NextRequest) {
         error: { code: -32603, message: "Internal error" },
         id: null,
       },
-      { status: 500 }
+      { status: 500, headers: corsHeaders }
     );
   }
 }
 
 // Handle GET requests - return server info for discovery
-export async function GET() {
-  return NextResponse.json({
-    name: serverInfo.name,
-    version: serverInfo.version,
-    description: serverInfo.description,
-    vendor: serverInfo.vendor,
-    homepage: serverInfo.homepage,
-    mcp_endpoint: "/api/mcp",
-    tools: tools.map((t) => ({ name: t.name, description: t.description })),
-    total_games: games.length,
-    total_cocktails: cocktails.length,
-  });
+export async function GET(request: NextRequest) {
+  const corsHeaders = createCorsHeaders(request);
+
+  return NextResponse.json(
+    {
+      name: serverInfo.name,
+      version: serverInfo.version,
+      description: serverInfo.description,
+      vendor: serverInfo.vendor,
+      homepage: serverInfo.homepage,
+      mcp_endpoint: "/api/mcp",
+      tools: tools.map((t) => ({ name: t.name, description: t.description })),
+      total_games: games.length,
+      total_cocktails: cocktails.length,
+    },
+    { headers: corsHeaders }
+  );
 }

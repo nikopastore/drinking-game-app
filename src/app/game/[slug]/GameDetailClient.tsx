@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { formatPlayerCount, getDrunkennessLabel } from "@/lib/utils";
+import { formatMarkdownBold } from "@/lib/sanitize";
 import { getAffiliateLink, nonAffiliateItems } from "@/config/monetizationConfig";
 import { CommentSection } from "@/components/CommentSection";
 import { getCategoriesForGame } from "@/config/categoryData";
@@ -230,17 +231,14 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
                 <h2 className="text-xl font-bold text-white mb-4">How to Play</h2>
                 <div className="prose prose-invert max-w-none">
                   {game.rules_text.split("\n").map((line, index) => {
-                    // Handle bold markdown
-                    const formattedLine = line.replace(
-                      /\*\*(.*?)\*\*/g,
-                      '<strong class="text-neon-pink">$1</strong>'
-                    );
+                    // Handle bold markdown with XSS sanitization
+                    const sanitizedLine = formatMarkdownBold(line);
 
                     return (
                       <p
                         key={index}
                         className="text-gray-300 mb-3 leading-relaxed"
-                        dangerouslySetInnerHTML={{ __html: formattedLine }}
+                        dangerouslySetInnerHTML={{ __html: sanitizedLine }}
                       />
                     );
                   })}

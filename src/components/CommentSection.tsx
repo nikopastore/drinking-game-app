@@ -15,6 +15,7 @@ import {
   ChevronUp,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { sanitizeHtml } from "@/lib/sanitize";
 
 interface CommentSectionProps {
   gameSlug: string;
@@ -120,13 +121,17 @@ export function CommentSection({ gameSlug }: CommentSectionProps) {
     const content = parentId ? replyContent : newComment;
     if (!content.trim()) return;
 
+    // Sanitize content before submission to prevent XSS
+    const sanitizedContent = sanitizeHtml(content.trim());
+    if (!sanitizedContent) return;
+
     setIsSubmitting(true);
     try {
       const { error } = await supabase.from("comments").insert({
         game_id: gameSlug,
         user_id: user.id,
         parent_id: parentId || null,
-        content: content.trim(),
+        content: sanitizedContent,
       });
 
       if (error) throw error;
@@ -236,7 +241,8 @@ export function CommentSection({ gameSlug }: CommentSectionProps) {
             </span>
             <span className="text-gray-500">{formatDate(comment.created_at)}</span>
           </div>
-          <p className="text-gray-200 mt-1">{comment.content}</p>
+          {/* Sanitize content on display as defense-in-depth */}
+          <p className="text-gray-200 mt-1">{sanitizeHtml(comment.content)}</p>
           <div className="flex items-center gap-4 mt-2">
             <button
               onClick={() => handleUpvote(comment.id)}
