@@ -1,6 +1,14 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Shield, ShoppingBag, Lightbulb, PartyPopper } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  Shield,
+  ShoppingBag,
+  Lightbulb,
+  PartyPopper,
+} from "lucide-react";
+import { blogCategories, blogPosts, getBlogPostsByCategory } from "@/config/blogData";
 
 export const metadata: Metadata = {
   title: "Blog - Party Tips, Buying Guides & Safety | SipWiki",
@@ -24,80 +32,40 @@ export const metadata: Metadata = {
   },
 };
 
-const categories = [
-  {
-    slug: "buying-guides",
-    name: "Buying Guides",
-    description: "Expert reviews and recommendations for party supplies and game equipment",
+const categoryUi = {
+  "buying-guides": {
     icon: ShoppingBag,
     color: "from-green-500 to-emerald-500",
-    articles: [
-      { title: "Best Beer Pong Tables 2025", slug: "/blog/buying-guides/best-beer-pong-tables" },
-      { title: "Best Party Cups for Drinking Games", slug: "/blog/buying-guides/best-party-cups" },
-      { title: "Complete Party Supplies Checklist", slug: "/blog/buying-guides/party-supplies-checklist" },
-    ],
   },
-  {
-    slug: "safety",
-    name: "Safety & Responsibility",
-    description: "Tips for hosting safe parties and drinking responsibly",
+  safety: {
     icon: Shield,
     color: "from-blue-500 to-cyan-500",
-    articles: [
-      { title: "How to Host a Safe Drinking Party", slug: "/blog/safety/how-to-host-safe-drinking-party" },
-      { title: "Know Your Limits: Signs to Stop", slug: "/blog/safety/know-your-limits" },
-      { title: "Non-Alcoholic Alternatives for Drinking Games", slug: "/blog/safety/non-alcoholic-alternatives" },
-    ],
   },
-  {
-    slug: "tutorials",
-    name: "Tutorials & How-Tos",
-    description: "Step-by-step guides for setting up games and tournaments",
+  tutorials: {
     icon: Lightbulb,
     color: "from-orange-500 to-amber-500",
-    articles: [
-      { title: "How to Set Up a Beer Pong Tournament", slug: "/blog/tutorials/beer-pong-tournament-setup" },
-      { title: "DIY Beer Pong Table Under $50", slug: "/blog/tutorials/diy-beer-pong-table" },
-      { title: "Virtual Drinking Games Guide", slug: "/blog/tutorials/virtual-drinking-games-guide" },
-    ],
   },
-  {
-    slug: "party-tips",
-    name: "Party Tips",
-    description: "Expert advice for hosting unforgettable parties",
+  "party-tips": {
     icon: PartyPopper,
     color: "from-neon-pink to-neon-purple",
-    articles: [
-      { title: "21st Birthday Party Ideas", slug: "/blog/party-tips/21st-birthday-party-ideas" },
-      { title: "Tailgate Party Games Guide", slug: "/blog/party-tips/tailgate-party-games" },
-      { title: "Small Apartment Party Hacks", slug: "/blog/party-tips/small-apartment-party-hacks" },
-    ],
   },
-];
+  seasonal: {
+    icon: BookOpen,
+    color: "from-purple-500 to-indigo-500",
+  },
+};
+
+const categories = blogCategories.map((category) => ({
+  ...category,
+  ...categoryUi[category.slug],
+  articles: getBlogPostsByCategory(category.slug).slice(0, 3),
+}));
 
 const featuredArticles = [
-  {
-    title: "How to Host a Safe Drinking Party: The Complete Guide",
-    slug: "/blog/safety/how-to-host-safe-drinking-party",
-    description: "Everything you need to know about hosting responsibly, from knowing limits to managing guests.",
-    category: "Safety",
-    readTime: "8 min read",
-  },
-  {
-    title: "Best Beer Pong Tables 2025: Expert Reviews",
-    slug: "/blog/buying-guides/best-beer-pong-tables",
-    description: "We tested 10+ beer pong tables to find the best options for every budget and space.",
-    category: "Buying Guides",
-    readTime: "12 min read",
-  },
-  {
-    title: "How to Set Up a Beer Pong Tournament",
-    slug: "/blog/tutorials/beer-pong-tournament-setup",
-    description: "Complete guide to organizing bracket tournaments, house rules, and prizes.",
-    category: "Tutorials",
-    readTime: "10 min read",
-  },
-];
+  blogPosts.find((post) => post.slug === "/blog/safety/how-to-host-safe-drinking-party"),
+  blogPosts.find((post) => post.slug === "/blog/buying-guides/best-beer-pong-tables"),
+  blogPosts.find((post) => post.slug === "/blog/tutorials/beer-pong-tournament-setup"),
+].filter(Boolean) as typeof blogPosts;
 
 export default function BlogPage() {
   const jsonLd = {
@@ -149,7 +117,7 @@ export default function BlogPage() {
               >
                 <div className="flex items-center gap-2 mb-3">
                   <span className="px-2 py-1 bg-neon-pink/20 text-neon-pink text-xs font-medium rounded">
-                    {article.category}
+                    {blogCategories.find((cat) => cat.slug === article.category)?.name || "Blog"}
                   </span>
                   <span className="text-gray-500 text-xs">{article.readTime}</span>
                 </div>
@@ -207,6 +175,59 @@ export default function BlogPage() {
                 </div>
               );
             })}
+          </div>
+        </section>
+
+        {/* Editorial Standards */}
+        <section className="max-w-6xl mx-auto px-4 py-12">
+          <h2 className="text-2xl font-bold text-white mb-4">Why the SipWiki Blog Exists</h2>
+          <div className="prose prose-invert max-w-none text-gray-300">
+            <p>
+              SipWiki is built for hosts, players, and party planners who want reliable rules and
+              practical advice. The blog is where we go deeper. We review gear, explain setups,
+              and share hosting playbooks that reduce friction before the first cup hits the table.
+              If a guide is on this site, it is because we believe it makes game night better.
+            </p>
+            <p>
+              Our buying guides emphasize value and durability. We call out tradeoffs so you can
+              pick the right option for your space and budget. Our party tips focus on pacing,
+              food, and inclusivity because the best parties keep everyone comfortable. Tutorials
+              walk through the logistics so you can run tournaments, set up DIY builds, or host
+              remote nights without stress.
+            </p>
+            <p>
+              If you are new here, start with a category that matches your next event. Each
+              article links to related guides so you can move from an idea to a full plan
+              without jumping between sites. Think of this as the planning layer that sits
+              on top of the rules pages and tools.
+            </p>
+            <h3>How we keep content useful</h3>
+            <ul>
+              <li>We prioritize clarity and real use cases over fluff.</li>
+              <li>We update guides when gear or trends change.</li>
+              <li>We link to rules and tools so you can take action fast.</li>
+            </ul>
+          </div>
+        </section>
+
+        {/* All Articles */}
+        <section className="max-w-6xl mx-auto px-4 py-12">
+          <h2 className="text-2xl font-bold text-white mb-6">All Articles</h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            {blogPosts.map((post) => (
+              <Link
+                key={post.slug}
+                href={post.slug}
+                className="p-5 bg-dark-800 rounded-xl border border-dark-600 hover:border-neon-pink/50 transition-colors"
+              >
+                <div className="flex items-center justify-between text-xs text-gray-500 mb-2">
+                  <span>{blogCategories.find((cat) => cat.slug === post.category)?.name}</span>
+                  <span>{post.readTime}</span>
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-1">{post.title}</h3>
+                <p className="text-gray-400 text-sm">{post.description}</p>
+              </Link>
+            ))}
           </div>
         </section>
 

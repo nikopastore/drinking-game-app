@@ -258,11 +258,11 @@ export default function HomePage() {
                 <span className="text-white text-sm font-medium">Party Planner</span>
                 <p className="text-gray-400 text-xs mt-1">Plan your perfect party</p>
               </Link>
-              <Link href="/drink-calculator" className="p-3 bg-gradient-to-br from-neon-blue/10 to-neon-purple/10 rounded-lg hover:from-neon-blue/20 hover:to-neon-purple/20 transition-colors border border-neon-blue/30">
-                <span className="text-white text-sm font-medium">Drink Calculator</span>
-                <p className="text-gray-400 text-xs mt-1">How much to buy</p>
+              <Link href="/alcohol-calculator" className="p-3 bg-gradient-to-br from-neon-blue/10 to-neon-purple/10 rounded-lg hover:from-neon-blue/20 hover:to-neon-purple/20 transition-colors border border-neon-blue/30">
+                <span className="text-white text-sm font-medium">Alcohol Calculator</span>
+                <p className="text-gray-400 text-xs mt-1">Estimate party supplies</p>
               </Link>
-              <Link href="/alcohol-calculator" className="p-3 bg-gradient-to-br from-neon-pink/10 to-neon-blue/10 rounded-lg hover:from-neon-pink/20 hover:to-neon-blue/20 transition-colors border border-neon-pink/30">
+              <Link href="/bac-calculator" className="p-3 bg-gradient-to-br from-neon-pink/10 to-neon-blue/10 rounded-lg hover:from-neon-pink/20 hover:to-neon-blue/20 transition-colors border border-neon-pink/30">
                 <span className="text-white text-sm font-medium">BAC Calculator</span>
                 <p className="text-gray-400 text-xs mt-1">Know your limits</p>
               </Link>

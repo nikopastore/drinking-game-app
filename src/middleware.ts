@@ -111,6 +111,12 @@ const canonicalizeRequest = (request: NextRequest) => {
 
 export function middleware(request: NextRequest) {
   const { url, needsRedirect } = canonicalizeRequest(request);
+  if (url.pathname === "/drink-calculator") {
+    url.pathname = "/alcohol-calculator";
+    const redirectResponse = NextResponse.redirect(url, 301);
+    return applySecurityHeaders(redirectResponse);
+  }
+
   const { pathname } = url;
   const isApiRoute = pathname.startsWith("/api");
 

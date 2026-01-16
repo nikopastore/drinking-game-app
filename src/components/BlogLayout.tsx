@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { ArrowRight, Home, BookOpen, Clock, Calendar } from "lucide-react";
 import { AuthorByline } from "./AuthorByline";
 import { EssentialSupplies } from "./ProductCard";
+import { blogPosts } from "@/config/blogData";
 
 interface BlogLayoutProps {
   title: string;
@@ -43,6 +44,16 @@ export function BlogLayout({
   tableOfContents = [],
 }: BlogLayoutProps) {
   const pathname = usePathname();
+  const fallbackRelated = relatedArticles.length
+    ? relatedArticles
+    : blogPosts
+        .filter((post) => post.category === categorySlug && post.slug !== pathname)
+        .slice(0, 3)
+        .map((post) => ({
+          title: post.title,
+          slug: post.slug,
+          description: post.description,
+        }));
 
   // Generate Article schema
   const articleSchema = {
@@ -223,13 +234,13 @@ export function BlogLayout({
             </div>
 
             {/* Related Articles */}
-            {relatedArticles.length > 0 && (
+            {fallbackRelated.length > 0 && (
               <section className="mt-12 pt-8 border-t border-dark-600">
                 <h2 className="text-2xl font-bold text-white mb-6">
                   Related Articles
                 </h2>
                 <div className="grid md:grid-cols-2 gap-4">
-                  {relatedArticles.map((article) => (
+                  {fallbackRelated.map((article) => (
                     <Link
                       key={article.slug}
                       href={article.slug}

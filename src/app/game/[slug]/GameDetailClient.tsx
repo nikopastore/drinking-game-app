@@ -223,6 +223,42 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
           </CardContent>
         </Card>
 
+        <Card className="mb-8 border-dark-600">
+          <CardContent className="p-6">
+            <h2 className="text-xl font-bold text-white mb-4">Hosting Tips & Supplies</h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              <Link
+                href="/blog/buying-guides/party-supplies-checklist"
+                className="p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors"
+              >
+                <h3 className="font-semibold text-white">Party Supplies Checklist</h3>
+                <p className="text-sm text-gray-400 mt-1">Everything you need before guests arrive.</p>
+              </Link>
+              <Link
+                href="/blog/buying-guides/best-party-cups"
+                className="p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors"
+              >
+                <h3 className="font-semibold text-white">Best Party Cups</h3>
+                <p className="text-sm text-gray-400 mt-1">Durable cups that survive game night.</p>
+              </Link>
+              <Link
+                href="/blog/safety/how-to-host-safe-drinking-party"
+                className="p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors"
+              >
+                <h3 className="font-semibold text-white">Host a Safe Party</h3>
+                <p className="text-sm text-gray-400 mt-1">Responsible hosting tips for any group.</p>
+              </Link>
+              <Link
+                href="/party-planner"
+                className="p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors"
+              >
+                <h3 className="font-semibold text-white">Party Planner Calculator</h3>
+                <p className="text-sm text-gray-400 mt-1">Estimate drinks, ice, and supplies.</p>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Rules Section - Locked for guests */}
         {isAuthenticated ? (
           <>

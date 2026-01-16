@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Drink Calculator - How Much Alcohol For Your Party | SipWiki",
@@ -21,10 +21,10 @@ export const metadata: Metadata = {
     url: "https://sipwiki.app/drink-calculator",
   },
   alternates: {
-    canonical: "https://sipwiki.app/party-planner",
+    canonical: "https://sipwiki.app/alcohol-calculator",
   },
 };
 
 export default function DrinkCalculatorPage() {
-  redirect("/party-planner");
+  permanentRedirect("/alcohol-calculator");
 }

@@ -171,6 +171,34 @@ export default function AboutPage() {
           </CardContent>
         </Card>
 
+        {/* Editorial Standards */}
+        <Card className="mb-8">
+          <CardContent className="p-8">
+            <h2 className="text-2xl font-bold text-white mb-4">
+              How We Keep SipWiki Reliable
+            </h2>
+            <p className="text-gray-300 leading-relaxed mb-4">
+              SipWiki is built on clarity and consistency. Drinking game rules can be messy
+              across the internet, so we focus on complete, step-by-step instructions that
+              reduce confusion and settle debates quickly. Our guides include setup, gameplay,
+              variations, and pro tips so you can start playing without a long debate over
+              house rules.
+            </p>
+            <p className="text-gray-300 leading-relaxed mb-4">
+              We also review and update content as trends change. New party formats, new
+              equipment, and new popular games show up all the time. When that happens, we
+              refresh guides, add alternatives, and link to related resources so every page
+              stays useful.
+            </p>
+            <ul className="text-gray-300 space-y-2 list-disc list-inside">
+              <li>Clear steps and definitions for every rule set</li>
+              <li>Practical setup advice based on real party constraints</li>
+              <li>Links to related games and supplies to keep planning simple</li>
+              <li>Updates when new versions or trends appear</li>
+            </ul>
+          </CardContent>
+        </Card>
+
         {/* CTA */}
         <div className="text-center">
           <h2 className="text-2xl font-bold text-white mb-4">

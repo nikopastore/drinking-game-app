@@ -259,6 +259,32 @@ export function CocktailDetailClient({ cocktail }: CocktailDetailClientProps) {
                 </ul>
               </CardContent>
             </Card>
+
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="font-bold text-white mb-3">Hosting Resources</h3>
+                <div className="space-y-3 text-sm">
+                  <Link
+                    href="/blog/buying-guides/party-supplies-checklist"
+                    className="block text-gray-400 hover:text-neon-pink transition-colors"
+                  >
+                    Party Supplies Checklist
+                  </Link>
+                  <Link
+                    href="/blog/buying-guides/best-party-cups"
+                    className="block text-gray-400 hover:text-neon-pink transition-colors"
+                  >
+                    Best Party Cups
+                  </Link>
+                  <Link
+                    href="/party-planner"
+                    className="block text-gray-400 hover:text-neon-pink transition-colors"
+                  >
+                    Party Planner Calculator
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
 

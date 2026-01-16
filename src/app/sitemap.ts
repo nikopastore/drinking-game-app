@@ -5,9 +5,11 @@ import { MetadataRoute } from "next";
 import { games } from "@/config/gameData";
 import { getAllCategorySlugs } from "@/config/categoryData";
 import { cocktails } from "@/config/cocktailData";
+import { blogCategories, blogPosts } from "@/config/blogData";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://sipwiki.app";
+  const rawBaseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sipwiki.app";
+  const baseUrl = rawBaseUrl.endsWith("/") ? rawBaseUrl.slice(0, -1) : rawBaseUrl;
 
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [
@@ -53,12 +55,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/drink-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
     },
     {
       url: `${baseUrl}/alcohol-calculator`,
@@ -281,155 +277,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  // Blog pages - High priority for SEO
-  const blogPages: MetadataRoute.Sitemap = [
-    // Blog index
+  const blogIndexPages: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/blog`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.9,
     },
-    // Safety guides
-    {
-      url: `${baseUrl}/blog/safety/how-to-host-safe-drinking-party`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/blog/safety/know-your-limits`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/safety/non-alcoholic-alternatives`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.85,
-    },
-    // Buying guides
-    {
-      url: `${baseUrl}/blog/buying-guides/best-beer-pong-tables`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/blog/buying-guides/best-party-cups`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/buying-guides/party-supplies-checklist`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.9,
-    },
-    // Tutorials
-    {
-      url: `${baseUrl}/blog/tutorials/beer-pong-tournament-setup`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/blog/tutorials/diy-beer-pong-table`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/tutorials/virtual-drinking-games`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.9,
-    },
-    // Seasonal content
-    {
-      url: `${baseUrl}/blog/seasonal/super-bowl-2025-drinking-games`,
-      lastModified: new Date(),
-      changeFrequency: "yearly" as const,
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/blog/seasonal/summer-bbq-drinking-games`,
-      lastModified: new Date(),
-      changeFrequency: "yearly" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/blog/seasonal/march-madness-drinking-games`,
-      lastModified: new Date(),
-      changeFrequency: "yearly" as const,
-      priority: 0.9,
-    },
-    // More buying guides
-    {
-      url: `${baseUrl}/blog/buying-guides/best-led-beer-pong-tables`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/buying-guides/best-outdoor-drinking-games`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.85,
-    },
-    // Party tips
-    {
-      url: `${baseUrl}/blog/party-tips/21st-birthday-party-ideas`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/blog/party-tips/tailgate-party-guide`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/party-tips/small-apartment-party-hacks`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/party-tips/house-party-essentials`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.9,
-    },
-    // More seasonal content
-    {
-      url: `${baseUrl}/blog/seasonal/fourth-of-july-drinking-games`,
-      lastModified: new Date(),
-      changeFrequency: "yearly" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/blog/seasonal/halloween-drinking-games-2025`,
-      lastModified: new Date(),
-      changeFrequency: "yearly" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/blog/seasonal/thanksgiving-drinking-games`,
-      lastModified: new Date(),
-      changeFrequency: "yearly" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/blog/seasonal/new-years-eve-drinking-games-2025`,
-      lastModified: new Date(),
-      changeFrequency: "yearly" as const,
-      priority: 0.95,
-    },
   ];
 
-  return [...staticPages, ...guidePages, ...categoryPages, ...gamePages, ...cocktailPages, ...blogPages];
+  const blogCategoryPages: MetadataRoute.Sitemap = blogCategories.map((category) => ({
+    url: `${baseUrl}/blog/${category.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.75,
+  }));
+
+  const blogPostPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: `${baseUrl}${post.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  return [
+    ...staticPages,
+    ...guidePages,
+    ...categoryPages,
+    ...gamePages,
+    ...cocktailPages,
+    ...blogIndexPages,
+    ...blogCategoryPages,
+    ...blogPostPages,
+  ];
 }

@@ -175,7 +175,7 @@ export default function HousePartyEssentialsPage() {
           <li><strong>Water:</strong> 1 bottle per 2 people</li>
         </ul>
         <p className="text-gray-400 mt-4 text-sm">
-          Use our <Link href="/drink-calculator" className="text-neon-pink hover:underline">Drink Calculator</Link> for exact amounts.
+          Use our <Link href="/alcohol-calculator" className="text-neon-pink hover:underline">Alcohol Calculator</Link> for exact amounts.
         </p>
       </div>
 
@@ -346,10 +346,10 @@ export default function HousePartyEssentialsPage() {
             Party Planner Tool →
           </Link>
           <Link
-            href="/drink-calculator"
+            href="/alcohol-calculator"
             className="inline-block px-6 py-3 bg-dark-600 text-white rounded-lg hover:bg-dark-500 transition-colors"
           >
-            Drink Calculator
+            Alcohol Calculator
           </Link>
         </div>
       </div>
