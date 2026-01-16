@@ -60,6 +60,20 @@ const guides = [
     icon: UsersRound,
     category: "Game Lists",
   },
+  {
+    slug: "never-have-i-ever-questions",
+    title: "Never Have I Ever Questions",
+    description: "Clean, funny, and spicy questions with rules and hosting tips.",
+    icon: BookOpen,
+    category: "Question Lists",
+  },
+  {
+    slug: "guys-night-drinking-games",
+    title: "Guys Night Drinking Games",
+    description: "Competitive and social games for poker nights and sports watch parties.",
+    icon: Users,
+    category: "Party Themes",
+  },
 ];
 
 export default function GuidesPage() {

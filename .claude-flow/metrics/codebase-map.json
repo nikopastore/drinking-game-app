@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-01-16T17:12:05.130Z",
+  "timestamp": "2026-01-16T17:27:05.135Z",
   "projectRoot": "C:\\Users\\nikop\\Documents\\GitHub\\drinking-game-app",
   "structure": {
     "hasPackageJson": true,
@@ -7,5 +7,5 @@
     "hasClaudeConfig": true,
     "hasClaudeFlow": true
   },
-  "scannedAt": 1768583525130
+  "scannedAt": 1768584425135
 }

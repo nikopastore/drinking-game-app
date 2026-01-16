@@ -259,6 +259,47 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
           </CardContent>
         </Card>
 
+        {game.slug === "roxanne" && (
+          <Card className="mb-8">
+            <CardContent className="p-6">
+              <h2 className="text-xl font-bold text-white mb-4">
+                Roxanne Drinking Game Overview
+              </h2>
+              <p className="text-gray-300 mb-4">
+                Roxanne is a fast, song-based drinking game that lasts about three minutes.
+                One team drinks on &quot;Roxanne&quot; and the other drinks on &quot;red light.&quot;
+                It is quick, chaotic, and a great way to kick off a guys night or reset the room
+                between longer games.
+              </p>
+              <p className="text-gray-300 mb-4">
+                For a smoother experience, use small sips and keep a water break nearby. The
+                chorus ramps up quickly, so tell first-time players to pace early. If you want
+                a full breakdown with variations, read the complete Roxanne rules guide.
+              </p>
+              <div className="flex flex-wrap gap-3 text-sm">
+                <Link
+                  href="/guides/roxanne-drinking-game-rules"
+                  className="text-neon-pink hover:underline"
+                >
+                  Roxanne rules guide
+                </Link>
+                <Link
+                  href="/guides/guys-night-drinking-games"
+                  className="text-neon-pink hover:underline"
+                >
+                  Guys night drinking games
+                </Link>
+                <Link
+                  href="/blog/safety/how-to-host-safe-drinking-party"
+                  className="text-neon-pink hover:underline"
+                >
+                  Safe hosting tips
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Rules Section - Locked for guests */}
         {isAuthenticated ? (
           <>
