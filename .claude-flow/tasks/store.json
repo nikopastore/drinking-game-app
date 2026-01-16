@@ -1,0 +1,18 @@
+{
+  "tasks": {
+    "task-1768579037790-s3fw7d": {
+      "taskId": "task-1768579037790-s3fw7d",
+      "type": "research",
+      "description": "Analyze the SipWiki codebase architecture, identify patterns, technologies used, and summarize the project structure",
+      "priority": "normal",
+      "status": "pending",
+      "progress": 0,
+      "assignedTo": [],
+      "tags": [],
+      "createdAt": "2026-01-16T15:57:17.790Z",
+      "startedAt": null,
+      "completedAt": null
+    }
+  },
+  "version": "3.0.0"
+}
