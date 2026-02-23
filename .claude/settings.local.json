@@ -37,7 +37,9 @@
       "Bash(xargs cat:*)",
       "Bash(npm run build:mobile:*)",
       "Bash(if exist \"src\\app\\auth\\callback\\route.ts\" del \"src\\app\\auth\\callback\\route.ts\")",
-      "Bash(npx cap:*)"
+      "Bash(npx cap:*)",
+      "Bash(npx tsc:*)",
+      "Bash(gemini -p \"Search YouTube for drinking game tutorial videos. Find the best tutorial videos for these games and give me the YouTube URLs: 1\\) Ride The Bus drinking game 2\\) Rage Cage / Stack Cup drinking game 3\\) Never Have I Ever drinking game 4\\) Quarters drinking game 5\\) Power Hour drinking game 6\\) Drunk Jenga drinking game 7\\) Chandelier drinking game 8\\) Slap Cup drinking game. For each game, provide the YouTube video URL that best explains how to play. Only include videos that are actual tutorials showing how to play, not just mentions of the game.\")"
     ]
   }
 }

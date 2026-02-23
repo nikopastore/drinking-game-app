@@ -6,6 +6,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     slug: "kings-cup",
     name: "King's Cup",
     image: "/games/kings-cup-1.png",
+    video_url: "https://www.youtube.com/watch?v=sGd0pPKxyqo",
     description:
       "King's Cup (a.k.a. Kings or Ring of Fire) is a classic card-based drinking game where players take turns drawing cards from a ring and perform actions dictated by the card drawn. Each card value has a specific rule, and the King's Cup in the center receives drink contributions until the final King is drawn.",
     rules_text:
@@ -21,6 +22,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     slug: "beer-pong",
     name: "Beer Pong",
     image: "/games/bp-1.png",
+    video_url: "https://www.youtube.com/watch?v=5_vT_1ksQlo",
     description:
       "Beer Pong is the quintessential party drinking game where two teams throw ping pong balls across a table trying to land them in the opposing team's cups of beer. When a ball lands in a cup, the defending team drinks that cup and removes it. First team to eliminate all opposing cups wins.",
     rules_text:
@@ -35,6 +37,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     id: "seed-3",
     slug: "ride-the-bus",
     name: "Ride The Bus",
+    video_url: "https://www.youtube.com/watch?v=l_a-yMAo3-Y",
     description:
       "Ride the Bus is a multi-round card drinking game that combines High/Low guessing with a pyramid card exchange, culminating in a brutal 'riding the bus' punishment for the unluckiest player who must flip cards correctly in succession to escape.",
     rules_text:
@@ -50,6 +53,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     id: "seed-4",
     slug: "flip-cup",
     image: "/games/flip-cup-2.png",
+    video_url: "https://www.youtube.com/watch?v=FaKiZoTgXAc",
     name: "Flip Cup",
     description:
       "Flip Cup is a fast-paced team relay drinking game where players must chug their drink then flip their cup from rim to upside down on the table. Once successful, the next teammate goes. First team to finish all their flips wins!",
@@ -66,6 +70,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     slug: "rage-cage",
     name: "Rage Cage (Stack Cup)",
     image: "/games/rage-cage-1.png",
+    video_url: "https://www.youtube.com/watch?v=r_T-3m2g9-4",
     description:
       "Rage Cage (also known as Stack Cup or Boom) is a fast, chaotic drinking game where players bounce ping pong balls into cups and race to 'pass' before getting caught. If you bounce in before the person to your left, you stack their cup and they drink!",
     rules_text:
@@ -95,6 +100,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     id: "seed-7",
     slug: "never-have-i-ever",
     name: "Never Have I Ever",
+    video_url: "https://www.youtube.com/watch?v=ce_3uh1aFwY",
     description:
       "Never Have I Ever is both an icebreaker and drinking game. Players take turns making statements about things they've never done, and anyone who HAS done that thing must drink. It leads to funny, revealing stories and bonding.",
     rules_text:
@@ -140,6 +146,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     id: "seed-10",
     slug: "quarters",
     image: "/games/quarters-1.png",
+    video_url: "https://www.youtube.com/watch?v=43_nL34e9v4",
     name: "Quarters",
     description:
       "Quarters is a classic coin-bouncing drinking game. Players take turns trying to bounce a quarter off the table into a shot glass. Succeed and you choose who drinks; miss and the turn passes.",
@@ -170,6 +177,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     id: "seed-12",
     slug: "power-hour",
     name: "Power Hour",
+    video_url: "https://www.youtube.com/watch?v=V3KEh23aD64",
     description:
       "Power Hour is a drinking endurance challenge: 60 shots of beer in 60 minutes - one shot every minute for an hour. Often set to a playlist that changes songs each minute. Sounds easy, equals about 5-7 beers!",
     rules_text:
@@ -230,6 +238,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     id: "seed-16",
     slug: "drunk-jenga",
     name: "Drunk Jenga",
+    video_url: "https://www.youtube.com/watch?v=e_cm-i2k4-s",
     description:
       "Drunk Jenga is classic Jenga with a boozy twist: each block has a rule or challenge written on it. Pull a block, do what it says (often involving drinks). Knock the tower over? Finish your drink!",
     rules_text:
@@ -335,6 +344,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     id: "seed-24",
     slug: "slap-cup",
     image: "/games/slap-cup-1.png",
+    video_url: "https://www.youtube.com/watch?v=JOh2467Yqvc",
     name: "Slap Cup",
     description:
       "Slap Cup (also called Boom) is a high-energy game where players bounce ping pong balls into cups racing around the table. If you catch up to the person on your left, you SLAP their cup away and they drink a penalty!",
@@ -380,6 +390,7 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     id: "seed-27",
     slug: "chandelier",
     image: "/games/chandelier-1.png",
+    video_url: "https://www.youtube.com/watch?v=S3wYNTOaG5M",
     name: "Chandelier",
     description:
       "Chandelier is a hybrid of Flip Cup and Beer Pong. Players bounce a ball at cups around a center 'Chandelier' cup. Hit someone's cup and everyone races to chug and flip - last to flip drinks the center cup!",

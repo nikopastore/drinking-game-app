@@ -2,14 +2,15 @@
 
 import { Card, CardContent } from "@/components/ui";
 import { useAuth } from "@/lib/auth";
-import { Lock } from "lucide-react";
+import { Lock, BookOpen } from "lucide-react";
 import { useState } from "react";
 
 interface UnlockRulesCardProps {
   gameName: string;
+  showPreviewContext?: boolean;
 }
 
-export function UnlockRulesCard({ gameName }: UnlockRulesCardProps) {
+export function UnlockRulesCard({ gameName, showPreviewContext = false }: UnlockRulesCardProps) {
   const { signInWithGoogle, signInWithApple } = useAuth();
   const [isLoading, setIsLoading] = useState<"google" | "apple" | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -50,19 +51,25 @@ export function UnlockRulesCard({ gameName }: UnlockRulesCardProps) {
     <Card className="border-neon-pink/30 bg-gradient-to-br from-dark-800 to-dark-900">
       <CardContent className="p-8">
         <div className="flex flex-col items-center text-center">
-          {/* Lock Icon */}
+          {/* Icon */}
           <div className="w-16 h-16 rounded-full bg-gradient-to-br from-neon-pink/20 to-neon-purple/20 flex items-center justify-center mb-4 border border-neon-pink/30">
-            <Lock className="h-8 w-8 text-neon-pink" />
+            {showPreviewContext ? (
+              <BookOpen className="h-8 w-8 text-neon-pink" />
+            ) : (
+              <Lock className="h-8 w-8 text-neon-pink" />
+            )}
           </div>
 
           {/* Title */}
           <h3 className="text-xl font-bold text-white mb-2">
-            Unlock {gameName} Rules
+            {showPreviewContext ? `Continue Reading ${gameName} Rules` : `Unlock ${gameName} Rules`}
           </h3>
 
           {/* Subtitle */}
           <p className="text-gray-400 text-sm mb-6 max-w-sm">
-            Sign in for free to access complete rules, tips, and join the community discussion.
+            {showPreviewContext
+              ? "Sign in for free to see the full rules, pro tips, variations, and join the discussion."
+              : "Sign in for free to access complete rules, tips, and join the community discussion."}
           </p>
 
           {/* Auth Buttons */}

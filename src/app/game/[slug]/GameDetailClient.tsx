@@ -23,6 +23,30 @@ import { useAuthContext, UnlockRulesCard } from "@/components/auth";
 import { FavoriteButton } from "@/components/favorites";
 import { ShareButton } from "@/components/ShareButton";
 
+/**
+ * Extracts YouTube video ID and returns embed URL
+ * Supports: youtube.com/watch?v=ID, youtu.be/ID, youtube.com/embed/ID
+ */
+function getYouTubeEmbedUrl(url: string): string {
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
+  ];
+
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match?.[1]) {
+      return `https://www.youtube.com/embed/${match[1]}?rel=0&modestbranding=1`;
+    }
+  }
+
+  // If already an embed URL or fallback
+  if (url.includes("youtube.com/embed/")) {
+    return url;
+  }
+
+  return url;
+}
+
 interface GameDetailClientProps {
   game: Game;
 }
@@ -86,13 +110,25 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
 
         {/* Header Section */}
         <div className="mb-8">
-          {/* Video placeholder */}
-          <div className="aspect-video bg-dark-800 rounded-xl border border-dark-600 mb-6 flex items-center justify-center">
-            <div className="text-center">
-              <Play className="h-16 w-16 text-dark-600 mx-auto mb-2" />
-              <p className="text-gray-500">Demo video coming soon</p>
+          {/* Video Section */}
+          {game.video_url ? (
+            <div className="aspect-video bg-dark-800 rounded-xl border border-dark-600 mb-6 overflow-hidden">
+              <iframe
+                src={getYouTubeEmbedUrl(game.video_url)}
+                title={`How to play ${game.name} - Video tutorial`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
             </div>
-          </div>
+          ) : (
+            <div className="aspect-video bg-dark-800 rounded-xl border border-dark-600 mb-6 flex items-center justify-center">
+              <div className="text-center">
+                <Play className="h-16 w-16 text-dark-600 mx-auto mb-2" />
+                <p className="text-gray-500">Demo video coming soon</p>
+              </div>
+            </div>
+          )}
 
           {/* Title and metadata */}
           <div className="flex items-start justify-between gap-4">
@@ -108,6 +144,7 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
                 text={`Learn how to play ${game.name}! Complete rules and instructions.`}
                 url={`https://sipwiki.app/game/${game.slug}`}
                 variant="compact"
+                gameName={game.name}
               />
               <FavoriteButton
                 type="game"
@@ -300,7 +337,7 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
           </Card>
         )}
 
-        {/* Rules Section - Locked for guests */}
+        {/* Rules Section */}
         {isAuthenticated ? (
           <>
             <Card className="mb-8">
@@ -329,9 +366,37 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
             </div>
           </>
         ) : (
-          <div className="mb-24">
-            <UnlockRulesCard gameName={game.name} />
-          </div>
+          <>
+            {/* Rules Preview for guests */}
+            <Card className="mb-4">
+              <CardContent className="p-6">
+                <h2 className="text-xl font-bold text-white mb-4">How to Play</h2>
+                <div className="prose prose-invert max-w-none relative">
+                  {/* Show first 3 paragraphs as preview */}
+                  {game.rules_text
+                    .split(/\n\n+/)
+                    .slice(0, 3)
+                    .map((paragraph, index) => {
+                      const sanitizedLine = formatMarkdownBold(paragraph);
+                      return (
+                        <p
+                          key={index}
+                          className="text-gray-300 mb-3 leading-relaxed"
+                          dangerouslySetInnerHTML={{ __html: sanitizedLine }}
+                        />
+                      );
+                    })}
+                  {/* Fade-out gradient overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-dark-800 to-transparent pointer-events-none" />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Unlock prompt below preview */}
+            <div className="mb-24">
+              <UnlockRulesCard gameName={game.name} showPreviewContext />
+            </div>
+          </>
         )}
 
         {/* Sticky Play Button */}
