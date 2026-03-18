@@ -5,6 +5,7 @@ import { MobileNav } from "@/components/MobileNav";
 import { QuickAnswer, ComparisonTable } from "@/components/seo";
 import Link from "next/link";
 import { generateArticleSchema } from "@/lib/schema";
+import { EmailCapture } from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Best Cocktails Guide: Classic & Modern Recipes (2025) | SipWiki",
@@ -75,6 +76,12 @@ export default function CocktailsGuidePage() {
             ]}
             variant="primary"
           />
+
+          {/* AdSense In-Content Ad Placeholder */}
+          <div className="my-8 rounded-xl border border-dashed border-dark-600 bg-dark-800/40 px-6 py-10 text-center text-sm text-gray-500">
+            {/* AdSense: Guide In-Content Ad */}
+            Ad Placeholder - Guide In-Content
+          </div>
 
           <div className="prose prose-invert max-w-none mt-12">
             <h2>What Are Cocktails?</h2>
@@ -493,6 +500,8 @@ export default function CocktailsGuidePage() {
               Remember: cocktails are meant to be enjoyed, not stressed over. Have fun, experiment, and don't be afraid to adjust recipes to your taste. The best cocktail is the one you're drinking with good company.
             </p>
           </div>
+
+          <EmailCapture source="guide" />
 
           <div className="mt-12 p-6 bg-gradient-to-br from-neon-pink/10 to-neon-blue/10 rounded-xl border border-neon-pink/30">
             <h3 className="text-xl font-bold text-white mb-3">More Cocktail Resources</h3>

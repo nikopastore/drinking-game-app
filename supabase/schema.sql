@@ -84,6 +84,18 @@ CREATE INDEX idx_game_submissions_status ON game_submissions(status);
 CREATE INDEX idx_game_submissions_user_id ON game_submissions(user_id);
 
 -- ============================================
+-- EMAIL SUBSCRIBERS TABLE (lead magnets)
+-- ============================================
+CREATE TABLE IF NOT EXISTS email_subscribers (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  email TEXT NOT NULL UNIQUE,
+  source TEXT,
+  page_path TEXT,
+  lead_magnet TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- ============================================
 -- ROW LEVEL SECURITY POLICIES
 -- ============================================
 
@@ -146,6 +158,13 @@ CREATE POLICY "Users can read their own submissions"
 CREATE POLICY "Authenticated users can insert submissions"
   ON game_submissions FOR INSERT
   WITH CHECK (auth.uid() = user_id);
+
+-- Email Subscribers: Allow anonymous inserts for lead magnets
+ALTER TABLE email_subscribers ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Anyone can insert email subscribers"
+  ON email_subscribers FOR INSERT
+  WITH CHECK (true);
 
 -- ============================================
 -- FUNCTIONS

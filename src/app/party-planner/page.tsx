@@ -22,6 +22,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import Link from "next/link";
+import { EmailCapture } from "@/components/EmailCapture";
 
 // SEO-optimized metadata is in layout or generated separately for static
 
@@ -584,6 +585,8 @@ Made with SipWiki Party Planner`;
           </div>
 
           {/* Internal Links Section */}
+          <EmailCapture source="party-planner" />
+
           <div className="mt-8">
             <Card>
               <CardContent className="p-6">

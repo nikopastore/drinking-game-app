@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Play, Home, BookOpen } from "lucide-react";
 import { ShareButton } from "@/components/ShareButton";
+import { EmailCapture } from "@/components/EmailCapture";
 
 interface RelatedGame {
   name: string;
@@ -121,6 +122,12 @@ export function GuideLayout({
           </p>
         </header>
 
+        {/* AdSense In-Content Ad Placeholder */}
+        <div className="my-8 rounded-xl border border-dashed border-dark-600 bg-dark-800/40 px-6 py-10 text-center text-sm text-gray-500">
+          {/* AdSense: Guide In-Content Ad */}
+          Ad Placeholder - Guide In-Content
+        </div>
+
         <div className="prose prose-invert prose-lg max-w-none
           prose-headings:text-white prose-headings:font-bold
           prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:border-b prose-h2:border-dark-600 prose-h2:pb-2
@@ -132,6 +139,8 @@ export function GuideLayout({
         ">
           {children}
         </div>
+
+        <EmailCapture source="guide" />
 
         {/* Inline CTA */}
         {primaryGame && (

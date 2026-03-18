@@ -75,9 +75,11 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
     <div className="min-h-screen bg-dark-900">
       <Header />
 
-      <main className="max-w-4xl mx-auto px-4 py-8">
-        {/* Breadcrumb Navigation for SEO */}
-        <nav className="mb-6" aria-label="Breadcrumb">
+      <main className="max-w-6xl mx-auto px-4 py-8">
+        <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-8">
+          <div>
+            {/* Breadcrumb Navigation for SEO */}
+            <nav className="mb-6" aria-label="Breadcrumb">
           <ol className="flex items-center gap-2 text-sm flex-wrap">
             <li>
               <Link href="/" className="text-gray-400 hover:text-white transition-colors">
@@ -400,15 +402,26 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
         )}
 
         {/* Sticky Play Button */}
-        <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-dark-900 via-dark-900 to-transparent">
-          <div className="max-w-4xl mx-auto">
-            <Link href={`/play/${game.slug}`}>
-              <Button size="lg" className="w-full text-lg py-4">
-                <Play className="h-5 w-5 mr-2" />
-                Start Playing {game.name}
-              </Button>
-            </Link>
+            <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-dark-900 via-dark-900 to-transparent">
+              <div className="max-w-4xl mx-auto">
+                <Link href={`/play/${game.slug}`}>
+                  <Button size="lg" className="w-full text-lg py-4">
+                    <Play className="h-5 w-5 mr-2" />
+                    Start Playing {game.name}
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
+
+          <aside className="hidden lg:block">
+            <div className="sticky top-24 space-y-4">
+              {/* AdSense Sidebar Ad Placeholder */}
+              <div className="flex h-[600px] items-center justify-center rounded-xl border border-dashed border-dark-600 bg-dark-800/40 px-4 text-center text-sm text-gray-500">
+                Ad Placeholder - Game Sidebar
+              </div>
+            </div>
+          </aside>
         </div>
       </main>
     </div>

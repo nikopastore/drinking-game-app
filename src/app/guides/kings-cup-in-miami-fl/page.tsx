@@ -5,6 +5,7 @@ import { MobileNav } from "@/components/MobileNav";
 import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 import { generateArticleSchema } from "@/lib/schema";
+import { EmailCapture } from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "King's Cup in Miami, FL: Where to Play & Local Rules (2025)",
@@ -71,6 +72,12 @@ export default function KingsCupInMiamiPage() {
             ]}
             variant="primary"
           />
+
+          {/* AdSense In-Content Ad Placeholder */}
+          <div className="my-8 rounded-xl border border-dashed border-dark-600 bg-dark-800/40 px-6 py-10 text-center text-sm text-gray-500">
+            {/* AdSense: Guide In-Content Ad */}
+            Ad Placeholder - Guide In-Content
+          </div>
 
           <div className="prose prose-invert max-w-none mt-12">
             <h2>Playing King's Cup in Miami</h2>
@@ -297,6 +304,8 @@ export default function KingsCupInMiamiPage() {
               Ready to master the game? Check out our complete <Link href="/guides/kings-cup-rules" className="text-neon-pink hover:text-neon-pink/80">King's Cup rules guide</Link> for detailed instructions, pro tips, and strategy guides.
             </p>
           </div>
+
+          <EmailCapture source="guide" />
 
           <div className="mt-12 p-6 bg-gradient-to-br from-neon-pink/10 to-neon-blue/10 rounded-xl border border-neon-pink/30">
             <h3 className="text-xl font-bold text-white mb-3">More King's Cup Resources</h3>

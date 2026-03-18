@@ -5,6 +5,7 @@ import { MobileNav } from "@/components/MobileNav";
 import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 import { generateArticleSchema } from "@/lib/schema";
+import { EmailCapture } from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Never Have I Ever in Los Angeles, CA: Where to Play & Local Rules (2025)",
@@ -71,6 +72,12 @@ export default function NeverHaveIEverInLosAngelesPage() {
             ]}
             variant="primary"
           />
+
+          {/* AdSense In-Content Ad Placeholder */}
+          <div className="my-8 rounded-xl border border-dashed border-dark-600 bg-dark-800/40 px-6 py-10 text-center text-sm text-gray-500">
+            {/* AdSense: Guide In-Content Ad */}
+            Ad Placeholder - Guide In-Content
+          </div>
 
           <div className="prose prose-invert max-w-none mt-12">
             <h2>Playing Never Have I Ever in Los Angeles</h2>
@@ -377,6 +384,8 @@ export default function NeverHaveIEverInLosAngelesPage() {
               Ready to master the game? Check out our complete <Link href="/guides/never-have-i-ever-rules" className="text-neon-pink hover:text-neon-pink/80">Never Have I Ever rules guide</Link> with 500+ questions for any occasion.
             </p>
           </div>
+
+          <EmailCapture source="guide" />
 
           <div className="mt-12 p-6 bg-gradient-to-br from-neon-pink/10 to-neon-blue/10 rounded-xl border border-neon-pink/30">
             <h3 className="text-xl font-bold text-white mb-3">More Never Have I Ever Resources</h3>

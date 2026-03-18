@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { BookOpen, ArrowRight, Crown, Target, Users, Hand, UsersRound } from "lucide-react";
+import { EmailCapture } from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Drinking Game Guides & Rules | SipWiki",
@@ -94,6 +95,12 @@ export default function GuidesPage() {
           </p>
         </header>
 
+        {/* AdSense In-Content Ad Placeholder */}
+        <div className="mb-10 rounded-xl border border-dashed border-dark-600 bg-dark-800/40 px-6 py-10 text-center text-sm text-gray-500">
+          {/* AdSense: Guide In-Content Ad */}
+          Ad Placeholder - Guide In-Content
+        </div>
+
         <div className="grid gap-6">
           {guides.map((guide) => {
             const Icon = guide.icon;
@@ -122,6 +129,8 @@ export default function GuidesPage() {
             );
           })}
         </div>
+
+        <EmailCapture source="guide-index" />
 
         <div className="mt-12 text-center">
           <p className="text-gray-400 mb-4">Want to jump straight into playing?</p>
