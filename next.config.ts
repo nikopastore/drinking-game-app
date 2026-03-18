@@ -1,4 +1,6 @@
 import type { NextConfig } from "next";
+import fs from "node:fs";
+import path from "node:path";
 import withPWAInit from "@ducanh2912/next-pwa";
 
 const isStaticExport = process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true';
@@ -64,6 +66,20 @@ const nextConfig: NextConfig = {
       unoptimized: true,
     },
   }),
+  async redirects() {
+    const gameDataPath = path.join(process.cwd(), "src/config/gameData.ts");
+    const gameData = fs.readFileSync(gameDataPath, "utf8");
+    const slugMatches = Array.from(gameData.matchAll(/slug:\\s*\"([^\"]+)\"/g)).map(
+      (match) => match[1]
+    );
+    const slugs = Array.from(new Set(slugMatches));
+
+    return slugs.map((slug) => ({
+      source: `/games/${slug}`,
+      destination: `/game/${slug}`,
+      permanent: true,
+    }));
+  },
 };
 
 export default withPWA(nextConfig);
