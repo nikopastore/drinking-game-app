@@ -567,6 +567,36 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     drunkenness_level: 4,
     image: "/games/landmines-1.png",
   },
+  {
+    id: "seed-40",
+    slug: "beer-die",
+    name: "Beer Die",
+    description:
+      "Beer Die is a fast-paced dice throwing game where teams score by landing a die on the table or making the other team miss the catch. It's a backyard and tailgate classic that blends skill, reflexes, and drinking penalties.",
+    rules_text:
+      "**Setup:**\n- Two teams of 2 stand at opposite ends of a table\n- Place a die on the table and fill drinks for everyone\n- Each team defends their side of the table\n\n**Basic Play:**\n- A player throws the die so it lands on the table and bounces off\n- Scoring team gets points based on what happens next\n\n**Scoring:**\n- **Die lands on table and stays:** 1 point\n- **Die lands on table and bounces off (not caught):** 2 points\n- **Die bounces off table and is caught cleanly:** 1 point for the catching team\n- **Die bounces off table and is dropped:** 2 points for the throwing team\n\n**Drinking Rule:**\n- The team that loses the point drinks (or the team that scores assigns the drink)\n\n**Winning:**\n- First team to 5 or 7 points wins (agree before starting)\n\n**Tips:**\n- Aim for the back edge to force awkward catches\n- Keep throws controlled - accuracy beats power\n- Play outside with a sturdy table for best results",
+    materials: ["dice", "table", "cups", "beer"],
+    min_players: 4,
+    max_players: 4,
+    alcohol_type: "beer",
+    drunkenness_level: 4,
+    image: "/games/7-11-doubles-1.png",
+  },
+  {
+    id: "seed-41",
+    slug: "boat-race",
+    name: "Boat Race",
+    description:
+      "Boat Race is a team chugging relay where players line up and race to finish their drinks. It's a classic pregame and party game that builds instant hype.",
+    rules_text:
+      "**Setup:**\n- Split into two teams and line up on opposite sides of a table\n- Each player gets a cup filled with beer (or a drink of choice)\n\n**Start:**\n- On \"Go!\" the first player on each team starts chugging\n- Once finished, they raise their cup to signal the next teammate\n\n**Relay:**\n- The next player starts chugging only after the previous player finishes\n- Continue down the line until the last player finishes\n\n**Winning:**\n- First team to finish the full line wins the Boat Race\n\n**House Rules:**\n- False start = 5-second penalty\n- Spilled drink = refill and re-chug\n- Winning team assigns a penalty drink to the losers\n\n**Tips:**\n- Use light beer for faster races\n- Keep cups filled equally for fairness\n- Try tournament brackets for big groups",
+    materials: ["cups", "beer", "table"],
+    min_players: 4,
+    max_players: null,
+    alcohol_type: "beer",
+    drunkenness_level: 4,
+    image: "/games/horse-race-3.png",
+  },
 ];
 
 // Convert to full Game objects with timestamps
