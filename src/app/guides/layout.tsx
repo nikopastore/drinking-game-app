@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { AutoFaqExtractor, FaqSchemaProvider } from "@/components/seo";
 
 export const metadata: Metadata = {
   robots: {
@@ -19,5 +20,10 @@ export default function GuidesLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <FaqSchemaProvider>
+      {children}
+      <AutoFaqExtractor />
+    </FaqSchemaProvider>
+  );
 }

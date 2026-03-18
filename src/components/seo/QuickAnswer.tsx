@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
 import { CheckCircle2, Info } from "lucide-react";
+import { useFaqSchema } from "./FaqSchemaProvider";
 
 interface QuickAnswerProps {
   question: string;
@@ -51,6 +53,12 @@ export function QuickAnswer({
   learnMoreUrl,
   variant = "default",
 }: QuickAnswerProps) {
+  const faqSchema = useFaqSchema();
+
+  useEffect(() => {
+    faqSchema?.registerFaq({ question, answer });
+  }, [answer, faqSchema, question]);
+
   const variantStyles = {
     default: "bg-dark-800 border-dark-700",
     primary: "bg-gradient-to-br from-neon-pink/10 to-neon-blue/10 border-neon-pink/30",
