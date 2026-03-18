@@ -13,6 +13,15 @@ export const metadata: Metadata = {
 export default function MovieDrinkingGamesPage() {
   return (
     <GuideLayout title="Movie Drinking Games" description="Turn movie night into a party! Drink for tropes, catchphrases, and clichés. We've got rules for popular movies plus tips for creating your own." breadcrumb="Movie Games" primaryGame={{ name: "Movie Drinking Game", slug: "movie-drinking-game" }} relatedGames={[{ name: "Thunderstruck", slug: "thunderstruck", description: "Music version" }]}>
+      <h2>Featured Movie & TV Drinking Games</h2>
+      <ul>
+        <li><Link href="/guides/barbie-movie-drinking-game" className="text-neon-pink hover:underline">Barbie Movie Drinking Game</Link></li>
+        <li><Link href="/guides/oppenheimer-drinking-game" className="text-neon-pink hover:underline">Oppenheimer Drinking Game</Link></li>
+        <li><Link href="/guides/mean-girls-drinking-game" className="text-neon-pink hover:underline">Mean Girls Drinking Game</Link></li>
+        <li><Link href="/guides/office-drinking-game" className="text-neon-pink hover:underline">The Office Drinking Game</Link></li>
+        <li><Link href="/guides/friends-tv-show-drinking-game" className="text-neon-pink hover:underline">Friends TV Show Drinking Game</Link></li>
+      </ul>
+
       <h2>Popular Movie Rules</h2>
       <h3>Any Action Movie</h3>
       <ul><li>Explosion = drink</li><li>One-liner = drink</li><li>Car chase = drink throughout</li></ul>
