@@ -4,7 +4,7 @@ import { GamesIndexClient } from "./GamesIndexClient";
 export const metadata: Metadata = {
   title: "All Drinking Games - Complete Rules & How to Play | SipWiki",
   description:
-    "Browse 30+ drinking games with complete rules. Card games, cup games, dice games, and more. Find the perfect game for your party tonight!",
+    "Browse 40+ drinking games with complete rules. Card games, cup games, dice games, and no-prop favorites. Find the perfect party game tonight!",
   keywords: [
     "drinking games",
     "drinking game rules",
