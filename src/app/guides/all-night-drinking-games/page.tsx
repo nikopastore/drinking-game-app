@@ -47,7 +47,7 @@ export default function AllNightDrinkingGamesPage() {
         <li>People can join and leave between decks</li>
         <li>Gets more chaotic as rules accumulate</li>
       </ul>
-      <p><Link href="/game/kings-cup" className="text-neon-pink">Play Kings Cup →</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink">Play Kings Cup →</Link></p>
 
       <h3>Rage Cage Tournament</h3>
       <p>High-energy game for peak party hours.</p>
@@ -58,7 +58,7 @@ export default function AllNightDrinkingGamesPage() {
         <li>Ultimate champion crowned at the end</li>
         <li>Death cup rules keep stakes high</li>
       </ul>
-      <p><Link href="/game/rage-cage" className="text-neon-pink">Play Rage Cage →</Link></p>
+      <p><Link href="/games/rage-cage" className="text-neon-pink">Play Rage Cage →</Link></p>
 
       <h3>Drunk Board Games</h3>
       <p>Regular board games + drinking rules = hours of fun.</p>
@@ -78,7 +78,7 @@ export default function AllNightDrinkingGamesPage() {
         <li>Crown a champion at the end of the night</li>
         <li>Championship game at 2 AM</li>
       </ul>
-      <p><Link href="/game/flip-cup" className="text-neon-pink">Flip Cup rules →</Link></p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink">Flip Cup rules →</Link></p>
 
       <h2>All-Night Schedule</h2>
 

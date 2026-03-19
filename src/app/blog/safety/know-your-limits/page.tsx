@@ -239,20 +239,20 @@ export default function KnowYourLimitsPage() {
         <p>Some games naturally have better pacing than others:</p>
         <ul>
           <li>
-            <Link href="/game/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link> - Sip-based, slower pace
+            <Link href="/games/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link> - Sip-based, slower pace
           </li>
           <li>
-            <Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link> - Depends on your experiences
+            <Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link> - Depends on your experiences
           </li>
           <li>
-            <Link href="/game/most-likely-to" className="text-neon-pink hover:underline">Most Likely To</Link> - Lower overall consumption
+            <Link href="/games/most-likely-to" className="text-neon-pink hover:underline">Most Likely To</Link> - Lower overall consumption
           </li>
         </ul>
 
         <h3>Games to Be Careful With</h3>
         <ul>
           <li>
-            <Link href="/game/rage-cage" className="text-neon-pink hover:underline">Rage Cage</Link> - Fast-paced, stacking drinks
+            <Link href="/games/rage-cage" className="text-neon-pink hover:underline">Rage Cage</Link> - Fast-paced, stacking drinks
           </li>
           <li>
             <Link href="/guides/power-hour-rules" className="text-neon-pink hover:underline">Power Hour</Link> - 60 shots in 60 minutes

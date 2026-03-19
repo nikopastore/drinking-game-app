@@ -14,7 +14,7 @@ export default function DrinkingGamesForIntrovertsPage() {
   return (
     <GuideLayout title="Drinking Games for Introverts" description="Not everyone wants to be the center of attention. These games are fun without requiring you to perform, yell, or be 'on' the whole time." breadcrumb="Introvert Games" relatedGames={[{ name: "Ride the Bus", slug: "ride-the-bus", description: "Just you and cards" }, { name: "Kings Cup", slug: "kings-cup", description: "Rules do the talking" }]}>
       <h2>Low-Pressure Games</h2>
-      <ul><li><Link href="/game/ride-the-bus" className="text-neon-pink">Ride the Bus</Link> - Personal challenge</li><li><Link href="/game/kings-cup" className="text-neon-pink">Kings Cup</Link> - Rules guide everything</li><li><Link href="/game/horse-race" className="text-neon-pink">Horse Race</Link> - Watch, bet, drink</li><li><strong>Card games in general</strong></li></ul>
+      <ul><li><Link href="/games/ride-the-bus" className="text-neon-pink">Ride the Bus</Link> - Personal challenge</li><li><Link href="/games/kings-cup" className="text-neon-pink">Kings Cup</Link> - Rules guide everything</li><li><Link href="/games/horse-race" className="text-neon-pink">Horse Race</Link> - Watch, bet, drink</li><li><strong>Card games in general</strong></li></ul>
       <h2>Avoid These</h2>
       <ul><li>Truth or Dare - too exposed</li><li>Charades-style games</li><li>Games requiring stories/performances</li><li>Anything with &quot;spotlight&quot; moments</li></ul>
       <h2>Introvert Survival Tips</h2>

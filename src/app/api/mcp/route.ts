@@ -29,7 +29,7 @@ function formatGameSummary(game: Game) {
     materials: game.materials,
     alcoholType: game.alcohol_type,
     sipFactor: game.drunkenness_level,
-    url: `${SIPWIKI_URL}/game/${game.slug}`,
+    url: `${SIPWIKI_URL}/games/${game.slug}`,
     image: game.image ? `${SIPWIKI_URL}${game.image}` : null,
   };
 }

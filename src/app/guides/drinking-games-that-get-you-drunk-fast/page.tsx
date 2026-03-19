@@ -16,9 +16,9 @@ export default function DrinkingGamesThatGetYouDrunkFastPage() {
       <h2>⚠️ DRINK RESPONSIBLY</h2>
       <p>These games hit hard. Know your limits, eat first, have water, and never drive.</p>
       <h2>High-Efficiency Games</h2>
-      <ul><li><Link href="/game/rage-cage" className="text-neon-pink">Rage Cage</Link> - Stacking drinks</li><li><Link href="/game/power-hour" className="text-neon-pink">Power Hour</Link> - 60 shots in 60 min</li><li><Link href="/game/slap-cup" className="text-neon-pink">Slap Cup</Link> - Caught = drink extra</li><li><strong>Waterfall</strong> - Chain drinking</li></ul>
+      <ul><li><Link href="/games/rage-cage" className="text-neon-pink">Rage Cage</Link> - Stacking drinks</li><li><Link href="/games/power-hour" className="text-neon-pink">Power Hour</Link> - 60 shots in 60 min</li><li><Link href="/games/slap-cup" className="text-neon-pink">Slap Cup</Link> - Caught = drink extra</li><li><strong>Waterfall</strong> - Chain drinking</li></ul>
       <h2>Pre-Game Favorites</h2>
-      <ul><li><Link href="/game/flip-cup" className="text-neon-pink">Flip Cup</Link> - Fast team rounds</li><li><strong>Thunderstruck</strong> - Song length = drinking</li><li><strong>Shot Roulette</strong> - Quick rounds</li></ul>
+      <ul><li><Link href="/games/flip-cup" className="text-neon-pink">Flip Cup</Link> - Fast team rounds</li><li><strong>Thunderstruck</strong> - Song length = drinking</li><li><strong>Shot Roulette</strong> - Quick rounds</li></ul>
       <h2>Safety Reminders</h2>
       <ul><li>Eat a full meal first</li><li>Water between rounds</li><li>Uber/Lyft ready</li><li>Buddy system</li></ul>
     </GuideLayout>

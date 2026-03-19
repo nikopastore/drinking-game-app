@@ -246,7 +246,7 @@ export default function KingsCupRulesPage() {
         <p>Absolutely! Kings Cup works great with any beverage. The game mechanics are fun regardless of what you&apos;re drinking.</p>
 
         <h2>Ready to Play?</h2>
-        <p>Now that you know all the Kings Cup rules and card meanings, it&apos;s time to gather your friends and start playing! Check out our <Link href="/game/kings-cup" className="text-neon-pink hover:underline">interactive Kings Cup game</Link> for a digital version, or browse more <Link href="/games/card-games" className="text-neon-pink hover:underline">card drinking games</Link>.</p>
+        <p>Now that you know all the Kings Cup rules and card meanings, it&apos;s time to gather your friends and start playing! Check out our <Link href="/games/kings-cup" className="text-neon-pink hover:underline">interactive Kings Cup game</Link> for a digital version, or browse more <Link href="/games/card-games" className="text-neon-pink hover:underline">card drinking games</Link>.</p>
       </GuideLayout>
     </>
   );

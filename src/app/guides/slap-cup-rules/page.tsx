@@ -21,7 +21,7 @@ export default function SlapCupRulesPage() {
       <ol><li>Bounce the ball into your cup</li><li>Make it first try = pass to anyone</li><li>If you make it while your neighbor is still bouncing, SLAP their cup off the table</li><li>They drink a center cup and use that cup to continue</li><li>Death cup = game over for you</li></ol>
       <h2>Slap Cup vs Rage Cage</h2>
       <p>In Rage Cage, you stack. In Slap Cup, you slap. The slap is more dramatic and sends cups flying - more chaos, more fun!</p>
-      <p>Play <Link href="/game/slap-cup" className="text-neon-pink hover:underline">Slap Cup</Link> on SipWiki!</p>
+      <p>Play <Link href="/games/slap-cup" className="text-neon-pink hover:underline">Slap Cup</Link> on SipWiki!</p>
     </GuideLayout>
   );
 }

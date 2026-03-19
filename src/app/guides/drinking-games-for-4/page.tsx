@@ -99,7 +99,7 @@ export default function DrinkingGamesFor4Page() {
       name: "Beer Pong (2v2)",
       category: "Team Classic",
       description: "The classic doubles format. Teams of 2 alternate shots at the opposing cups. The definitive 4-player game.",
-      link: "/game/beer-pong",
+      link: "/games/beer-pong",
       intensity: "Medium",
       whyItWorks: "Designed for exactly 4 players"
     },
@@ -107,7 +107,7 @@ export default function DrinkingGamesFor4Page() {
       name: "Kings Cup",
       category: "Cards",
       description: "Draw cards, follow rules. At 4 players, everyone gets 13 cards - the entire deck is used perfectly.",
-      link: "/game/kings-cup",
+      link: "/games/kings-cup",
       intensity: "Medium",
       whyItWorks: "Sweet spot player count"
     },
@@ -115,7 +115,7 @@ export default function DrinkingGamesFor4Page() {
       name: "Flip Cup (2v2)",
       category: "Team Relay",
       description: "Quick relay races with teams of 2. Do multiple rounds - best of 5 gets bragging rights.",
-      link: "/game/flip-cup",
+      link: "/games/flip-cup",
       intensity: "High",
       whyItWorks: "Fast, competitive team action"
     },
@@ -123,7 +123,7 @@ export default function DrinkingGamesFor4Page() {
       name: "Horse Race",
       category: "Cards",
       description: "Each player picks a suit (4 suits, 4 players). Bet on your horse and watch it race across the table.",
-      link: "/game/horse-race",
+      link: "/games/horse-race",
       intensity: "Medium",
       whyItWorks: "Literally designed for 4 players"
     },
@@ -131,7 +131,7 @@ export default function DrinkingGamesFor4Page() {
       name: "Irish Poker",
       category: "Cards",
       description: "Guess your cards: red/black, higher/lower, in-between, suit. Wrong guesses mean drinks.",
-      link: "/game/irish-poker",
+      link: "/games/irish-poker",
       intensity: "Medium",
       whyItWorks: "Perfect card distribution"
     },
@@ -139,7 +139,7 @@ export default function DrinkingGamesFor4Page() {
       name: "Beeramid",
       category: "Cards",
       description: "Build a pyramid, bluff about your cards. 4 is ideal - enough targets, not too chaotic.",
-      link: "/game/beeramid",
+      link: "/games/beeramid",
       intensity: "Medium",
       whyItWorks: "Bluffing dynamics work perfectly"
     },
@@ -147,7 +147,7 @@ export default function DrinkingGamesFor4Page() {
       name: "Ride the Bus",
       category: "Cards",
       description: "Card guessing elimination. The loser 'rides the bus' through a gauntlet of cards.",
-      link: "/game/ride-the-bus",
+      link: "/games/ride-the-bus",
       intensity: "High",
       whyItWorks: "Enough players for a long bus"
     },
@@ -155,7 +155,7 @@ export default function DrinkingGamesFor4Page() {
       name: "Quarters",
       category: "Skill",
       description: "Bounce quarters into cups. At 4, turns come fast and the competition stays fierce.",
-      link: "/game/quarters",
+      link: "/games/quarters",
       intensity: "Medium",
       whyItWorks: "Fast turn rotation"
     },
@@ -171,7 +171,7 @@ export default function DrinkingGamesFor4Page() {
       name: "Chandelier",
       category: "Cups",
       description: "Bounce a ball, hit others' cups. Each of 4 players has a cup to defend.",
-      link: "/game/chandelier",
+      link: "/games/chandelier",
       intensity: "High",
       whyItWorks: "Everyone has a target"
     },
@@ -179,7 +179,7 @@ export default function DrinkingGamesFor4Page() {
       name: "Civil War (2v2)",
       category: "Team Battle",
       description: "Like Beer Pong but each person has 3 cups. Both teammates shoot simultaneously. Pure chaos.",
-      link: "/game/civil-war",
+      link: "/games/civil-war",
       intensity: "Extreme",
       whyItWorks: "Intense team battles"
     },
@@ -187,7 +187,7 @@ export default function DrinkingGamesFor4Page() {
       name: "Most Likely To",
       category: "No Props",
       description: "Vote on who's most likely to do something. At 4, ties happen often - both drink!",
-      link: "/game/most-likely-to",
+      link: "/games/most-likely-to",
       intensity: "Low",
       whyItWorks: "Intimate but revealing"
     },
@@ -195,7 +195,7 @@ export default function DrinkingGamesFor4Page() {
       name: "Never Have I Ever",
       category: "No Props",
       description: "Share experiences, drink if you've done it. 4 people means you learn real secrets.",
-      link: "/game/never-have-i-ever",
+      link: "/games/never-have-i-ever",
       intensity: "Low",
       whyItWorks: "Intimate group confessions"
     },
@@ -203,7 +203,7 @@ export default function DrinkingGamesFor4Page() {
       name: "Medusa",
       category: "No Props",
       description: "Look down, look up - if you make eye contact, drink. 4 means fewer matches per round.",
-      link: "/game/medusa",
+      link: "/games/medusa",
       intensity: "Low",
       whyItWorks: "Quick, silly ice breaker"
     },
@@ -211,7 +211,7 @@ export default function DrinkingGamesFor4Page() {
       name: "Boat Race (2v2)",
       category: "Team Relay",
       description: "Chugging relay - first team to finish all drinks wins. Short but intense at 2v2.",
-      link: "/game/boat-race",
+      link: "/games/boat-race",
       intensity: "Extreme",
       whyItWorks: "Quick team showdown"
     },

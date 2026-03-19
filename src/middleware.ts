@@ -117,6 +117,12 @@ export function middleware(request: NextRequest) {
     return applySecurityHeaders(redirectResponse);
   }
 
+  if (url.pathname === "/game" || url.pathname.startsWith("/game/")) {
+    url.pathname = url.pathname.replace(/^\\/game/, "/games");
+    const redirectResponse = NextResponse.redirect(url, 301);
+    return applySecurityHeaders(redirectResponse);
+  }
+
   const { pathname } = url;
   const isApiRoute = pathname.startsWith("/api");
 

@@ -165,7 +165,7 @@ export default function SevenElevenDoublesRulesPage() {
       <div className="mt-8 p-6 bg-dark-800 rounded-xl border border-dark-600">
         <h3 className="text-lg font-bold text-white mb-3">Play 7-11-Doubles on SipWiki</h3>
         <Link
-          href="/game/7-11-doubles"
+          href="/games/7-11-doubles"
           className="inline-block px-6 py-3 bg-neon-pink text-white rounded-lg hover:bg-neon-pink/80 transition-colors"
         >
           7-11-Doubles Game Page →

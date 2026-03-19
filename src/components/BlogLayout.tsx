@@ -310,22 +310,22 @@ export function BlogLayout({
             <h4 className="font-semibold text-white mb-3">Popular Games</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/game/kings-cup" className="text-gray-400 hover:text-neon-pink">
+                <Link href="/games/kings-cup" className="text-gray-400 hover:text-neon-pink">
                   Kings Cup
                 </Link>
               </li>
               <li>
-                <Link href="/game/beer-pong" className="text-gray-400 hover:text-neon-pink">
+                <Link href="/games/beer-pong" className="text-gray-400 hover:text-neon-pink">
                   Beer Pong
                 </Link>
               </li>
               <li>
-                <Link href="/game/flip-cup" className="text-gray-400 hover:text-neon-pink">
+                <Link href="/games/flip-cup" className="text-gray-400 hover:text-neon-pink">
                   Flip Cup
                 </Link>
               </li>
               <li>
-                <Link href="/game/never-have-i-ever" className="text-gray-400 hover:text-neon-pink">
+                <Link href="/games/never-have-i-ever" className="text-gray-400 hover:text-neon-pink">
                   Never Have I Ever
                 </Link>
               </li>

@@ -394,7 +394,7 @@ export default function DrinkingGameQuizPage() {
                           {matchingGames.map((game) => (
                             <Link
                               key={game.slug}
-                              href={`/game/${game.slug}`}
+                              href={`/games/${game.slug}`}
                               className="flex items-center justify-between p-4 bg-dark-700/50 rounded-xl hover:bg-dark-600 transition-colors"
                             >
                               <div>
@@ -459,19 +459,19 @@ export default function DrinkingGameQuizPage() {
                   <div className="space-y-4">
                     <div>
                       <h4 className="text-lg font-medium text-white">👑 Kings Cup Royalty</h4>
-                      <p>You&apos;re the social butterfly who loves making rules and watching others follow them. Perfect for you: <Link href="/game/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link>, Circle of Death, Waterfall</p>
+                      <p>You&apos;re the social butterfly who loves making rules and watching others follow them. Perfect for you: <Link href="/games/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link>, Circle of Death, Waterfall</p>
                     </div>
                     <div>
                       <h4 className="text-lg font-medium text-white">🏆 Beer Pong Champion</h4>
-                      <p>Competitive to your core, you live for the clutch shot. Perfect for you: <Link href="/game/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link>, Flip Cup, Rage Cage</p>
+                      <p>Competitive to your core, you live for the clutch shot. Perfect for you: <Link href="/games/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link>, Flip Cup, Rage Cage</p>
                     </div>
                     <div>
                       <h4 className="text-lg font-medium text-white">🤫 Never Have I Ever Legend</h4>
-                      <p>You know everyone&apos;s secrets and you&apos;re not afraid to expose them. Perfect for you: <Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link>, Most Likely To, Truth or Drink</p>
+                      <p>You know everyone&apos;s secrets and you&apos;re not afraid to expose them. Perfect for you: <Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link>, Most Likely To, Truth or Drink</p>
                     </div>
                     <div>
                       <h4 className="text-lg font-medium text-white">⚡ Flip Cup Fanatic</h4>
-                      <p>Fast, loud, and always ready to race. You bring the energy. Perfect for you: <Link href="/game/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link>, Slap Cup, Boom</p>
+                      <p>Fast, loud, and always ready to race. You bring the energy. Perfect for you: <Link href="/games/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link>, Slap Cup, Boom</p>
                     </div>
                     <div>
                       <h4 className="text-lg font-medium text-white">🔥 Chaos Agent</h4>
@@ -527,7 +527,7 @@ export default function DrinkingGameQuizPage() {
 
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-2">What&apos;s the best drinking game for large groups?</h3>
-                    <p className="text-gray-400">For large groups of 10+ people, <Link href="/game/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link> is the classic choice because everyone can participate without waiting for turns. <Link href="/game/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link> tournaments also work great for big parties.</p>
+                    <p className="text-gray-400">For large groups of 10+ people, <Link href="/games/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link> is the classic choice because everyone can participate without waiting for turns. <Link href="/games/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link> tournaments also work great for big parties.</p>
                   </div>
 
                   <div>
@@ -537,12 +537,12 @@ export default function DrinkingGameQuizPage() {
 
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-2">What drinking game requires no equipment?</h3>
-                    <p className="text-gray-400">Games like <Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link>, Most Likely To, and Truth or Drink require nothing but drinks and people. Perfect for spontaneous parties! <Link href="/games/no-props" className="text-neon-pink hover:underline">See all no-prop games</Link>.</p>
+                    <p className="text-gray-400">Games like <Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link>, Most Likely To, and Truth or Drink require nothing but drinks and people. Perfect for spontaneous parties! <Link href="/games/no-props" className="text-neon-pink hover:underline">See all no-prop games</Link>.</p>
                   </div>
 
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-2">What&apos;s the most competitive drinking game?</h3>
-                    <p className="text-gray-400"><Link href="/game/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link> is the ultimate competitive drinking game. For team competition, Flip Cup tournaments get intense. Rage Cage combines both speed and accuracy.</p>
+                    <p className="text-gray-400"><Link href="/games/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link> is the ultimate competitive drinking game. For team competition, Flip Cup tournaments get intense. Rage Cage combines both speed and accuracy.</p>
                   </div>
 
                   <div>
@@ -552,7 +552,7 @@ export default function DrinkingGameQuizPage() {
 
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-2">What drinking game is best for getting to know people?</h3>
-                    <p className="text-gray-400"><Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link> is perfect for learning about people. Truth or Drink and Most Likely To also spark great conversations and reveal secrets!</p>
+                    <p className="text-gray-400"><Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link> is perfect for learning about people. Truth or Drink and Most Likely To also spark great conversations and reveal secrets!</p>
                   </div>
                 </div>
               </CardContent>

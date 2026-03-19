@@ -45,7 +45,7 @@ export default function ApartmentDrinkingGamesPage() {
         <li><strong>Players:</strong> 4-10</li>
         <li><strong>Why it&apos;s apartment-perfect:</strong> Everyone sits, no movement, quiet gameplay</li>
       </ul>
-      <p><Link href="/game/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
 
       <h3>2. Never Have I Ever</h3>
       <p>Zero equipment needed. Players take turns saying &quot;Never have I ever...&quot; and anyone who HAS done it drinks. Works anywhere - couch, floor, kitchen table.</p>
@@ -55,7 +55,7 @@ export default function ApartmentDrinkingGamesPage() {
         <li><strong>Players:</strong> 3-15</li>
         <li><strong>Why it&apos;s apartment-perfect:</strong> No setup, no cleanup, naturally quiet</li>
       </ul>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
 
       <h3>3. Most Likely To</h3>
       <p>Someone asks &quot;Who&apos;s most likely to...?&quot; and on three, everyone points. Whoever has the most fingers pointed at them drinks that many sips.</p>
@@ -65,7 +65,7 @@ export default function ApartmentDrinkingGamesPage() {
         <li><strong>Players:</strong> 4-12</li>
         <li><strong>Why it&apos;s apartment-perfect:</strong> Sedentary game, minimal noise spikes</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
 
       <h3>4. Ride the Bus</h3>
       <p>Multi-round card game with guessing (red/black, higher/lower, etc.). Wrong guesses mean drinks. The loser &quot;rides the bus&quot; in a brutal final round.</p>
@@ -75,7 +75,7 @@ export default function ApartmentDrinkingGamesPage() {
         <li><strong>Players:</strong> 4-8</li>
         <li><strong>Why it&apos;s apartment-perfect:</strong> Card-based, seated, engaging</li>
       </ul>
-      <p><Link href="/game/ride-the-bus" className="text-neon-pink hover:underline">Full Ride the Bus Rules</Link></p>
+      <p><Link href="/games/ride-the-bus" className="text-neon-pink hover:underline">Full Ride the Bus Rules</Link></p>
 
       <h3>5. Truth or Drink</h3>
       <p>Like Truth or Dare minus the dare (which would require space). Answer the question honestly or take a drink. Perfect for deep conversations.</p>
@@ -85,7 +85,7 @@ export default function ApartmentDrinkingGamesPage() {
         <li><strong>Players:</strong> 2-10</li>
         <li><strong>Why it&apos;s apartment-perfect:</strong> Intimate, quiet, no movement</li>
       </ul>
-      <p><Link href="/game/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
+      <p><Link href="/games/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
 
       <h3>6. Horse Race</h3>
       <p>Card game where Aces &quot;race&quot; across the table as cards are flipped. Players bet on which suit wins. Losers drink based on how far their horse got.</p>
@@ -95,7 +95,7 @@ export default function ApartmentDrinkingGamesPage() {
         <li><strong>Players:</strong> 4-12</li>
         <li><strong>Why it&apos;s apartment-perfect:</strong> Seated, card-based, exciting but not loud</li>
       </ul>
-      <p><Link href="/game/horse-race" className="text-neon-pink hover:underline">Full Horse Race Rules</Link></p>
+      <p><Link href="/games/horse-race" className="text-neon-pink hover:underline">Full Horse Race Rules</Link></p>
 
       <h3>7. Across the Bridge</h3>
       <p>Cards laid in a line form a &quot;bridge.&quot; Flip cards one by one - face cards reset your progress and mean drinks. First to cross wins.</p>
@@ -105,7 +105,7 @@ export default function ApartmentDrinkingGamesPage() {
         <li><strong>Players:</strong> 2-8</li>
         <li><strong>Why it&apos;s apartment-perfect:</strong> Simple, quiet, tension-building</li>
       </ul>
-      <p><Link href="/game/across-the-bridge" className="text-neon-pink hover:underline">Full Across the Bridge Rules</Link></p>
+      <p><Link href="/games/across-the-bridge" className="text-neon-pink hover:underline">Full Across the Bridge Rules</Link></p>
 
       <h3>8. Pyramid</h3>
       <p>Cards arranged in a pyramid. Players match cards from their hand to pyramid cards to assign drinks. Bluffing encouraged.</p>
@@ -115,7 +115,7 @@ export default function ApartmentDrinkingGamesPage() {
         <li><strong>Players:</strong> 4-8</li>
         <li><strong>Why it&apos;s apartment-perfect:</strong> Strategic, seated, engaging</li>
       </ul>
-      <p><Link href="/game/pyramid" className="text-neon-pink hover:underline">Full Pyramid Rules</Link></p>
+      <p><Link href="/games/pyramid" className="text-neon-pink hover:underline">Full Pyramid Rules</Link></p>
 
       <h3>9. Cheers to the Governor</h3>
       <p>Count from 1-21 around the circle. At 21, everyone toasts and drinks. The person who says 21 creates a new rule (swap numbers, actions, etc.).</p>
@@ -125,7 +125,7 @@ export default function ApartmentDrinkingGamesPage() {
         <li><strong>Players:</strong> 4-12</li>
         <li><strong>Why it&apos;s apartment-perfect:</strong> No equipment, seated, escalating fun</li>
       </ul>
-      <p><Link href="/game/cheers-to-the-governor" className="text-neon-pink hover:underline">Full Cheers to the Governor Rules</Link></p>
+      <p><Link href="/games/cheers-to-the-governor" className="text-neon-pink hover:underline">Full Cheers to the Governor Rules</Link></p>
 
       <h3>10. F*ck the Dealer</h3>
       <p>Players guess card values. Wrong guesses drink based on how far off. If the dealer stumps three people, they pass the deck. Strategy meets luck.</p>
@@ -144,7 +144,7 @@ export default function ApartmentDrinkingGamesPage() {
         <li><strong>Players:</strong> 4-15</li>
         <li><strong>Why it&apos;s apartment-perfect:</strong> Fast, quiet, no equipment</li>
       </ul>
-      <p><Link href="/game/medusa" className="text-neon-pink hover:underline">Full Medusa Rules</Link></p>
+      <p><Link href="/games/medusa" className="text-neon-pink hover:underline">Full Medusa Rules</Link></p>
 
       <h3>12. Would You Rather (Drinking Edition)</h3>
       <p>Classic Would You Rather but minority vote drinks. Creates discussions and reveals preferences without any physical activity.</p>
@@ -163,7 +163,7 @@ export default function ApartmentDrinkingGamesPage() {
         <li><strong>Players:</strong> 2-8</li>
         <li><strong>Why it&apos;s apartment-perfect:</strong> Contained to one spot, manageable noise</li>
       </ul>
-      <p><Link href="/game/drunk-jenga" className="text-neon-pink hover:underline">Full Drunk Jenga Rules</Link></p>
+      <p><Link href="/games/drunk-jenga" className="text-neon-pink hover:underline">Full Drunk Jenga Rules</Link></p>
 
       <h3>14. Snap</h3>
       <p>Players flip cards simultaneously. When two matching cards appear, race to slap the pile. Loser drinks. Fast-paced but contained.</p>

@@ -109,7 +109,7 @@ export default function TwentyFirstBirthdayGamesPage() {
         <li>Jack = Everyone tells birthday person a compliment or drinks</li>
         <li>10 = Category about the birthday person (favorite foods, embarrassing moments, etc.)</li>
       </ul>
-      <p><Link href="/game/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
 
       <h3>7. Most Likely To: Birthday Roast</h3>
       <p>Play Most Likely To but every question is about the birthday person. &quot;Who&apos;s most likely to embarrass [name] tonight?&quot; Person pointed at most drinks.</p>
@@ -124,7 +124,7 @@ export default function TwentyFirstBirthdayGamesPage() {
         <li>&quot;Who&apos;s most likely to make [birthday person] cry happy tears?&quot;</li>
         <li>&quot;Who&apos;s most likely to share [birthday person]&apos;s most embarrassing story?&quot;</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
 
       <h3>8. Never Have I Ever: Birthday Edition</h3>
       <p>Standard game but all statements are crafted to target the birthday person specifically. Use knowledge of their past to create statements they&apos;ll definitely drink to.</p>
@@ -134,7 +134,7 @@ export default function TwentyFirstBirthdayGamesPage() {
         <li><strong>Pro tip:</strong> Coordinate with friends beforehand to cover their biggest secrets</li>
         <li><strong>Balance:</strong> Mix embarrassing ones with complimentary ones</li>
       </ul>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
 
       <h3>9. Birthday Flip Cup Tournament</h3>
       <p>Standard Flip Cup but birthday person is permanent anchor on both teams. They flip for whichever team is currently racing. If they win, they take a victory sip. If they lose, the losing team drinks extra.</p>
@@ -143,7 +143,7 @@ export default function TwentyFirstBirthdayGamesPage() {
         <li><strong>Equipment:</strong> Cups, table</li>
         <li><strong>Why it works:</strong> Birthday person is always involved without drinking too much more than others</li>
       </ul>
-      <p><Link href="/game/flip-cup" className="text-neon-pink hover:underline">Full Flip Cup Rules</Link></p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink hover:underline">Full Flip Cup Rules</Link></p>
 
       <h3>10. Drink Whenever...</h3>
       <p>Create a list of &quot;drink whenever&quot; rules based on the birthday person&apos;s habits. Everyone drinks when they do something on the list.</p>
@@ -199,7 +199,7 @@ export default function TwentyFirstBirthdayGamesPage() {
         <li><strong>Equipment:</strong> Paper, pen, container</li>
         <li><strong>Pro tip:</strong> Write questions in advance for quality</li>
       </ul>
-      <p><Link href="/game/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
+      <p><Link href="/games/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
 
       <h3>16. Birthday Power Hour</h3>
       <p>Standard Power Hour but with a special birthday playlist. Include songs from every year of their life (one per year = 21 songs minimum). Drink at each song change.</p>
@@ -208,7 +208,7 @@ export default function TwentyFirstBirthdayGamesPage() {
         <li><strong>Playlist:</strong> Songs from their birth year to now</li>
         <li><strong>Memory lane:</strong> Share memories associated with each song</li>
       </ul>
-      <p><Link href="/game/power-hour" className="text-neon-pink hover:underline">Full Power Hour Rules</Link></p>
+      <p><Link href="/games/power-hour" className="text-neon-pink hover:underline">Full Power Hour Rules</Link></p>
 
       <h2>Safety Tips for 21st Birthdays</h2>
 

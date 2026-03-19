@@ -83,7 +83,7 @@ export default function MostLikelyToQuestionsPage() {
         <li>Great for learning about each other</li>
       </ul>
 
-      <p>Play <Link href="/game/most-likely-to" className="text-neon-pink hover:underline">Most Likely To</Link> on SipWiki!</p>
+      <p>Play <Link href="/games/most-likely-to" className="text-neon-pink hover:underline">Most Likely To</Link> on SipWiki!</p>
     </GuideLayout>
   );
 }

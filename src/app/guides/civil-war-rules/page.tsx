@@ -23,7 +23,7 @@ export default function CivilWarRulesPage() {
       <ul><li>You must shoot at the player directly across from you</li><li>Once eliminated, you can&apos;t touch balls or help your team</li><li>No leaning over the table</li><li>No swatting balls (standard beer pong rules apply)</li></ul>
       <h2>Strategy</h2>
       <ul><li>Focus fire - team up on one opponent to eliminate them fast</li><li>Pass balls to teammates who are on fire</li><li>Protect your best shooter - keep their cups alive</li></ul>
-      <p>Check out <Link href="/game/civil-war" className="text-neon-pink hover:underline">Civil War</Link> on SipWiki!</p>
+      <p>Check out <Link href="/games/civil-war" className="text-neon-pink hover:underline">Civil War</Link> on SipWiki!</p>
     </GuideLayout>
   );
 }

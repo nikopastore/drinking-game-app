@@ -208,22 +208,22 @@ export default function NonAlcoholicAlternativesPage() {
         <h3>Specific Game Adaptations</h3>
 
         <h4>
-          <Link href="/game/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link>
+          <Link href="/games/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link>
         </h4>
         <p>Pour your NA drink into the King&apos;s Cup just like everyone else.</p>
 
         <h4>
-          <Link href="/game/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link>
+          <Link href="/games/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link>
         </h4>
         <p>Fill cups with NA beer, sparkling water, or juice. Works exactly the same.</p>
 
         <h4>
-          <Link href="/game/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link>
+          <Link href="/games/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link>
         </h4>
         <p>Any liquid works—the game is about flipping, not what you&apos;re drinking.</p>
 
         <h4>
-          <Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link>
+          <Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link>
         </h4>
         <p>Take sips of whatever you&apos;re drinking. The game is about the revelations!</p>
 

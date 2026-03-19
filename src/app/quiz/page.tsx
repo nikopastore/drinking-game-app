@@ -103,9 +103,9 @@ function QuizHubClient() {
                   <p>
                     This quiz analyzes your party style, competitiveness, and social preferences to match
                     you with drinking games that fit your personality. Are you a strategic{" "}
-                    <Link href="/game/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link> player,
-                    a competitive <Link href="/game/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link> champion,
-                    or more of a chill <Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link> type?
+                    <Link href="/games/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link> player,
+                    a competitive <Link href="/games/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link> champion,
+                    or more of a chill <Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link> type?
                   </p>
                   <h3 className="text-xl font-semibold text-white">What Cocktail Are You?</h3>
                   <p>

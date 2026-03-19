@@ -93,7 +93,7 @@ export default function FlipCupVsSlapCupPage() {
       <p><strong>Play Slap Cup for:</strong> Chaos, aggressive competition, elimination drama, individual glory, maximum intensity.</p>
 
       <p className="mt-8">
-        Learn the rules: <Link href="/game/flip-cup" className="text-neon-pink">Flip Cup</Link> | <Link href="/game/slap-cup" className="text-neon-pink">Slap Cup</Link>
+        Learn the rules: <Link href="/games/flip-cup" className="text-neon-pink">Flip Cup</Link> | <Link href="/games/slap-cup" className="text-neon-pink">Slap Cup</Link>
       </p>
     </GuideLayout>
   );

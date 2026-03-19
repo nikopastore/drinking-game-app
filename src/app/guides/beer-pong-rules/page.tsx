@@ -282,7 +282,7 @@ export default function BeerPongRulesPage() {
         <p>In most rules, if both teammates sink the same cup on the same turn, it counts as 3 cups (that cup plus 2 more of the defender&apos;s choice).</p>
 
         <h2>Ready to Play?</h2>
-        <p>Now that you know all the official beer pong rules, grab some friends and hit the table! Check out our <Link href="/game/beer-pong" className="text-neon-pink hover:underline">interactive Beer Pong game</Link> or explore more <Link href="/games/cup-games" className="text-neon-pink hover:underline">cup-based drinking games</Link>.</p>
+        <p>Now that you know all the official beer pong rules, grab some friends and hit the table! Check out our <Link href="/games/beer-pong" className="text-neon-pink hover:underline">interactive Beer Pong game</Link> or explore more <Link href="/games/cup-games" className="text-neon-pink hover:underline">cup-based drinking games</Link>.</p>
       </GuideLayout>
     </>
   );

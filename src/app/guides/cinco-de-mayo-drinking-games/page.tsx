@@ -89,7 +89,7 @@ export default function CincoDeMayoDrinkingGamesPage() {
       </ul>
 
       <h2>Cinco de Mayo Flip Cup</h2>
-      <p>Classic <Link href="/game/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link> with a twist:</p>
+      <p>Classic <Link href="/games/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link> with a twist:</p>
       <ul>
         <li>Use margaritas instead of beer</li>
         <li>Winning team gets sombrero privileges</li>

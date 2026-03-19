@@ -48,7 +48,7 @@ export default function HotelDrinkingGamesPage() {
         <li>Entertaining for hours</li>
         <li>Everyone knows the rules</li>
       </ul>
-      <p><Link href="/game/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
 
       <h3>2. Ride the Bus</h3>
       <p>Card guessing game with escalating tension. Perfect for hotel pregames before going out. The person &quot;riding the bus&quot; at the end provides entertainment for everyone.</p>
@@ -60,7 +60,7 @@ export default function HotelDrinkingGamesPage() {
         <li>Can be played on the bed</li>
         <li>Gets people in party mood before going out</li>
       </ul>
-      <p><Link href="/game/ride-the-bus" className="text-neon-pink hover:underline">Full Ride the Bus Rules</Link></p>
+      <p><Link href="/games/ride-the-bus" className="text-neon-pink hover:underline">Full Ride the Bus Rules</Link></p>
 
       <h3>3. Beeramid</h3>
       <p>Pyramid of cards, bluffing, and drink distribution. Build the pyramid on the nightstand or bed, and let the games begin.</p>
@@ -73,7 +73,7 @@ export default function HotelDrinkingGamesPage() {
         <li>Flip pyramid cards one at a time</li>
         <li>Match a card? Give drinks. Bluffing allowed!</li>
       </ul>
-      <p><Link href="/game/beeramid" className="text-neon-pink hover:underline">Full Beeramid Rules</Link></p>
+      <p><Link href="/games/beeramid" className="text-neon-pink hover:underline">Full Beeramid Rules</Link></p>
 
       <h3>4. F*ck the Dealer</h3>
       <p>Guess the card value, dealer drinks if you&apos;re right. Get it wrong and you drink. Simple and effective for hotel pregaming.</p>
@@ -85,7 +85,7 @@ export default function HotelDrinkingGamesPage() {
         <li>Easy to explain to new players</li>
         <li>Dealer rotates when they miss 3 in a row</li>
       </ul>
-      <p><Link href="/game/fuck-the-dealer" className="text-neon-pink hover:underline">Full F*ck the Dealer Rules</Link></p>
+      <p><Link href="/games/fuck-the-dealer" className="text-neon-pink hover:underline">Full F*ck the Dealer Rules</Link></p>
 
       <h3>5. Across the Bridge</h3>
       <p>Try to cross 10 cards without hitting face cards. Hit a face card? Drink and add more cards. Simple and brutal.</p>
@@ -111,7 +111,7 @@ export default function HotelDrinkingGamesPage() {
         <li>&quot;Who is most likely to lose their room key?&quot;</li>
         <li>&quot;Who is most likely to order room service at 3 AM?&quot;</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
 
       <h3>7. Never Have I Ever</h3>
       <p>The classic confession game. &quot;Never have I ever...&quot; - anyone who HAS done it drinks. Vacation loosens people up, secrets come out.</p>
@@ -123,7 +123,7 @@ export default function HotelDrinkingGamesPage() {
         <li>Target things you know happened on previous trips</li>
         <li>What happens in the hotel room stays there</li>
       </ul>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
 
       <h3>8. Truth or Drink</h3>
       <p>Answer honestly or take a drink. No dares - just questions and confessions. Perfect for hotel rooms where you can&apos;t do wild dares anyway.</p>
@@ -135,7 +135,7 @@ export default function HotelDrinkingGamesPage() {
         <li>No physical activities to disturb other guests</li>
         <li>Can get progressively more intense</li>
       </ul>
-      <p><Link href="/game/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
+      <p><Link href="/games/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
 
       <h3>9. Two Truths and a Lie</h3>
       <p>Share three statements - two true, one false. Others guess the lie. Wrong guesses drink. Great icebreaker for groups who don&apos;t know each other well.</p>

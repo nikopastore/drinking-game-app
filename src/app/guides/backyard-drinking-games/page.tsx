@@ -45,7 +45,7 @@ export default function BackyardDrinkingGamesPage() {
         <li><strong>Players:</strong> 2-4</li>
         <li><strong>Outdoor advantage:</strong> No worrying about spills, more room for spectators</li>
       </ul>
-      <p><Link href="/game/beer-pong" className="text-neon-pink hover:underline">Full Beer Pong Rules</Link></p>
+      <p><Link href="/games/beer-pong" className="text-neon-pink hover:underline">Full Beer Pong Rules</Link></p>
 
       <h3>2. Flip Cup</h3>
       <p>Team relay race to drink and flip. Two teams line up, chug, then flip cups upside down by flicking the rim. First team done wins. Gets loud and competitive.</p>
@@ -55,7 +55,7 @@ export default function BackyardDrinkingGamesPage() {
         <li><strong>Players:</strong> 6-20</li>
         <li><strong>Outdoor advantage:</strong> Can get as rowdy as you want, beer splashes don&apos;t matter</li>
       </ul>
-      <p><Link href="/game/flip-cup" className="text-neon-pink hover:underline">Full Flip Cup Rules</Link></p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink hover:underline">Full Flip Cup Rules</Link></p>
 
       <h3>3. Rage Cage</h3>
       <p>High-energy bouncing game where multiple players compete simultaneously. Get stacked on? Drink a center cup. Chaos builds as cups disappear.</p>
@@ -65,7 +65,7 @@ export default function BackyardDrinkingGamesPage() {
         <li><strong>Players:</strong> 6-15</li>
         <li><strong>Outdoor advantage:</strong> Balls fly everywhere - outdoors they&apos;re easy to retrieve</li>
       </ul>
-      <p><Link href="/game/rage-cage" className="text-neon-pink hover:underline">Full Rage Cage Rules</Link></p>
+      <p><Link href="/games/rage-cage" className="text-neon-pink hover:underline">Full Rage Cage Rules</Link></p>
 
       <h3>4. Civil War</h3>
       <p>Beer Pong on steroids. 3v3 with no turns - everyone shoots simultaneously as fast as they can. Pure chaos, pure fun.</p>
@@ -75,7 +75,7 @@ export default function BackyardDrinkingGamesPage() {
         <li><strong>Players:</strong> 6</li>
         <li><strong>Outdoor advantage:</strong> Room for all the action and spectators</li>
       </ul>
-      <p><Link href="/game/civil-war" className="text-neon-pink hover:underline">Full Civil War Rules</Link></p>
+      <p><Link href="/games/civil-war" className="text-neon-pink hover:underline">Full Civil War Rules</Link></p>
 
       <h2>Lawn Games with Drinking Rules</h2>
 
@@ -119,7 +119,7 @@ export default function BackyardDrinkingGamesPage() {
         <li>Take too long = 1 drink</li>
         <li><strong>Sample block rules:</strong> &quot;Waterfall,&quot; &quot;Give 2 drinks,&quot; &quot;Truth or drink,&quot; &quot;Categories&quot;</li>
       </ul>
-      <p><Link href="/game/drunk-jenga" className="text-neon-pink hover:underline">Full Drunk Jenga Rules</Link></p>
+      <p><Link href="/games/drunk-jenga" className="text-neon-pink hover:underline">Full Drunk Jenga Rules</Link></p>
 
       <h3>9. Horseshoes</h3>
       <p>Classic American backyard game. Toss horseshoes at a stake. Closest to the stake or ringers win.</p>

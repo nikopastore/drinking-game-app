@@ -14,7 +14,7 @@ export default function SlowPacedDrinkingGamesPage() {
   return (
     <GuideLayout title="Slow Paced Drinking Games" description="Marathon, not a sprint. These games let you enjoy drinks over hours without rushing, perfect for long conversations and relaxed nights." breadcrumb="Slow Paced" relatedGames={[{ name: "Truth or Drink", slug: "truth-or-drink", description: "Deep conversations" }, { name: "Horse Race", slug: "horse-race", description: "Watch and wait" }]}>
       <h2>Sipping Games</h2>
-      <ul><li><Link href="/game/truth-or-drink" className="text-neon-pink">Truth or Drink</Link> - Question by question</li><li><Link href="/game/horse-race" className="text-neon-pink">Horse Race</Link> - Slow reveal</li><li><Link href="/game/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - Story time</li><li><strong>Movie Drinking Games</strong> - 2 hour movies</li></ul>
+      <ul><li><Link href="/games/truth-or-drink" className="text-neon-pink">Truth or Drink</Link> - Question by question</li><li><Link href="/games/horse-race" className="text-neon-pink">Horse Race</Link> - Slow reveal</li><li><Link href="/games/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - Story time</li><li><strong>Movie Drinking Games</strong> - 2 hour movies</li></ul>
       <h2>Why Slow Works</h2>
       <ul><li>Better conversations</li><li>Pace your drinking</li><li>Last all night</li><li>More memorable</li><li>Enjoy your drinks</li></ul>
       <h2>Perfect Settings</h2>

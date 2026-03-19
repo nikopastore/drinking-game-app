@@ -114,10 +114,9 @@ const organizationSchema = {
     "SipWiki is the #1 drinking game rules and party game companion app. Find rules for Beer Pong, King's Cup, Flip Cup, and 30+ more party games.",
   foundingDate: "2024",
   sameAs: [
-    // Add your social profiles here - this helps Google connect your brand
-    // "https://twitter.com/sipwiki",
-    // "https://instagram.com/sipwiki",
-    // "https://tiktok.com/@sipwiki",
+    "https://twitter.com/sipwiki",
+    "https://www.instagram.com/sipwiki",
+    "https://www.tiktok.com/@sipwiki",
   ],
 };
 

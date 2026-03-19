@@ -46,7 +46,7 @@ export default function DrinkingGamesLargeGroupsPage() {
       type: "Team",
       description: "Two teams race to chug and flip their cups. Fast, loud, and incredibly fun.",
       why: "Perfect team energy, quick rounds, everyone's always engaged.",
-      link: "/game/flip-cup",
+      link: "/games/flip-cup",
     },
     {
       name: "Rage Cage",
@@ -54,7 +54,7 @@ export default function DrinkingGamesLargeGroupsPage() {
       type: "Elimination",
       description: "Race to bounce balls into cups. Stack on the person next to you to make them drink the center cups.",
       why: "High energy, constant action, dramatic eliminations.",
-      link: "/game/rage-cage",
+      link: "/games/rage-cage",
     },
     {
       name: "Civil War",
@@ -62,7 +62,7 @@ export default function DrinkingGamesLargeGroupsPage() {
       type: "Team",
       description: "Chaotic free-for-all beer pong. No turns - just constant throwing and drinking.",
       why: "Non-stop action, team strategy, controlled chaos.",
-      link: "/game/civil-war",
+      link: "/games/civil-war",
     },
     {
       name: "Kings Cup",
@@ -70,7 +70,7 @@ export default function DrinkingGamesLargeGroupsPage() {
       type: "Circle",
       description: "Draw cards and follow rules. Builds up to someone drinking the King's Cup.",
       why: "Everyone participates, customizable rules, building tension.",
-      link: "/game/kings-cup",
+      link: "/games/kings-cup",
     },
     {
       name: "Chandelier",
@@ -78,7 +78,7 @@ export default function DrinkingGamesLargeGroupsPage() {
       type: "Circle",
       description: "Bounce a ball at the center cup surrounded by player cups. Hit the center? Everyone races to flip.",
       why: "Combines skill and luck, dramatic sudden-death moments.",
-      link: "/game/chandelier",
+      link: "/games/chandelier",
     },
     {
       name: "Slap Cup",
@@ -86,7 +86,7 @@ export default function DrinkingGamesLargeGroupsPage() {
       type: "Elimination",
       description: "Like Rage Cage but with slapping the cup instead of stacking. Even more intense.",
       why: "Maximum chaos, satisfying slaps, loud reactions.",
-      link: "/game/slap-cup",
+      link: "/games/slap-cup",
     },
     {
       name: "Most Likely To",
@@ -94,7 +94,7 @@ export default function DrinkingGamesLargeGroupsPage() {
       type: "Voting",
       description: "Vote on who's most likely to do something. Scales infinitely with group size.",
       why: "No equipment needed, hilarious revelations, works with huge groups.",
-      link: "/game/most-likely-to",
+      link: "/games/most-likely-to",
     },
     {
       name: "Never Have I Ever",
@@ -102,7 +102,7 @@ export default function DrinkingGamesLargeGroupsPage() {
       type: "Circle",
       description: "Admit what you've done by drinking. Classic for learning surprising things about friends.",
       why: "Great icebreaker, no props needed, good for mixed groups.",
-      link: "/game/never-have-i-ever",
+      link: "/games/never-have-i-ever",
     },
     {
       name: "Cheers to the Governor",
@@ -110,7 +110,7 @@ export default function DrinkingGamesLargeGroupsPage() {
       type: "Circle",
       description: "Count to 21 but add silly rules for numbers. Gets increasingly chaotic.",
       why: "Escalating difficulty, customized inside jokes, hilarious fails.",
-      link: "/game/cheers-to-the-governor",
+      link: "/games/cheers-to-the-governor",
     },
     {
       name: "Baseball (Drinking)",
@@ -118,7 +118,7 @@ export default function DrinkingGamesLargeGroupsPage() {
       type: "Team",
       description: "Beer pong meets baseball. Hit cups for singles, doubles, etc. Full inning structure.",
       why: "Great for sports fans, team competition, extended gameplay.",
-      link: "/game/baseball",
+      link: "/games/baseball",
     },
     {
       name: "Vietnam War",
@@ -126,7 +126,7 @@ export default function DrinkingGamesLargeGroupsPage() {
       type: "Team",
       description: "Asymmetric beer pong variant where teams have different setups and rules.",
       why: "Strategic depth, unique gameplay, balances skill differences.",
-      link: "/game/vietnam-war",
+      link: "/games/vietnam-war",
     },
     {
       name: "Medusa",
@@ -134,7 +134,7 @@ export default function DrinkingGamesLargeGroupsPage() {
       type: "Circle",
       description: "Look down, then up on command. Lock eyes? Race to shout their name first.",
       why: "Fast rounds, dramatic moments, works with any group size.",
-      link: "/game/medusa",
+      link: "/games/medusa",
     },
     {
       name: "Power Hour",
@@ -142,7 +142,7 @@ export default function DrinkingGamesLargeGroupsPage() {
       type: "Individual",
       description: "60 shots of beer in 60 minutes. Play as a group activity with music cues.",
       why: "Everyone drinks together, good background activity, customizable playlist.",
-      link: "/game/power-hour",
+      link: "/games/power-hour",
     },
     {
       name: "Beeramid",
@@ -150,7 +150,7 @@ export default function DrinkingGamesLargeGroupsPage() {
       type: "Cards",
       description: "Cards dealt to players, pyramid built in center. Call bluffs and give/take drinks.",
       why: "Bluffing and strategy, escalating stakes, dramatic reveals.",
-      link: "/game/beeramid",
+      link: "/games/beeramid",
     },
     {
       name: "Thunderstruck",
@@ -158,7 +158,7 @@ export default function DrinkingGamesLargeGroupsPage() {
       type: "Music",
       description: "Drink while AC/DC plays. Each 'Thunder' passes the drinking to the next person.",
       why: "Great sing-along energy, suspenseful waiting, shared experience.",
-      link: "/game/thunderstruck",
+      link: "/games/thunderstruck",
     },
   ];
 

@@ -40,7 +40,7 @@ export default function DrinkingGamesFor8Page() {
       name: "Flip Cup (4v4)",
       category: "Teams",
       description: "The ideal team size. 4 people per side makes for exciting, balanced relay races.",
-      link: "/game/flip-cup",
+      link: "/games/flip-cup",
       intensity: "High",
       whyItWorks: "Perfect 4v4 split"
     },
@@ -48,7 +48,7 @@ export default function DrinkingGamesFor8Page() {
       name: "Beer Pong Tournament",
       category: "Tournament",
       description: "4 teams of 2 in bracket format. Winners play winners, losers play losers.",
-      link: "/game/beer-pong",
+      link: "/games/beer-pong",
       intensity: "Medium",
       whyItWorks: "Perfect bracket with 4 teams"
     },
@@ -56,7 +56,7 @@ export default function DrinkingGamesFor8Page() {
       name: "Kings Cup",
       category: "Cards",
       description: "Classic card game at its best. 6-7 cards per person keeps it moving.",
-      link: "/game/kings-cup",
+      link: "/games/kings-cup",
       intensity: "Medium",
       whyItWorks: "Ideal card distribution"
     },
@@ -64,7 +64,7 @@ export default function DrinkingGamesFor8Page() {
       name: "Civil War (4v4)",
       category: "Teams",
       description: "Beer pong chaos mode. 4 cups per person, no turns, just madness.",
-      link: "/game/civil-war",
+      link: "/games/civil-war",
       intensity: "Extreme",
       whyItWorks: "Maximum team chaos"
     },
@@ -72,7 +72,7 @@ export default function DrinkingGamesFor8Page() {
       name: "Rage Cage",
       category: "Competitive",
       description: "8 players around a table bouncing and stacking. Energy is electric.",
-      link: "/game/rage-cage",
+      link: "/games/rage-cage",
       intensity: "High",
       whyItWorks: "Great energy level"
     },
@@ -80,7 +80,7 @@ export default function DrinkingGamesFor8Page() {
       name: "Chandelier",
       category: "Cups",
       description: "8 cups in a circle with one in the center. Everyone has their own cup to defend.",
-      link: "/game/chandelier",
+      link: "/games/chandelier",
       intensity: "High",
       whyItWorks: "One cup per person"
     },
@@ -88,7 +88,7 @@ export default function DrinkingGamesFor8Page() {
       name: "Ride the Bus",
       category: "Cards",
       description: "The pyramid phase gets wild with 8 people all hiding cards.",
-      link: "/game/ride-the-bus",
+      link: "/games/ride-the-bus",
       intensity: "High",
       whyItWorks: "Pyramid round is intense"
     },
@@ -96,7 +96,7 @@ export default function DrinkingGamesFor8Page() {
       name: "Never Have I Ever",
       category: "No Props",
       description: "Plenty of variety with 8 people sharing experiences.",
-      link: "/game/never-have-i-ever",
+      link: "/games/never-have-i-ever",
       intensity: "Medium",
       whyItWorks: "Good variety, good pace"
     },
@@ -104,7 +104,7 @@ export default function DrinkingGamesFor8Page() {
       name: "Drunk Jenga",
       category: "Props",
       description: "With 8, the tower reaches peak instability at the perfect time.",
-      link: "/game/drunk-jenga",
+      link: "/games/drunk-jenga",
       intensity: "Medium",
       whyItWorks: "Tower falls dramatically"
     },
@@ -112,7 +112,7 @@ export default function DrinkingGamesFor8Page() {
       name: "Slap Cup",
       category: "Competitive",
       description: "The table gets loud with 8 people slapping cups and racing.",
-      link: "/game/slap-cup",
+      link: "/games/slap-cup",
       intensity: "High",
       whyItWorks: "Perfect chaos level"
     },
@@ -120,7 +120,7 @@ export default function DrinkingGamesFor8Page() {
       name: "Medusa",
       category: "No Props",
       description: "Everyone looks down, then up. Make eye contact? Both drink. Gets spicy.",
-      link: "/game/medusa",
+      link: "/games/medusa",
       intensity: "Low",
       whyItWorks: "More people = more drama"
     },
@@ -128,7 +128,7 @@ export default function DrinkingGamesFor8Page() {
       name: "Boat Race",
       category: "Teams",
       description: "4v4 relay chugging. Down your drink, flip cup, next person goes.",
-      link: "/game/boat-race",
+      link: "/games/boat-race",
       intensity: "Extreme",
       whyItWorks: "Even teams, maximum speed"
     },

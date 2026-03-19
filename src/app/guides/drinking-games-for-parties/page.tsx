@@ -42,22 +42,22 @@ export default function DrinkingGamesForPartiesPage() {
       <h3>Rage Cage</h3>
       <p>The ultimate party chaos. Cups in the center, two balls bouncing. Make your cup, pass the ball. Get caught still bouncing when someone passes to you = stack and drink. It escalates until someone&apos;s bouncing into a tower of cups.</p>
       <p><strong>Minimum:</strong> 6 players. <strong>Sweet spot:</strong> 10-15 players.</p>
-      <p><Link href="/game/rage-cage" className="text-neon-pink">Full Rage Cage rules →</Link></p>
+      <p><Link href="/games/rage-cage" className="text-neon-pink">Full Rage Cage rules →</Link></p>
 
       <h3>Slap Cup</h3>
       <p>Similar to Rage Cage but with slapping. Bounce the ball in, slap the next person&apos;s cup away before they make it. More aggressive, more competitive, more trash talk.</p>
       <p><strong>Energy level:</strong> Maximum</p>
-      <p><Link href="/game/slap-cup" className="text-neon-pink">Full Slap Cup rules →</Link></p>
+      <p><Link href="/games/slap-cup" className="text-neon-pink">Full Slap Cup rules →</Link></p>
 
       <h3>Flip Cup</h3>
       <p>Team relay racing. Drink, flip your cup, next person goes. First team to finish wins. Simple, fast, generates cheering. Perfect for team competitions (floor vs. floor, friend groups vs. friend groups).</p>
       <p><strong>Why it works:</strong> Creates instant team loyalty. Even strangers bond over a flip cup win.</p>
-      <p><Link href="/game/flip-cup" className="text-neon-pink">Full Flip Cup rules →</Link></p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink">Full Flip Cup rules →</Link></p>
 
       <h3>Civil War</h3>
       <p>3v3 beer pong with no turns. All six players shoot simultaneously. It&apos;s chaos. Cups everywhere. Pure speed and accuracy competition.</p>
       <p><strong>Space needed:</strong> Full beer pong table</p>
-      <p><Link href="/game/civil-war" className="text-neon-pink">Full Civil War rules →</Link></p>
+      <p><Link href="/games/civil-war" className="text-neon-pink">Full Civil War rules →</Link></p>
 
       <h2>Classic Games (Never Fail)</h2>
       <p>These games have survived decades because they work:</p>
@@ -65,12 +65,12 @@ export default function DrinkingGamesForPartiesPage() {
       <h3>Beer Pong</h3>
       <p>The undisputed champion. 2v2, 10 cups each side, throw balls, make cups, opponent drinks. Tournament brackets at big parties. Everyone knows it, everyone has opinions on house rules.</p>
       <p><strong>Why it&apos;s eternal:</strong> Perfect skill/luck balance. Dramatic comebacks possible. Spectator friendly.</p>
-      <p><Link href="/game/beer-pong" className="text-neon-pink">Full Beer Pong rules →</Link></p>
+      <p><Link href="/games/beer-pong" className="text-neon-pink">Full Beer Pong rules →</Link></p>
 
       <h3>Kings Cup</h3>
       <p>Card game that scales to any size. Each card triggers a rule - mini-games, drinking, rule-making. The King&apos;s Cup ending is always memorable.</p>
       <p><strong>Best use:</strong> Early party when people are arriving, or as a warm-up game</p>
-      <p><Link href="/game/kings-cup" className="text-neon-pink">Full Kings Cup rules →</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink">Full Kings Cup rules →</Link></p>
 
       <h3>Quarters</h3>
       <p>Skill-based bouncing. One quarter, one cup, pure technique. Making three in a row = create a rule. Surprisingly addictive once you find your bounce spot.</p>
@@ -81,44 +81,44 @@ export default function DrinkingGamesForPartiesPage() {
 
       <h3>Most Likely To</h3>
       <p>Someone asks &quot;Who&apos;s most likely to...&quot; Everyone points. Person with most fingers pointing drinks that many sips. Scales infinitely. Gets personal. Gets funny.</p>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink">Play Most Likely To →</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink">Play Most Likely To →</Link></p>
 
       <h3>Never Have I Ever</h3>
       <p>Confession game. &quot;Never have I ever...&quot; - if you have, you drink. Reveals secrets. Creates stories. Works for 3 or 30 people.</p>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink">Play Never Have I Ever →</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink">Play Never Have I Ever →</Link></p>
 
       <h3>Medusa</h3>
       <p>Everyone looks down. On &quot;3-2-1-Medusa!&quot; everyone looks at someone. If you&apos;re looking at someone who&apos;s looking at you = eye contact = both drink. Fast rounds, creates laughter.</p>
-      <p><Link href="/game/medusa" className="text-neon-pink">Full Medusa rules →</Link></p>
+      <p><Link href="/games/medusa" className="text-neon-pink">Full Medusa rules →</Link></p>
 
       <h3>Cheers to the Governor</h3>
       <p>Count to 21 around the circle. But 7 and 14 are swapped. Mess up = drink and restart. Each successful round adds a new rule. By round 5, the counting is insane.</p>
-      <p><Link href="/game/cheers-to-the-governor" className="text-neon-pink">Full Cheers to the Governor rules →</Link></p>
+      <p><Link href="/games/cheers-to-the-governor" className="text-neon-pink">Full Cheers to the Governor rules →</Link></p>
 
       <h2>Games by Party Size</h2>
 
       <h3>Small Party (6-10 people)</h3>
       <ul>
-        <li><Link href="/game/kings-cup" className="text-neon-pink">Kings Cup</Link> - Everyone gets plenty of turns</li>
-        <li><Link href="/game/ride-the-bus" className="text-neon-pink">Ride the Bus</Link> - Intimate enough for the tension to build</li>
-        <li><Link href="/game/beer-pong" className="text-neon-pink">Beer Pong</Link> - 2v2 with spectators</li>
-        <li><Link href="/game/beeramid" className="text-neon-pink">Beeramid</Link> - Bluffing works best with fewer people</li>
+        <li><Link href="/games/kings-cup" className="text-neon-pink">Kings Cup</Link> - Everyone gets plenty of turns</li>
+        <li><Link href="/games/ride-the-bus" className="text-neon-pink">Ride the Bus</Link> - Intimate enough for the tension to build</li>
+        <li><Link href="/games/beer-pong" className="text-neon-pink">Beer Pong</Link> - 2v2 with spectators</li>
+        <li><Link href="/games/beeramid" className="text-neon-pink">Beeramid</Link> - Bluffing works best with fewer people</li>
       </ul>
 
       <h3>Medium Party (10-20 people)</h3>
       <ul>
-        <li><Link href="/game/flip-cup" className="text-neon-pink">Flip Cup</Link> - Perfect team sizes</li>
-        <li><Link href="/game/rage-cage" className="text-neon-pink">Rage Cage</Link> - Hits its stride here</li>
-        <li><Link href="/game/beer-pong" className="text-neon-pink">Beer Pong Tournament</Link> - Run a bracket</li>
-        <li><Link href="/game/most-likely-to" className="text-neon-pink">Most Likely To</Link> - More opinions = funnier results</li>
+        <li><Link href="/games/flip-cup" className="text-neon-pink">Flip Cup</Link> - Perfect team sizes</li>
+        <li><Link href="/games/rage-cage" className="text-neon-pink">Rage Cage</Link> - Hits its stride here</li>
+        <li><Link href="/games/beer-pong" className="text-neon-pink">Beer Pong Tournament</Link> - Run a bracket</li>
+        <li><Link href="/games/most-likely-to" className="text-neon-pink">Most Likely To</Link> - More opinions = funnier results</li>
       </ul>
 
       <h3>Large Party (20+ people)</h3>
       <ul>
-        <li><Link href="/game/flip-cup" className="text-neon-pink">Flip Cup</Link> - Multiple games simultaneously</li>
-        <li><Link href="/game/beer-pong" className="text-neon-pink">Beer Pong</Link> - Always has players waiting</li>
+        <li><Link href="/games/flip-cup" className="text-neon-pink">Flip Cup</Link> - Multiple games simultaneously</li>
+        <li><Link href="/games/beer-pong" className="text-neon-pink">Beer Pong</Link> - Always has players waiting</li>
         <li><strong>Thunderstruck</strong> - Everyone drinks during guitar solos</li>
-        <li><Link href="/game/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - Works for any size</li>
+        <li><Link href="/games/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - Works for any size</li>
       </ul>
 
       <h2>Games by Energy Level</h2>

@@ -41,7 +41,7 @@ export default function FlirtyDrinkingGamesPage() {
       <p>The classic flirty game! Take turns asking each other questions. Answer honestly or take a drink. The questions can start innocent and get progressively spicier.</p>
       <p><strong>How to play:</strong> Prepare questions in advance or use a Truth or Drink app. Take turns asking. The person asked must answer truthfully or drink.</p>
       <p><strong>Best for:</strong> Date nights, small groups with chemistry</p>
-      <p><Link href="/game/truth-or-drink" className="text-neon-pink hover:underline">Play Truth or Drink on SipWiki</Link></p>
+      <p><Link href="/games/truth-or-drink" className="text-neon-pink hover:underline">Play Truth or Drink on SipWiki</Link></p>
 
       <h3>2. Never Have I Ever (Spicy Edition)</h3>
       <p>The classic party game gets a romantic twist with spicier statements. Learn surprising things about each other while keeping drinks flowing.</p>
@@ -53,7 +53,7 @@ export default function FlirtyDrinkingGamesPage() {
         <li>Never have I ever been on a first date that led nowhere</li>
         <li>Never have I ever kissed someone I just met</li>
       </ul>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Play Never Have I Ever on SipWiki</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Play Never Have I Ever on SipWiki</Link></p>
 
       <h3>3. Spin the Bottle (Adult Edition)</h3>
       <p>A nostalgic classic that still works! Spin a bottle and whoever it points to, you either complete a dare or both drink.</p>
@@ -106,7 +106,7 @@ export default function FlirtyDrinkingGamesPage() {
         <li>Most likely to date someone from this group</li>
         <li>Most likely to send a 2am text</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink hover:underline">Play Most Likely To on SipWiki</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink hover:underline">Play Most Likely To on SipWiki</Link></p>
 
       <h3>11. Seven Minutes in Heaven (Drinking Edition)</h3>
       <p>Spin a bottle - the two people go into another room for 7 minutes. What happens is up to them! Others drink while waiting.</p>

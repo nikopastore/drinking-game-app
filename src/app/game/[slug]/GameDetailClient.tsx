@@ -22,6 +22,8 @@ import { getCategoriesForGame } from "@/config/categoryData";
 import { useAuthContext, UnlockRulesCard } from "@/components/auth";
 import { FavoriteButton } from "@/components/favorites";
 import { ShareButton } from "@/components/ShareButton";
+import { AuthorByline } from "@/components/AuthorByline";
+import { getGameQuickFacts } from "@/lib/gameFacts";
 
 /**
  * Extracts YouTube video ID and returns embed URL
@@ -70,6 +72,7 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
 
   const gameCategories = getCategoriesForGame(game);
   const primaryCategory = gameCategories[0];
+  const quickFacts = getGameQuickFacts(game);
 
   return (
     <div className="min-h-screen bg-dark-900">
@@ -120,6 +123,7 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
                 title={`How to play ${game.name} - Video tutorial`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                loading="lazy"
                 className="w-full h-full"
               />
             </div>
@@ -136,15 +140,17 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
           <div className="flex items-start justify-between gap-4">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
-                {game.name} Rules
+                {game.name} Drinking Game – Rules & How to Play
               </h1>
-              <p className="text-lg text-neon-pink mb-4">How to Play {game.name}</p>
+              <h2 className="text-lg text-neon-pink mb-4">
+                Official rules, setup, and gameplay steps
+              </h2>
             </div>
             <div className="flex items-center gap-2">
               <ShareButton
                 title={`${game.name} Rules - SipWiki`}
                 text={`Learn how to play ${game.name}! Complete rules and instructions.`}
-                url={`https://sipwiki.app/game/${game.slug}`}
+                url={`https://sipwiki.app/games/${game.slug}`}
                 variant="compact"
                 gameName={game.name}
               />
@@ -158,6 +164,16 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
           </div>
 
           <p className="text-xl text-gray-400 mb-6">{game.description}</p>
+
+          <div className="mb-8 rounded-xl border border-dark-600 bg-dark-800/40 p-4">
+            <AuthorByline
+              authorSlug="sipwiki-team"
+              publishDate={game.created_at}
+              updatedDate={game.updated_at || game.created_at}
+              showBio
+              size="small"
+            />
+          </div>
 
           {/* Category Tags */}
           {gameCategories.length > 0 && (
@@ -205,6 +221,48 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
             </Badge>
           </div>
         </div>
+
+        <Card className="mb-8 border-dark-600">
+          <CardContent className="p-6">
+            <h2 className="text-xl font-bold text-white mb-4">Quick Facts</h2>
+            <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-300">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between border-b border-dark-600 pb-2">
+                  <span className="text-gray-400">Players</span>
+                  <span className="font-medium text-white">{quickFacts.players}</span>
+                </div>
+                <div className="flex items-center justify-between border-b border-dark-600 pb-2">
+                  <span className="text-gray-400">Game length</span>
+                  <span className="font-medium text-white">{quickFacts.gameLength}</span>
+                </div>
+                <div className="flex items-center justify-between border-b border-dark-600 pb-2">
+                  <span className="text-gray-400">Difficulty</span>
+                  <span className="font-medium text-white">{quickFacts.difficulty}</span>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between border-b border-dark-600 pb-2">
+                  <span className="text-gray-400">Intensity</span>
+                  <span className="font-medium text-white">{quickFacts.intensity}</span>
+                </div>
+                <div className="flex flex-col gap-2 border-b border-dark-600 pb-2">
+                  <span className="text-gray-400">Equipment</span>
+                  <div className="flex flex-wrap gap-2">
+                    {quickFacts.equipment.map((item) => (
+                      <Badge key={item} variant="muted" className="capitalize">
+                        {item}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <span className="text-gray-400">Popularity</span>
+                  <p className="text-white mt-1">{quickFacts.popularity}</p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Materials Section with Affiliate Links */}
         <Card className="mb-8">

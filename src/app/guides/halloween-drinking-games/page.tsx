@@ -78,7 +78,7 @@ export default function HalloweenDrinkingGamesPage() {
       <h2>Costume-Based Drinking Games</h2>
 
       <h3>Costume Kings Cup</h3>
-      <p>Play <Link href="/game/kings-cup" className="text-neon-pink">Kings Cup</Link> with Halloween-themed rules based on costumes:</p>
+      <p>Play <Link href="/games/kings-cup" className="text-neon-pink">Kings Cup</Link> with Halloween-themed rules based on costumes:</p>
       <ul>
         <li>Ace: All scary costumes drink</li>
         <li>2: Pick someone - they drink if costumes share theme</li>
@@ -109,14 +109,14 @@ export default function HalloweenDrinkingGamesPage() {
       <ul>
         <li>Carve small/medium pumpkins as cup holders</li>
         <li>Place cups inside carved pumpkins</li>
-        <li>Play <Link href="/game/beer-pong" className="text-neon-pink">Beer Pong</Link> normally</li>
+        <li>Play <Link href="/games/beer-pong" className="text-neon-pink">Beer Pong</Link> normally</li>
         <li>Bonus: Hitting pumpkin rim = opponent drinks double</li>
         <li>Use orange/black cups, glow-in-the-dark balls</li>
       </ul>
 
       <h3>Zombie Flip Cup</h3>
       <ul>
-        <li>Play <Link href="/game/flip-cup" className="text-neon-pink">Flip Cup</Link> normally</li>
+        <li>Play <Link href="/games/flip-cup" className="text-neon-pink">Flip Cup</Link> normally</li>
         <li>Losing team becomes "zombies"</li>
         <li>Zombies flip with non-dominant hand next round</li>
         <li>Zombies win = cured. Lose again = add third penalty</li>

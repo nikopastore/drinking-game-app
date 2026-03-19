@@ -48,7 +48,7 @@ export function GameCard({ game, size = "medium", showSipFactor = false }: GameC
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/game/${game.slug}`);
+    router.push(`/games/${game.slug}`);
   };
 
   const sizeClasses = {

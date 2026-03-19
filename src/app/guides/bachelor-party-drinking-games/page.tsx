@@ -60,7 +60,7 @@ export default function BachelorPartyPage() {
       </ul>
 
       <h3>Never Have I Ever: Groom Edition</h3>
-      <p>Play <Link href="/game/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> but every prompt must be about the groom. Expose his past, make him drink, create stories.</p>
+      <p>Play <Link href="/games/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> but every prompt must be about the groom. Expose his past, make him drink, create stories.</p>
       <p><strong>Examples:</strong></p>
       <ul>
         <li>Never have I ever cried during a movie with [groom]</li>
@@ -73,20 +73,20 @@ export default function BachelorPartyPage() {
 
       <h3>Beer Pong Tournament</h3>
       <p>Set up a bracket. Winner plays the groom in the finals (groom gets a bye to the end). Champion gets bragging rights forever.</p>
-      <p><Link href="/game/beer-pong" className="text-neon-pink">Full Beer Pong rules →</Link></p>
+      <p><Link href="/games/beer-pong" className="text-neon-pink">Full Beer Pong rules →</Link></p>
 
       <h3>Flip Cup</h3>
       <p>Split into teams. College friends vs. work friends vs. family. Tournament style. Losers buy next round.</p>
-      <p><Link href="/game/flip-cup" className="text-neon-pink">Full Flip Cup rules →</Link></p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink">Full Flip Cup rules →</Link></p>
 
       <h3>Rage Cage</h3>
       <p>High-energy chaos for larger bachelor parties. Everyone around a table, two balls bouncing, cups stacking. Pure mayhem.</p>
       <p><strong>Why it works:</strong> Fast, loud, everyone&apos;s involved. Peak bachelor party energy.</p>
-      <p><Link href="/game/rage-cage" className="text-neon-pink">Full Rage Cage rules →</Link></p>
+      <p><Link href="/games/rage-cage" className="text-neon-pink">Full Rage Cage rules →</Link></p>
 
       <h3>Civil War</h3>
       <p>3v3 beer pong with no turns. All six players shoot simultaneously. Chaos. Perfect for medium-sized bachelor parties.</p>
-      <p><Link href="/game/civil-war" className="text-neon-pink">Full Civil War rules →</Link></p>
+      <p><Link href="/games/civil-war" className="text-neon-pink">Full Civil War rules →</Link></p>
 
       <h2>Bar/Club Games</h2>
       <p>For when you&apos;re moving between venues:</p>
@@ -128,9 +128,9 @@ export default function BachelorPartyPage() {
       <h2>Mixing Friend Groups</h2>
       <p>Bachelor parties often combine people who don&apos;t know each other. Games help:</p>
       <ul>
-        <li>Start with <Link href="/game/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> to learn about each other</li>
+        <li>Start with <Link href="/games/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> to learn about each other</li>
         <li>Team games should mix groups (don&apos;t let college friends dominate)</li>
-        <li><Link href="/game/most-likely-to" className="text-neon-pink">Most Likely To</Link> works even with strangers</li>
+        <li><Link href="/games/most-likely-to" className="text-neon-pink">Most Likely To</Link> works even with strangers</li>
         <li>Groom-focused games unite everyone around the common purpose</li>
       </ul>
 

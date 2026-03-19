@@ -5,6 +5,14 @@ export interface GameSchemaOptions {
   game: Game;
   url: string;
   imageUrl?: string;
+  author?: {
+    name: string;
+    url?: string;
+    logoUrl?: string;
+    type?: "Organization" | "Person";
+  };
+  datePublished?: string;
+  dateModified?: string;
   aggregateRating?: {
     ratingValue: number;
     ratingCount: number;
@@ -18,16 +26,51 @@ export interface GameSchemaOptions {
 export function generateGameSchema(
   options: GameSchemaOptions
 ): WithContext<GameSchema> {
-  const { game, url, imageUrl, aggregateRating } = options;
+  const {
+    game,
+    url,
+    imageUrl,
+    aggregateRating,
+    author,
+    datePublished,
+    dateModified,
+  } = options;
+
+  const resolvedAuthor = {
+    "@type": author?.type || "Organization",
+    name: author?.name || "SipWiki Editorial Team",
+    url: author?.url || "https://sipwiki.app/about",
+    ...(author?.logoUrl
+      ? {
+          logo: {
+            "@type": "ImageObject",
+            url: author.logoUrl,
+          },
+        }
+      : {
+          logo: {
+            "@type": "ImageObject",
+            url: "https://sipwiki.app/icon-512.png",
+          },
+        }),
+  };
+
+  const resolvedImage =
+    imageUrl || game.image || `https://sipwiki.app/games/${game.slug}.jpg`;
 
   const schema: WithContext<GameSchema> = {
     "@context": "https://schema.org",
     "@type": "Game",
     name: game.name,
     description: game.description,
-    image: imageUrl || game.image || `/games/${game.slug}.jpg`,
+    image: resolvedImage.startsWith("http")
+      ? resolvedImage
+      : `https://sipwiki.app${resolvedImage}`,
     url: url,
     genre: "Party Game",
+    author: resolvedAuthor,
+    datePublished: datePublished || game.created_at,
+    dateModified: dateModified || game.created_at,
     numberOfPlayers: {
       "@type": "QuantitativeValue",
       minValue: game.min_players,
@@ -64,25 +107,56 @@ export function generateGameSchema(
 export function generateGameHowToSchema(
   options: GameSchemaOptions
 ): WithContext<HowTo> {
-  const { game, url, imageUrl } = options;
+  const { game, url, imageUrl, author, datePublished, dateModified } = options;
 
   // Parse rules_text to extract steps
   const steps = parseGameRules(game.rules_text || "");
 
   // Build supplies list
-  const supplies = game.materials?.map((material) => ({
-    "@type": "HowToSupply" as const,
-    name: material,
-  })) || [];
+  const supplies =
+    game.materials
+      ?.filter((material) => material !== "no prop")
+      .map((material) => ({
+        "@type": "HowToSupply" as const,
+        name: material,
+      })) || [];
+
+  const resolvedAuthor = {
+    "@type": author?.type || "Organization",
+    name: author?.name || "SipWiki Editorial Team",
+    url: author?.url || "https://sipwiki.app/about",
+    ...(author?.logoUrl
+      ? {
+          logo: {
+            "@type": "ImageObject",
+            url: author.logoUrl,
+          },
+        }
+      : {
+          logo: {
+            "@type": "ImageObject",
+            url: "https://sipwiki.app/icon-512.png",
+          },
+        }),
+  };
+
+  const resolvedImage =
+    imageUrl || game.image || `https://sipwiki.app/games/${game.slug}.jpg`;
 
   const schema: WithContext<HowTo> = {
     "@context": "https://schema.org",
     "@type": "HowTo",
     name: `How to Play ${game.name}`,
     description: `Complete rules and instructions for playing ${game.name}, a popular drinking game`,
-    image: imageUrl || game.image || `/games/${game.slug}.jpg`,
+    image: resolvedImage.startsWith("http")
+      ? resolvedImage
+      : `https://sipwiki.app${resolvedImage}`,
+    url: url,
+    author: resolvedAuthor,
+    datePublished: datePublished || game.created_at,
+    dateModified: dateModified || game.created_at,
     totalTime: getEstimatedGameTime(game),
-    supply: supplies,
+    ...(supplies.length > 0 ? { supply: supplies } : {}),
     tool: [
       {
         "@type": "HowToTool",

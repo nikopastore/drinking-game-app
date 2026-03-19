@@ -34,7 +34,7 @@ export default function VirtualDrinkingGamesPage() {
         <li>First to lose all fingers = big drink</li>
       </ul>
       <p>Works flawlessly because everyone can see everyone&apos;s fingers.</p>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink">Play Never Have I Ever →</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink">Play Never Have I Ever →</Link></p>
 
       <h3>Most Likely To</h3>
       <p>Perfect for video because pointing at screens is hilarious.</p>
@@ -45,7 +45,7 @@ export default function VirtualDrinkingGamesPage() {
         <li>Ties mean both drink</li>
       </ul>
       <p>Pro tip: Use their name while pointing so there&apos;s no confusion.</p>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink">Play Most Likely To →</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink">Play Most Likely To →</Link></p>
 
       <h3>Truth or Drink</h3>
       <p>Works even better online - harder to dodge questions.</p>
@@ -55,7 +55,7 @@ export default function VirtualDrinkingGamesPage() {
         <li>Camera on = accountability</li>
         <li>Group can challenge if they think you&apos;re lying</li>
       </ul>
-      <p><Link href="/game/truth-or-drink" className="text-neon-pink">Play Truth or Drink →</Link></p>
+      <p><Link href="/games/truth-or-drink" className="text-neon-pink">Play Truth or Drink →</Link></p>
 
       <h3>Categories</h3>
       <p>Lightning round word game.</p>
@@ -87,7 +87,7 @@ export default function VirtualDrinkingGamesPage() {
         <li>Skip physical King&apos;s cup - just assign drinks</li>
       </ul>
       <p>Try: playingcards.io or random card generators</p>
-      <p><Link href="/game/kings-cup" className="text-neon-pink">Kings Cup rules →</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink">Kings Cup rules →</Link></p>
 
       <h3>Online Charades</h3>
       <p>Drinking charades works great on video.</p>

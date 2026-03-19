@@ -99,7 +99,7 @@ export default function BestDiceDrinkingGamesPage() {
       name: "Three Man",
       category: "Classic",
       description: "Roll to become Three Man. Every 3 = Three Man drinks. 7/11/doubles have special rules.",
-      link: "/game/three-man",
+      link: "/games/three-man",
       players: "3+",
       intensity: "Medium"
     },
@@ -107,7 +107,7 @@ export default function BestDiceDrinkingGamesPage() {
       name: "7-11 Doubles",
       category: "Racing",
       description: "Race to finish your drink before the roller gets 7, 11, or doubles. Pure chaos.",
-      link: "/game/7-11-doubles",
+      link: "/games/7-11-doubles",
       players: "4+",
       intensity: "High"
     },

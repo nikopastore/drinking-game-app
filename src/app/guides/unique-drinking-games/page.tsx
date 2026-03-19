@@ -14,7 +14,7 @@ export default function UniqueGamesPage() {
   return (
     <GuideLayout title="Unique Drinking Games" description="Tired of the same old games? These creative and unusual drinking games will surprise your friends and make your party stand out." breadcrumb="Unique Games" relatedGames={[{ name: "Medusa", slug: "medusa", description: "Eye contact chaos" }, { name: "Bite the Bag", slug: "bite-the-bag", description: "Physical comedy" }]}>
       <h2>Hidden Gems</h2>
-      <ul><li><Link href="/game/medusa" className="text-neon-pink">Medusa</Link> - Eye contact showdown</li><li><Link href="/game/bite-the-bag" className="text-neon-pink">Bite the Bag</Link> - Flexibility test</li><li><Link href="/game/cheers-to-the-governor" className="text-neon-pink">Cheers to the Governor</Link> - Number chaos</li><li><Link href="/game/chandelier" className="text-neon-pink">Chandelier</Link> - Bouncing brilliance</li></ul>
+      <ul><li><Link href="/games/medusa" className="text-neon-pink">Medusa</Link> - Eye contact showdown</li><li><Link href="/games/bite-the-bag" className="text-neon-pink">Bite the Bag</Link> - Flexibility test</li><li><Link href="/games/cheers-to-the-governor" className="text-neon-pink">Cheers to the Governor</Link> - Number chaos</li><li><Link href="/games/chandelier" className="text-neon-pink">Chandelier</Link> - Bouncing brilliance</li></ul>
       <h2>Creative Spins</h2>
       <ul><li><strong>Drink Roulette</strong> - Random consequences</li><li><strong>Personality Quiz Drinking</strong> - Online quizzes + drinks</li><li><strong>Wikipedia Game</strong> - Race + drinking</li></ul>
       <h2>Invent Your Own</h2>

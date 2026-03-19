@@ -192,14 +192,14 @@ export default function ChandelierVsSlapCupPage() {
 
       <h2>Similar Games to Try</h2>
       <p>
-        If you like these games, check out <Link href="/game/rage-cage" className="text-neon-pink hover:underline">Rage Cage</Link> (similar to Slap Cup but with stacking) or <Link href="/game/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link> for a more strategic experience.
+        If you like these games, check out <Link href="/games/rage-cage" className="text-neon-pink hover:underline">Rage Cage</Link> (similar to Slap Cup but with stacking) or <Link href="/games/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link> for a more strategic experience.
       </p>
 
       <div className="mt-8 p-6 bg-dark-800 rounded-xl border border-dark-600">
         <h3 className="text-lg font-bold text-white mb-3">Learn the Full Rules</h3>
         <div className="flex flex-wrap gap-3">
           <Link
-            href="/game/chandelier"
+            href="/games/chandelier"
             className="inline-block px-6 py-3 bg-neon-pink text-white rounded-lg hover:bg-neon-pink/80 transition-colors"
           >
             Chandelier Rules →

@@ -93,24 +93,24 @@ export default function OutdoorDrinkingGamesPage() {
       <p>The classic works even better outdoors. Set up on a folding table in the shade.</p>
       <p><strong>Outdoor advantages:</strong> No ceiling for high arcs, space for spectators, tournament brackets</p>
       <p><strong>Wind tip:</strong> Put a bit more liquid in cups to weight them down</p>
-      <p><Link href="/game/beer-pong" className="text-neon-pink">Full Beer Pong rules →</Link></p>
+      <p><Link href="/games/beer-pong" className="text-neon-pink">Full Beer Pong rules →</Link></p>
 
       <h3>Flip Cup</h3>
       <p>Team relay racing. Works on any flat surface - picnic tables are perfect.</p>
       <p><strong>Outdoor advantage:</strong> Spills don&apos;t matter, can run multiple tables simultaneously</p>
-      <p><Link href="/game/flip-cup" className="text-neon-pink">Full Flip Cup rules →</Link></p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink">Full Flip Cup rules →</Link></p>
 
       <h3>Rage Cage</h3>
       <p>High-energy cup stacking chaos. Needs a solid table but works great outside.</p>
-      <p><Link href="/game/rage-cage" className="text-neon-pink">Full Rage Cage rules →</Link></p>
+      <p><Link href="/games/rage-cage" className="text-neon-pink">Full Rage Cage rules →</Link></p>
 
       <h2>No-Props Games</h2>
       <p>Sometimes you just have drinks and people. These games need nothing else:</p>
       <ul>
-        <li><strong><Link href="/game/most-likely-to" className="text-neon-pink">Most Likely To</Link></strong> - Point and drink. Works sitting in lawn chairs.</li>
-        <li><strong><Link href="/game/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link></strong> - Classic confession game. Great for mixed groups.</li>
-        <li><strong><Link href="/game/medusa" className="text-neon-pink">Medusa</Link></strong> - Eye contact game. Works standing in a circle.</li>
-        <li><strong><Link href="/game/cheers-to-the-governor" className="text-neon-pink">Cheers to the Governor</Link></strong> - Count to 21 with rules. Works anywhere.</li>
+        <li><strong><Link href="/games/most-likely-to" className="text-neon-pink">Most Likely To</Link></strong> - Point and drink. Works sitting in lawn chairs.</li>
+        <li><strong><Link href="/games/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link></strong> - Classic confession game. Great for mixed groups.</li>
+        <li><strong><Link href="/games/medusa" className="text-neon-pink">Medusa</Link></strong> - Eye contact game. Works standing in a circle.</li>
+        <li><strong><Link href="/games/cheers-to-the-governor" className="text-neon-pink">Cheers to the Governor</Link></strong> - Count to 21 with rules. Works anywhere.</li>
       </ul>
 
       <h2>Water-Adjacent Games</h2>

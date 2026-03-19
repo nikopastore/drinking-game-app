@@ -250,8 +250,8 @@ export default function NeverHaveIEverQuestionsPage() {
 
       <p>
         Want a full night plan? Start with Never Have I Ever, then move into a competitive game
-        like <Link href="/game/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link> or
-        a quick mixer like <Link href="/game/most-likely-to" className="text-neon-pink hover:underline">Most Likely To</Link>.
+        like <Link href="/games/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link> or
+        a quick mixer like <Link href="/games/most-likely-to" className="text-neon-pink hover:underline">Most Likely To</Link>.
         For hosting tips, check out{" "}
         <Link href="/guides/guys-night-drinking-games" className="text-neon-pink hover:underline">
           Guys Night Drinking Games
@@ -263,7 +263,7 @@ export default function NeverHaveIEverQuestionsPage() {
       </p>
       <p>
         Play our{" "}
-        <Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">
+        <Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">
           Never Have I Ever game
         </Link>{" "}
         with built-in questions and live scoring!

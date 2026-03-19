@@ -103,7 +103,7 @@ export default function SuperBowlPage() {
       </ul>
 
       <h3>Halftime Flip Cup Tournament</h3>
-      <p>15-20 minute break = perfect for a quick <Link href="/game/flip-cup" className="text-neon-pink">Flip Cup</Link> tournament. Team A fans vs Team B fans. Losers wear the winner&apos;s team colors for the second half.</p>
+      <p>15-20 minute break = perfect for a quick <Link href="/games/flip-cup" className="text-neon-pink">Flip Cup</Link> tournament. Team A fans vs Team B fans. Losers wear the winner&apos;s team colors for the second half.</p>
 
       <h3>Halftime Predictions</h3>
       <p>During halftime, write predictions for the second half:</p>
@@ -140,7 +140,7 @@ export default function SuperBowlPage() {
         <li>Who&apos;s most likely to argue about a call?</li>
         <li>Who&apos;s most likely to eat all the wings?</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink">Play Most Likely To →</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink">Play Most Likely To →</Link></p>
 
       <h2>For Non-Football Fans</h2>
       <p>Keep everyone engaged:</p>

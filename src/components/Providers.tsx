@@ -37,7 +37,7 @@ function ProvidersContent({ children }: { children: React.ReactNode }) {
     setPendingRating(null);
     setShowRatingModal(false);
     if (slug) {
-      router.push(`/game/${slug}`);
+      router.push(`/games/${slug}`);
     }
   };
 

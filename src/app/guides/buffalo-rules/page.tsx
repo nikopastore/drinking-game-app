@@ -125,7 +125,7 @@ export default function BuffaloRulesPage() {
       <div className="mt-8 p-6 bg-dark-800 rounded-xl border border-dark-600">
         <h3 className="text-lg font-bold text-white mb-3">Play Buffalo on SipWiki</h3>
         <Link
-          href="/game/buffalo"
+          href="/games/buffalo"
           className="inline-block px-6 py-3 bg-neon-pink text-white rounded-lg hover:bg-neon-pink/80 transition-colors"
         >
           Buffalo Game Page →

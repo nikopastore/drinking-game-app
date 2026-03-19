@@ -42,7 +42,7 @@ export default function SummerDrinkingGamesPage() {
         <li>Bring portable Beer Pong table or use coolers</li>
         <li>Weight cups with water/sand so they don't blow away</li>
         <li>Waterproof ping pong balls (they'll get wet)</li>
-        <li>Play <Link href="/game/beer-pong" className="text-neon-pink">Beer Pong</Link> normally</li>
+        <li>Play <Link href="/games/beer-pong" className="text-neon-pink">Beer Pong</Link> normally</li>
         <li>Bonus: "Beach rules" - if wave hits table, restart round</li>
         <li>Use canned drinks (easier than pouring beer constantly)</li>
       </ul>
@@ -51,7 +51,7 @@ export default function SummerDrinkingGamesPage() {
       <ul>
         <li>Use waterproof playing cards</li>
         <li>Anchor King's Cup with sand</li>
-        <li>Standard <Link href="/game/kings-cup" className="text-neon-pink">Kings Cup</Link> rules</li>
+        <li>Standard <Link href="/games/kings-cup" className="text-neon-pink">Kings Cup</Link> rules</li>
         <li>If card blows away, everyone drinks</li>
         <li>Sand in King's Cup? Too bad, drink it anyway</li>
       </ul>

@@ -14,9 +14,9 @@ export default function CompetitiveGamesPage() {
   return (
     <GuideLayout title="Competitive Drinking Games" description="For those who hate losing! These games bring out your competitive side with clear winners, losers, and bragging rights." breadcrumb="Competitive Games" relatedGames={[{ name: "Beer Pong", slug: "beer-pong", description: "The classic" }, { name: "Rage Cage", slug: "rage-cage", description: "Elimination" }]}>
       <h2>1v1 Battles</h2>
-      <ul><li><strong>Speed Quarters</strong> - Race to sink first</li><li><Link href="/game/flip-cup" className="text-neon-pink">Flip Cup</Link> - Best of 5</li><li><strong>Chug Off</strong> - Pure speed</li></ul>
+      <ul><li><strong>Speed Quarters</strong> - Race to sink first</li><li><Link href="/games/flip-cup" className="text-neon-pink">Flip Cup</Link> - Best of 5</li><li><strong>Chug Off</strong> - Pure speed</li></ul>
       <h2>Tournament Games</h2>
-      <ul><li><Link href="/game/beer-pong" className="text-neon-pink">Beer Pong</Link> bracket</li><li><Link href="/game/rage-cage" className="text-neon-pink">Rage Cage</Link> elimination</li><li><Link href="/game/quarters" className="text-neon-pink">Quarters</Link> tournament</li></ul>
+      <ul><li><Link href="/games/beer-pong" className="text-neon-pink">Beer Pong</Link> bracket</li><li><Link href="/games/rage-cage" className="text-neon-pink">Rage Cage</Link> elimination</li><li><Link href="/games/quarters" className="text-neon-pink">Quarters</Link> tournament</li></ul>
       <h2>Keeping Score</h2>
       <ul><li>Use a bracket system</li><li>Track wins on a whiteboard</li><li>Prize for tournament winner</li></ul>
     </GuideLayout>

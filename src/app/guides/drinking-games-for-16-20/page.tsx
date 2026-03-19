@@ -48,7 +48,7 @@ export default function DrinkingGamesFor16To20Page() {
       name: "Flip Cup (8v8 or 10v10)",
       category: "Teams",
       description: "Massive relay races down the table. Electric atmosphere.",
-      link: "/game/flip-cup",
+      link: "/games/flip-cup",
       intensity: "High",
       whyItWorks: "Maximum team energy"
     },
@@ -56,7 +56,7 @@ export default function DrinkingGamesFor16To20Page() {
       name: "Survivor Flip Cup",
       category: "Elimination",
       description: "All 20 in a line. Slowest person eliminated each round until one remains.",
-      link: "/game/flip-cup",
+      link: "/games/flip-cup",
       intensity: "High",
       whyItWorks: "Everyone starts together"
     },
@@ -64,7 +64,7 @@ export default function DrinkingGamesFor16To20Page() {
       name: "Rage Cage (Multiple Tables)",
       category: "Competitive",
       description: "Two or three tables running simultaneously. Winners compete in finals.",
-      link: "/game/rage-cage",
+      link: "/games/rage-cage",
       intensity: "High",
       whyItWorks: "Split into manageable groups"
     },
@@ -72,7 +72,7 @@ export default function DrinkingGamesFor16To20Page() {
       name: "Civil War (Mega Edition)",
       category: "Teams",
       description: "Two tables, 5v5 each. Team scores combine. Maximum chaos.",
-      link: "/game/civil-war",
+      link: "/games/civil-war",
       intensity: "Extreme",
       whyItWorks: "Parallel games, unified scores"
     },
@@ -80,7 +80,7 @@ export default function DrinkingGamesFor16To20Page() {
       name: "Flip Cup Bracket",
       category: "Tournament",
       description: "Teams of 4 in a 5-team bracket (16) or 8 teams of 2-3 (20).",
-      link: "/game/flip-cup",
+      link: "/games/flip-cup",
       intensity: "High",
       whyItWorks: "Clean bracket format"
     },
@@ -88,7 +88,7 @@ export default function DrinkingGamesFor16To20Page() {
       name: "Thunderstruck",
       category: "Music",
       description: "20 people passing the drink during Thunder. Someone's getting destroyed.",
-      link: "/game/thunderstruck",
+      link: "/games/thunderstruck",
       intensity: "High",
       whyItWorks: "Works with any size"
     },
@@ -96,7 +96,7 @@ export default function DrinkingGamesFor16To20Page() {
       name: "Kings Cup (Triple Deck)",
       category: "Cards",
       description: "Three decks shuffled together. About 8 cards per person with 20.",
-      link: "/game/kings-cup",
+      link: "/games/kings-cup",
       intensity: "Medium",
       whyItWorks: "Multiple decks extend the game"
     },
@@ -104,7 +104,7 @@ export default function DrinkingGamesFor16To20Page() {
       name: "Most Likely To (Mass Edition)",
       category: "No Props",
       description: "20 people voting is absolute democracy. Clear winners every time.",
-      link: "/game/most-likely-to",
+      link: "/games/most-likely-to",
       intensity: "Medium",
       whyItWorks: "More votes = more fun"
     },
@@ -112,7 +112,7 @@ export default function DrinkingGamesFor16To20Page() {
       name: "Power Hour Olympics",
       category: "Endurance",
       description: "Teams compete to see which team survives the longest.",
-      link: "/game/power-hour",
+      link: "/games/power-hour",
       intensity: "Extreme",
       whyItWorks: "Team support helps endurance"
     },
@@ -128,7 +128,7 @@ export default function DrinkingGamesFor16To20Page() {
       name: "Medusa (Giant Circle)",
       category: "No Props",
       description: "20 heads looking up = chaos. Multiple people match every round.",
-      link: "/game/medusa",
+      link: "/games/medusa",
       intensity: "Low",
       whyItWorks: "More people = more eye contact"
     },

@@ -40,7 +40,7 @@ export default function DrinkingGamesFor10Page() {
       name: "Flip Cup (5v5)",
       category: "Teams",
       description: "The gold standard for 10 people. 5 per side creates long, exciting relays.",
-      link: "/game/flip-cup",
+      link: "/games/flip-cup",
       intensity: "High",
       whyItWorks: "Perfect team size"
     },
@@ -48,7 +48,7 @@ export default function DrinkingGamesFor10Page() {
       name: "Rage Cage",
       category: "Competitive",
       description: "10 players around the table is maximum chaos. Cups stacking everywhere.",
-      link: "/game/rage-cage",
+      link: "/games/rage-cage",
       intensity: "High",
       whyItWorks: "Peak energy level"
     },
@@ -56,7 +56,7 @@ export default function DrinkingGamesFor10Page() {
       name: "Beer Pong Tournament",
       category: "Tournament",
       description: "5 teams of 2 in a bracket. Losers go to the losers bracket.",
-      link: "/game/beer-pong",
+      link: "/games/beer-pong",
       intensity: "Medium",
       whyItWorks: "5-team bracket works great"
     },
@@ -64,7 +64,7 @@ export default function DrinkingGamesFor10Page() {
       name: "Civil War (5v5)",
       category: "Teams",
       description: "5 cups per person, 25 total per side. No turns, pure mayhem.",
-      link: "/game/civil-war",
+      link: "/games/civil-war",
       intensity: "Extreme",
       whyItWorks: "Maximum team chaos"
     },
@@ -72,7 +72,7 @@ export default function DrinkingGamesFor10Page() {
       name: "Kings Cup",
       category: "Cards",
       description: "5 cards per person keeps it fast. Double decks for longer games.",
-      link: "/game/kings-cup",
+      link: "/games/kings-cup",
       intensity: "Medium",
       whyItWorks: "Can use 2 decks if needed"
     },
@@ -80,7 +80,7 @@ export default function DrinkingGamesFor10Page() {
       name: "Slap Cup",
       category: "Competitive",
       description: "10-person free-for-all. Someone's always getting slapped.",
-      link: "/game/slap-cup",
+      link: "/games/slap-cup",
       intensity: "High",
       whyItWorks: "Big group energy"
     },
@@ -88,7 +88,7 @@ export default function DrinkingGamesFor10Page() {
       name: "Chandelier",
       category: "Cups",
       description: "10 cups in a circle with death cup center. Everyone has skin in the game.",
-      link: "/game/chandelier",
+      link: "/games/chandelier",
       intensity: "High",
       whyItWorks: "One cup per person"
     },
@@ -96,7 +96,7 @@ export default function DrinkingGamesFor10Page() {
       name: "Most Likely To",
       category: "No Props",
       description: "Point voting with 10 people. Clear majorities every round.",
-      link: "/game/most-likely-to",
+      link: "/games/most-likely-to",
       intensity: "Medium",
       whyItWorks: "Even number, no ties"
     },
@@ -104,7 +104,7 @@ export default function DrinkingGamesFor10Page() {
       name: "Never Have I Ever",
       category: "No Props",
       description: "10 different life experiences. Rounds are fast and revelatory.",
-      link: "/game/never-have-i-ever",
+      link: "/games/never-have-i-ever",
       intensity: "Medium",
       whyItWorks: "Max variety"
     },
@@ -112,7 +112,7 @@ export default function DrinkingGamesFor10Page() {
       name: "Boat Race (5v5)",
       category: "Teams",
       description: "Team chugging relay. 5 deep on each side for maximum pressure.",
-      link: "/game/boat-race",
+      link: "/games/boat-race",
       intensity: "Extreme",
       whyItWorks: "Long, exciting relays"
     },
@@ -120,7 +120,7 @@ export default function DrinkingGamesFor10Page() {
       name: "Medusa",
       category: "No Props",
       description: "Everyone looks down, then up. More people = more eye contact chances.",
-      link: "/game/medusa",
+      link: "/games/medusa",
       intensity: "Low",
       whyItWorks: "Bigger group, more drama"
     },
@@ -128,7 +128,7 @@ export default function DrinkingGamesFor10Page() {
       name: "Power Hour (Team Edition)",
       category: "Endurance",
       description: "Two teams racing to complete power hour. First team out loses.",
-      link: "/game/power-hour",
+      link: "/games/power-hour",
       intensity: "High",
       whyItWorks: "Team support helps endurance"
     },

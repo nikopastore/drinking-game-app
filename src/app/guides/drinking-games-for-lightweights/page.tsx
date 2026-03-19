@@ -14,7 +14,7 @@ export default function DrinkingGamesForLightweightsPage() {
   return (
     <GuideLayout title="Drinking Games for Lightweights" description="Low tolerance? No shame! These games let you participate fully without getting wrecked. Smart drinking is good drinking." breadcrumb="Lightweight Games" relatedGames={[{ name: "Most Likely To", slug: "most-likely-to", description: "Sip-based" }, { name: "Never Have I Ever", slug: "never-have-i-ever", description: "Control your pace" }]}>
       <h2>Best for Low Tolerance</h2>
-      <ul><li><Link href="/game/most-likely-to" className="text-neon-pink">Most Likely To</Link> - Small sips</li><li><Link href="/game/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - Pace yourself</li><li><Link href="/game/truth-or-drink" className="text-neon-pink">Truth or Drink</Link> - Answer = skip drink</li><li><Link href="/game/kings-cup" className="text-neon-pink">Kings Cup</Link> - Use weak drinks</li></ul>
+      <ul><li><Link href="/games/most-likely-to" className="text-neon-pink">Most Likely To</Link> - Small sips</li><li><Link href="/games/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - Pace yourself</li><li><Link href="/games/truth-or-drink" className="text-neon-pink">Truth or Drink</Link> - Answer = skip drink</li><li><Link href="/games/kings-cup" className="text-neon-pink">Kings Cup</Link> - Use weak drinks</li></ul>
       <h2>Lightweight Strategies</h2>
       <ul><li>Use beer instead of liquor</li><li>Fill cups with less</li><li>Take smaller sips</li><li>Alternate with water</li><li>Eat beforehand</li></ul>
       <h2>Games to Avoid</h2>

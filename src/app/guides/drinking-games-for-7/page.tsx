@@ -40,7 +40,7 @@ export default function DrinkingGamesFor7Page() {
       name: "Kings Cup",
       category: "Cards",
       description: "Perfect for 7 players. The card count works out so everyone gets enough turns and rules stack up nicely.",
-      link: "/game/kings-cup",
+      link: "/games/kings-cup",
       intensity: "Medium",
       whyItWorks: "7-8 cards per person is ideal"
     },
@@ -48,7 +48,7 @@ export default function DrinkingGamesFor7Page() {
       name: "Rage Cage",
       category: "Competitive",
       description: "Free-for-all chaos. No teams needed, just pure competition around the table.",
-      link: "/game/rage-cage",
+      link: "/games/rage-cage",
       intensity: "High",
       whyItWorks: "Odd numbers don't matter"
     },
@@ -56,7 +56,7 @@ export default function DrinkingGamesFor7Page() {
       name: "Never Have I Ever",
       category: "No Props",
       description: "Confession game that works with any number. 7 gives great variety in responses.",
-      link: "/game/never-have-i-ever",
+      link: "/games/never-have-i-ever",
       intensity: "Medium",
       whyItWorks: "More people = more interesting confessions"
     },
@@ -64,7 +64,7 @@ export default function DrinkingGamesFor7Page() {
       name: "Most Likely To",
       category: "No Props",
       description: "Point at who's most likely to do something. 7 means no ties!",
-      link: "/game/most-likely-to",
+      link: "/games/most-likely-to",
       intensity: "Medium",
       whyItWorks: "Odd number prevents tie votes"
     },
@@ -72,7 +72,7 @@ export default function DrinkingGamesFor7Page() {
       name: "Drunk Jenga",
       category: "Props",
       description: "Works with any number. With 7, the tower falls at exciting moments.",
-      link: "/game/drunk-jenga",
+      link: "/games/drunk-jenga",
       intensity: "Medium",
       whyItWorks: "Good pace, dramatic falls"
     },
@@ -80,7 +80,7 @@ export default function DrinkingGamesFor7Page() {
       name: "Ride the Bus",
       category: "Cards",
       description: "Build a pyramid and call out cards. 7 players means a packed pyramid.",
-      link: "/game/ride-the-bus",
+      link: "/games/ride-the-bus",
       intensity: "High",
       whyItWorks: "Pyramid phase gets intense"
     },
@@ -88,7 +88,7 @@ export default function DrinkingGamesFor7Page() {
       name: "Thunderstruck",
       category: "Music",
       description: "Drink during Thunder in the song. Pass on every 'Thunder'. 7 spreads it well.",
-      link: "/game/thunderstruck",
+      link: "/games/thunderstruck",
       intensity: "High",
       whyItWorks: "Fair distribution of drinking"
     },
@@ -96,7 +96,7 @@ export default function DrinkingGamesFor7Page() {
       name: "Cheers to the Governor",
       category: "No Props",
       description: "Count to 21 with custom rules. 7 people create hilarious rule combinations.",
-      link: "/game/cheers-to-the-governor",
+      link: "/games/cheers-to-the-governor",
       intensity: "Medium",
       whyItWorks: "Enough people to stack rules"
     },
@@ -104,7 +104,7 @@ export default function DrinkingGamesFor7Page() {
       name: "Slap Cup",
       category: "Competitive",
       description: "Like Rage Cage but with slapping. Free-for-all works perfectly with 7.",
-      link: "/game/slap-cup",
+      link: "/games/slap-cup",
       intensity: "High",
       whyItWorks: "No teams required"
     },
@@ -112,7 +112,7 @@ export default function DrinkingGamesFor7Page() {
       name: "Quarters",
       category: "Skill",
       description: "Bounce quarters into a glass. Take turns around the circle.",
-      link: "/game/quarters",
+      link: "/games/quarters",
       intensity: "Medium",
       whyItWorks: "Turn-based works with any number"
     },
@@ -120,7 +120,7 @@ export default function DrinkingGamesFor7Page() {
       name: "Flip Cup (4v3)",
       category: "Teams",
       description: "Uneven teams, but the team of 3 gets to use their best flipper twice.",
-      link: "/game/flip-cup",
+      link: "/games/flip-cup",
       intensity: "High",
       whyItWorks: "Handicap makes it fair"
     },
@@ -128,7 +128,7 @@ export default function DrinkingGamesFor7Page() {
       name: "Beer Ball",
       category: "Teams",
       description: "4v3 teams. Hit the can, chug while they retrieve. Handicap the smaller team.",
-      link: "/game/beer-ball",
+      link: "/games/beer-ball",
       intensity: "High",
       whyItWorks: "Works with uneven teams"
     },

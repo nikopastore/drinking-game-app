@@ -114,7 +114,7 @@ export default function BirthdayDrinkingGamesPage() {
         <li>10 = Categories about the birthday person (favorite things, embarrassing moments)</li>
         <li>King = Poured into birthday person&apos;s final cup (if they want it)</li>
       </ul>
-      <p><Link href="/game/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
 
       <h3>7. Most Likely To: Birthday Roast</h3>
       <p>Classic Most Likely To but all questions relate to the birthday person somehow. Light roasting encouraged.</p>
@@ -127,7 +127,7 @@ export default function BirthdayDrinkingGamesPage() {
         <li>&quot;Who&apos;s most likely to still be friends with [name] in 20 years?&quot;</li>
         <li>&quot;Who&apos;s most likely to get [name] in trouble tonight?&quot;</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
 
       <h3>8. Never Have I Ever: Birthday Edition</h3>
       <p>Statements specifically crafted to target the birthday person. Use insider knowledge to make them drink.</p>
@@ -140,7 +140,7 @@ export default function BirthdayDrinkingGamesPage() {
         <li>&quot;Never have I ever been voted most likely to...&quot;</li>
         <li><strong>Pro tip:</strong> Coordinate with other guests beforehand for maximum impact</li>
       </ul>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
 
       <h3>9. Birthday Flip Cup Tournament</h3>
       <p>Standard Flip Cup but birthday person is the permanent anchor for both teams. They&apos;re always involved without drinking too much more than others.</p>
@@ -152,7 +152,7 @@ export default function BirthdayDrinkingGamesPage() {
         <li>If their team wins, they take a victory sip</li>
         <li>If their team loses, losing team drinks extra</li>
       </ul>
-      <p><Link href="/game/flip-cup" className="text-neon-pink hover:underline">Full Flip Cup Rules</Link></p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink hover:underline">Full Flip Cup Rules</Link></p>
 
       <h3>10. Birthday Power Hour</h3>
       <p>Standard Power Hour but with a curated playlist of songs from significant years in the birthday person&apos;s life.</p>
@@ -165,7 +165,7 @@ export default function BirthdayDrinkingGamesPage() {
         <li>Songs from major life events</li>
         <li>Their personal favorites</li>
       </ul>
-      <p><Link href="/game/power-hour" className="text-neon-pink hover:underline">Full Power Hour Rules</Link></p>
+      <p><Link href="/games/power-hour" className="text-neon-pink hover:underline">Full Power Hour Rules</Link></p>
 
       <h2>Milestone Birthday Games</h2>
 
@@ -229,7 +229,7 @@ export default function BirthdayDrinkingGamesPage() {
         <li>Birthday person draws and answers or drinks</li>
         <li>Guests whose questions aren&apos;t picked also drink</li>
       </ul>
-      <p><Link href="/game/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
+      <p><Link href="/games/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
 
       <h2>Birthday Party Timeline</h2>
 

@@ -14,9 +14,9 @@ export default function ReunionDrinkingGamesPage() {
   return (
     <GuideLayout title="Reunion Drinking Games" description="Reuniting with old friends or classmates? These games help break the ice and relive the glory days!" breadcrumb="Reunion" relatedGames={[{ name: "Most Likely To", slug: "most-likely-to", description: "Who's changed?" }, { name: "Never Have I Ever", slug: "never-have-i-ever", description: "Catch up quick" }]}>
       <h2>Class Reunion Games</h2>
-      <ul><li><strong>Senior Superlatives Revisited</strong> - Did predictions come true?</li><li><strong>Guess Who Said It</strong> - Old yearbook quotes</li><li><strong>Where Are They Now</strong> - Prediction game</li><li><Link href="/game/most-likely-to" className="text-neon-pink">Most Likely To</Link> - Then vs now</li></ul>
+      <ul><li><strong>Senior Superlatives Revisited</strong> - Did predictions come true?</li><li><strong>Guess Who Said It</strong> - Old yearbook quotes</li><li><strong>Where Are They Now</strong> - Prediction game</li><li><Link href="/games/most-likely-to" className="text-neon-pink">Most Likely To</Link> - Then vs now</li></ul>
       <h2>Family Reunion Games</h2>
-      <ul><li><strong>Family Trivia</strong> - Who knows the family best?</li><li><strong>Embarrassing Kid Stories</strong> - Parents share, kids drink</li><li><Link href="/game/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - PG version</li></ul>
+      <ul><li><strong>Family Trivia</strong> - Who knows the family best?</li><li><strong>Embarrassing Kid Stories</strong> - Parents share, kids drink</li><li><Link href="/games/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - PG version</li></ul>
       <h2>Icebreaker Games</h2>
       <ul><li><strong>Two Truths One Lie</strong> - Updates edition</li><li><strong>Speed Catch-Up</strong> - 2 min conversations</li></ul>
     </GuideLayout>

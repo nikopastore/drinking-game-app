@@ -45,7 +45,7 @@ export default function BarDrinkingGamesPage() {
         <li><strong>Volume level:</strong> Normal conversation</li>
         <li><strong>Bar-friendly:</strong> Contained to your table, no equipment needed</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
 
       <h3>2. Never Have I Ever</h3>
       <p>The classic. Take turns saying &quot;Never have I ever...&quot; followed by something you haven&apos;t done. Anyone who HAS done it drinks. Great for learning secrets about friends.</p>
@@ -55,7 +55,7 @@ export default function BarDrinkingGamesPage() {
         <li><strong>Volume level:</strong> Quiet to normal</li>
         <li><strong>Bar-friendly:</strong> Works anywhere, can get personal but stays at your table</li>
       </ul>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
 
       <h3>3. Two Truths and a Lie</h3>
       <p>State three things about yourself - two true, one false. Others guess the lie. Wrong guesses drink, right guesses mean you drink. Great icebreaker.</p>
@@ -92,7 +92,7 @@ export default function BarDrinkingGamesPage() {
         <li><strong>Volume level:</strong> Quiet conversation</li>
         <li><strong>Bar-friendly:</strong> Intimate, works well at small tables or booths</li>
       </ul>
-      <p><Link href="/game/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
+      <p><Link href="/games/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
 
       <h3>7. 21 Questions (Drinking Edition)</h3>
       <p>One person thinks of something/someone. Others ask yes/no questions to guess. Wrong guess? Drink. Guess correctly? The thinker drinks.</p>
@@ -120,7 +120,7 @@ export default function BarDrinkingGamesPage() {
         <li><strong>Volume level:</strong> Medium (counting, cheering)</li>
         <li><strong>Bar-friendly:</strong> Watch the volume as rules pile up</li>
       </ul>
-      <p><Link href="/game/cheers-to-the-governor" className="text-neon-pink hover:underline">Full Cheers to the Governor Rules</Link></p>
+      <p><Link href="/games/cheers-to-the-governor" className="text-neon-pink hover:underline">Full Cheers to the Governor Rules</Link></p>
 
       <h3>10. Fingers (Paranoia)</h3>
       <p>Everyone puts a finger on a cup. One person asks a question to another person secretly. That person answers by naming someone at the table. Paranoia ensues.</p>

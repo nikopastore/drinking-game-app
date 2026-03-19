@@ -47,7 +47,7 @@ export default function DrinkingGamesFor3Page() {
       name: "Kings Cup",
       category: "Cards",
       description: "The classic card game shines with 3 players. Each person gets 17+ cards, so the game lasts longer and rules stack up nicely.",
-      link: "/game/kings-cup",
+      link: "/games/kings-cup",
       intensity: "Medium",
       whyItWorks: "17 cards each = longer game, more fun"
     },
@@ -55,7 +55,7 @@ export default function DrinkingGamesFor3Page() {
       name: "Three Man",
       category: "Dice",
       description: "Literally designed for this. Roll dice, assign drinking based on combinations. The 'Three Man' gets targeted until they roll out.",
-      link: "/game/three-man",
+      link: "/games/three-man",
       intensity: "High",
       whyItWorks: "Made specifically for 3+ players"
     },
@@ -63,7 +63,7 @@ export default function DrinkingGamesFor3Page() {
       name: "Ride the Bus",
       category: "Cards",
       description: "Multi-round guessing game. The pyramid round gets intense with 3 people since you know who has which cards.",
-      link: "/game/ride-the-bus",
+      link: "/games/ride-the-bus",
       intensity: "High",
       whyItWorks: "Pyramid is more strategic with 3"
     },
@@ -71,7 +71,7 @@ export default function DrinkingGamesFor3Page() {
       name: "Truth or Drink",
       category: "No Props",
       description: "Ask deep questions, refuse to answer = drink. With 3, conversations flow naturally and everyone stays engaged.",
-      link: "/game/truth-or-drink",
+      link: "/games/truth-or-drink",
       intensity: "Medium",
       whyItWorks: "Intimate but not awkward"
     },
@@ -79,7 +79,7 @@ export default function DrinkingGamesFor3Page() {
       name: "Never Have I Ever",
       category: "No Props",
       description: "Classic confession game. 3 people means you learn a lot about each other quickly.",
-      link: "/game/never-have-i-ever",
+      link: "/games/never-have-i-ever",
       intensity: "Medium",
       whyItWorks: "Quick rounds, lots of confessions"
     },
@@ -87,7 +87,7 @@ export default function DrinkingGamesFor3Page() {
       name: "Fuck the Dealer",
       category: "Cards",
       description: "Guess the card value. Get it wrong, drink the difference. With 3, dealer rotates faster.",
-      link: "/game/fuck-the-dealer",
+      link: "/games/fuck-the-dealer",
       intensity: "High",
       whyItWorks: "Faster dealer rotation"
     },
@@ -95,7 +95,7 @@ export default function DrinkingGamesFor3Page() {
       name: "Beeramid",
       category: "Cards",
       description: "Build a pyramid, flip cards, call out who has matching cards. Bluffing is key with 3.",
-      link: "/game/beeramid",
+      link: "/games/beeramid",
       intensity: "High",
       whyItWorks: "Easier to track cards, harder to bluff"
     },
@@ -103,7 +103,7 @@ export default function DrinkingGamesFor3Page() {
       name: "Most Likely To",
       category: "No Props",
       description: "Point at who's most likely to do something. With 3, two pointing at one person = they drink.",
-      link: "/game/most-likely-to",
+      link: "/games/most-likely-to",
       intensity: "Medium",
       whyItWorks: "2v1 voting creates clear outcomes"
     },
@@ -119,7 +119,7 @@ export default function DrinkingGamesFor3Page() {
       name: "Quarters",
       category: "Skill",
       description: "Bounce a quarter into a cup. Make it = assign a drink. Miss = your turn ends.",
-      link: "/game/quarters",
+      link: "/games/quarters",
       intensity: "Medium",
       whyItWorks: "Turn-based works with any number"
     },
@@ -127,7 +127,7 @@ export default function DrinkingGamesFor3Page() {
       name: "Drunk Jenga",
       category: "Props",
       description: "Pull blocks with rules written on them. With 3, each person pulls more blocks before it falls.",
-      link: "/game/drunk-jenga",
+      link: "/games/drunk-jenga",
       intensity: "Medium",
       whyItWorks: "18 pulls each = perfect pacing"
     },
@@ -151,7 +151,7 @@ export default function DrinkingGamesFor3Page() {
       name: "Cheers to the Governor",
       category: "No Props",
       description: "Count to 21, adding rules at each number. With 3, rules accumulate fast and chaos ensues.",
-      link: "/game/cheers-to-the-governor",
+      link: "/games/cheers-to-the-governor",
       intensity: "Medium",
       whyItWorks: "Rules stack quickly"
     },
@@ -159,7 +159,7 @@ export default function DrinkingGamesFor3Page() {
       name: "Horse Race",
       category: "Cards",
       description: "Bet on which suit will 'win' the race. Cards flip to move horses. Lose your bet = drink.",
-      link: "/game/horse-race",
+      link: "/games/horse-race",
       intensity: "Low",
       whyItWorks: "Betting game works with any size"
     },

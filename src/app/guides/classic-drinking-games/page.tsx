@@ -44,7 +44,7 @@ export default function ClassicGamesPage() {
         <li><strong>Equipment:</strong> Table, cups, ping pong balls, beer</li>
         <li><strong>Why it&apos;s classic:</strong> Perfect blend of skill and drinking, competitive but social</li>
       </ul>
-      <p><Link href="/game/beer-pong" className="text-neon-pink hover:underline">Full Beer Pong Rules</Link></p>
+      <p><Link href="/games/beer-pong" className="text-neon-pink hover:underline">Full Beer Pong Rules</Link></p>
 
       <h3>2. Kings Cup (Circle of Death)</h3>
       <p>The ultimate card-based drinking game. Players draw cards from a deck spread around a cup, with each card triggering a different rule (2 = You, 3 = Me, 4 = Floor, etc.).</p>
@@ -53,7 +53,7 @@ export default function ClassicGamesPage() {
         <li><strong>Equipment:</strong> Deck of cards, large cup</li>
         <li><strong>Why it&apos;s classic:</strong> Infinitely variable rules, every game is different</li>
       </ul>
-      <p><Link href="/game/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
 
       <h3>3. Flip Cup</h3>
       <p>A team relay race where players must drink their beer and flip their cup upside down by flicking the rim. First team to finish all their cups wins.</p>
@@ -62,7 +62,7 @@ export default function ClassicGamesPage() {
         <li><strong>Equipment:</strong> Plastic cups, table</li>
         <li><strong>Why it&apos;s classic:</strong> Fast-paced team excitement, perfect for large groups</li>
       </ul>
-      <p><Link href="/game/flip-cup" className="text-neon-pink hover:underline">Full Flip Cup Rules</Link></p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink hover:underline">Full Flip Cup Rules</Link></p>
 
       <h3>4. Quarters</h3>
       <p>Players take turns bouncing a quarter off the table trying to land it in a shot glass. Make it? Choose someone to drink. Miss? Next player&apos;s turn.</p>
@@ -71,7 +71,7 @@ export default function ClassicGamesPage() {
         <li><strong>Equipment:</strong> Quarter, shot glass</li>
         <li><strong>Why it&apos;s classic:</strong> Simple bar game that&apos;s been played for 50+ years</li>
       </ul>
-      <p><Link href="/game/quarters" className="text-neon-pink hover:underline">Full Quarters Rules</Link></p>
+      <p><Link href="/games/quarters" className="text-neon-pink hover:underline">Full Quarters Rules</Link></p>
 
       <h3>5. Never Have I Ever</h3>
       <p>Players take turns saying &quot;Never have I ever...&quot; followed by something they haven&apos;t done. Anyone who HAS done it takes a drink. A confession game that reveals secrets.</p>
@@ -80,7 +80,7 @@ export default function ClassicGamesPage() {
         <li><strong>Equipment:</strong> None</li>
         <li><strong>Why it&apos;s classic:</strong> No equipment needed, great icebreaker, always entertaining</li>
       </ul>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
 
       <h3>6. Drunk Jenga</h3>
       <p>Classic Jenga with a twist - each block has a rule written on it. Pull a block, do what it says (or drink as a penalty), then stack it on top.</p>
@@ -89,7 +89,7 @@ export default function ClassicGamesPage() {
         <li><strong>Equipment:</strong> Jenga set with written rules</li>
         <li><strong>Why it&apos;s classic:</strong> Combines physical skill with drinking, tension builds throughout</li>
       </ul>
-      <p><Link href="/game/drunk-jenga" className="text-neon-pink hover:underline">Full Drunk Jenga Rules</Link></p>
+      <p><Link href="/games/drunk-jenga" className="text-neon-pink hover:underline">Full Drunk Jenga Rules</Link></p>
 
       <h3>7. Power Hour</h3>
       <p>Take a shot of beer every minute for 60 minutes. Sounds easy but adds up to 7.5 beers in an hour. Usually done with a playlist that changes songs every minute.</p>
@@ -98,7 +98,7 @@ export default function ClassicGamesPage() {
         <li><strong>Equipment:</strong> Shot glasses, timer/playlist</li>
         <li><strong>Why it&apos;s classic:</strong> Communal drinking experience, great pregame activity</li>
       </ul>
-      <p><Link href="/game/power-hour" className="text-neon-pink hover:underline">Full Power Hour Rules</Link></p>
+      <p><Link href="/games/power-hour" className="text-neon-pink hover:underline">Full Power Hour Rules</Link></p>
 
       <h3>8. Ride the Bus</h3>
       <p>A multi-round card game where players guess card attributes (red/black, higher/lower, etc.). Wrong guesses mean drinks. The loser &quot;rides the bus&quot; in a brutal final round.</p>
@@ -107,7 +107,7 @@ export default function ClassicGamesPage() {
         <li><strong>Equipment:</strong> Deck of cards</li>
         <li><strong>Why it&apos;s classic:</strong> Combines luck and strategy, the bus ride is legendary</li>
       </ul>
-      <p><Link href="/game/ride-the-bus" className="text-neon-pink hover:underline">Full Ride the Bus Rules</Link></p>
+      <p><Link href="/games/ride-the-bus" className="text-neon-pink hover:underline">Full Ride the Bus Rules</Link></p>
 
       <h3>9. Rage Cage (Boom Cup)</h3>
       <p>Fast-paced bouncing game where players race to bounce a ball into their cup. Get stacked? Drink a center cup. Last cups standing are trouble.</p>
@@ -116,7 +116,7 @@ export default function ClassicGamesPage() {
         <li><strong>Equipment:</strong> Many cups, 2 ping pong balls</li>
         <li><strong>Why it&apos;s classic:</strong> High energy, gets competitive fast, perfect for parties</li>
       </ul>
-      <p><Link href="/game/rage-cage" className="text-neon-pink hover:underline">Full Rage Cage Rules</Link></p>
+      <p><Link href="/games/rage-cage" className="text-neon-pink hover:underline">Full Rage Cage Rules</Link></p>
 
       <h3>10. Most Likely To</h3>
       <p>Someone asks &quot;Who is most likely to...?&quot; and on the count of three, everyone points. The person with the most fingers pointed at them drinks that many.</p>
@@ -125,7 +125,7 @@ export default function ClassicGamesPage() {
         <li><strong>Equipment:</strong> None</li>
         <li><strong>Why it&apos;s classic:</strong> Gets personal, hilarious reveals, no setup needed</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
 
       <h3>11. Truth or Drink</h3>
       <p>The drinking version of Truth or Dare. Answer the question honestly or take a drink. Questions can get progressively more revealing.</p>
@@ -134,7 +134,7 @@ export default function ClassicGamesPage() {
         <li><strong>Equipment:</strong> Question cards (optional)</li>
         <li><strong>Why it&apos;s classic:</strong> Creates memorable conversations, always unpredictable</li>
       </ul>
-      <p><Link href="/game/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
+      <p><Link href="/games/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
 
       <h3>12. Slap Cup</h3>
       <p>Similar to Rage Cage but with slapping. If you bounce your ball in before the person to your right, you slap their cup away and they drink.</p>
@@ -143,7 +143,7 @@ export default function ClassicGamesPage() {
         <li><strong>Equipment:</strong> Many cups, 2 ping pong balls</li>
         <li><strong>Why it&apos;s classic:</strong> More interactive than Rage Cage, satisfying slap mechanic</li>
       </ul>
-      <p><Link href="/game/slap-cup" className="text-neon-pink hover:underline">Full Slap Cup Rules</Link></p>
+      <p><Link href="/games/slap-cup" className="text-neon-pink hover:underline">Full Slap Cup Rules</Link></p>
 
       <h3>13. Thunderstruck</h3>
       <p>Play AC/DC&apos;s &quot;Thunderstruck.&quot; First person drinks when they hear &quot;thunder.&quot; They stop and next person starts on the next &quot;thunder.&quot; Some people get stuck for a long time!</p>
@@ -152,7 +152,7 @@ export default function ClassicGamesPage() {
         <li><strong>Equipment:</strong> Music player</li>
         <li><strong>Why it&apos;s classic:</strong> Musical, communal, some unlucky souls drink A LOT</li>
       </ul>
-      <p><Link href="/game/thunderstruck" className="text-neon-pink hover:underline">Full Thunderstruck Rules</Link></p>
+      <p><Link href="/games/thunderstruck" className="text-neon-pink hover:underline">Full Thunderstruck Rules</Link></p>
 
       <h3>14. Civil War</h3>
       <p>Beer Pong on steroids - 3v3 with three triangles per side. No turns, just chaos as everyone shoots simultaneously. First team to eliminate all opposing cups wins.</p>
@@ -161,7 +161,7 @@ export default function ClassicGamesPage() {
         <li><strong>Equipment:</strong> Large table, 18 cups, multiple balls</li>
         <li><strong>Why it&apos;s classic:</strong> Maximum chaos, fastest Beer Pong variant</li>
       </ul>
-      <p><Link href="/game/civil-war" className="text-neon-pink hover:underline">Full Civil War Rules</Link></p>
+      <p><Link href="/games/civil-war" className="text-neon-pink hover:underline">Full Civil War Rules</Link></p>
 
       <h3>15. Edward 40 Hands</h3>
       <p>Tape a 40oz malt liquor to each hand. You can&apos;t remove them until both are empty. Need to use the bathroom? Better drink faster.</p>
@@ -170,7 +170,7 @@ export default function ClassicGamesPage() {
         <li><strong>Equipment:</strong> Two 40oz bottles per person, duct tape</li>
         <li><strong>Why it&apos;s classic:</strong> Hilarious commitment, legendary challenge</li>
       </ul>
-      <p><Link href="/game/edward-40-hands" className="text-neon-pink hover:underline">Full Edward 40 Hands Rules</Link></p>
+      <p><Link href="/games/edward-40-hands" className="text-neon-pink hover:underline">Full Edward 40 Hands Rules</Link></p>
 
       <h2>Why These Games Are Timeless</h2>
 

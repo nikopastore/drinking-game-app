@@ -64,7 +64,7 @@ export default function DrinkingGamesFor1Page() {
       name: "Power Hour (Solo)",
       category: "Endurance",
       description: "Shot of beer every minute for 60 minutes. Just you vs the hour.",
-      link: "/game/power-hour",
+      link: "/games/power-hour",
       intensity: "High",
       whyItWorks: "Classic endurance challenge"
     },

@@ -148,7 +148,7 @@ export default function NBAFinalsDrinkingGamesPage() {
 
       <h3>Flip Cup</h3>
       <p>
-        Team vs team <Link href="/game/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link>.
+        Team vs team <Link href="/games/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link>.
         Losing team wears the other team's colors for second half (if you have gear).
       </p>
 

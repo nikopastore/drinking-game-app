@@ -104,7 +104,7 @@ export default function DrunkJengaRulesPage() {
         <li>Have different colored markers for rule intensity</li>
       </ul>
 
-      <p>Check out our <Link href="/game/drunk-jenga" className="text-neon-pink hover:underline">Drunk Jenga game page</Link>!</p>
+      <p>Check out our <Link href="/games/drunk-jenga" className="text-neon-pink hover:underline">Drunk Jenga game page</Link>!</p>
     </GuideLayout>
   );
 }

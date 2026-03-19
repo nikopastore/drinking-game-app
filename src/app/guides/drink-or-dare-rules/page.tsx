@@ -219,7 +219,7 @@ export default function DrinkOrDareRulesPage() {
         <li>Everyone can tap out at any time</li>
       </ul>
 
-      <p>More dare games: <Link href="/game/truth-or-drink" className="text-neon-pink hover:underline">Truth or Drink</Link> | <Link href="/guides/truth-or-dare-drinking-game" className="text-neon-pink hover:underline">full Truth or Dare guide</Link></p>
+      <p>More dare games: <Link href="/games/truth-or-drink" className="text-neon-pink hover:underline">Truth or Drink</Link> | <Link href="/guides/truth-or-dare-drinking-game" className="text-neon-pink hover:underline">full Truth or Dare guide</Link></p>
     </GuideLayout>
   );
 }

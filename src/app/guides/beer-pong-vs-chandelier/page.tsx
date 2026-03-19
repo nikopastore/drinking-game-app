@@ -89,7 +89,7 @@ export default function BeerPongVsChandelierPage() {
       <p><strong>Play Chandelier for:</strong> More players involved, quick high-energy rounds, dramatic flip moments, easy for beginners, player rotation.</p>
 
       <p className="mt-8">
-        Learn the rules: <Link href="/game/beer-pong" className="text-neon-pink">Beer Pong</Link> | <Link href="/game/chandelier" className="text-neon-pink">Chandelier</Link>
+        Learn the rules: <Link href="/games/beer-pong" className="text-neon-pink">Beer Pong</Link> | <Link href="/games/chandelier" className="text-neon-pink">Chandelier</Link>
       </p>
     </GuideLayout>
   );

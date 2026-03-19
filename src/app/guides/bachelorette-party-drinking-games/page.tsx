@@ -58,7 +58,7 @@ export default function BachelorettePartyPage() {
         <li>Have you ever stalked an ex on social media?</li>
         <li>What&apos;s your hottest celebrity crush?</li>
       </ul>
-      <p><Link href="/game/truth-or-drink" className="text-neon-pink">Full Truth or Drink rules →</Link></p>
+      <p><Link href="/games/truth-or-drink" className="text-neon-pink">Full Truth or Drink rules →</Link></p>
 
       <h3>Drink If (Bride Edition)</h3>
       <p>Read statements about the bride. If they apply to you, drink.</p>
@@ -82,7 +82,7 @@ export default function BachelorettePartyPage() {
         <li>Never have I ever said &quot;I love you&quot; first</li>
         <li>Never have I ever been on a dating app</li>
       </ul>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink">Full Never Have I Ever rules →</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink">Full Never Have I Ever rules →</Link></p>
 
       <h3>Most Likely To</h3>
       <p>Point and vote. Perfect for mixed groups - even people who just met can participate.</p>
@@ -93,11 +93,11 @@ export default function BachelorettePartyPage() {
         <li>Who&apos;s most likely to give a speech that&apos;s too long?</li>
         <li>Who&apos;s most likely to get married next?</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink">Full Most Likely To rules →</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink">Full Most Likely To rules →</Link></p>
 
       <h3>Prosecco Pong</h3>
       <p>Beer pong but make it bougie. Use champagne or rosé instead of beer. Same rules, fancier vibes.</p>
-      <p><Link href="/game/beer-pong" className="text-neon-pink">Full Beer Pong rules →</Link></p>
+      <p><Link href="/games/beer-pong" className="text-neon-pink">Full Beer Pong rules →</Link></p>
 
       <h3>Kings Cup</h3>
       <p>Classic card game that works for any group size. Customize rules to include bride-specific actions.</p>
@@ -107,7 +107,7 @@ export default function BachelorettePartyPage() {
         <li>Kings = Bride makes a rule</li>
         <li>Jacks = Everyone toasts the bride</li>
       </ul>
-      <p><Link href="/game/kings-cup" className="text-neon-pink">Full Kings Cup rules →</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink">Full Kings Cup rules →</Link></p>
 
       <h2>Active & Moving Games</h2>
 
@@ -130,7 +130,7 @@ export default function BachelorettePartyPage() {
       <p>For lower-key bachelorettes:</p>
       <ul>
         <li><strong>Wine rating</strong> - Blind taste test, rate wines, wrong guesses drink</li>
-        <li><strong><Link href="/game/truth-or-drink" className="text-neon-pink">Truth or Drink</Link></strong> - Intimate conversation starter</li>
+        <li><strong><Link href="/games/truth-or-drink" className="text-neon-pink">Truth or Drink</Link></strong> - Intimate conversation starter</li>
         <li><strong>The Newlywed Game (Bride Edition)</strong> - Test how well the bride knows the groom</li>
         <li><strong>Movie drinking game</strong> - Watch a rom-com with custom rules</li>
       </ul>
@@ -149,7 +149,7 @@ export default function BachelorettePartyPage() {
       <p>Bachelorettes often combine bridesmaids, childhood friends, work friends, and family:</p>
       <ul>
         <li>Start with Bride Trivia - shared interest in the bride</li>
-        <li><Link href="/game/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> reveals common ground</li>
+        <li><Link href="/games/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> reveals common ground</li>
         <li>Team games should intentionally mix groups</li>
         <li>Include non-drinkers with mocktail versions</li>
       </ul>

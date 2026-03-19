@@ -50,14 +50,14 @@ export default function DrinkingGamesFor2Page() {
       name: "Truth or Drink",
       category: "No Props",
       description: "Ask each other questions. Refuse to answer? Take a drink. Perfect for getting to know someone better.",
-      link: "/game/truth-or-drink",
+      link: "/games/truth-or-drink",
       intensity: "Medium",
     },
     {
       name: "Never Have I Ever",
       category: "No Props",
       description: "Take turns saying things you haven't done. If the other person has done it, they drink.",
-      link: "/game/never-have-i-ever",
+      link: "/games/never-have-i-ever",
       intensity: "Medium",
     },
     {
@@ -78,14 +78,14 @@ export default function DrinkingGamesFor2Page() {
       name: "Ride the Bus",
       category: "Cards",
       description: "Guess card properties (color, higher/lower, suit, etc.). Get it wrong and drink.",
-      link: "/game/ride-the-bus",
+      link: "/games/ride-the-bus",
       intensity: "High",
     },
     {
       name: "Quarters",
       category: "Props",
       description: "Bounce a quarter into a cup. Miss and drink. Make it and your partner drinks.",
-      link: "/game/quarters",
+      link: "/games/quarters",
       intensity: "Medium",
     },
     {
@@ -106,14 +106,14 @@ export default function DrinkingGamesFor2Page() {
       name: "Movie Drinking Game",
       category: "No Props",
       description: "Pick a movie and drink when specific things happen. Great for date night!",
-      link: "/game/movie-drinking-game",
+      link: "/games/movie-drinking-game",
       intensity: "Low",
     },
     {
       name: "Flip Cup (1v1)",
       category: "Props",
       description: "Race to flip your cup. Loser drinks. Best of 5!",
-      link: "/game/flip-cup",
+      link: "/games/flip-cup",
       intensity: "Medium",
     },
     {
@@ -127,7 +127,7 @@ export default function DrinkingGamesFor2Page() {
       name: "Drunk Jenga",
       category: "Props",
       description: "Pull blocks with rules written on them. Collapse the tower? Finish your drink.",
-      link: "/game/drunk-jenga",
+      link: "/games/drunk-jenga",
       intensity: "Medium",
     },
     {
@@ -148,7 +148,7 @@ export default function DrinkingGamesFor2Page() {
       name: "Power Hour (Duo Edition)",
       category: "No Props",
       description: "Take a shot of beer every minute for an hour. Race to see who lasts longer!",
-      link: "/game/power-hour",
+      link: "/games/power-hour",
       intensity: "High",
     },
   ];

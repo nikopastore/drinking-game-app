@@ -97,7 +97,7 @@ export default function SpringBreakDrinkingGamesPage() {
       <h2>Hotel Room Games</h2>
 
       <h3>Spring Break Beer Pong Tournament</h3>
-      <p>Classic <Link href="/game/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link> with tournament brackets:</p>
+      <p>Classic <Link href="/games/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link> with tournament brackets:</p>
       <ul>
         <li>Teams of 2</li>
         <li>Single elimination</li>
@@ -106,7 +106,7 @@ export default function SpringBreakDrinkingGamesPage() {
       </ul>
 
       <h3>Rage Cage Marathon</h3>
-      <p><Link href="/game/rage-cage" className="text-neon-pink hover:underline">Rage Cage</Link> is perfect for big groups:</p>
+      <p><Link href="/games/rage-cage" className="text-neon-pink hover:underline">Rage Cage</Link> is perfect for big groups:</p>
       <ul>
         <li>Fast-paced chaos</li>
         <li>Works with 6-20 people</li>
@@ -114,7 +114,7 @@ export default function SpringBreakDrinkingGamesPage() {
       </ul>
 
       <h3>Spring Break Flip Cup</h3>
-      <p><Link href="/game/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link> variations:</p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link> variations:</p>
       <ul>
         <li>Survivor: Losers eliminate one player each round</li>
         <li>Reverse: Flip THEN drink</li>
@@ -153,7 +153,7 @@ export default function SpringBreakDrinkingGamesPage() {
       </ul>
 
       <h3>Spring Break Never Have I Ever</h3>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link> themed questions:</p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link> themed questions:</p>
       <ul>
         <li>"Never have I ever hooked up on spring break"</li>
         <li>"Never have I ever gotten a vacation tattoo"</li>

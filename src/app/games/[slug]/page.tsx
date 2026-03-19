@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { getGameBySlug, games } from "@/config/gameData";
 import {
   gameCategories,
   getCategoryBySlug,
@@ -11,55 +12,135 @@ import { GameCard } from "@/components/GameCard";
 import { Badge } from "@/components/ui";
 import { ChevronRight } from "lucide-react";
 import { CategoryPageClient } from "./CategoryPageClient";
+import { GameDetailClient } from "@/app/game/[slug]/GameDetailClient";
+import { GameStructuredData } from "@/components/seo";
+import { formatPlayerCount } from "@/lib/utils";
+import { generateFAQSchema } from "@/lib/schema";
 
 interface PageProps {
-  params: Promise<{ category: string }>;
+  params: Promise<{ slug: string }>;
 }
 
-// Generate static paths for all categories
+// Generate static paths for all categories and games
 export async function generateStaticParams() {
-  return getAllCategorySlugs().map((slug) => ({
-    category: slug,
+  const slugs = new Set<string>();
+  getAllCategorySlugs().forEach((slug) => slugs.add(slug));
+  games.forEach((game) => slugs.add(game.slug));
+
+  return Array.from(slugs).map((slug) => ({
+    slug,
   }));
 }
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { category } = await params;
-  const categoryData = getCategoryBySlug(category);
+  const { slug } = await params;
+  const categoryData = getCategoryBySlug(slug);
 
-  if (!categoryData) {
+  if (categoryData) {
     return {
-      title: "Category Not Found - SipWiki",
+      title: categoryData.title,
+      description: categoryData.description,
+      alternates: {
+        canonical: `https://sipwiki.app/games/${categoryData.slug}`,
+      },
+      openGraph: {
+        title: categoryData.title,
+        description: categoryData.description,
+        type: "website",
+        url: `https://sipwiki.app/games/${categoryData.slug}`,
+      },
     };
   }
 
+  const game = getGameBySlug(slug);
+
+  if (!game) {
+    return {
+      title: "Page Not Found - SipWiki",
+    };
+  }
+
+  const seoTitle = `${game.name} Drinking Game – Rules & How to Play | SipWiki`;
+  const playerInfo = formatPlayerCount(game.min_players, game.max_players);
+  const materialsInfo =
+    game.materials[0] === "no prop"
+      ? "No props needed"
+      : `Materials: ${game.materials.slice(0, 3).join(", ")}`;
+  const seoDescription = `Learn how to play ${game.name} with complete rules and instructions. Perfect for ${playerInfo} players. ${materialsInfo}. Get the official drinking game rules now!`;
+
   return {
-    title: categoryData.title,
-    description: categoryData.description,
+    title: seoTitle,
+    description: seoDescription,
+    keywords: [
+      `${game.name.toLowerCase()} rules`,
+      `how to play ${game.name.toLowerCase()}`,
+      `${game.name.toLowerCase()} drinking game`,
+      `${game.name.toLowerCase()} game rules`,
+      "drinking game rules",
+      "party games",
+    ],
     openGraph: {
-      title: categoryData.title,
-      description: categoryData.description,
-      type: "website",
+      title: `${game.name} Rules - Complete Drinking Game Guide`,
+      description: seoDescription,
+      type: "article",
+      url: `https://sipwiki.app/games/${game.slug}`,
+      images: game.image ? [{ url: game.image, alt: `${game.name} drinking game` }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${game.name} Rules`,
+      description: `Learn how to play ${game.name}. Complete rules for ${playerInfo} players.`,
+    },
+    alternates: {
+      canonical: `https://sipwiki.app/games/${game.slug}`,
     },
   };
 }
 
-export default async function CategoryPage({ params }: PageProps) {
-  const { category } = await params;
-  const categoryData = getCategoryBySlug(category);
+// Generate enhanced FAQ schema for common game questions
+function generateGameFAQJsonLd(game: ReturnType<typeof getGameBySlug>) {
+  if (!game) return null;
 
-  if (!categoryData) {
-    notFound();
-  }
+  const playerInfo = formatPlayerCount(game.min_players, game.max_players);
 
-  const categoryGames = getGamesForCategory(category);
-  const otherCategories = gameCategories.filter((c) => c.slug !== category);
+  const faqs = [
+    {
+      question: `How many people do you need to play ${game.name}?`,
+      answer: `${game.name} requires ${playerInfo} players. ${game.min_players === game.max_players ? `This game works best with exactly ${game.min_players} players.` : game.max_players ? `It works with anywhere from ${game.min_players} to ${game.max_players} players.` : `It works with ${game.min_players} or more players.`}`,
+    },
+    {
+      question: `What materials do you need for ${game.name}?`,
+      answer:
+        game.materials[0] === "no prop"
+          ? `${game.name} requires no props - just players and drinks!`
+          : `To play ${game.name}, you need: ${game.materials.join(", ")}.`,
+    },
+    {
+      question: `How drunk will you get playing ${game.name}?`,
+      answer: `${game.name} has a drunkenness level of ${game.drunkenness_level} out of 5. ${game.drunkenness_level >= 4 ? "This is an intense game that can get you very drunk quickly - pace yourself!" : game.drunkenness_level >= 3 ? "This is a moderate drinking game - you'll definitely feel it but it's manageable." : "This is a lighter drinking game that's good for beginners or casual sessions."}`,
+    },
+    {
+      question: `Is ${game.name} good for parties?`,
+      answer: `${game.name} is ${game.min_players > 6 ? "perfect for large parties" : game.max_players && game.max_players >= 8 ? "great for medium to large gatherings" : "better for smaller groups"}. ${game.description}`,
+    },
+  ];
 
-  return (
-    <CategoryPageClient>
-      {/* Breadcrumb */}
-      <nav className="mb-6">
+  return generateFAQSchema({ faqs, url: `https://sipwiki.app/games/${game.slug}` });
+}
+
+export default async function GamesSlugPage({ params }: PageProps) {
+  const { slug } = await params;
+  const categoryData = getCategoryBySlug(slug);
+
+  if (categoryData) {
+    const categoryGames = getGamesForCategory(slug);
+    const otherCategories = gameCategories.filter((c) => c.slug !== slug);
+
+    return (
+      <CategoryPageClient>
+        {/* Breadcrumb */}
+        <nav className="mb-6">
           <ol className="flex items-center gap-2 text-sm">
             <li>
               <Link href="/" className="text-gray-400 hover:text-white transition-colors">
@@ -68,10 +149,7 @@ export default async function CategoryPage({ params }: PageProps) {
             </li>
             <ChevronRight className="h-4 w-4 text-gray-600" />
             <li>
-              <Link
-                href="/games"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
+              <Link href="/games" className="text-gray-400 hover:text-white transition-colors">
                 Games
               </Link>
             </li>
@@ -85,12 +163,10 @@ export default async function CategoryPage({ params }: PageProps) {
           <div className="flex items-center gap-3 mb-3">
             <span className="text-4xl">{categoryData.icon}</span>
             <h1 className="text-3xl md:text-4xl font-bold text-white">
-              {categoryData.heading}
+              {categoryData.name} Drinking Games
             </h1>
           </div>
-          <p className="text-gray-400 text-lg max-w-2xl">
-            {categoryData.subheading}
-          </p>
+          <p className="text-gray-400 text-lg max-w-2xl">{categoryData.subheading}</p>
           <div className="mt-4">
             <Badge variant="pink">{categoryGames.length} games</Badge>
           </div>
@@ -126,11 +202,34 @@ export default async function CategoryPage({ params }: PageProps) {
           </div>
         </div>
 
-      {/* SEO Content - unique per category */}
-      <div className="mt-12 prose prose-invert max-w-none">
-        <CategorySEOContent category={category} gamesCount={categoryGames.length} />
-      </div>
-    </CategoryPageClient>
+        {/* SEO Content - unique per category */}
+        <div className="mt-12 prose prose-invert max-w-none">
+          <CategorySEOContent category={slug} gamesCount={categoryGames.length} />
+        </div>
+      </CategoryPageClient>
+    );
+  }
+
+  const game = getGameBySlug(slug);
+
+  if (!game) {
+    notFound();
+  }
+
+  const faqJsonLd = generateGameFAQJsonLd(game);
+
+  return (
+    <>
+      <GameStructuredData
+        game={game}
+        url={`https://sipwiki.app/games/${game.slug}`}
+        imageUrl={game.image}
+        datePublished={game.created_at}
+        dateModified={game.updated_at || game.created_at}
+        faqJsonLd={faqJsonLd}
+      />
+      <GameDetailClient game={game} />
+    </>
   );
 }
 

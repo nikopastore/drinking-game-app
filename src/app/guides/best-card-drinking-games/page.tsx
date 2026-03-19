@@ -94,7 +94,7 @@ export default function BestCardDrinkingGamesPage() {
       name: "Kings Cup",
       category: "Circle Game",
       description: "The definitive card drinking game. Each card rank triggers a rule. 4th King drinks the cup.",
-      link: "/game/kings-cup",
+      link: "/games/kings-cup",
       players: "4-10",
       intensity: "Medium"
     },
@@ -102,7 +102,7 @@ export default function BestCardDrinkingGamesPage() {
       name: "Ride the Bus",
       category: "Guessing",
       description: "Four rounds of guessing, then the loser 'rides the bus' through a brutal gauntlet.",
-      link: "/game/ride-the-bus",
+      link: "/games/ride-the-bus",
       players: "4-8",
       intensity: "High"
     },
@@ -110,7 +110,7 @@ export default function BestCardDrinkingGamesPage() {
       name: "Beeramid",
       category: "Bluffing",
       description: "Pyramid of face-down cards. Match or bluff - get called out and drink double.",
-      link: "/game/beeramid",
+      link: "/games/beeramid",
       players: "4-8",
       intensity: "High"
     },
@@ -118,7 +118,7 @@ export default function BestCardDrinkingGamesPage() {
       name: "Fuck the Dealer",
       category: "Guessing",
       description: "Guess the card value. Wrong = drink the difference. Being dealer sucks.",
-      link: "/game/fuck-the-dealer",
+      link: "/games/fuck-the-dealer",
       players: "4-8",
       intensity: "Medium"
     },
@@ -126,7 +126,7 @@ export default function BestCardDrinkingGamesPage() {
       name: "Irish Poker",
       category: "Guessing",
       description: "Red/black, higher/lower, inside/outside, suit. Four rounds of guessing.",
-      link: "/game/irish-poker",
+      link: "/games/irish-poker",
       players: "4-6",
       intensity: "Medium"
     },
@@ -134,7 +134,7 @@ export default function BestCardDrinkingGamesPage() {
       name: "Horse Race",
       category: "Betting",
       description: "Four Aces race. Bet drinks on your suit. Watch the race unfold.",
-      link: "/game/horse-race",
+      link: "/games/horse-race",
       players: "4+",
       intensity: "Medium"
     },
@@ -261,19 +261,19 @@ export default function BestCardDrinkingGamesPage() {
         <p>The definitive card drinking game. Cards spread in a circle around a center cup. Each card rank triggers a specific rule or action. Draw a King = pour into the King&apos;s Cup. Draw the fourth King = drink the King&apos;s Cup.</p>
         <p><strong>Why it works:</strong> Combines memory, social interaction, and mini-games into one. Every card creates action. Never boring.</p>
         <p><strong>Best for:</strong> 4-10 players, medium energy, 30-60 minutes</p>
-        <p><Link href="/game/kings-cup" className="text-neon-pink">Full Kings Cup rules →</Link></p>
+        <p><Link href="/games/kings-cup" className="text-neon-pink">Full Kings Cup rules →</Link></p>
 
         <h3>Ride the Bus</h3>
         <p>Four rounds of guessing card properties (red/black, higher/lower, inside/outside, suit). Build a pyramid. Whoever has the most cards at the end &quot;rides the bus&quot; - a brutal final round of consecutive correct guesses.</p>
         <p><strong>Why it works:</strong> The tension builds throughout. The bus ride ending creates dramatic moments. Skill matters but luck can save you.</p>
         <p><strong>Best for:</strong> 4-8 players, medium-high energy, 20-40 minutes</p>
-        <p><Link href="/game/ride-the-bus" className="text-neon-pink">Full Ride the Bus rules →</Link></p>
+        <p><Link href="/games/ride-the-bus" className="text-neon-pink">Full Ride the Bus rules →</Link></p>
 
         <h3>Beeramid</h3>
         <p>Build a pyramid of face-down cards. Players get dealt hands. Flip pyramid cards one by one - if you have a matching card (or claim to), assign drinks. But you can bluff, and if called out, YOU drink double.</p>
         <p><strong>Why it works:</strong> Bluffing adds psychology. Do they have it or not? The stakes increase as you climb the pyramid.</p>
         <p><strong>Best for:</strong> 4-8 players, high energy, 20-30 minutes</p>
-        <p><Link href="/game/beeramid" className="text-neon-pink">Full Beeramid rules →</Link></p>
+        <p><Link href="/games/beeramid" className="text-neon-pink">Full Beeramid rules →</Link></p>
 
         <h2>Guessing Games</h2>
         <p>These games test your intuition (and luck):</p>
@@ -281,12 +281,12 @@ export default function BestCardDrinkingGamesPage() {
         <h3>Fuck the Dealer</h3>
         <p>Guess the card value. Wrong = drink the difference. Dealer must give away card if guessed within 3. Three wrong guesses in a row = next person becomes dealer. Being the dealer sucks (hence the name).</p>
         <p><strong>Pro tip:</strong> Count cards to narrow down possibilities. Later rounds become more predictable.</p>
-        <p><Link href="/game/fuck-the-dealer" className="text-neon-pink">Full Fuck the Dealer rules →</Link></p>
+        <p><Link href="/games/fuck-the-dealer" className="text-neon-pink">Full Fuck the Dealer rules →</Link></p>
 
         <h3>Irish Poker</h3>
         <p>Four face-down cards per player. Guess: red/black, higher/lower, inside/outside, suit. Wrong = drink. Then a give phase where you assign drinks to others. Simple but effective.</p>
         <p><strong>Best for:</strong> Quick rounds, 4-6 players</p>
-        <p><Link href="/game/irish-poker" className="text-neon-pink">Full Irish Poker rules →</Link></p>
+        <p><Link href="/games/irish-poker" className="text-neon-pink">Full Irish Poker rules →</Link></p>
 
         <h3>Higher or Lower</h3>
         <p>The simplest card drinking game. Flip a card. Guess if the next is higher or lower. Wrong = drink. Chain correct guesses for bonus points or dare privileges.</p>
@@ -297,7 +297,7 @@ export default function BestCardDrinkingGamesPage() {
         <h3>Horse Race</h3>
         <p>Four Aces are &quot;horses&quot; lined up. Players bet drinks on a suit. Flip cards from the deck - that suit&apos;s horse moves forward. First to cross the finish line wins. Losers drink their bets, winner assigns drinks.</p>
         <p><strong>Why it works:</strong> Creates spectator excitement. Everyone watches the same race. Betting adds investment.</p>
-        <p><Link href="/game/horse-race" className="text-neon-pink">Full Horse Race rules →</Link></p>
+        <p><Link href="/games/horse-race" className="text-neon-pink">Full Horse Race rules →</Link></p>
 
         <h3>Across the Bridge</h3>
         <p>Ten cards laid out as a bridge. Flip cards one by one. Number card = safe, move forward. Face card = drink and add replacement cards. Must cross the entire bridge to win.</p>

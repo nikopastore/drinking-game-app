@@ -134,7 +134,7 @@ export default function StanleyCupDrinkingGamesPage() {
 
       <h3>Flip Cup Tournament</h3>
       <p>
-        Run a <Link href="/game/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link>
+        Run a <Link href="/games/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link>
         bracket during intermission. Losers wear the other team's colors.
       </p>
 

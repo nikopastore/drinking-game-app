@@ -75,7 +75,7 @@ export function GuideLayout({
               Ready to play {primaryGame.name}?
             </span>
             <Link
-              href={`/game/${primaryGame.slug}`}
+              href={`/games/${primaryGame.slug}`}
               className="flex items-center gap-2 bg-white text-dark-900 px-4 py-2 rounded-full font-semibold text-sm hover:bg-gray-100 transition-colors"
             >
               <Play className="h-4 w-4" />
@@ -152,7 +152,7 @@ export function GuideLayout({
               Now that you know the rules, jump into a game on SipWiki!
             </p>
             <Link
-              href={`/game/${primaryGame.slug}`}
+              href={`/games/${primaryGame.slug}`}
               className="inline-flex items-center gap-2 bg-neon-pink text-white px-6 py-3 rounded-full font-semibold hover:bg-neon-pink/80 transition-colors"
             >
               <Play className="h-5 w-5" />
@@ -170,7 +170,7 @@ export function GuideLayout({
               {relatedGames.map((game) => (
                 <Link
                   key={game.slug}
-                  href={`/game/${game.slug}`}
+                  href={`/games/${game.slug}`}
                   className="p-4 bg-dark-800 rounded-xl border border-dark-600 hover:border-neon-pink/50 transition-colors group"
                 >
                   <h3 className="font-semibold text-white group-hover:text-neon-pink transition-colors">
@@ -202,10 +202,10 @@ export function GuideLayout({
           <div>
             <h4 className="font-semibold text-white mb-3">Popular Games</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/game/kings-cup" className="text-gray-400 hover:text-neon-pink">Kings Cup</Link></li>
-              <li><Link href="/game/beer-pong" className="text-gray-400 hover:text-neon-pink">Beer Pong</Link></li>
-              <li><Link href="/game/flip-cup" className="text-gray-400 hover:text-neon-pink">Flip Cup</Link></li>
-              <li><Link href="/game/never-have-i-ever" className="text-gray-400 hover:text-neon-pink">Never Have I Ever</Link></li>
+              <li><Link href="/games/kings-cup" className="text-gray-400 hover:text-neon-pink">Kings Cup</Link></li>
+              <li><Link href="/games/beer-pong" className="text-gray-400 hover:text-neon-pink">Beer Pong</Link></li>
+              <li><Link href="/games/flip-cup" className="text-gray-400 hover:text-neon-pink">Flip Cup</Link></li>
+              <li><Link href="/games/never-have-i-ever" className="text-gray-400 hover:text-neon-pink">Never Have I Ever</Link></li>
             </ul>
           </div>
           <div>

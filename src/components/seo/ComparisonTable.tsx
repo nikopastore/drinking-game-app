@@ -230,7 +230,7 @@ export function GameComparisonTable({
     { header: "Feature" },
     ...games.map((game) => ({
       header: game.name,
-      link: `/game/${game.slug}`,
+      link: `/games/${game.slug}`,
     })),
   ];
 

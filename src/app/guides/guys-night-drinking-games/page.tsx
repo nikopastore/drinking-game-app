@@ -49,15 +49,15 @@ export default function GuysNightDrinkingGamesPage() {
       <h2>Competitive Games</h2>
       <ul>
         <li>
-          <Link href="/game/beer-pong" className="text-neon-pink">Beer Pong</Link> - The essential.
+          <Link href="/games/beer-pong" className="text-neon-pink">Beer Pong</Link> - The essential.
           For official rules, see{" "}
           <Link href="/guides/beer-pong-rules" className="text-neon-pink hover:underline">
             Beer Pong Rules
           </Link>.
         </li>
-        <li><Link href="/game/rage-cage" className="text-neon-pink">Rage Cage</Link> - Intense energy.</li>
-        <li><Link href="/game/flip-cup" className="text-neon-pink">Flip Cup</Link> - Team battles.</li>
-        <li><Link href="/game/quarters" className="text-neon-pink">Quarters</Link> - Skill game.</li>
+        <li><Link href="/games/rage-cage" className="text-neon-pink">Rage Cage</Link> - Intense energy.</li>
+        <li><Link href="/games/flip-cup" className="text-neon-pink">Flip Cup</Link> - Team battles.</li>
+        <li><Link href="/games/quarters" className="text-neon-pink">Quarters</Link> - Skill game.</li>
       </ul>
 
       <h2>Low-Pressure Social Games</h2>
@@ -65,10 +65,10 @@ export default function GuysNightDrinkingGamesPage() {
         These work well early in the night or as a cooldown between competitive rounds.
       </p>
       <ul>
-        <li><Link href="/game/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - Quick confessions.</li>
+        <li><Link href="/games/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - Quick confessions.</li>
         <li><Link href="/guides/never-have-i-ever-questions" className="text-neon-pink">Never Have I Ever Questions</Link> - Grab a list and go.</li>
-        <li><Link href="/game/most-likely-to" className="text-neon-pink">Most Likely To</Link> - Vote and drink.</li>
-        <li><Link href="/game/roxanne" className="text-neon-pink">Roxanne</Link> - Song-based chaos for 3 minutes.</li>
+        <li><Link href="/games/most-likely-to" className="text-neon-pink">Most Likely To</Link> - Vote and drink.</li>
+        <li><Link href="/games/roxanne" className="text-neon-pink">Roxanne</Link> - Song-based chaos for 3 minutes.</li>
       </ul>
 
       <h2>Sports Watching Games</h2>

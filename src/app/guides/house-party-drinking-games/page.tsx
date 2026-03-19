@@ -46,7 +46,7 @@ export default function HousePartyGamesPage() {
         <li><strong>Best location:</strong> Basement, garage, or outdoor patio</li>
         <li><strong>Party tip:</strong> Run a tournament bracket for competitive nights</li>
       </ul>
-      <p><Link href="/game/beer-pong" className="text-neon-pink hover:underline">Full Beer Pong Rules</Link></p>
+      <p><Link href="/games/beer-pong" className="text-neon-pink hover:underline">Full Beer Pong Rules</Link></p>
 
       <h3>2. Flip Cup</h3>
       <p>Team relay race that gets loud and competitive. Drink, place cup on table edge, flip it upside down. First team to flip all cups wins. Quick, chaotic, perfect for parties.</p>
@@ -57,7 +57,7 @@ export default function HousePartyGamesPage() {
         <li><strong>Best location:</strong> Kitchen, dining room, or garage</li>
         <li><strong>Party tip:</strong> Losers refill for the next round</li>
       </ul>
-      <p><Link href="/game/flip-cup" className="text-neon-pink hover:underline">Full Flip Cup Rules</Link></p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink hover:underline">Full Flip Cup Rules</Link></p>
 
       <h3>3. Rage Cage</h3>
       <p>High-speed bouncing game where multiple players compete simultaneously. Get your ball in before the person to your left and stack on them. Gets intense fast.</p>
@@ -68,7 +68,7 @@ export default function HousePartyGamesPage() {
         <li><strong>Best location:</strong> Living room, basement, or large kitchen</li>
         <li><strong>Party tip:</strong> Center cups should be mixed drinks for variety</li>
       </ul>
-      <p><Link href="/game/rage-cage" className="text-neon-pink hover:underline">Full Rage Cage Rules</Link></p>
+      <p><Link href="/games/rage-cage" className="text-neon-pink hover:underline">Full Rage Cage Rules</Link></p>
 
       <h3>4. Civil War</h3>
       <p>Beer Pong chaos - 3v3 with no turns. Everyone shoots simultaneously as fast as possible. Multiple balls flying, cups disappearing, pure mayhem.</p>
@@ -79,7 +79,7 @@ export default function HousePartyGamesPage() {
         <li><strong>Best location:</strong> Garage, basement, or backyard</li>
         <li><strong>Warning:</strong> Gets LOUD and messy</li>
       </ul>
-      <p><Link href="/game/civil-war" className="text-neon-pink hover:underline">Full Civil War Rules</Link></p>
+      <p><Link href="/games/civil-war" className="text-neon-pink hover:underline">Full Civil War Rules</Link></p>
 
       <h2>Living Room Classics</h2>
 
@@ -92,7 +92,7 @@ export default function HousePartyGamesPage() {
         <li><strong>Best location:</strong> Living room, any seating area</li>
         <li><strong>Party tip:</strong> Create house rules for repeat games</li>
       </ul>
-      <p><Link href="/game/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
 
       <h3>6. Most Likely To</h3>
       <p>Perfect for couch circles. &quot;Who is most likely to...?&quot; Count to three, everyone points. Most fingers pointed at you = drink that many. Zero equipment, pure social chaos.</p>
@@ -103,7 +103,7 @@ export default function HousePartyGamesPage() {
         <li><strong>Best location:</strong> Living room, patio, anywhere comfortable</li>
         <li><strong>Party tip:</strong> Questions get better as the night progresses</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
 
       <h3>7. Never Have I Ever</h3>
       <p>The confession game. &quot;Never have I ever...&quot; - anyone who HAS done it drinks. Secrets come out, stories follow. House parties are perfect for this because you&apos;re with friends.</p>
@@ -114,7 +114,7 @@ export default function HousePartyGamesPage() {
         <li><strong>Best location:</strong> Living room, around the fire pit</li>
         <li><strong>Party tip:</strong> Start mild, escalate as people loosen up</li>
       </ul>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
 
       <h3>8. Drunk Jenga</h3>
       <p>Write rules on Jenga blocks. Pull a block, follow its rule. Tower falls? Finish your drink. The tension builds with every pull.</p>
@@ -125,7 +125,7 @@ export default function HousePartyGamesPage() {
         <li><strong>Best location:</strong> Living room, kitchen table</li>
         <li><strong>Party tip:</strong> Use Giant Jenga for bigger impact</li>
       </ul>
-      <p><Link href="/game/drunk-jenga" className="text-neon-pink hover:underline">Full Drunk Jenga Rules</Link></p>
+      <p><Link href="/games/drunk-jenga" className="text-neon-pink hover:underline">Full Drunk Jenga Rules</Link></p>
 
       <h2>Card Game Corner</h2>
 
@@ -138,7 +138,7 @@ export default function HousePartyGamesPage() {
         <li><strong>Best location:</strong> Kitchen table, card table</li>
         <li><strong>Party tip:</strong> Great for smaller groups while others play Pong</li>
       </ul>
-      <p><Link href="/game/ride-the-bus" className="text-neon-pink hover:underline">Full Ride the Bus Rules</Link></p>
+      <p><Link href="/games/ride-the-bus" className="text-neon-pink hover:underline">Full Ride the Bus Rules</Link></p>
 
       <h3>10. Beeramid</h3>
       <p>Build a pyramid of cards, flip one at a time from the bottom up. Match a card in your hand? Give drinks. Bluff having a match? Risk getting called out.</p>
@@ -149,7 +149,7 @@ export default function HousePartyGamesPage() {
         <li><strong>Best location:</strong> Dining room, kitchen</li>
         <li><strong>Party tip:</strong> Bluffing gets better with closer friends</li>
       </ul>
-      <p><Link href="/game/beeramid" className="text-neon-pink hover:underline">Full Beeramid Rules</Link></p>
+      <p><Link href="/games/beeramid" className="text-neon-pink hover:underline">Full Beeramid Rules</Link></p>
 
       <h3>11. F*ck the Dealer</h3>
       <p>Guess the card value - right means dealer drinks. Three wrong guesses and the dealer passes. Fast-paced and keeps everyone engaged.</p>
@@ -160,7 +160,7 @@ export default function HousePartyGamesPage() {
         <li><strong>Best location:</strong> Living room, kitchen</li>
         <li><strong>Party tip:</strong> Organize cards after to track what&apos;s left</li>
       </ul>
-      <p><Link href="/game/fuck-the-dealer" className="text-neon-pink hover:underline">Full F*ck the Dealer Rules</Link></p>
+      <p><Link href="/games/fuck-the-dealer" className="text-neon-pink hover:underline">Full F*ck the Dealer Rules</Link></p>
 
       <h2>Outdoor/Backyard Games</h2>
 
@@ -202,7 +202,7 @@ export default function HousePartyGamesPage() {
         <li><strong>Best location:</strong> Living room with good speakers</li>
         <li><strong>Party tip:</strong> Use a themed playlist for more fun</li>
       </ul>
-      <p><Link href="/game/power-hour" className="text-neon-pink hover:underline">Full Power Hour Rules</Link></p>
+      <p><Link href="/games/power-hour" className="text-neon-pink hover:underline">Full Power Hour Rules</Link></p>
 
       <h2>House Party Setup Guide</h2>
 

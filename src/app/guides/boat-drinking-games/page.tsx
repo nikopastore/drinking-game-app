@@ -63,7 +63,7 @@ export default function BoatDrinkingGamesPage() {
         <li>&quot;Who is most likely to get seasick?&quot;</li>
         <li>&quot;Who is most likely to catch a fish?&quot;</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
 
       <h3>2. Never Have I Ever</h3>
       <p>The classic confession game. &quot;Never have I ever...&quot; - anyone who HAS done it drinks. Zero equipment needed, perfect for hours on the water.</p>
@@ -79,7 +79,7 @@ export default function BoatDrinkingGamesPage() {
         <li>&quot;Never have I ever been on a yacht&quot;</li>
         <li>&quot;Never have I ever caught a fish&quot;</li>
       </ul>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
 
       <h3>3. Truth or Drink</h3>
       <p>Answer honestly or drink. No dares - which is perfect on a boat where physical dares could be dangerous. Keep it conversational.</p>
@@ -91,7 +91,7 @@ export default function BoatDrinkingGamesPage() {
         <li>Can&apos;t storm away - you&apos;re on a boat!</li>
         <li>No physical challenges to worry about</li>
       </ul>
-      <p><Link href="/game/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
+      <p><Link href="/games/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
 
       <h3>4. Would You Rather</h3>
       <p>Two options, vote by raising hands. Minority vote drinks. Perfect for lazy cruising conversations.</p>
@@ -132,7 +132,7 @@ export default function BoatDrinkingGamesPage() {
         <li>Anchor boat for best stability</li>
         <li>Waterproof cards don&apos;t matter if they get splashed</li>
       </ul>
-      <p><Link href="/game/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
 
       <h3>7. Ride the Bus</h3>
       <p>Card guessing game - red/black, higher/lower. The loser rides the bus. Works on boats with waterproof cards and calm waters.</p>
@@ -144,7 +144,7 @@ export default function BoatDrinkingGamesPage() {
         <li>Play when anchored for best results</li>
         <li>Secure cards in a case when not playing</li>
       </ul>
-      <p><Link href="/game/ride-the-bus" className="text-neon-pink hover:underline">Full Ride the Bus Rules</Link></p>
+      <p><Link href="/games/ride-the-bus" className="text-neon-pink hover:underline">Full Ride the Bus Rules</Link></p>
 
       <h3>8. Beeramid</h3>
       <p>Build a pyramid of cards, flip and match. Give drinks or bluff. Works well on pontoons with flat table surfaces.</p>
@@ -154,7 +154,7 @@ export default function BoatDrinkingGamesPage() {
         <li><strong>Best boat type:</strong> Pontoons with stable tables</li>
         <li><strong>Warning:</strong> Cards can slide - weight corners with koozies</li>
       </ul>
-      <p><Link href="/game/beeramid" className="text-neon-pink hover:underline">Full Beeramid Rules</Link></p>
+      <p><Link href="/games/beeramid" className="text-neon-pink hover:underline">Full Beeramid Rules</Link></p>
 
       <h2>Water Activity Drinking Games</h2>
 

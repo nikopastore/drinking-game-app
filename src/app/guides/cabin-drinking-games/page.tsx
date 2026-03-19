@@ -48,7 +48,7 @@ export default function CabinDrinkingGamesPage() {
         <li>Works by the fireplace</li>
         <li>Creates memories and inside jokes</li>
       </ul>
-      <p><Link href="/game/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
 
       <h3>2. Ride the Bus</h3>
       <p>Card guessing game that builds tension. Red or black? Higher or lower? End up on the bus and you&apos;re drinking a lot. Perfect for cabin nights when you have time for drama.</p>
@@ -60,7 +60,7 @@ export default function CabinDrinkingGamesPage() {
         <li>Everyone watches the person riding the bus</li>
         <li>Creates stories for the whole weekend</li>
       </ul>
-      <p><Link href="/game/ride-the-bus" className="text-neon-pink hover:underline">Full Ride the Bus Rules</Link></p>
+      <p><Link href="/games/ride-the-bus" className="text-neon-pink hover:underline">Full Ride the Bus Rules</Link></p>
 
       <h3>3. Beeramid</h3>
       <p>Build a pyramid of cards, flip them one by one. Match a card in your hand? Give drinks. Bluff having matches? Get caught and drink double. Strategic and social.</p>
@@ -72,7 +72,7 @@ export default function CabinDrinkingGamesPage() {
         <li>Rounds escalate as the pyramid climbs</li>
         <li>Perfect table game after dinner</li>
       </ul>
-      <p><Link href="/game/beeramid" className="text-neon-pink hover:underline">Full Beeramid Rules</Link></p>
+      <p><Link href="/games/beeramid" className="text-neon-pink hover:underline">Full Beeramid Rules</Link></p>
 
       <h3>4. Drunk Jenga</h3>
       <p>Write rules on Jenga blocks. Pull a block, follow its rule. Tower falls? Finish your drink. Giant outdoor Jenga on the cabin deck is legendary.</p>
@@ -86,7 +86,7 @@ export default function CabinDrinkingGamesPage() {
         <li>&quot;Make a rule&quot;</li>
         <li>&quot;Truth or drink&quot;</li>
       </ul>
-      <p><Link href="/game/drunk-jenga" className="text-neon-pink hover:underline">Full Drunk Jenga Rules</Link></p>
+      <p><Link href="/games/drunk-jenga" className="text-neon-pink hover:underline">Full Drunk Jenga Rules</Link></p>
 
       <h2>Conversation Games for Cozy Nights</h2>
 
@@ -101,7 +101,7 @@ export default function CabinDrinkingGamesPage() {
         <li>Gets personal with close friends</li>
         <li>Creates hilarious memories</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
 
       <h3>6. Never Have I Ever</h3>
       <p>The confession game. &quot;Never have I ever...&quot; and anyone who HAS done it drinks. Secrets come out when you&apos;re trapped in a cabin together all weekend.</p>
@@ -113,7 +113,7 @@ export default function CabinDrinkingGamesPage() {
         <li>Target specific friends when you know their stories</li>
         <li>Save the best statements for late night</li>
       </ul>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
 
       <h3>7. Truth or Drink</h3>
       <p>Like Truth or Dare without the dares. Answer honestly or drink. The cabin isolation makes people more open - secrets come out on cabin trips.</p>
@@ -125,7 +125,7 @@ export default function CabinDrinkingGamesPage() {
         <li>No interruptions or strangers</li>
         <li>What happens at the cabin stays at the cabin</li>
       </ul>
-      <p><Link href="/game/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
+      <p><Link href="/games/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
 
       <h3>8. Would You Rather</h3>
       <p>Two options, vote by raising hands. Minority vote drinks. Cabin edition: add outdoor/survival themed questions.</p>
@@ -150,7 +150,7 @@ export default function CabinDrinkingGamesPage() {
         <li>Spills don&apos;t matter as much</li>
         <li>Tournament brackets for the whole weekend</li>
       </ul>
-      <p><Link href="/game/flip-cup" className="text-neon-pink hover:underline">Full Flip Cup Rules</Link></p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink hover:underline">Full Flip Cup Rules</Link></p>
 
       <h3>10. Rage Cage</h3>
       <p>High-speed bouncing game with multiple players competing at once. Stack on someone? They drink a center cup. Energy builds as the game progresses.</p>
@@ -162,7 +162,7 @@ export default function CabinDrinkingGamesPage() {
         <li>Balls bounce everywhere without neighbors complaining</li>
         <li>Gets the blood pumping on cold nights</li>
       </ul>
-      <p><Link href="/game/rage-cage" className="text-neon-pink hover:underline">Full Rage Cage Rules</Link></p>
+      <p><Link href="/games/rage-cage" className="text-neon-pink hover:underline">Full Rage Cage Rules</Link></p>
 
       <h3>11. Power Hour</h3>
       <p>One shot of beer every minute for 60 minutes. 60 shots = 5-6 beers over an hour. Create a cabin playlist with songs from everyone&apos;s music libraries.</p>
@@ -175,7 +175,7 @@ export default function CabinDrinkingGamesPage() {
         <li>Everyone picks 10 songs</li>
         <li>Theme nights (80s, country, guilty pleasures)</li>
       </ul>
-      <p><Link href="/game/power-hour" className="text-neon-pink hover:underline">Full Power Hour Rules</Link></p>
+      <p><Link href="/games/power-hour" className="text-neon-pink hover:underline">Full Power Hour Rules</Link></p>
 
       <h3>12. Beer Pong</h3>
       <p>If the cabin has a ping pong table or enough room for a long table, Beer Pong is the obvious choice. Tournament format works great for weekend trips.</p>
@@ -187,7 +187,7 @@ export default function CabinDrinkingGamesPage() {
         <li>Double elimination bracket</li>
         <li>Winners get bragging rights all weekend</li>
       </ul>
-      <p><Link href="/game/beer-pong" className="text-neon-pink hover:underline">Full Beer Pong Rules</Link></p>
+      <p><Link href="/games/beer-pong" className="text-neon-pink hover:underline">Full Beer Pong Rules</Link></p>
 
       <h2>Outdoor Cabin Games</h2>
 

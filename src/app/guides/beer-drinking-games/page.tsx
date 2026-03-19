@@ -27,7 +27,7 @@ export default function BeerGamesPage() {
       />
 
       <h2>Essential Beer Games</h2>
-      <ul><li><Link href="/game/beer-pong" className="text-neon-pink">Beer Pong</Link> - The undisputed champion</li><li><Link href="/game/flip-cup" className="text-neon-pink">Flip Cup</Link> - Perfect for teams</li><li><Link href="/game/rage-cage" className="text-neon-pink">Rage Cage</Link> - Intense cup action</li><li><Link href="/game/power-hour" className="text-neon-pink">Power Hour</Link> - 60 shots of beer</li></ul>
+      <ul><li><Link href="/games/beer-pong" className="text-neon-pink">Beer Pong</Link> - The undisputed champion</li><li><Link href="/games/flip-cup" className="text-neon-pink">Flip Cup</Link> - Perfect for teams</li><li><Link href="/games/rage-cage" className="text-neon-pink">Rage Cage</Link> - Intense cup action</li><li><Link href="/games/power-hour" className="text-neon-pink">Power Hour</Link> - 60 shots of beer</li></ul>
       <h2>Why Beer Works Best</h2>
       <ul><li>Lower ABV = longer games</li><li>Easier to pace yourself</li><li>Carbonation slows drinking</li><li>Classic game fuel</li></ul>
       <h2>Best Beers for Games</h2>

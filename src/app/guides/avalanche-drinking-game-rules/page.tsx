@@ -171,7 +171,7 @@ export default function AvalancheDrinkingGameRulesPage() {
         <li>A finisher when energy is winding down</li>
       </ul>
 
-      <p>More dice games: <Link href="/guides/best-dice-drinking-games" className="text-neon-pink hover:underline">all dice drinking games</Link> | <Link href="/game/three-man" className="text-neon-pink hover:underline">Three Man</Link></p>
+      <p>More dice games: <Link href="/guides/best-dice-drinking-games" className="text-neon-pink hover:underline">all dice drinking games</Link> | <Link href="/games/three-man" className="text-neon-pink hover:underline">Three Man</Link></p>
     </GuideLayout>
   );
 }

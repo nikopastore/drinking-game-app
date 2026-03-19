@@ -177,7 +177,7 @@ export default function NeverHaveIEverRulesPage() {
       <div className="mt-8 p-6 bg-dark-800 rounded-xl border border-dark-600">
         <h3 className="text-lg font-bold text-white mb-3">Play Never Have I Ever on SipWiki</h3>
         <Link
-          href="/game/never-have-i-ever"
+          href="/games/never-have-i-ever"
           className="inline-block px-6 py-3 bg-neon-pink text-white rounded-lg hover:bg-neon-pink/80 transition-colors"
         >
           Never Have I Ever Game Page →

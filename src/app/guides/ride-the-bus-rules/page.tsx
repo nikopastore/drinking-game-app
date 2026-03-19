@@ -204,15 +204,15 @@ export default function RideTheBusRulesPage() {
 
       <h2>Similar Games You&apos;ll Love</h2>
       <ul>
-        <li><Link href="/game/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link> - Another card-based classic</li>
-        <li><Link href="/game/beeramid" className="text-neon-pink hover:underline">Beeramid</Link> - Just the pyramid phase, expanded</li>
-        <li><Link href="/game/irish-poker" className="text-neon-pink hover:underline">Irish Poker</Link> - Similar guessing mechanics</li>
+        <li><Link href="/games/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link> - Another card-based classic</li>
+        <li><Link href="/games/beeramid" className="text-neon-pink hover:underline">Beeramid</Link> - Just the pyramid phase, expanded</li>
+        <li><Link href="/games/irish-poker" className="text-neon-pink hover:underline">Irish Poker</Link> - Similar guessing mechanics</li>
         <li><Link href="/guides/across-the-bridge-rules" className="text-neon-pink hover:underline">Across the Bridge</Link> - Another guessing game</li>
       </ul>
 
       <h2>Ready to Play?</h2>
       <p>Now that you know the rules, gather your friends and get ready to ride! Remember to drink responsibly and have a designated non-drinker if needed.</p>
-      <p><Link href="/game/ride-the-bus" className="text-neon-pink hover:underline">Play Ride the Bus on SipWiki</Link></p>
+      <p><Link href="/games/ride-the-bus" className="text-neon-pink hover:underline">Play Ride the Bus on SipWiki</Link></p>
 
       <h2>Related Guides</h2>
       <ul>

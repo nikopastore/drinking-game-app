@@ -29,7 +29,7 @@ export default function CampingDrinkingGamesPage() {
       <h3>Never Have I Ever</h3>
       <p>The campfire classic. Take turns stating things you&apos;ve never done. Anyone who HAS done it drinks. Camping version tends to go deeper - isolated settings encourage honesty.</p>
       <p><strong>Why it works camping:</strong> No setup, scales to any group, creates conversation between rounds.</p>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink">Full Never Have I Ever rules →</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink">Full Never Have I Ever rules →</Link></p>
 
       <h3>Most Likely To</h3>
       <p>&quot;Who&apos;s most likely to get eaten by a bear?&quot; Everyone points. Most fingers = drink. The camping setting creates unique prompts.</p>
@@ -40,18 +40,18 @@ export default function CampingDrinkingGamesPage() {
         <li>Who&apos;s most likely to complain about bugs?</li>
         <li>Who would befriend a raccoon?</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink">Full Most Likely To rules →</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink">Full Most Likely To rules →</Link></p>
 
       <h3>Truth or Drink</h3>
       <p>Answer honestly or take a sip. The firelight and isolation make people more willing to share. Gets deep fast.</p>
-      <p><Link href="/game/truth-or-drink" className="text-neon-pink">Full Truth or Drink rules →</Link></p>
+      <p><Link href="/games/truth-or-drink" className="text-neon-pink">Full Truth or Drink rules →</Link></p>
 
       <h3>Two Truths and a Lie</h3>
       <p>Each person says three statements - two true, one false. Group guesses the lie. Wrong guessers drink. Right guessers assign drinks.</p>
 
       <h3>Cheers to the Governor</h3>
       <p>Count to 21 around the circle. 7 and 14 are swapped. Mistakes = drink and restart. Each successful round adds a new rule. Perfect for the gradual chaos of a long night.</p>
-      <p><Link href="/game/cheers-to-the-governor" className="text-neon-pink">Full Cheers to the Governor rules →</Link></p>
+      <p><Link href="/games/cheers-to-the-governor" className="text-neon-pink">Full Cheers to the Governor rules →</Link></p>
 
       <h3>Campfire Story Time</h3>
       <p>Tell a story one sentence at a time. Drink for:</p>
@@ -68,15 +68,15 @@ export default function CampingDrinkingGamesPage() {
       <h3>Kings Cup</h3>
       <p>The all-time classic. Each card triggers a rule. Works perfectly by firelight - just make sure you can see the cards.</p>
       <p><strong>Camping tip:</strong> Use a headlamp or lantern for the card area.</p>
-      <p><Link href="/game/kings-cup" className="text-neon-pink">Full Kings Cup rules →</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink">Full Kings Cup rules →</Link></p>
 
       <h3>Ride the Bus</h3>
       <p>Four rounds of guessing, then a brutal bus ride for the loser. Creates dramatic moments.</p>
-      <p><Link href="/game/ride-the-bus" className="text-neon-pink">Full Ride the Bus rules →</Link></p>
+      <p><Link href="/games/ride-the-bus" className="text-neon-pink">Full Ride the Bus rules →</Link></p>
 
       <h3>Irish Poker</h3>
       <p>Quick rounds of guessing. Good for when people are wandering in and out.</p>
-      <p><Link href="/game/irish-poker" className="text-neon-pink">Full Irish Poker rules →</Link></p>
+      <p><Link href="/games/irish-poker" className="text-neon-pink">Full Irish Poker rules →</Link></p>
 
       <h3>Higher or Lower</h3>
       <p>The simplest card game. Flip a card, guess if next is higher or lower. Wrong = drink. Can play with everyone or head-to-head.</p>

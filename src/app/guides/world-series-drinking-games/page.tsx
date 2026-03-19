@@ -126,7 +126,7 @@ export default function WorldSeriesDrinkingGamesPage() {
 
       <h3>Quick Flip Cup</h3>
       <p>
-        Commercial breaks are 2-3 minutes. Set up a quick <Link href="/game/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link> race.
+        Commercial breaks are 2-3 minutes. Set up a quick <Link href="/games/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link> race.
         Winning team gets to skip the next drinking penalty.
       </p>
 

@@ -19,7 +19,7 @@ export default function TruthOrDarePage() {
       <ul><li>Refuse truth = 2 drinks</li><li>Refuse dare = 3 drinks</li><li>Boring truth = everyone else drinks</li><li>Fail a dare = finish your drink</li></ul>
       <h2>Sample Dares</h2>
       <ul><li>Text your ex &quot;I miss you&quot;</li><li>Do your best celebrity impression</li><li>Let someone post on your social media</li><li>Call your mom and tell her you love her</li></ul>
-      <p>Try <Link href="/game/truth-or-drink" className="text-neon-pink hover:underline">Truth or Drink</Link>!</p>
+      <p>Try <Link href="/games/truth-or-drink" className="text-neon-pink hover:underline">Truth or Drink</Link>!</p>
     </GuideLayout>
   );
 }

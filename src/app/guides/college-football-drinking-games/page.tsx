@@ -179,7 +179,7 @@ export default function CollegeFootballDrinkingGamesPage() {
 
       <h3>Flip Cup Tournament</h3>
       <p>
-        Run a quick <Link href="/game/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link> bracket.
+        Run a quick <Link href="/games/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link> bracket.
         Winning team picks the next game to watch.
       </p>
 

@@ -133,11 +133,14 @@ export default function HomePage() {
           {/* Title below animation */}
           <div className="text-center mt-2 px-4">
             <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              SipWiki – Drinking Game Rules, Ideas, and How to Play
+            </h1>
+            <h2 className="text-lg md:text-xl font-semibold text-white/90">
               Find Your Perfect{" "}
               <span className="bg-gradient-to-r from-neon-pink to-neon-purple bg-clip-text text-transparent">
                 Party Game
               </span>
-            </h1>
+            </h2>
             <p className="text-gray-400 text-sm">
               {games.length} games with complete rules
             </p>

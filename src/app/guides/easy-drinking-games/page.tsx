@@ -29,12 +29,12 @@ export default function EasyGamesPage() {
       <h3>Most Likely To</h3>
       <p><strong>Rule:</strong> &quot;Who&apos;s most likely to [do something]?&quot; - everyone points, most fingers pointed at you = you drink that many.</p>
       <p>That&apos;s it. No cards, no turns to track, no special rules. Works for 3-30 people.</p>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink">Play Most Likely To →</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink">Play Most Likely To →</Link></p>
 
       <h3>Never Have I Ever</h3>
       <p><strong>Rule:</strong> Say something you&apos;ve never done - if someone HAS done it, they drink.</p>
       <p>Scales infinitely, gets more interesting as people get more honest.</p>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink">Play Never Have I Ever →</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink">Play Never Have I Ever →</Link></p>
 
       <h3>Higher or Lower</h3>
       <p><strong>Rule:</strong> Flip a card, guess if the next is higher or lower. Wrong = drink.</p>
@@ -47,7 +47,7 @@ export default function EasyGamesPage() {
       <h3>Buffalo</h3>
       <p><strong>Rule:</strong> Always drink with your non-dominant hand. Caught using dominant hand = chug.</p>
       <p>Runs all night as a background rule.</p>
-      <p><Link href="/game/buffalo" className="text-neon-pink">Play Buffalo →</Link></p>
+      <p><Link href="/games/buffalo" className="text-neon-pink">Play Buffalo →</Link></p>
 
       <h2>Two-Rule Games</h2>
       <p>Just slightly more complex, but still instantly playable:</p>
@@ -55,7 +55,7 @@ export default function EasyGamesPage() {
       <h3>Medusa</h3>
       <p><strong>Rules:</strong> (1) Everyone looks down. (2) On &quot;look up!&quot; everyone looks at someone - if two people lock eyes, both drink.</p>
       <p>Fast rounds, creates funny moments, works for any group size.</p>
-      <p><Link href="/game/medusa" className="text-neon-pink">Play Medusa →</Link></p>
+      <p><Link href="/games/medusa" className="text-neon-pink">Play Medusa →</Link></p>
 
       <h3>Categories</h3>
       <p><strong>Rules:</strong> (1) Someone picks a category. (2) Go around naming things in that category - hesitate or repeat = drink.</p>
@@ -98,7 +98,7 @@ export default function EasyGamesPage() {
 
       <h3>Just Met These People</h3>
       <ul>
-        <li><Link href="/game/most-likely-to" className="text-neon-pink">Most Likely To</Link> - Works even with strangers</li>
+        <li><Link href="/games/most-likely-to" className="text-neon-pink">Most Likely To</Link> - Works even with strangers</li>
         <li><strong>Categories</strong> - No personal information needed</li>
         <li><strong>Thumbs</strong> - Passive, low-stakes fun</li>
       </ul>
@@ -106,14 +106,14 @@ export default function EasyGamesPage() {
       <h3>Everyone&apos;s Already Drunk</h3>
       <ul>
         <li><strong>Higher or Lower</strong> - Can&apos;t mess up the rules</li>
-        <li><Link href="/game/medusa" className="text-neon-pink">Medusa</Link> - Simple mechanic still works</li>
+        <li><Link href="/games/medusa" className="text-neon-pink">Medusa</Link> - Simple mechanic still works</li>
         <li><strong>Buffalo</strong> - Already running if you started it</li>
       </ul>
 
       <h3>No Props at All</h3>
       <ul>
-        <li><Link href="/game/most-likely-to" className="text-neon-pink">Most Likely To</Link></li>
-        <li><Link href="/game/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link></li>
+        <li><Link href="/games/most-likely-to" className="text-neon-pink">Most Likely To</Link></li>
+        <li><Link href="/games/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link></li>
         <li><strong>Word Association</strong></li>
         <li><strong>Categories</strong></li>
       </ul>
@@ -122,7 +122,7 @@ export default function EasyGamesPage() {
       <ul>
         <li><strong>Higher or Lower</strong></li>
         <li><strong>War</strong></li>
-        <li><Link href="/game/truth-or-drink" className="text-neon-pink">Truth or Drink</Link></li>
+        <li><Link href="/games/truth-or-drink" className="text-neon-pink">Truth or Drink</Link></li>
       </ul>
 
       <h2>Why Easy Games Actually Work Better</h2>

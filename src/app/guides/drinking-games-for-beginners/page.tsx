@@ -14,7 +14,7 @@ export default function DrinkingGamesForBeginnersPage() {
   return (
     <GuideLayout title="Easy Drinking Games for Beginners" description="New to drinking games? No worries! These games have simple rules that anyone can pick up in seconds. Perfect for introducing friends to the fun." breadcrumb="Beginner Games" relatedGames={[{ name: "Never Have I Ever", slug: "never-have-i-ever", description: "Just talk and drink" }, { name: "Most Likely To", slug: "most-likely-to", description: "Point and drink" }]}>
       <h2>Easiest Games to Learn</h2>
-      <ul><li><Link href="/game/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - Say something, drink if you&apos;ve done it</li><li><Link href="/game/most-likely-to" className="text-neon-pink">Most Likely To</Link> - Point at who fits, they drink</li><li><Link href="/game/medusa" className="text-neon-pink">Medusa</Link> - Make eye contact, shout names</li></ul>
+      <ul><li><Link href="/games/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - Say something, drink if you&apos;ve done it</li><li><Link href="/games/most-likely-to" className="text-neon-pink">Most Likely To</Link> - Point at who fits, they drink</li><li><Link href="/games/medusa" className="text-neon-pink">Medusa</Link> - Make eye contact, shout names</li></ul>
       <h2>Games with Simple Rules</h2>
       <ul><li><strong>Higher or Lower</strong> - Guess if next card is higher or lower</li><li><strong>Flip Cup</strong> - Drink and flip, first team done wins</li><li><strong>Quarters</strong> - Bounce quarter into cup</li></ul>
       <h2>Tips for New Players</h2>

@@ -48,7 +48,7 @@ export default function DrinkingGamesFor13To15Page() {
       name: "Survivor Flip Cup",
       category: "Elimination",
       description: "All 15 start in a line. Each round, slowest flipper is eliminated.",
-      link: "/game/flip-cup",
+      link: "/games/flip-cup",
       intensity: "High",
       whyItWorks: "Keeps everyone involved until eliminated"
     },
@@ -56,7 +56,7 @@ export default function DrinkingGamesFor13To15Page() {
       name: "Rage Cage (Split Tables)",
       category: "Competitive",
       description: "7 and 8 at two tables. Winners face off in finals.",
-      link: "/game/rage-cage",
+      link: "/games/rage-cage",
       intensity: "High",
       whyItWorks: "Split into manageable groups"
     },
@@ -64,7 +64,7 @@ export default function DrinkingGamesFor13To15Page() {
       name: "Flip Cup (5v5v5)",
       category: "Tournament",
       description: "Three teams round robin. Winners take the crown.",
-      link: "/game/flip-cup",
+      link: "/games/flip-cup",
       intensity: "High",
       whyItWorks: "Perfect for 15"
     },
@@ -72,7 +72,7 @@ export default function DrinkingGamesFor13To15Page() {
       name: "Civil War Tournament",
       category: "Tournament",
       description: "5 teams of 3. Bracket style elimination. Maximum chaos.",
-      link: "/game/civil-war",
+      link: "/games/civil-war",
       intensity: "Extreme",
       whyItWorks: "3v3 is perfect for Civil War"
     },
@@ -80,7 +80,7 @@ export default function DrinkingGamesFor13To15Page() {
       name: "Kings Cup (Double Deck)",
       category: "Cards",
       description: "Two decks shuffled together. 7 cards per person at 15.",
-      link: "/game/kings-cup",
+      link: "/games/kings-cup",
       intensity: "Medium",
       whyItWorks: "Two decks extends the game"
     },
@@ -96,7 +96,7 @@ export default function DrinkingGamesFor13To15Page() {
       name: "Boat Race Gauntlet",
       category: "Teams",
       description: "5 teams of 3 in single elimination. Fast and furious.",
-      link: "/game/boat-race",
+      link: "/games/boat-race",
       intensity: "Extreme",
       whyItWorks: "Exciting bracket format"
     },
@@ -104,7 +104,7 @@ export default function DrinkingGamesFor13To15Page() {
       name: "Most Likely To",
       category: "No Props",
       description: "15 people pointing means clear majorities every time.",
-      link: "/game/most-likely-to",
+      link: "/games/most-likely-to",
       intensity: "Medium",
       whyItWorks: "More people = more fun"
     },
@@ -112,7 +112,7 @@ export default function DrinkingGamesFor13To15Page() {
       name: "Never Have I Ever",
       category: "No Props",
       description: "15 different life experiences. Lots of surprises.",
-      link: "/game/never-have-i-ever",
+      link: "/games/never-have-i-ever",
       intensity: "Medium",
       whyItWorks: "Great variety"
     },
@@ -120,7 +120,7 @@ export default function DrinkingGamesFor13To15Page() {
       name: "Medusa",
       category: "No Props",
       description: "15 heads up, lots of potential eye contact. Mass drinking potential.",
-      link: "/game/medusa",
+      link: "/games/medusa",
       intensity: "Low",
       whyItWorks: "More people = more matches"
     },
@@ -128,7 +128,7 @@ export default function DrinkingGamesFor13To15Page() {
       name: "Chandelier (Split)",
       category: "Cups",
       description: "Two games of 7-8. Winners from each face off.",
-      link: "/game/chandelier",
+      link: "/games/chandelier",
       intensity: "High",
       whyItWorks: "Split keeps games manageable"
     },

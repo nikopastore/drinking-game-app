@@ -14,7 +14,7 @@ export default function IntenseDrinkingGamesPage() {
   return (
     <GuideLayout title="Intense Drinking Games" description="Ready to go hard? These games are not for the faint of heart - high stakes, fast drinking, and maximum chaos." breadcrumb="Intense Games" relatedGames={[{ name: "Rage Cage", slug: "rage-cage", description: "Pure chaos" }, { name: "Civil War", slug: "civil-war", description: "Beer pong on steroids" }]}>
       <h2>Maximum Intensity</h2>
-      <ul><li><Link href="/game/rage-cage" className="text-neon-pink">Rage Cage</Link> - Pure adrenaline</li><li><Link href="/game/civil-war" className="text-neon-pink">Civil War</Link> - Beer pong chaos</li><li><Link href="/game/slap-cup" className="text-neon-pink">Slap Cup</Link> - Competitive madness</li><li><strong>Thunder/Century Club</strong> - Endurance test</li></ul>
+      <ul><li><Link href="/games/rage-cage" className="text-neon-pink">Rage Cage</Link> - Pure adrenaline</li><li><Link href="/games/civil-war" className="text-neon-pink">Civil War</Link> - Beer pong chaos</li><li><Link href="/games/slap-cup" className="text-neon-pink">Slap Cup</Link> - Competitive madness</li><li><strong>Thunder/Century Club</strong> - Endurance test</li></ul>
       <h2>Why People Love Intense Games</h2>
       <ul><li>Adrenaline rush</li><li>Memorable nights</li><li>Bonding through chaos</li><li>Stories to tell later</li></ul>
       <h2>Safety First</h2>

@@ -33,7 +33,7 @@ export default function DrinkingGamesForCouplesPage() {
         <li>What&apos;s something you want to try together?</li>
         <li>When did you know you were falling for me?</li>
       </ul>
-      <p><Link href="/game/truth-or-drink" className="text-neon-pink">Play Truth or Drink →</Link></p>
+      <p><Link href="/games/truth-or-drink" className="text-neon-pink">Play Truth or Drink →</Link></p>
 
       <h3>Never Have I Ever (Couples Edition)</h3>
       <p>You think you know your partner&apos;s past? This game will surprise you. Keep it fun by mixing innocent questions with spicier ones.</p>
@@ -43,7 +43,7 @@ export default function DrinkingGamesForCouplesPage() {
         <li>Never have I ever lied to avoid plans with your family</li>
         <li>Never have I ever had a dream about someone else</li>
       </ul>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink">Play Never Have I Ever →</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink">Play Never Have I Ever →</Link></p>
 
       <h3>Two Truths and a Lie</h3>
       <p>Each person says three statements - two true, one false. Partner guesses the lie. Wrong guess = drink. Great for learning new things even after years together.</p>

@@ -14,7 +14,7 @@ export default function WineGamesPage() {
   return (
     <GuideLayout title="Wine Drinking Games" description="Who says drinking games can't be classy? These games are perfect for wine nights - sophisticated fun that pairs perfectly with your favorite bottle." breadcrumb="Wine Games" relatedGames={[{ name: "Truth or Drink", slug: "truth-or-drink", description: "Deep conversations" }, { name: "Never Have I Ever", slug: "never-have-i-ever", description: "Wine night classic" }]}>
       <h2>Best Wine Night Games</h2>
-      <ul><li><Link href="/game/truth-or-drink" className="text-neon-pink">Truth or Drink</Link> - Perfect pacing</li><li><Link href="/game/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - Sip don&apos;t chug</li><li><Link href="/game/most-likely-to" className="text-neon-pink">Most Likely To</Link></li><li><strong>Wine Trivia</strong> - Test your knowledge</li></ul>
+      <ul><li><Link href="/games/truth-or-drink" className="text-neon-pink">Truth or Drink</Link> - Perfect pacing</li><li><Link href="/games/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - Sip don&apos;t chug</li><li><Link href="/games/most-likely-to" className="text-neon-pink">Most Likely To</Link></li><li><strong>Wine Trivia</strong> - Test your knowledge</li></ul>
       <h2>Blind Tasting Games</h2>
       <ul><li><strong>Guess the Grape</strong> - Blindfolded tastings</li><li><strong>Price is Right</strong> - Guess the wine cost</li><li><strong>Red or White</strong> - Blindfolded guessing</li></ul>
       <h2>Wine Game Tips</h2>

@@ -35,7 +35,7 @@ export default function DrinkingGamesForStrangersPage() {
         <li>Creates shared experiences quickly</li>
       </ul>
       <p>Pro tip: Use standard rules everyone knows rather than obscure house rules.</p>
-      <p><Link href="/game/kings-cup" className="text-neon-pink">Play Kings Cup →</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink">Play Kings Cup →</Link></p>
 
       <h3>Never Have I Ever</h3>
       <p>The ultimate getting-to-know-you game.</p>
@@ -47,7 +47,7 @@ export default function DrinkingGamesForStrangersPage() {
         <li>Natural follow-up questions arise</li>
       </ul>
       <p>Start safe: &quot;Never have I ever been skydiving.&quot; Work up from there.</p>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink">Play Never Have I Ever →</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink">Play Never Have I Ever →</Link></p>
 
       <h3>Flip Cup (Team Mode)</h3>
       <p>Nothing bonds strangers like being on the same team.</p>
@@ -58,7 +58,7 @@ export default function DrinkingGamesForStrangersPage() {
         <li>Shared wins and losses create camaraderie</li>
         <li>Names learned through game context</li>
       </ul>
-      <p><Link href="/game/flip-cup" className="text-neon-pink">Play Flip Cup →</Link></p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink">Play Flip Cup →</Link></p>
 
       <h3>Two Truths and a Lie</h3>
       <p>Learning about people in a fun way.</p>
@@ -89,7 +89,7 @@ export default function DrinkingGamesForStrangersPage() {
         <li>&quot;Most likely to know all the lyrics to this song&quot;</li>
         <li>Avoid deeply personal questions until you know people better</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink">Play Most Likely To →</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink">Play Most Likely To →</Link></p>
 
       <h2>Ice-Breaking Mechanics</h2>
 

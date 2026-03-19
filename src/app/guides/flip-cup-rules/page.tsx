@@ -163,7 +163,7 @@ export default function FlipCupRulesPage() {
         <h3>Can you use two hands to flip?</h3>
         <p>Standard rules say one hand only. House rules may vary.</p>
 
-        <p>Check out our <Link href="/game/flip-cup" className="text-neon-pink hover:underline">interactive Flip Cup game</Link> or browse more <Link href="/games/cup-games" className="text-neon-pink hover:underline">cup drinking games</Link>.</p>
+        <p>Check out our <Link href="/games/flip-cup" className="text-neon-pink hover:underline">interactive Flip Cup game</Link> or browse more <Link href="/games/cup-games" className="text-neon-pink hover:underline">cup drinking games</Link>.</p>
       </GuideLayout>
     </>
   );

@@ -33,7 +33,7 @@ export default function FourthOfJulyDrinkingGamesPage() {
         <li>Losing team does a patriotic forfeit (sing anthem, do push-ups)</li>
         <li>Use red and blue solo cups for authenticity</li>
       </ul>
-      <p><Link href="/game/flip-cup" className="text-neon-pink">Flip Cup rules →</Link></p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink">Flip Cup rules →</Link></p>
 
       <h3>Presidential Relay</h3>
       <p>Name all the presidents - a true American challenge.</p>
@@ -65,7 +65,7 @@ export default function FourthOfJulyDrinkingGamesPage() {
         <li>Championship match uses red, white, and blue cups</li>
         <li>Declaration: announce your shot before taking it</li>
       </ul>
-      <p><Link href="/game/beer-pong" className="text-neon-pink">Beer Pong rules →</Link></p>
+      <p><Link href="/games/beer-pong" className="text-neon-pink">Beer Pong rules →</Link></p>
 
       <h3>Patriotic Cornhole</h3>
       <p>America&apos;s lawn game with drinking stakes.</p>

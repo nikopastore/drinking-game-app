@@ -45,7 +45,7 @@ export default function TeamGamesPage() {
         <li><strong>Why teams love it:</strong> Perfect mix of skill and luck, tons of cheering, anyone can be the hero</li>
         <li><strong>Pro tip:</strong> Put your most clutch player as anchor (last position)</li>
       </ul>
-      <p><Link href="/game/flip-cup" className="text-neon-pink hover:underline">Full Flip Cup Rules</Link></p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink hover:underline">Full Flip Cup Rules</Link></p>
 
       <h3>2. Civil War</h3>
       <p>Beer Pong on steroids. 3v3 with three triangles of cups per side. No turns - everyone shoots simultaneously as fast as they can retrieve balls. First team to eliminate all opposing cups wins. Absolute chaos.</p>
@@ -55,7 +55,7 @@ export default function TeamGamesPage() {
         <li><strong>Why teams love it:</strong> Non-stop action, no waiting, maximum intensity</li>
         <li><strong>Pro tip:</strong> Assign defenders to protect your cups from being hit repeatedly</li>
       </ul>
-      <p><Link href="/game/civil-war" className="text-neon-pink hover:underline">Full Civil War Rules</Link></p>
+      <p><Link href="/games/civil-war" className="text-neon-pink hover:underline">Full Civil War Rules</Link></p>
 
       <h3>3. Beer Pong (2v2)</h3>
       <p>The classic gets even better with teammates. Partners alternate shots, strategize together, and celebrate together. The dynamic of having a partner adds a whole new dimension.</p>
@@ -65,7 +65,7 @@ export default function TeamGamesPage() {
         <li><strong>Why teams love it:</strong> Strategic partnership, shared glory, classic format</li>
         <li><strong>Pro tip:</strong> Pair a consistent shooter with a clutch shooter</li>
       </ul>
-      <p><Link href="/game/beer-pong" className="text-neon-pink hover:underline">Full Beer Pong Rules</Link></p>
+      <p><Link href="/games/beer-pong" className="text-neon-pink hover:underline">Full Beer Pong Rules</Link></p>
 
       <h3>4. Relay Race</h3>
       <p>Simple but effective. Teams line up and race to complete a drinking task. First team to have all members finish wins. Tasks can vary: chug a beer, take a shot, shotgun a can, etc.</p>
@@ -84,7 +84,7 @@ export default function TeamGamesPage() {
         <li><strong>Why teams love it:</strong> Strategic depth, full game experience, baseball theme</li>
         <li><strong>Pro tip:</strong> Track outs carefully - three outs ends your inning</li>
       </ul>
-      <p><Link href="/game/baseball" className="text-neon-pink hover:underline">Full Baseball Rules</Link></p>
+      <p><Link href="/games/baseball" className="text-neon-pink hover:underline">Full Baseball Rules</Link></p>
 
       <h3>6. Boat Race</h3>
       <p>Teams sit in a row like rowing a boat. On &quot;go,&quot; the first person chugs and puts their empty cup on their head. Next person goes when cup touches head. First team to finish the &quot;race&quot; wins.</p>
@@ -112,7 +112,7 @@ export default function TeamGamesPage() {
         <li><strong>Why teams love it:</strong> Works with odd numbers, unique strategy, underdog potential</li>
         <li><strong>Pro tip:</strong> Give the smaller team fewer but more valuable cups</li>
       </ul>
-      <p><Link href="/game/vietnam-war" className="text-neon-pink hover:underline">Full Vietnam War Rules</Link></p>
+      <p><Link href="/games/vietnam-war" className="text-neon-pink hover:underline">Full Vietnam War Rules</Link></p>
 
       <h3>9. Survivor Flip Cup</h3>
       <p>Flip Cup meets elimination. Losing team votes off one player each round. Game continues until one team is eliminated entirely. Creates alliances and drama.</p>

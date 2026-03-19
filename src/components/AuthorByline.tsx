@@ -7,17 +7,27 @@ export interface Author {
   slug: string;
   role: string;
   avatar?: string;
+  logo?: string;
   bio: string;
+  schemaType?: "Person" | "Organization";
+  sameAs?: string[];
 }
 
 // SipWiki content team
 export const authors: Record<string, Author> = {
   "sipwiki-team": {
-    name: "SipWiki Team",
+    name: "SipWiki Editorial Team",
     slug: "sipwiki-team",
-    role: "Party Game Experts",
+    role: "Editorial Team",
     avatar: "/authors/sipwiki-team.png",
-    bio: "The SipWiki editorial team has collectively hosted over 500 parties and tested every drinking game we feature. We're dedicated to making your next gathering unforgettable.",
+    logo: "/icon-512.png",
+    bio: "The SipWiki Editorial Team curates, tests, and updates every drinking game guide so you can trust the rules on game night.",
+    schemaType: "Organization",
+    sameAs: [
+      "https://twitter.com/sipwiki",
+      "https://www.instagram.com/sipwiki",
+      "https://www.tiktok.com/@sipwiki",
+    ],
   },
   "party-pro": {
     name: "The Party Pro",
@@ -63,19 +73,41 @@ export function AuthorByline({
   };
 
   // Generate Person schema for SEO
-  const personSchema = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: author.name,
-    description: author.bio,
-    jobTitle: author.role,
-    url: `https://sipwiki.app/about#${author.slug}`,
-    worksFor: {
-      "@type": "Organization",
-      name: "SipWiki",
-      url: "https://sipwiki.app",
-    },
-  };
+  const schemaType = author.schemaType || "Person";
+  const schemaLogo = author.logo || author.avatar;
+  const schemaLogoUrl = schemaLogo
+    ? schemaLogo.startsWith("http")
+      ? schemaLogo
+      : `https://sipwiki.app${schemaLogo}`
+    : "https://sipwiki.app/icon-512.png";
+
+  const personSchema =
+    schemaType === "Organization"
+      ? {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: author.name,
+          description: author.bio,
+          url: `https://sipwiki.app/about#${author.slug}`,
+          logo: {
+            "@type": "ImageObject",
+            url: schemaLogoUrl,
+          },
+          sameAs: author.sameAs,
+        }
+      : {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: author.name,
+          description: author.bio,
+          jobTitle: author.role,
+          url: `https://sipwiki.app/about#${author.slug}`,
+          worksFor: {
+            "@type": "Organization",
+            name: "SipWiki",
+            url: "https://sipwiki.app",
+          },
+        };
 
   const sizeClasses = {
     small: {

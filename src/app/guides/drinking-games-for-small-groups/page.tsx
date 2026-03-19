@@ -30,9 +30,9 @@ export default function SmallGroupsPage() {
 
       <h4>Top Picks:</h4>
       <ul>
-        <li><strong><Link href="/game/kings-cup" className="text-neon-pink">Kings Cup</Link></strong> - Still plenty of action with 3. Cards cycle faster, so rules stack quickly.</li>
-        <li><strong><Link href="/game/ride-the-bus" className="text-neon-pink">Ride the Bus</Link></strong> - Works perfectly. The loser REALLY loses since there&apos;s nowhere to hide.</li>
-        <li><strong><Link href="/game/truth-or-drink" className="text-neon-pink">Truth or Drink</Link></strong> - More intimate conversations. Gets deep fast.</li>
+        <li><strong><Link href="/games/kings-cup" className="text-neon-pink">Kings Cup</Link></strong> - Still plenty of action with 3. Cards cycle faster, so rules stack quickly.</li>
+        <li><strong><Link href="/games/ride-the-bus" className="text-neon-pink">Ride the Bus</Link></strong> - Works perfectly. The loser REALLY loses since there&apos;s nowhere to hide.</li>
+        <li><strong><Link href="/games/truth-or-drink" className="text-neon-pink">Truth or Drink</Link></strong> - More intimate conversations. Gets deep fast.</li>
         <li><strong>Three Man (Dice)</strong> - Literally named for 3+ players. Someone is always the &quot;Three Man.&quot;</li>
       </ul>
 
@@ -49,11 +49,11 @@ export default function SmallGroupsPage() {
 
       <h4>Top Picks:</h4>
       <ul>
-        <li><strong><Link href="/game/kings-cup" className="text-neon-pink">Kings Cup</Link></strong> - Ideal. Each player gets 13 cards exactly.</li>
-        <li><strong><Link href="/game/beer-pong" className="text-neon-pink">Beer Pong</Link></strong> - 2v2 is classic team beer pong.</li>
-        <li><strong><Link href="/game/beeramid" className="text-neon-pink">Beeramid</Link></strong> - Perfect hand sizes, good bluffing potential.</li>
-        <li><strong><Link href="/game/horse-race" className="text-neon-pink">Horse Race</Link></strong> - Each person bets on a suit. Perfect fit.</li>
-        <li><strong><Link href="/game/irish-poker" className="text-neon-pink">Irish Poker</Link></strong> - Designed for this exact group size.</li>
+        <li><strong><Link href="/games/kings-cup" className="text-neon-pink">Kings Cup</Link></strong> - Ideal. Each player gets 13 cards exactly.</li>
+        <li><strong><Link href="/games/beer-pong" className="text-neon-pink">Beer Pong</Link></strong> - 2v2 is classic team beer pong.</li>
+        <li><strong><Link href="/games/beeramid" className="text-neon-pink">Beeramid</Link></strong> - Perfect hand sizes, good bluffing potential.</li>
+        <li><strong><Link href="/games/horse-race" className="text-neon-pink">Horse Race</Link></strong> - Each person bets on a suit. Perfect fit.</li>
+        <li><strong><Link href="/games/irish-poker" className="text-neon-pink">Irish Poker</Link></strong> - Designed for this exact group size.</li>
       </ul>
 
       <h4>Why 4 Is Magic:</h4>
@@ -69,11 +69,11 @@ export default function SmallGroupsPage() {
 
       <h4>Top Picks:</h4>
       <ul>
-        <li><strong><Link href="/game/kings-cup" className="text-neon-pink">Kings Cup</Link></strong> - Still works great</li>
-        <li><strong><Link href="/game/rage-cage" className="text-neon-pink">Rage Cage</Link></strong> - 5 is the minimum for real intensity</li>
-        <li><strong><Link href="/game/beeramid" className="text-neon-pink">Beeramid</Link></strong> - More cards in play, more bluffing chaos</li>
-        <li><strong><Link href="/game/most-likely-to" className="text-neon-pink">Most Likely To</Link></strong> - More variety in answers</li>
-        <li><strong><Link href="/game/chandelier" className="text-neon-pink">Chandelier</Link></strong> - Each person has their own cup</li>
+        <li><strong><Link href="/games/kings-cup" className="text-neon-pink">Kings Cup</Link></strong> - Still works great</li>
+        <li><strong><Link href="/games/rage-cage" className="text-neon-pink">Rage Cage</Link></strong> - 5 is the minimum for real intensity</li>
+        <li><strong><Link href="/games/beeramid" className="text-neon-pink">Beeramid</Link></strong> - More cards in play, more bluffing chaos</li>
+        <li><strong><Link href="/games/most-likely-to" className="text-neon-pink">Most Likely To</Link></strong> - More variety in answers</li>
+        <li><strong><Link href="/games/chandelier" className="text-neon-pink">Chandelier</Link></strong> - Each person has their own cup</li>
       </ul>
 
       <h4>Why 5 Works:</h4>
@@ -87,9 +87,9 @@ export default function SmallGroupsPage() {
       <h2>Games That NEED Small Groups</h2>
       <p>These games don&apos;t work well with large groups:</p>
       <ul>
-        <li><strong><Link href="/game/ride-the-bus" className="text-neon-pink">Ride the Bus</Link></strong> - With 10 people, the loser waits forever for their turn</li>
-        <li><strong><Link href="/game/irish-poker" className="text-neon-pink">Irish Poker</Link></strong> - More than 6 and the game drags</li>
-        <li><strong><Link href="/game/truth-or-drink" className="text-neon-pink">Truth or Drink</Link></strong> - Big groups = less personal questions</li>
+        <li><strong><Link href="/games/ride-the-bus" className="text-neon-pink">Ride the Bus</Link></strong> - With 10 people, the loser waits forever for their turn</li>
+        <li><strong><Link href="/games/irish-poker" className="text-neon-pink">Irish Poker</Link></strong> - More than 6 and the game drags</li>
+        <li><strong><Link href="/games/truth-or-drink" className="text-neon-pink">Truth or Drink</Link></strong> - Big groups = less personal questions</li>
         <li><strong>Dice games (Three Man, Ship Captain Crew)</strong> - Turn-based doesn&apos;t scale</li>
       </ul>
 

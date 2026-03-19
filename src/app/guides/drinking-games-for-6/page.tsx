@@ -40,7 +40,7 @@ export default function DrinkingGamesFor6Page() {
       name: "Kings Cup",
       category: "Cards",
       description: "The classic card game shines with 6 players. Cards last long enough to get fun, and everyone stays engaged.",
-      link: "/game/kings-cup",
+      link: "/games/kings-cup",
       intensity: "Medium",
       whyItWorks: "Perfect pace - not too fast, not too slow"
     },
@@ -48,7 +48,7 @@ export default function DrinkingGamesFor6Page() {
       name: "Flip Cup",
       category: "Teams",
       description: "Split into two teams of 3 for the perfect relay race. Fast-paced and competitive.",
-      link: "/game/flip-cup",
+      link: "/games/flip-cup",
       intensity: "High",
       whyItWorks: "Even teams of 3v3"
     },
@@ -56,7 +56,7 @@ export default function DrinkingGamesFor6Page() {
       name: "Beer Pong (3v3)",
       category: "Teams",
       description: "Two teams of 3 playing beer pong. Each person shoots once per round.",
-      link: "/game/beer-pong",
+      link: "/games/beer-pong",
       intensity: "Medium",
       whyItWorks: "More social than 2v2, everyone participates"
     },
@@ -64,7 +64,7 @@ export default function DrinkingGamesFor6Page() {
       name: "Rage Cage",
       category: "Competitive",
       description: "High-energy bouncing game where you stack cups on slower players. 6 is the sweet spot.",
-      link: "/game/rage-cage",
+      link: "/games/rage-cage",
       intensity: "High",
       whyItWorks: "Just enough chaos without being overwhelming"
     },
@@ -72,7 +72,7 @@ export default function DrinkingGamesFor6Page() {
       name: "Never Have I Ever",
       category: "No Props",
       description: "Classic confession game. With 6 people, you get variety without rounds taking forever.",
-      link: "/game/never-have-i-ever",
+      link: "/games/never-have-i-ever",
       intensity: "Medium",
       whyItWorks: "Good variety of experiences"
     },
@@ -80,7 +80,7 @@ export default function DrinkingGamesFor6Page() {
       name: "Most Likely To",
       category: "No Props",
       description: "Point at whoever is most likely to do something. Majority wins, others drink.",
-      link: "/game/most-likely-to",
+      link: "/games/most-likely-to",
       intensity: "Medium",
       whyItWorks: "Majority voting works well with 6"
     },
@@ -88,7 +88,7 @@ export default function DrinkingGamesFor6Page() {
       name: "Drunk Jenga",
       category: "Props",
       description: "Write rules on Jenga blocks. With 6 players, the tower gets precarious fast.",
-      link: "/game/drunk-jenga",
+      link: "/games/drunk-jenga",
       intensity: "Medium",
       whyItWorks: "Tower falls at perfect timing"
     },
@@ -96,7 +96,7 @@ export default function DrinkingGamesFor6Page() {
       name: "Ride the Bus",
       category: "Cards",
       description: "Multi-round card guessing game. The pyramid round gets intense with 6 players.",
-      link: "/game/ride-the-bus",
+      link: "/games/ride-the-bus",
       intensity: "High",
       whyItWorks: "Pyramid has enough cards for drama"
     },
@@ -104,7 +104,7 @@ export default function DrinkingGamesFor6Page() {
       name: "Chandelier",
       category: "Cups",
       description: "Bounce balls into cups arranged in a circle with a center cup. Great with 6.",
-      link: "/game/chandelier",
+      link: "/games/chandelier",
       intensity: "High",
       whyItWorks: "Perfect cup-to-player ratio"
     },
@@ -112,7 +112,7 @@ export default function DrinkingGamesFor6Page() {
       name: "Power Hour",
       category: "Endurance",
       description: "Shot of beer every minute for an hour. With 6, you can cheer each other on.",
-      link: "/game/power-hour",
+      link: "/games/power-hour",
       intensity: "High",
       whyItWorks: "Group support makes it easier"
     },
@@ -120,7 +120,7 @@ export default function DrinkingGamesFor6Page() {
       name: "Civil War",
       category: "Teams",
       description: "3v3 beer pong with no turns - just chaos. Everyone shoots whenever they get a ball.",
-      link: "/game/civil-war",
+      link: "/games/civil-war",
       intensity: "Extreme",
       whyItWorks: "Perfect team size for maximum chaos"
     },
@@ -128,7 +128,7 @@ export default function DrinkingGamesFor6Page() {
       name: "Cheers to the Governor",
       category: "No Props",
       description: "Count to 21, replacing numbers with rules. Gets hilarious with 6 people.",
-      link: "/game/cheers-to-the-governor",
+      link: "/games/cheers-to-the-governor",
       intensity: "Medium",
       whyItWorks: "Enough people to create lots of rules"
     },

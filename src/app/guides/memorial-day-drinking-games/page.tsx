@@ -115,7 +115,7 @@ export default function MemorialDayDrinkingGamesPage() {
       <h2>Table Games</h2>
 
       <h3>Memorial Day Flip Cup</h3>
-      <p><Link href="/game/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link> tournament style:</p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link> tournament style:</p>
       <ul>
         <li>Red vs Blue teams (patriotic)</li>
         <li>Best of 5 finals</li>
@@ -123,7 +123,7 @@ export default function MemorialDayDrinkingGamesPage() {
       </ul>
 
       <h3>Beer Pong</h3>
-      <p><Link href="/game/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link> is essential:</p>
+      <p><Link href="/games/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link> is essential:</p>
       <ul>
         <li>Set up in garage or on patio</li>
         <li>All-day winner stays format</li>

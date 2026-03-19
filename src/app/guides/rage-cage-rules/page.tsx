@@ -139,7 +139,7 @@ export default function RageCageRulesPage() {
         <h3>Can you bounce with either hand?</h3>
         <p>Yes, use whatever hand you want. Some players switch for different angles.</p>
 
-        <p>Ready to play? Check out our <Link href="/game/rage-cage" className="text-neon-pink hover:underline">Rage Cage game page</Link> or explore more <Link href="/games/cup-games" className="text-neon-pink hover:underline">cup games</Link>.</p>
+        <p>Ready to play? Check out our <Link href="/games/rage-cage" className="text-neon-pink hover:underline">Rage Cage game page</Link> or explore more <Link href="/games/cup-games" className="text-neon-pink hover:underline">cup games</Link>.</p>
       </GuideLayout>
     </>
   );

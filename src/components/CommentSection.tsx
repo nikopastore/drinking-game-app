@@ -97,7 +97,7 @@ export function CommentSection({ gameSlug }: CommentSectionProps) {
     await supabase.auth.signInWithOAuth({
       provider,
       options: {
-        redirectTo: `${window.location.origin}/game/${gameSlug}`,
+        redirectTo: `${window.location.origin}/games/${gameSlug}`,
       },
     });
   };
@@ -109,7 +109,7 @@ export function CommentSection({ gameSlug }: CommentSectionProps) {
     await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${window.location.origin}/game/${gameSlug}`,
+        emailRedirectTo: `${window.location.origin}/games/${gameSlug}`,
       },
     });
     alert("Check your email for a login link!");

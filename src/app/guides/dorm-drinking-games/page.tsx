@@ -49,7 +49,7 @@ export default function DormDrinkingGamesPage() {
         <li>Easy to pause if RA comes by</li>
         <li>Everyone knows the rules</li>
       </ul>
-      <p><Link href="/game/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
 
       <h3>2. Ride the Bus</h3>
       <p>Card guessing game that builds tension. Red or black? Higher or lower? The loser &quot;rides the bus&quot; at the end - drinking for each face card flipped.</p>
@@ -62,7 +62,7 @@ export default function DormDrinkingGamesPage() {
         <li>Dramatic but quiet</li>
         <li>Small footprint</li>
       </ul>
-      <p><Link href="/game/ride-the-bus" className="text-neon-pink hover:underline">Full Ride the Bus Rules</Link></p>
+      <p><Link href="/games/ride-the-bus" className="text-neon-pink hover:underline">Full Ride the Bus Rules</Link></p>
 
       <h3>3. F*ck the Dealer</h3>
       <p>Guess the card value. Right = dealer drinks. Wrong = you drink and get another guess. Three wrong guesses in a row and the dealer passes.</p>
@@ -76,7 +76,7 @@ export default function DormDrinkingGamesPage() {
         <li>Wrong again = drink the difference</li>
         <li>Dealer passes after 3 wrong guesses in a row</li>
       </ul>
-      <p><Link href="/game/fuck-the-dealer" className="text-neon-pink hover:underline">Full F*ck the Dealer Rules</Link></p>
+      <p><Link href="/games/fuck-the-dealer" className="text-neon-pink hover:underline">Full F*ck the Dealer Rules</Link></p>
 
       <h3>4. Beeramid</h3>
       <p>Build a pyramid of cards, flip them one at a time. Match a card in your hand? Give drinks. Bluff having a match? Get called out and drink double.</p>
@@ -89,7 +89,7 @@ export default function DormDrinkingGamesPage() {
         <li>Sitting quietly in a circle</li>
         <li>No sudden outbursts</li>
       </ul>
-      <p><Link href="/game/beeramid" className="text-neon-pink hover:underline">Full Beeramid Rules</Link></p>
+      <p><Link href="/games/beeramid" className="text-neon-pink hover:underline">Full Beeramid Rules</Link></p>
 
       <h3>5. Across the Bridge</h3>
       <p>Lay 10 cards face down. Try to &quot;cross&quot; by flipping each. Number card = safe. Face card = drink and add cards. Simple but brutal.</p>
@@ -118,7 +118,7 @@ export default function DormDrinkingGamesPage() {
         <li>&quot;Never have I ever failed an exam&quot;</li>
         <li>&quot;Never have I ever been caught by an RA&quot;</li>
       </ul>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
 
       <h3>7. Most Likely To</h3>
       <p>&quot;Who is most likely to...?&quot; Everyone points. Most fingers pointed at you = drink that many sips. Zero equipment, pure entertainment.</p>
@@ -132,7 +132,7 @@ export default function DormDrinkingGamesPage() {
         <li>&quot;Who is most likely to become a professor?&quot;</li>
         <li>&quot;Who is most likely to skip class tomorrow?&quot;</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
 
       <h3>8. Truth or Drink</h3>
       <p>Answer the question honestly or drink. No dares - perfect for small dorm rooms where you can&apos;t do physical challenges anyway.</p>
@@ -145,7 +145,7 @@ export default function DormDrinkingGamesPage() {
         <li>Can be played at any volume</li>
         <li>Questions scale from mild to wild</li>
       </ul>
-      <p><Link href="/game/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
+      <p><Link href="/games/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
 
       <h3>9. Two Truths and a Lie</h3>
       <p>Share three statements - two true, one false. Others guess the lie. Wrong guesses drink. Great for getting to know new dorm friends.</p>
@@ -199,7 +199,7 @@ export default function DormDrinkingGamesPage() {
         <li>Put a pillow nearby for the crash</li>
         <li>Mini Jenga versions are quieter</li>
       </ul>
-      <p><Link href="/game/drunk-jenga" className="text-neon-pink hover:underline">Full Drunk Jenga Rules</Link></p>
+      <p><Link href="/games/drunk-jenga" className="text-neon-pink hover:underline">Full Drunk Jenga Rules</Link></p>
 
       <h3>13. Power Hour</h3>
       <p>One shot of beer every minute for 60 minutes. 60 shots = ~5-6 beers. Use headphones-to-speaker mode or keep music low.</p>
@@ -212,7 +212,7 @@ export default function DormDrinkingGamesPage() {
         <li>Create a playlist that signals each shot</li>
         <li>Everyone uses earbuds for music, timer announces shots</li>
       </ul>
-      <p><Link href="/game/power-hour" className="text-neon-pink hover:underline">Full Power Hour Rules</Link></p>
+      <p><Link href="/games/power-hour" className="text-neon-pink hover:underline">Full Power Hour Rules</Link></p>
 
       <h2>Games to ABSOLUTELY AVOID in Dorms</h2>
 

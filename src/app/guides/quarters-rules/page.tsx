@@ -117,7 +117,7 @@ export default function QuartersRulesPage() {
       <p>Set up 4 shot glasses in a line (the bases). Players &quot;bat&quot; by shooting at each cup in order. Make all 4 = home run. Miss = out. Three outs and switch teams.</p>
 
       <h3>Chandeliers</h3>
-      <p>Multiple cups around one center cup. Hit an outer cup = owner drinks. Hit the center = everyone drinks. A hybrid of Quarters and <Link href="/game/chandelier" className="text-neon-pink">Chandelier</Link>.</p>
+      <p>Multiple cups around one center cup. Hit an outer cup = owner drinks. Hit the center = everyone drinks. A hybrid of Quarters and <Link href="/games/chandelier" className="text-neon-pink">Chandelier</Link>.</p>
 
       <h3>Horse</h3>
       <p>Like basketball HORSE. Make a shot from a specific spot/angle. Opponent must match it. Miss = get a letter. Spell HORSE and you&apos;re out.</p>
@@ -146,7 +146,7 @@ export default function QuartersRulesPage() {
       <h2>Why Quarters Has Lasted Generations</h2>
       <p>Quarters works because it&apos;s the perfect bar game: minimal equipment, scales to any group, skill-based but with enough luck to keep it interesting, and creates genuine excitement when you&apos;re on a streak. It&apos;s been played in college dorms and dive bars since the 1960s, and it&apos;s not going anywhere.</p>
 
-      <p>Ready to play? Try our <Link href="/game/quarters" className="text-neon-pink hover:underline">digital Quarters game</Link> or browse more <Link href="/games/classic" className="text-neon-pink hover:underline">classic drinking games</Link>.</p>
+      <p>Ready to play? Try our <Link href="/games/quarters" className="text-neon-pink hover:underline">digital Quarters game</Link> or browse more <Link href="/games/classic" className="text-neon-pink hover:underline">classic drinking games</Link>.</p>
     </GuideLayout>
   );
 }

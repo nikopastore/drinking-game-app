@@ -75,8 +75,8 @@ const nextConfig: NextConfig = {
     const slugs = Array.from(new Set(slugMatches));
 
     return slugs.map((slug) => ({
-      source: `/games/${slug}`,
-      destination: `/game/${slug}`,
+      source: `/game/${slug}`,
+      destination: `/games/${slug}`,
       permanent: true,
     }));
   },

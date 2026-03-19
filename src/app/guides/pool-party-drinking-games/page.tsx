@@ -35,7 +35,7 @@ export default function PoolPartyDrinkingGamesPage() {
         <li>Eliminate all cups to win</li>
       </ul>
       <p>Pro tip: Weight the cups slightly or use heavier plastic cups - wind and waves knock them over.</p>
-      <p><Link href="/game/beer-pong" className="text-neon-pink">Beer Pong rules →</Link></p>
+      <p><Link href="/games/beer-pong" className="text-neon-pink">Beer Pong rules →</Link></p>
 
       <h3>Chicken Fight Tournament</h3>
       <p>Classic pool game with drinking stakes.</p>
@@ -128,7 +128,7 @@ export default function PoolPartyDrinkingGamesPage() {
         <li>Losing team jumps in the pool</li>
         <li>Or: losers do a lap in the pool before next round</li>
       </ul>
-      <p><Link href="/game/flip-cup" className="text-neon-pink">Play Flip Cup →</Link></p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink">Play Flip Cup →</Link></p>
 
       <h3>Rage Cage</h3>
       <p>Keep it away from the pool edge.</p>
@@ -137,7 +137,7 @@ export default function PoolPartyDrinkingGamesPage() {
         <li>Standard rage cage rules apply</li>
         <li>Death cup = jump in pool then drink</li>
       </ul>
-      <p><Link href="/game/rage-cage" className="text-neon-pink">Play Rage Cage →</Link></p>
+      <p><Link href="/games/rage-cage" className="text-neon-pink">Play Rage Cage →</Link></p>
 
       <h3>Kings Cup</h3>
       <p>Works great at a poolside table.</p>
@@ -147,7 +147,7 @@ export default function PoolPartyDrinkingGamesPage() {
         <li>5 = &quot;Dive&quot; - guys get in pool</li>
         <li>8 = &quot;Date in the Pool&quot; - pick someone to join you in water</li>
       </ul>
-      <p><Link href="/game/kings-cup" className="text-neon-pink">Play Kings Cup →</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink">Play Kings Cup →</Link></p>
 
       <h2>Lounge/Float Games</h2>
 
@@ -158,7 +158,7 @@ export default function PoolPartyDrinkingGamesPage() {
         <li>Standard rules - put down fingers if you&apos;ve done it</li>
         <li>Lose all fingers = get dunked by nearest person</li>
       </ul>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink">Play Never Have I Ever →</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink">Play Never Have I Ever →</Link></p>
 
       <h3>Most Likely To</h3>
       <p>Great for lazy river vibes.</p>
@@ -168,7 +168,7 @@ export default function PoolPartyDrinkingGamesPage() {
         <li>Most votes drinks</li>
         <li>No getting out of the pool to avoid drinking</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink">Play Most Likely To →</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink">Play Most Likely To →</Link></p>
 
       <h2>Pool Party Safety</h2>
 

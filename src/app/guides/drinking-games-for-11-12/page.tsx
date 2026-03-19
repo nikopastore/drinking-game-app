@@ -40,7 +40,7 @@ export default function DrinkingGamesFor11To12Page() {
       name: "Flip Cup (6v6)",
       category: "Teams",
       description: "Long relay races with 6 per side. The energy is electric.",
-      link: "/game/flip-cup",
+      link: "/games/flip-cup",
       intensity: "High",
       whyItWorks: "Perfect for 12, works for 11 with one person going twice"
     },
@@ -48,7 +48,7 @@ export default function DrinkingGamesFor11To12Page() {
       name: "Rage Cage",
       category: "Competitive",
       description: "12 players around a huge table or multiple smaller games.",
-      link: "/game/rage-cage",
+      link: "/games/rage-cage",
       intensity: "High",
       whyItWorks: "Maximum chaos mode"
     },
@@ -56,7 +56,7 @@ export default function DrinkingGamesFor11To12Page() {
       name: "Beer Pong Tournament",
       category: "Tournament",
       description: "6 teams of 2 in a bracket. Perfect elimination tournament.",
-      link: "/game/beer-pong",
+      link: "/games/beer-pong",
       intensity: "Medium",
       whyItWorks: "Even bracket with 6 teams"
     },
@@ -64,7 +64,7 @@ export default function DrinkingGamesFor11To12Page() {
       name: "Civil War (6v6)",
       category: "Teams",
       description: "6 cups per person, 36 total per side. Absolute mayhem.",
-      link: "/game/civil-war",
+      link: "/games/civil-war",
       intensity: "Extreme",
       whyItWorks: "Maximum team size for chaos"
     },
@@ -72,7 +72,7 @@ export default function DrinkingGamesFor11To12Page() {
       name: "Survivor Flip Cup",
       category: "Elimination",
       description: "After each round, worst flipper is eliminated. Last person standing wins.",
-      link: "/game/flip-cup",
+      link: "/games/flip-cup",
       intensity: "High",
       whyItWorks: "Everyone starts, tension builds"
     },
@@ -80,7 +80,7 @@ export default function DrinkingGamesFor11To12Page() {
       name: "Kings Cup (Double Deck)",
       category: "Cards",
       description: "Use 2 decks for 11-12 people. 8-9 cards each keeps it going.",
-      link: "/game/kings-cup",
+      link: "/games/kings-cup",
       intensity: "Medium",
       whyItWorks: "Double deck extends the game"
     },
@@ -88,7 +88,7 @@ export default function DrinkingGamesFor11To12Page() {
       name: "Slap Cup",
       category: "Competitive",
       description: "11-12 around the table. Multiple people getting caught constantly.",
-      link: "/game/slap-cup",
+      link: "/games/slap-cup",
       intensity: "High",
       whyItWorks: "Chaos scales perfectly"
     },
@@ -96,7 +96,7 @@ export default function DrinkingGamesFor11To12Page() {
       name: "Most Likely To",
       category: "No Props",
       description: "12 people voting means clear majorities. No debates.",
-      link: "/game/most-likely-to",
+      link: "/games/most-likely-to",
       intensity: "Medium",
       whyItWorks: "Voting works great with more people"
     },
@@ -104,7 +104,7 @@ export default function DrinkingGamesFor11To12Page() {
       name: "Chandelier",
       category: "Cups",
       description: "Each person has a cup to defend. Big circle, lots of targets.",
-      link: "/game/chandelier",
+      link: "/games/chandelier",
       intensity: "High",
       whyItWorks: "Scales well to 12"
     },
@@ -120,7 +120,7 @@ export default function DrinkingGamesFor11To12Page() {
       name: "Boat Race (6v6)",
       category: "Teams",
       description: "6-person chugging relays. Long, dramatic, crowd-pleasing.",
-      link: "/game/boat-race",
+      link: "/games/boat-race",
       intensity: "Extreme",
       whyItWorks: "Maximum relay intensity"
     },
@@ -128,7 +128,7 @@ export default function DrinkingGamesFor11To12Page() {
       name: "Quarters Championship",
       category: "Tournament",
       description: "Bracket tournament. 12 compete, 1 champion emerges.",
-      link: "/game/quarters",
+      link: "/games/quarters",
       intensity: "Medium",
       whyItWorks: "Works for any number"
     },

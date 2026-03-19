@@ -169,7 +169,7 @@ export default function EasterDrinkingGamesPage() {
       <p>Use hardboiled eggs unless you want chaos!</p>
 
       <h2>Pastel King's Cup</h2>
-      <p>Classic <Link href="/game/kings-cup" className="text-neon-pink hover:underline">King's Cup</Link> with Easter themes:</p>
+      <p>Classic <Link href="/games/kings-cup" className="text-neon-pink hover:underline">King's Cup</Link> with Easter themes:</p>
       <ul>
         <li>Use pastel-colored cups</li>
         <li>King's Cup = spring cocktail</li>

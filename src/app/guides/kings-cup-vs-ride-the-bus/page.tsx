@@ -89,7 +89,7 @@ export default function KingsCupVsRideTheBusPage() {
       <p><strong>Play Ride the Bus for:</strong> Dramatic endings, strategic guessing, clear winner/loser, faster games, tension building, spectator moments.</p>
 
       <p className="mt-8">
-        Learn the rules: <Link href="/game/kings-cup" className="text-neon-pink">Kings Cup</Link> | <Link href="/game/ride-the-bus" className="text-neon-pink">Ride the Bus</Link>
+        Learn the rules: <Link href="/games/kings-cup" className="text-neon-pink">Kings Cup</Link> | <Link href="/games/ride-the-bus" className="text-neon-pink">Ride the Bus</Link>
       </p>
     </GuideLayout>
   );

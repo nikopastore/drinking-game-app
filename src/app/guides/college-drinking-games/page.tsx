@@ -32,28 +32,28 @@ export default function CollegeDrinkingGamesPage() {
       <h3>Beer Pong</h3>
       <p>The undisputed king. Two teams, 10 cups each, ping pong balls. Make a cup, opponent drinks it. First to clear the other team&apos;s cups wins.</p>
       <p><strong>Why it dominates college:</strong> Competitive, social, spectator-friendly, works at any party size.</p>
-      <p><Link href="/game/beer-pong" className="text-neon-pink">Full Beer Pong rules →</Link></p>
+      <p><Link href="/games/beer-pong" className="text-neon-pink">Full Beer Pong rules →</Link></p>
 
       <h3>Flip Cup</h3>
       <p>Two teams, relay race style. Drink, flip your cup, next person goes. Fastest team wins. Pure chaos.</p>
       <p><strong>Why it&apos;s essential:</strong> Team bonding, easy to learn, gets competitive fast, works for large groups.</p>
-      <p><Link href="/game/flip-cup" className="text-neon-pink">Full Flip Cup rules →</Link></p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink">Full Flip Cup rules →</Link></p>
 
       <h3>Kings Cup</h3>
       <p>Cards in a circle around a center cup. Each card has a rule. Draw the last King = drink the King&apos;s Cup.</p>
       <p><strong>Why it&apos;s essential:</strong> Works in dorms (quiet), needs minimal space, customizable rules, classic for a reason.</p>
-      <p><Link href="/game/kings-cup" className="text-neon-pink">Full Kings Cup rules →</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink">Full Kings Cup rules →</Link></p>
 
       <h2>Dorm Room Games (RA-Proof)</h2>
       <p>Small spaces, thin walls, nosy RAs. These games keep it quiet:</p>
 
       <h3>Best Options:</h3>
       <ul>
-        <li><strong><Link href="/game/kings-cup" className="text-neon-pink">Kings Cup</Link></strong> - Just cards, quiet gameplay</li>
-        <li><strong><Link href="/game/ride-the-bus" className="text-neon-pink">Ride the Bus</Link></strong> - Pure card game, no yelling needed</li>
-        <li><strong><Link href="/game/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link></strong> - Conversation volume</li>
-        <li><strong><Link href="/game/most-likely-to" className="text-neon-pink">Most Likely To</Link></strong> - Pointing, not shouting</li>
-        <li><strong><Link href="/game/truth-or-drink" className="text-neon-pink">Truth or Drink</Link></strong> - Perfect for small groups</li>
+        <li><strong><Link href="/games/kings-cup" className="text-neon-pink">Kings Cup</Link></strong> - Just cards, quiet gameplay</li>
+        <li><strong><Link href="/games/ride-the-bus" className="text-neon-pink">Ride the Bus</Link></strong> - Pure card game, no yelling needed</li>
+        <li><strong><Link href="/games/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link></strong> - Conversation volume</li>
+        <li><strong><Link href="/games/most-likely-to" className="text-neon-pink">Most Likely To</Link></strong> - Pointing, not shouting</li>
+        <li><strong><Link href="/games/truth-or-drink" className="text-neon-pink">Truth or Drink</Link></strong> - Perfect for small groups</li>
       </ul>
 
       <h3>Dorm Survival Tips:</h3>
@@ -71,15 +71,15 @@ export default function CollegeDrinkingGamesPage() {
 
       <h3>Chaos Tier:</h3>
       <ul>
-        <li><strong><Link href="/game/rage-cage" className="text-neon-pink">Rage Cage</Link></strong> - 10+ people, cups stacking, pure pandemonium</li>
-        <li><strong><Link href="/game/slap-cup" className="text-neon-pink">Slap Cup</Link></strong> - Similar to Rage Cage, more aggressive</li>
-        <li><strong><Link href="/game/civil-war" className="text-neon-pink">Civil War</Link></strong> - 3v3 beer pong on steroids, no turns</li>
-        <li><strong><Link href="/game/chandelier" className="text-neon-pink">Chandelier</Link></strong> - Bouncing into cups, center cup chaos</li>
+        <li><strong><Link href="/games/rage-cage" className="text-neon-pink">Rage Cage</Link></strong> - 10+ people, cups stacking, pure pandemonium</li>
+        <li><strong><Link href="/games/slap-cup" className="text-neon-pink">Slap Cup</Link></strong> - Similar to Rage Cage, more aggressive</li>
+        <li><strong><Link href="/games/civil-war" className="text-neon-pink">Civil War</Link></strong> - 3v3 beer pong on steroids, no turns</li>
+        <li><strong><Link href="/games/chandelier" className="text-neon-pink">Chandelier</Link></strong> - Bouncing into cups, center cup chaos</li>
       </ul>
 
       <h3>Team Games:</h3>
       <ul>
-        <li><strong><Link href="/game/flip-cup" className="text-neon-pink">Flip Cup</Link></strong> - Floor vs. floor, major vs. major</li>
+        <li><strong><Link href="/games/flip-cup" className="text-neon-pink">Flip Cup</Link></strong> - Floor vs. floor, major vs. major</li>
         <li><strong>Baseball</strong> - Flip Cup meets innings</li>
         <li><strong>Survivor Flip Cup</strong> - Losers get eliminated each round</li>
       </ul>
@@ -87,11 +87,11 @@ export default function CollegeDrinkingGamesPage() {
       <h2>Tailgate Essentials</h2>
       <p>Pre-game the game with these:</p>
       <ul>
-        <li><strong><Link href="/game/beer-pong" className="text-neon-pink">Beer Pong</Link></strong> - Portable table setups exist</li>
-        <li><strong><Link href="/game/flip-cup" className="text-neon-pink">Flip Cup</Link></strong> - Any flat surface works</li>
+        <li><strong><Link href="/games/beer-pong" className="text-neon-pink">Beer Pong</Link></strong> - Portable table setups exist</li>
+        <li><strong><Link href="/games/flip-cup" className="text-neon-pink">Flip Cup</Link></strong> - Any flat surface works</li>
         <li><strong>Cornhole + drinking rules</strong> - Miss = drink, bag in hole = give drinks</li>
         <li><strong>Kan Jam + drinking rules</strong> - Deflection = drink, instant win = everyone drinks</li>
-        <li><strong><Link href="/game/most-likely-to" className="text-neon-pink">Most Likely To</Link></strong> - No equipment needed</li>
+        <li><strong><Link href="/games/most-likely-to" className="text-neon-pink">Most Likely To</Link></strong> - No equipment needed</li>
       </ul>
 
       <h3>Tailgate Tips:</h3>
@@ -107,23 +107,23 @@ export default function CollegeDrinkingGamesPage() {
 
       <h3>Pregame (Before Going Out)</h3>
       <ul>
-        <li><Link href="/game/kings-cup" className="text-neon-pink">Kings Cup</Link> - 30-45 min, perfect warm-up</li>
-        <li><Link href="/game/ride-the-bus" className="text-neon-pink">Ride the Bus</Link> - Quick rounds</li>
+        <li><Link href="/games/kings-cup" className="text-neon-pink">Kings Cup</Link> - 30-45 min, perfect warm-up</li>
+        <li><Link href="/games/ride-the-bus" className="text-neon-pink">Ride the Bus</Link> - Quick rounds</li>
         <li><Link href="/guides/power-hour-rules" className="text-neon-pink">Power Hour</Link> - 60 shots in 60 minutes</li>
       </ul>
 
       <h3>After the Bars Close</h3>
       <ul>
-        <li><Link href="/game/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - Low energy required</li>
-        <li><Link href="/game/most-likely-to" className="text-neon-pink">Most Likely To</Link> - Just pointing</li>
+        <li><Link href="/games/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - Low energy required</li>
+        <li><Link href="/games/most-likely-to" className="text-neon-pink">Most Likely To</Link> - Just pointing</li>
         <li>Movie drinking game - Put something on, add rules</li>
       </ul>
 
       <h3>Meeting New People</h3>
       <ul>
-        <li><Link href="/game/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - Learn about people fast</li>
-        <li><Link href="/game/kings-cup" className="text-neon-pink">Kings Cup</Link> - Rules help break the ice</li>
-        <li><Link href="/game/flip-cup" className="text-neon-pink">Flip Cup</Link> - Team format forces mixing</li>
+        <li><Link href="/games/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - Learn about people fast</li>
+        <li><Link href="/games/kings-cup" className="text-neon-pink">Kings Cup</Link> - Rules help break the ice</li>
+        <li><Link href="/games/flip-cup" className="text-neon-pink">Flip Cup</Link> - Team format forces mixing</li>
       </ul>
 
       <h2>Freshman Mistakes to Avoid</h2>

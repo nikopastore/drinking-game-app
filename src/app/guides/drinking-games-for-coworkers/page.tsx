@@ -14,7 +14,7 @@ export default function DrinkingGamesForCoworkersPage() {
   return (
     <GuideLayout title="Drinking Games for Coworkers" description="Work party? Happy hour? These games are fun enough to be worth playing but appropriate enough that you'll still have a job Monday." breadcrumb="Coworker Games" relatedGames={[{ name: "Most Likely To", slug: "most-likely-to", description: "Keep it work-safe" }, { name: "Kings Cup", slug: "kings-cup", description: "Classic fun" }]}>
       <h2>Work-Appropriate Games</h2>
-      <ul><li><Link href="/game/most-likely-to" className="text-neon-pink">Most Likely To</Link> - Work edition (keep it PG)</li><li><strong>Office Trivia</strong> - Who knows the company?</li><li><strong>Two Truths One Lie</strong> - Professional version</li><li><Link href="/game/kings-cup" className="text-neon-pink">Kings Cup</Link> - With tame rules</li></ul>
+      <ul><li><Link href="/games/most-likely-to" className="text-neon-pink">Most Likely To</Link> - Work edition (keep it PG)</li><li><strong>Office Trivia</strong> - Who knows the company?</li><li><strong>Two Truths One Lie</strong> - Professional version</li><li><Link href="/games/kings-cup" className="text-neon-pink">Kings Cup</Link> - With tame rules</li></ul>
       <h2>Avoid With Coworkers</h2>
       <ul><li>Anything sexual</li><li>Games targeting individuals</li><li>Truth or Dare (too risky)</li><li>Anything too competitive</li></ul>
       <h2>Work Party Tips</h2>

@@ -76,7 +76,7 @@ export default function NewYearsEvePage() {
         <li>Never have I ever said &quot;new year, new me&quot; unironically</li>
         <li>Never have I ever cried about the passing of time</li>
       </ul>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink">Play Never Have I Ever →</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink">Play Never Have I Ever →</Link></p>
 
       <h3>Most Likely To: Next Year Edition</h3>
       <p>Predict next year&apos;s events:</p>
@@ -87,7 +87,7 @@ export default function NewYearsEvePage() {
         <li>Who&apos;s most likely to have a glow-up?</li>
         <li>Who&apos;s most likely to still be single next NYE?</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink">Play Most Likely To →</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink">Play Most Likely To →</Link></p>
 
       <h3>Kings Cup: NYE Edition</h3>
       <p>Themed rule changes:</p>
@@ -98,7 +98,7 @@ export default function NewYearsEvePage() {
         <li>8 = &quot;2-0-2-X&quot; countdown - everyone counts from 10</li>
         <li>King = Pour into the &quot;Ball Drop&quot; center cup</li>
       </ul>
-      <p><Link href="/game/kings-cup" className="text-neon-pink">Play Kings Cup →</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink">Play Kings Cup →</Link></p>
 
       <h3>Power Hour: Countdown Edition</h3>
       <p>Start a Power Hour at 11 PM. One shot of beer per minute. You&apos;ll be 60 shots in at midnight. Only for those who can handle it.</p>

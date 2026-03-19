@@ -389,7 +389,7 @@ Made with SipWiki Party Planner`;
                       {calculations.suggestedGames.map((game) => (
                         <Link
                           key={game.slug}
-                          href={`/game/${game.slug}`}
+                          href={`/games/${game.slug}`}
                           className="flex items-center justify-between p-3 bg-dark-700/50 rounded-lg hover:bg-dark-600 transition-colors"
                         >
                           <span className="text-white">{game.name}</span>
@@ -476,7 +476,7 @@ Made with SipWiki Party Planner`;
                     <h3 className="text-xl font-semibold text-white mb-2">Beer vs Liquor: The Perfect Ratio</h3>
                     <p>
                       We recommend a <strong>60% beer / 40% liquor split</strong> for most parties. Beer is easier to drink casually
-                      and perfect for drinking games like <Link href="/game/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link>.
+                      and perfect for drinking games like <Link href="/games/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link>.
                       Liquor allows for mixed drinks and shots. Adjust based on your crowd - college parties lean heavier on beer,
                       while cocktail parties need more spirits.
                     </p>
@@ -500,8 +500,8 @@ Made with SipWiki Party Planner`;
                       <li><strong>Water</strong> - for hydration and non-drinkers</li>
                       <li><strong>Garnishes</strong> - limes, lemons for drinks</li>
                       <li><strong>Food</strong> - never drink on an empty stomach</li>
-                      <li><strong>Ping pong balls</strong> - for <Link href="/game/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link></li>
-                      <li><strong>Playing cards</strong> - for <Link href="/game/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link></li>
+                      <li><strong>Ping pong balls</strong> - for <Link href="/games/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link></li>
+                      <li><strong>Playing cards</strong> - for <Link href="/games/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link></li>
                     </ul>
                   </div>
 
@@ -552,7 +552,7 @@ Made with SipWiki Party Planner`;
 
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-2">What&apos;s the best drinking game for large groups?</h3>
-                    <p className="text-gray-400">For large groups (10+ people), <Link href="/game/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link>, <Link href="/game/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link>, and Beer Pong tournaments work best. They keep everyone engaged without requiring everyone to play at once. Browse our <Link href="/games/large-groups" className="text-neon-pink hover:underline">large group games</Link>.</p>
+                    <p className="text-gray-400">For large groups (10+ people), <Link href="/games/kings-cup" className="text-neon-pink hover:underline">Kings Cup</Link>, <Link href="/games/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link>, and Beer Pong tournaments work best. They keep everyone engaged without requiring everyone to play at once. Browse our <Link href="/games/large-groups" className="text-neon-pink hover:underline">large group games</Link>.</p>
                   </div>
 
                   <div>
@@ -592,19 +592,19 @@ Made with SipWiki Party Planner`;
               <CardContent className="p-6">
                 <h3 className="text-lg font-bold text-white mb-4">Popular Drinking Games for Your Party</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  <Link href="/game/kings-cup" className="p-3 bg-dark-700 rounded-lg text-center hover:bg-dark-600 transition-colors">
+                  <Link href="/games/kings-cup" className="p-3 bg-dark-700 rounded-lg text-center hover:bg-dark-600 transition-colors">
                     <span className="text-2xl block mb-1">👑</span>
                     <span className="text-white text-sm">Kings Cup</span>
                   </Link>
-                  <Link href="/game/beer-pong" className="p-3 bg-dark-700 rounded-lg text-center hover:bg-dark-600 transition-colors">
+                  <Link href="/games/beer-pong" className="p-3 bg-dark-700 rounded-lg text-center hover:bg-dark-600 transition-colors">
                     <span className="text-2xl block mb-1">🏓</span>
                     <span className="text-white text-sm">Beer Pong</span>
                   </Link>
-                  <Link href="/game/flip-cup" className="p-3 bg-dark-700 rounded-lg text-center hover:bg-dark-600 transition-colors">
+                  <Link href="/games/flip-cup" className="p-3 bg-dark-700 rounded-lg text-center hover:bg-dark-600 transition-colors">
                     <span className="text-2xl block mb-1">🥤</span>
                     <span className="text-white text-sm">Flip Cup</span>
                   </Link>
-                  <Link href="/game/never-have-i-ever" className="p-3 bg-dark-700 rounded-lg text-center hover:bg-dark-600 transition-colors">
+                  <Link href="/games/never-have-i-ever" className="p-3 bg-dark-700 rounded-lg text-center hover:bg-dark-600 transition-colors">
                     <span className="text-2xl block mb-1">🤫</span>
                     <span className="text-white text-sm">Never Have I Ever</span>
                   </Link>

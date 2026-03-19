@@ -56,13 +56,13 @@ export function LiveModeClient({ game }: LiveModeClientProps) {
   const handleRatingComplete = () => {
     setPendingRating(null);
     setShowRatingModal(false);
-    router.push(`/game/${game.slug}`);
+    router.push(`/games/${game.slug}`);
   };
 
   const handleRatingSkip = () => {
     setPendingRating(null);
     setShowRatingModal(false);
-    router.push(`/game/${game.slug}`);
+    router.push(`/games/${game.slug}`);
   };
 
   return (
@@ -72,7 +72,7 @@ export function LiveModeClient({ game }: LiveModeClientProps) {
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <Link
-              href={`/game/${game.slug}`}
+              href={`/games/${game.slug}`}
               className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
             >
               <ArrowLeft className="h-5 w-5" />

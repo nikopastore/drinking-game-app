@@ -18,7 +18,7 @@ export default function ThanksgivingDrinkingGamesPage() {
       <h2>Family Dinner Survival</h2>
       <ul><li>Politics mentioned = everyone drinks</li><li>&quot;When are you getting married?&quot; = drink</li><li>Dad makes a bad joke = drink</li><li>Someone asks about your job = drink</li></ul>
       <h2>Cousins Table Games</h2>
-      <ul><li><Link href="/game/most-likely-to" className="text-neon-pink">Most Likely To</Link> - Family edition</li><li><Link href="/game/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - Keep it PG</li><li><Link href="/game/kings-cup" className="text-neon-pink">Kings Cup</Link> - After parents sleep</li></ul>
+      <ul><li><Link href="/games/most-likely-to" className="text-neon-pink">Most Likely To</Link> - Family edition</li><li><Link href="/games/never-have-i-ever" className="text-neon-pink">Never Have I Ever</Link> - Keep it PG</li><li><Link href="/games/kings-cup" className="text-neon-pink">Kings Cup</Link> - After parents sleep</li></ul>
     </GuideLayout>
   );
 }

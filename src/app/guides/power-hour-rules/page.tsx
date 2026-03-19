@@ -73,7 +73,7 @@ export default function PowerHourRulesPage() {
         <li>Know your limits - it&apos;s okay to tap out</li>
       </ul>
 
-      <p>Try our <Link href="/game/power-hour" className="text-neon-pink hover:underline">Power Hour timer</Link>!</p>
+      <p>Try our <Link href="/games/power-hour" className="text-neon-pink hover:underline">Power Hour timer</Link>!</p>
     </GuideLayout>
   );
 }

@@ -70,7 +70,7 @@ export default function RoadTripDrinkingGamesPage() {
         <li>Driver immunity - can&apos;t drink even if voted</li>
       </ul>
       <p>Works great because no equipment needed and can go for hours.</p>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink">Play Most Likely To →</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink">Play Most Likely To →</Link></p>
 
       <h3>Never Have I Ever</h3>
       <p>Classic game, car edition.</p>
@@ -81,7 +81,7 @@ export default function RoadTripDrinkingGamesPage() {
         <li>First to lose all fingers drinks extra</li>
         <li>Road trip themed: &quot;Never have I ever slept through a state&quot;</li>
       </ul>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink">Play Never Have I Ever →</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink">Play Never Have I Ever →</Link></p>
 
       <h3>Song Lyric Finish</h3>
       <p>When a song comes on the radio or playlist:</p>
@@ -135,7 +135,7 @@ export default function RoadTripDrinkingGamesPage() {
 
       <h3>Hotel Room Games</h3>
       <ul>
-        <li><Link href="/game/kings-cup" className="text-neon-pink">Kings Cup</Link> - Pack cards for this</li>
+        <li><Link href="/games/kings-cup" className="text-neon-pink">Kings Cup</Link> - Pack cards for this</li>
         <li>Coin games - quarters, flip games</li>
         <li>Truth or Drink - hotel room confessions</li>
         <li>Watch something and add drinking rules</li>

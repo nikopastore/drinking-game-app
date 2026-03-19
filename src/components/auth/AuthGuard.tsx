@@ -15,7 +15,7 @@ interface AuthGuardProps {
  * It intercepts clicks and shows the auth modal if the user is not logged in.
  *
  * Usage:
- * <AuthGuard onAuthenticated={() => router.push(`/game/${slug}`)} gameName={game.name}>
+ * <AuthGuard onAuthenticated={() => router.push(`/games/${slug}`)} gameName={game.name}>
  *   {({ onClick }) => (
  *     <button onClick={onClick}>Play Game</button>
  *   )}

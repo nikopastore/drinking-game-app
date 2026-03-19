@@ -136,7 +136,7 @@ export default function LaborDayDrinkingGamesPage() {
       <h2>Day Drinking Table Games</h2>
 
       <h3>Labor Day Flip Cup Tournament</h3>
-      <p>Run a <Link href="/game/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link> bracket:</p>
+      <p>Run a <Link href="/games/flip-cup" className="text-neon-pink hover:underline">Flip Cup</Link> bracket:</p>
       <ul>
         <li>Teams of 4-5</li>
         <li>Single elimination</li>
@@ -145,7 +145,7 @@ export default function LaborDayDrinkingGamesPage() {
       </ul>
 
       <h3>Beer Pong</h3>
-      <p><Link href="/game/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link> is a backyard essential:</p>
+      <p><Link href="/games/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link> is a backyard essential:</p>
       <ul>
         <li>Set up on a folding table</li>
         <li>Winner stays on</li>

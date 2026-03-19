@@ -34,7 +34,7 @@ export default function FiveMinuteDrinkingGamesPage() {
         <li>Reset and repeat</li>
       </ul>
       <p>One round: 10 seconds. Play 5-6 rounds in 2 minutes.</p>
-      <p><Link href="/game/medusa" className="text-neon-pink">Play Medusa →</Link></p>
+      <p><Link href="/games/medusa" className="text-neon-pink">Play Medusa →</Link></p>
 
       <h3>Fingers (Shot in the Dark)</h3>
       <p>Requires only a cup and people&apos;s fingers.</p>
@@ -78,7 +78,7 @@ export default function FiveMinuteDrinkingGamesPage() {
         <li>Next person immediately asks</li>
       </ul>
       <p>No discussion, no deliberation. Gut reactions only.</p>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink">Play Most Likely To →</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink">Play Most Likely To →</Link></p>
 
       <h3>Flip, Sip, or Strip</h3>
       <p>High stakes, fast decisions.</p>
@@ -100,7 +100,7 @@ export default function FiveMinuteDrinkingGamesPage() {
         <li>Make 3 in a row? Make a rule</li>
       </ul>
       <p>5 rounds = 5 minutes with 6 people.</p>
-      <p><Link href="/game/quarters" className="text-neon-pink">Play Quarters →</Link></p>
+      <p><Link href="/games/quarters" className="text-neon-pink">Play Quarters →</Link></p>
 
       <h2>Lightning Round Games</h2>
 

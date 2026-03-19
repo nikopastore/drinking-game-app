@@ -600,9 +600,12 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
 ];
 
 // Convert to full Game objects with timestamps
+const defaultTimestamp = new Date().toISOString();
+
 export const games: Game[] = initialGames.map((game) => ({
   ...game,
-  created_at: new Date().toISOString(),
+  created_at: defaultTimestamp,
+  updated_at: defaultTimestamp,
   is_user_submitted: false,
 }));
 

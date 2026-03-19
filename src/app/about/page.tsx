@@ -28,8 +28,47 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "SipWiki",
+    url: "https://sipwiki.app",
+    logo: "https://sipwiki.app/icon-512.png",
+    description:
+      "SipWiki is the ultimate drinking game rules and party companion app. Find complete rules, setup steps, and party tips.",
+    sameAs: [
+      "https://twitter.com/sipwiki",
+      "https://www.instagram.com/sipwiki",
+      "https://www.tiktok.com/@sipwiki",
+    ],
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "SipWiki",
+    url: "https://sipwiki.app",
+    description: "Drinking game rules, ideas, and party planning tools.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: "https://sipwiki.app/games?search={search_term_string}",
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+
   return (
     <div className="min-h-screen bg-dark-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
       <Header />
 
       <main className="max-w-4xl mx-auto px-4 py-12">

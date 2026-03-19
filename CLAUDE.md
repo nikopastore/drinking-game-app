@@ -52,7 +52,7 @@ npm run cap:sync         # Sync web assets to native projects
 ### Page Routes
 
 - `/` - Home with Netflix-style game rows
-- `/game/[slug]` - Game detail with rules and affiliate links
+- `/games/[slug]` - Game detail and category pages
 - `/play/[slug]` - Live Mode with timer and AI chat
 - `/spin` - Spin the Wheel random game picker
 - `/submit` - User game submission (auth required)

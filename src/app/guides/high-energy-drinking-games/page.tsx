@@ -14,9 +14,9 @@ export default function HighEnergyDrinkingGamesPage() {
   return (
     <GuideLayout title="High Energy Drinking Games" description="Need to pump up the party? These games get people moving, cheering, and bring maximum energy to any gathering." breadcrumb="High Energy" relatedGames={[{ name: "Flip Cup", slug: "flip-cup", description: "Team hype" }, { name: "Rage Cage", slug: "rage-cage", description: "Non-stop action" }]}>
       <h2>Maximum Hype Games</h2>
-      <ul><li><Link href="/game/flip-cup" className="text-neon-pink">Flip Cup</Link> - Team cheering</li><li><Link href="/game/rage-cage" className="text-neon-pink">Rage Cage</Link> - Constant action</li><li><Link href="/game/slap-cup" className="text-neon-pink">Slap Cup</Link> - Competitive chaos</li><li><Link href="/game/chandelier" className="text-neon-pink">Chandelier</Link> - Bouncing energy</li></ul>
+      <ul><li><Link href="/games/flip-cup" className="text-neon-pink">Flip Cup</Link> - Team cheering</li><li><Link href="/games/rage-cage" className="text-neon-pink">Rage Cage</Link> - Constant action</li><li><Link href="/games/slap-cup" className="text-neon-pink">Slap Cup</Link> - Competitive chaos</li><li><Link href="/games/chandelier" className="text-neon-pink">Chandelier</Link> - Bouncing energy</li></ul>
       <h2>Activity Games</h2>
-      <ul><li><Link href="/game/beer-pong" className="text-neon-pink">Beer Pong</Link> - Classic competition</li><li><Link href="/game/bite-the-bag" className="text-neon-pink">Bite the Bag</Link> - Physical comedy</li><li><strong>Dance-offs</strong> - Loser drinks</li></ul>
+      <ul><li><Link href="/games/beer-pong" className="text-neon-pink">Beer Pong</Link> - Classic competition</li><li><Link href="/games/bite-the-bag" className="text-neon-pink">Bite the Bag</Link> - Physical comedy</li><li><strong>Dance-offs</strong> - Loser drinks</li></ul>
       <h2>When to Bring Energy</h2>
       <ul><li>Party feels slow</li><li>New people arrive</li><li>After eating</li><li>Second wind hits</li><li>Pre-going out</li></ul>
     </GuideLayout>

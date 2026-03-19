@@ -48,7 +48,7 @@ export default function GirlsNightDrinkingGamesPage() {
         <li>&quot;Who is most likely to fall for someone completely wrong for them?&quot;</li>
         <li>&quot;Who is most likely to ghost someone?&quot;</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
 
       <h3>2. Truth or Drink</h3>
       <p>No dares, just truths. Answer honestly or drink. The wine flows, the secrets spill. Perfect for deep conversations and bonding moments.</p>
@@ -61,7 +61,7 @@ export default function GirlsNightDrinkingGamesPage() {
         <li>&quot;Who here would you set up with your ex?&quot;</li>
         <li>&quot;What&apos;s the worst lie you&apos;ve told a guy?&quot;</li>
       </ul>
-      <p><Link href="/game/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
+      <p><Link href="/games/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
 
       <h3>3. Never Have I Ever</h3>
       <p>The classic confession game. &quot;Never have I ever...&quot; - anyone who HAS done it drinks. Girls night edition gets spicy fast.</p>
@@ -74,7 +74,7 @@ export default function GirlsNightDrinkingGamesPage() {
         <li>&quot;Never have I ever pretended to like someone&apos;s partner&quot;</li>
         <li>&quot;Never have I ever screenshot a text to analyze in the group chat&quot;</li>
       </ul>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
 
       <h3>4. Hot Takes</h3>
       <p>Someone shares a controversial opinion or hot take. Others vote thumbs up or down. Minority drinks. Debates ensue.</p>
@@ -174,7 +174,7 @@ export default function GirlsNightDrinkingGamesPage() {
         <li>Faster rules (no long stories)</li>
         <li>Timer on each round (30 seconds)</li>
       </ul>
-      <p><Link href="/game/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
+      <p><Link href="/games/kings-cup" className="text-neon-pink hover:underline">Full Kings Cup Rules</Link></p>
 
       <h2>Sleepover/Chill Night Games</h2>
 

@@ -222,13 +222,13 @@ export default function ThreeManVs711DoublesPage() {
         <h3 className="text-lg font-bold text-white mb-3">Learn the Full Rules</h3>
         <div className="flex flex-wrap gap-3">
           <Link
-            href="/game/three-man"
+            href="/games/three-man"
             className="inline-block px-6 py-3 bg-neon-pink text-white rounded-lg hover:bg-neon-pink/80 transition-colors"
           >
             Three Man Rules →
           </Link>
           <Link
-            href="/game/7-11-doubles"
+            href="/games/7-11-doubles"
             className="inline-block px-6 py-3 bg-neon-blue text-white rounded-lg hover:bg-neon-blue/80 transition-colors"
           >
             7-11 Doubles Rules →

@@ -40,7 +40,7 @@ export default function DrinkingGamesFor9Page() {
       name: "Kings Cup",
       category: "Cards",
       description: "52 cards, 9 people = about 5-6 cards each. Fast-paced and fun.",
-      link: "/game/kings-cup",
+      link: "/games/kings-cup",
       intensity: "Medium",
       whyItWorks: "Quick rounds, everyone stays engaged"
     },
@@ -48,7 +48,7 @@ export default function DrinkingGamesFor9Page() {
       name: "Rage Cage",
       category: "Competitive",
       description: "9 players around the table creates intense pressure. No teams needed.",
-      link: "/game/rage-cage",
+      link: "/games/rage-cage",
       intensity: "High",
       whyItWorks: "Free-for-all ignores odd numbers"
     },
@@ -56,7 +56,7 @@ export default function DrinkingGamesFor9Page() {
       name: "Flip Cup (3 Teams of 3)",
       category: "Tournament",
       description: "Round-robin tournament. Each team plays each other team. Most wins takes it.",
-      link: "/game/flip-cup",
+      link: "/games/flip-cup",
       intensity: "High",
       whyItWorks: "Perfect 3-team split"
     },
@@ -64,7 +64,7 @@ export default function DrinkingGamesFor9Page() {
       name: "Slap Cup",
       category: "Competitive",
       description: "High-energy bouncing and slapping. 9 players makes it chaotic.",
-      link: "/game/slap-cup",
+      link: "/games/slap-cup",
       intensity: "High",
       whyItWorks: "Works with any number"
     },
@@ -72,7 +72,7 @@ export default function DrinkingGamesFor9Page() {
       name: "Never Have I Ever",
       category: "No Props",
       description: "9 different people means 9 different experiences to share.",
-      link: "/game/never-have-i-ever",
+      link: "/games/never-have-i-ever",
       intensity: "Medium",
       whyItWorks: "More people = more surprises"
     },
@@ -80,7 +80,7 @@ export default function DrinkingGamesFor9Page() {
       name: "Chandelier",
       category: "Cups",
       description: "Each person defends their cup. Center cup is the death cup.",
-      link: "/game/chandelier",
+      link: "/games/chandelier",
       intensity: "High",
       whyItWorks: "One cup per person works perfectly"
     },
@@ -88,7 +88,7 @@ export default function DrinkingGamesFor9Page() {
       name: "Ride the Bus",
       category: "Cards",
       description: "The pyramid round with 9 people is absolute chaos.",
-      link: "/game/ride-the-bus",
+      link: "/games/ride-the-bus",
       intensity: "High",
       whyItWorks: "Big pyramid, lots of cards"
     },
@@ -96,7 +96,7 @@ export default function DrinkingGamesFor9Page() {
       name: "Drunk Jenga",
       category: "Props",
       description: "54 blocks, 9 people = 6 pulls each. Tower falls at peak drama.",
-      link: "/game/drunk-jenga",
+      link: "/games/drunk-jenga",
       intensity: "Medium",
       whyItWorks: "Perfect block-to-player ratio"
     },
@@ -104,7 +104,7 @@ export default function DrinkingGamesFor9Page() {
       name: "Most Likely To",
       category: "No Props",
       description: "Point voting with 9 means no ties. Clear winners every round.",
-      link: "/game/most-likely-to",
+      link: "/games/most-likely-to",
       intensity: "Medium",
       whyItWorks: "Odd number = no ties"
     },
@@ -112,7 +112,7 @@ export default function DrinkingGamesFor9Page() {
       name: "Beer Ball (3 Teams)",
       category: "Tournament",
       description: "3 teams rotate playing each other. Can use 3 per team or 3v3v3 chaos mode.",
-      link: "/game/beer-ball",
+      link: "/games/beer-ball",
       intensity: "High",
       whyItWorks: "Tournament format works well"
     },
@@ -120,7 +120,7 @@ export default function DrinkingGamesFor9Page() {
       name: "Thunderstruck",
       category: "Music",
       description: "Drink during 'Thunder', pass on each one. 9 people spreads it fairly.",
-      link: "/game/thunderstruck",
+      link: "/games/thunderstruck",
       intensity: "High",
       whyItWorks: "Fair rotation with 9"
     },
@@ -128,7 +128,7 @@ export default function DrinkingGamesFor9Page() {
       name: "Cheers to the Governor",
       category: "No Props",
       description: "Count to 21 with custom rules. 9 voices making mistakes = hilarious.",
-      link: "/game/cheers-to-the-governor",
+      link: "/games/cheers-to-the-governor",
       intensity: "Medium",
       whyItWorks: "More people = more chaos"
     },

@@ -99,7 +99,7 @@ export default function DrinkingGamesFor5Page() {
       name: "Rage Cage",
       category: "Competitive",
       description: "Two balls, stacking elimination, pure chaos. 5 is the minimum for this legendary game.",
-      link: "/game/rage-cage",
+      link: "/games/rage-cage",
       intensity: "High",
       whyItWorks: "Perfect chaos-to-wait ratio"
     },
@@ -107,7 +107,7 @@ export default function DrinkingGamesFor5Page() {
       name: "Kings Cup",
       category: "Cards",
       description: "Everyone gets 10-11 cards. Perfect pacing - game lasts about 30-45 minutes.",
-      link: "/game/kings-cup",
+      link: "/games/kings-cup",
       intensity: "Medium",
       whyItWorks: "Ideal cards per person"
     },
@@ -115,7 +115,7 @@ export default function DrinkingGamesFor5Page() {
       name: "Chandelier",
       category: "Cups",
       description: "5 cups in a circle, one in the center. Bounce balls to make others drink.",
-      link: "/game/chandelier",
+      link: "/games/chandelier",
       intensity: "High",
       whyItWorks: "Plenty of targets to aim for"
     },
@@ -123,7 +123,7 @@ export default function DrinkingGamesFor5Page() {
       name: "Beeramid",
       category: "Cards",
       description: "Build a pyramid, bluff your cards. 5 is perfect for social deduction.",
-      link: "/game/beeramid",
+      link: "/games/beeramid",
       intensity: "Medium",
       whyItWorks: "Enough players to hide bluffs"
     },
@@ -131,7 +131,7 @@ export default function DrinkingGamesFor5Page() {
       name: "Ride the Bus",
       category: "Cards",
       description: "Card guessing elimination. Loser rides the bus through a brutal gauntlet.",
-      link: "/game/ride-the-bus",
+      link: "/games/ride-the-bus",
       intensity: "High",
       whyItWorks: "Dramatic loser punishment"
     },
@@ -139,7 +139,7 @@ export default function DrinkingGamesFor5Page() {
       name: "Most Likely To",
       category: "No Props",
       description: "Vote on who's most likely. With 5, majority is clear (3+ votes wins).",
-      link: "/game/most-likely-to",
+      link: "/games/most-likely-to",
       intensity: "Low",
       whyItWorks: "Clear voting majorities"
     },
@@ -147,7 +147,7 @@ export default function DrinkingGamesFor5Page() {
       name: "Never Have I Ever",
       category: "No Props",
       description: "5 different life experiences makes for surprising revelations.",
-      link: "/game/never-have-i-ever",
+      link: "/games/never-have-i-ever",
       intensity: "Low",
       whyItWorks: "Diverse group dynamics"
     },
@@ -155,7 +155,7 @@ export default function DrinkingGamesFor5Page() {
       name: "Slap Cup",
       category: "Competitive",
       description: "Stack cups, drink penalties. 5 keeps the action fast and intense.",
-      link: "/game/slap-cup",
+      link: "/games/slap-cup",
       intensity: "High",
       whyItWorks: "Non-stop competitive action"
     },
@@ -163,7 +163,7 @@ export default function DrinkingGamesFor5Page() {
       name: "Quarters",
       category: "Skill",
       description: "Bounce quarters into cups. Quick turns, constant competition.",
-      link: "/game/quarters",
+      link: "/games/quarters",
       intensity: "Medium",
       whyItWorks: "Fast turn rotation"
     },
@@ -171,7 +171,7 @@ export default function DrinkingGamesFor5Page() {
       name: "Medusa",
       category: "No Props",
       description: "Look down, look up, eye contact = drink. More players = more matches.",
-      link: "/game/medusa",
+      link: "/games/medusa",
       intensity: "Low",
       whyItWorks: "Multiple matches per round"
     },
@@ -179,7 +179,7 @@ export default function DrinkingGamesFor5Page() {
       name: "Irish Poker",
       category: "Cards",
       description: "Guess your cards through 4 rounds. Everyone plays, everyone drinks.",
-      link: "/game/irish-poker",
+      link: "/games/irish-poker",
       intensity: "Medium",
       whyItWorks: "Good card distribution"
     },
@@ -187,7 +187,7 @@ export default function DrinkingGamesFor5Page() {
       name: "Horse Race",
       category: "Cards",
       description: "5 players, 4 suits - one person is the bookie taking bets from all.",
-      link: "/game/horse-race",
+      link: "/games/horse-race",
       intensity: "Medium",
       whyItWorks: "Natural bookie rotation"
     },
@@ -195,7 +195,7 @@ export default function DrinkingGamesFor5Page() {
       name: "Drunk Jenga",
       category: "Skill",
       description: "Each block has a rule. 5 players means faster tower building.",
-      link: "/game/drunk-jenga",
+      link: "/games/drunk-jenga",
       intensity: "Medium",
       whyItWorks: "Quick rounds, high stakes"
     },
@@ -203,7 +203,7 @@ export default function DrinkingGamesFor5Page() {
       name: "Flip Cup",
       category: "Team Relay",
       description: "3v2 with the smaller team going twice, or rotate one person out.",
-      link: "/game/flip-cup",
+      link: "/games/flip-cup",
       intensity: "High",
       whyItWorks: "Adaptable team format"
     },
@@ -211,7 +211,7 @@ export default function DrinkingGamesFor5Page() {
       name: "Power Hour",
       category: "Endurance",
       description: "Shot of beer every minute for 60 minutes. Group support helps everyone finish.",
-      link: "/game/power-hour",
+      link: "/games/power-hour",
       intensity: "Extreme",
       whyItWorks: "Group encouragement"
     },

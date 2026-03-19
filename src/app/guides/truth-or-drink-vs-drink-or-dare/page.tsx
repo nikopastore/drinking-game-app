@@ -228,7 +228,7 @@ export default function TruthOrDrinkVsDrinkOrDarePage() {
         <h3 className="text-lg font-bold text-white mb-3">Learn the Full Rules</h3>
         <div className="flex flex-wrap gap-3">
           <Link
-            href="/game/truth-or-drink"
+            href="/games/truth-or-drink"
             className="inline-block px-6 py-3 bg-neon-pink text-white rounded-lg hover:bg-neon-pink/80 transition-colors"
           >
             Truth or Drink Rules →

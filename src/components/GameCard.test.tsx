@@ -104,7 +104,7 @@ describe('GameCard', () => {
       expect(card).toBeInTheDocument()
 
       fireEvent.click(card!)
-      expect(mockPush).toHaveBeenCalledWith('/game/flip-cup')
+      expect(mockPush).toHaveBeenCalledWith('/games/flip-cup')
     })
   })
 

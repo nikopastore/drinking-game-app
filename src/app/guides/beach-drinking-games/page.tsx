@@ -118,7 +118,7 @@ export default function BeachDrinkingGamesPage() {
         <li><strong>Players:</strong> 4-12</li>
         <li><strong>Beach advantage:</strong> Play while lying on towels, no movement required</li>
       </ul>
-      <p><Link href="/game/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
+      <p><Link href="/games/most-likely-to" className="text-neon-pink hover:underline">Full Most Likely To Rules</Link></p>
 
       <h3>8. Never Have I Ever</h3>
       <p>The ultimate no-equipment game. &quot;Never have I ever...&quot; and everyone who HAS done it drinks. Perfect for lazy beach vibes.</p>
@@ -127,7 +127,7 @@ export default function BeachDrinkingGamesPage() {
         <li><strong>Players:</strong> 3-15</li>
         <li><strong>Beach advantage:</strong> Can play for hours while sunbathing</li>
       </ul>
-      <p><Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
+      <p><Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Full Never Have I Ever Rules</Link></p>
 
       <h3>9. Truth or Drink</h3>
       <p>Beach confessions! Answer honestly or drink. The relaxed beach vibe makes people more open.</p>
@@ -136,7 +136,7 @@ export default function BeachDrinkingGamesPage() {
         <li><strong>Players:</strong> 2-10</li>
         <li><strong>Beach advantage:</strong> Intimate setting, good for couples or close friends</li>
       </ul>
-      <p><Link href="/game/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
+      <p><Link href="/games/truth-or-drink" className="text-neon-pink hover:underline">Full Truth or Drink Rules</Link></p>
 
       <h3>10. Categories</h3>
       <p>Pick a category, go around naming things in it. Hesitate or repeat? Drink. Simple and endless.</p>
@@ -166,7 +166,7 @@ export default function BeachDrinkingGamesPage() {
         <li><strong>Players:</strong> 6-20</li>
         <li><strong>Beach tips:</strong> Wet sand is more stable, anchor your &quot;table&quot;</li>
       </ul>
-      <p><Link href="/game/flip-cup" className="text-neon-pink hover:underline">Full Flip Cup Rules</Link></p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink hover:underline">Full Flip Cup Rules</Link></p>
 
       <h3>13. Sandcastle Drinking Game</h3>
       <p>Teams compete to build the best sandcastle in a set time. Judges rate them, losing team drinks based on score difference.</p>

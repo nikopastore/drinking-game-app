@@ -76,7 +76,7 @@ export default function ChristmasDrinkingGamesPage() {
       <h2>Ugly Sweater Drinking Games</h2>
 
       <h3>Ugly Sweater Kings Cup</h3>
-      <p>Play <Link href="/game/kings-cup" className="text-neon-pink">Kings Cup</Link> with ugly sweater rules:</p>
+      <p>Play <Link href="/games/kings-cup" className="text-neon-pink">Kings Cup</Link> with ugly sweater rules:</p>
       <ul>
         <li>Ace: All light-up sweaters drink</li>
         <li>2: All 3D sweaters (pom-poms, bells) drink</li>
@@ -128,13 +128,13 @@ export default function ChristmasDrinkingGamesPage() {
         <li>Arrange cups in Christmas tree formation</li>
         <li>Use red/green cups</li>
         <li>Add antlers/red nose to players (costume)</li>
-        <li>Play <Link href="/game/beer-pong" className="text-neon-pink">Beer Pong</Link> normally</li>
+        <li>Play <Link href="/games/beer-pong" className="text-neon-pink">Beer Pong</Link> normally</li>
         <li>Bonus: "Rudolf shot" (hitting specific cup) = opponent drinks double</li>
       </ul>
 
       <h3>Holiday Flip Cup</h3>
       <ul>
-        <li>Play <Link href="/game/flip-cup" className="text-neon-pink">Flip Cup</Link> in Santa hats</li>
+        <li>Play <Link href="/games/flip-cup" className="text-neon-pink">Flip Cup</Link> in Santa hats</li>
         <li>Losing team sings Christmas carol</li>
         <li>Refuse to sing = extra drink penalty</li>
         <li>Best caroling team gets immunity next round</li>
@@ -172,7 +172,7 @@ export default function ChristmasDrinkingGamesPage() {
       </ul>
 
       <h3>Holiday Most Likely To</h3>
-      <p>Christmas-themed <Link href="/game/most-likely-to" className="text-neon-pink">Most Likely To</Link> questions:</p>
+      <p>Christmas-themed <Link href="/games/most-likely-to" className="text-neon-pink">Most Likely To</Link> questions:</p>
       <ul>
         <li>Most likely to regift a present</li>
         <li>Most likely to burn Christmas cookies</li>

@@ -133,10 +133,10 @@ Force Google to crawl your most important pages NOW.
 ### 4.4 Index Top Game Pages
 
 Request indexing for your highest-value pages:
-- `https://sipwiki.com/game/kings-cup`
-- `https://sipwiki.com/game/beer-pong`
-- `https://sipwiki.com/game/flip-cup`
-- `https://sipwiki.com/game/ride-the-bus`
+- `https://sipwiki.com/games/kings-cup`
+- `https://sipwiki.com/games/beer-pong`
+- `https://sipwiki.com/games/flip-cup`
+- `https://sipwiki.com/games/ride-the-bus`
 
 ---
 

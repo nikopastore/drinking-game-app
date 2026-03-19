@@ -382,7 +382,7 @@ export default function SpinPage() {
               <p className="text-gray-400 mb-6 text-sm px-2">{selectedGame.description}</p>
 
               <div className="flex flex-col sm:flex-row gap-3">
-                <Link href={`/game/${selectedGame.slug}`} className="flex-1">
+                <Link href={`/games/${selectedGame.slug}`} className="flex-1">
                   <Button className="w-full">
                     <Play className="h-4 w-4 mr-2" />
                     View Rules

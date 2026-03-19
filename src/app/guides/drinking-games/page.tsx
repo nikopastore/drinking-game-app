@@ -80,7 +80,7 @@ export default function DrinkingGamesPillarPage() {
 
         <h2>What Are Drinking Games?</h2>
         <p>
-          Drinking games are social activities that combine rules, competition, and drinking into entertaining party experiences. They range from skill-based games like <Link href="/game/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link> to social games like <Link href="/game/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link>. The best drinking games create memorable moments, break the ice at parties, and bring people together.
+          Drinking games are social activities that combine rules, competition, and drinking into entertaining party experiences. They range from skill-based games like <Link href="/games/beer-pong" className="text-neon-pink hover:underline">Beer Pong</Link> to social games like <Link href="/games/never-have-i-ever" className="text-neon-pink hover:underline">Never Have I Ever</Link>. The best drinking games create memorable moments, break the ice at parties, and bring people together.
         </p>
         <p>
           This guide covers <strong>over 100 drinking games</strong>, organized by player count, materials needed, difficulty level, and occasion. Whether you're looking for <Link href="/guides/drinking-games-for-2" className="text-neon-pink hover:underline">games for couples</Link>, <Link href="/guides/drinking-games-for-large-groups" className="text-neon-pink hover:underline">large group games</Link>, or <Link href="/guides/drinking-games-without-cards" className="text-neon-pink hover:underline">games that need no equipment</Link>, we've got you covered.

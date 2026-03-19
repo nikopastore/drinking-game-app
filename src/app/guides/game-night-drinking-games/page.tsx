@@ -16,7 +16,7 @@ export default function GameNightDrinkingGamesPage() {
       <h2>Board Games + Drinking</h2>
       <ul><li><strong>Drunk Monopoly</strong> - Pay rent in sips</li><li><strong>Drunk Jenga</strong> - Rules on blocks</li><li><strong>Drunk Uno</strong> - Draw 4 = 4 sips</li><li><strong>Drunk Scrabble</strong> - Challenged word = drink</li></ul>
       <h2>Pure Drinking Card Games</h2>
-      <ul><li><Link href="/game/kings-cup" className="text-neon-pink">Kings Cup</Link></li><li><Link href="/game/ride-the-bus" className="text-neon-pink">Ride the Bus</Link></li><li><Link href="/game/beeramid" className="text-neon-pink">Beeramid</Link></li><li><Link href="/game/horse-race" className="text-neon-pink">Horse Race</Link></li></ul>
+      <ul><li><Link href="/games/kings-cup" className="text-neon-pink">Kings Cup</Link></li><li><Link href="/games/ride-the-bus" className="text-neon-pink">Ride the Bus</Link></li><li><Link href="/games/beeramid" className="text-neon-pink">Beeramid</Link></li><li><Link href="/games/horse-race" className="text-neon-pink">Horse Race</Link></li></ul>
       <h2>Video Game Drinking Rules</h2>
       <ul><li>Mario Kart - Hit by shell = drink</li><li>Smash Bros - Lost stock = drink</li><li>Any game - Loser drinks</li></ul>
     </GuideLayout>

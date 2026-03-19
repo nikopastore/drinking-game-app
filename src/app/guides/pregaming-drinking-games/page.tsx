@@ -45,7 +45,7 @@ export default function PregamingGamesPage() {
         <li><strong>Time per round:</strong> 2-3 minutes</li>
         <li><strong>Why it&apos;s perfect for pregaming:</strong> Fast rounds, team energy, gets everyone involved immediately</li>
       </ul>
-      <p><Link href="/game/flip-cup" className="text-neon-pink hover:underline">Full Flip Cup Rules</Link></p>
+      <p><Link href="/games/flip-cup" className="text-neon-pink hover:underline">Full Flip Cup Rules</Link></p>
 
       <h3>2. Rage Cage (Boom Cup)</h3>
       <p>High-energy bouncing game where players race to bounce a ball into their cup. Get stacked on? Drink a center cup. The intensity builds as cups disappear.</p>
@@ -55,7 +55,7 @@ export default function PregamingGamesPage() {
         <li><strong>Time per game:</strong> 10-15 minutes</li>
         <li><strong>Why it&apos;s perfect for pregaming:</strong> Non-stop action, everyone plays simultaneously, builds competitive energy</li>
       </ul>
-      <p><Link href="/game/rage-cage" className="text-neon-pink hover:underline">Full Rage Cage Rules</Link></p>
+      <p><Link href="/games/rage-cage" className="text-neon-pink hover:underline">Full Rage Cage Rules</Link></p>
 
       <h3>3. Power Hour</h3>
       <p>Take a shot of beer every minute for 60 minutes (or 30 for a half power hour). Usually done with a playlist that changes songs every minute. Great background game while getting ready.</p>
@@ -65,7 +65,7 @@ export default function PregamingGamesPage() {
         <li><strong>Time:</strong> 30-60 minutes</li>
         <li><strong>Why it&apos;s perfect for pregaming:</strong> Paces your drinking perfectly, social activity while getting ready</li>
       </ul>
-      <p><Link href="/game/power-hour" className="text-neon-pink hover:underline">Full Power Hour Rules</Link></p>
+      <p><Link href="/games/power-hour" className="text-neon-pink hover:underline">Full Power Hour Rules</Link></p>
 
       <h3>4. Thunderstruck</h3>
       <p>Play AC/DC&apos;s &quot;Thunderstruck.&quot; First person drinks when they hear &quot;thunder&quot; and stops when it&apos;s said again, passing to the next person. Some unlucky souls drink for a LONG time during the solo.</p>
@@ -75,7 +75,7 @@ export default function PregamingGamesPage() {
         <li><strong>Time:</strong> 4 minutes 52 seconds (song length)</li>
         <li><strong>Why it&apos;s perfect for pregaming:</strong> Musical energy, hilarious when someone gets stuck, one-and-done</li>
       </ul>
-      <p><Link href="/game/thunderstruck" className="text-neon-pink hover:underline">Full Thunderstruck Rules</Link></p>
+      <p><Link href="/games/thunderstruck" className="text-neon-pink hover:underline">Full Thunderstruck Rules</Link></p>
 
       <h3>5. Medusa</h3>
       <p>Everyone looks down. On &quot;3-2-1 look up!&quot; everyone looks at another player. If two people lock eyes, they both drink. Simple, fast, and surprisingly tense.</p>
@@ -85,7 +85,7 @@ export default function PregamingGamesPage() {
         <li><strong>Time per round:</strong> 30 seconds</li>
         <li><strong>Why it&apos;s perfect for pregaming:</strong> Zero setup, instant laughs, can play as many rounds as needed</li>
       </ul>
-      <p><Link href="/game/medusa" className="text-neon-pink hover:underline">Full Medusa Rules</Link></p>
+      <p><Link href="/games/medusa" className="text-neon-pink hover:underline">Full Medusa Rules</Link></p>
 
       <h3>6. Slap Cup</h3>
       <p>Similar to Rage Cage but with more physical interaction. If you bounce in before the person to your right, slap their cup away and they must drink a middle cup.</p>
@@ -95,7 +95,7 @@ export default function PregamingGamesPage() {
         <li><strong>Time per game:</strong> 10-15 minutes</li>
         <li><strong>Why it&apos;s perfect for pregaming:</strong> Satisfying slap mechanic, constant action, builds energy</li>
       </ul>
-      <p><Link href="/game/slap-cup" className="text-neon-pink hover:underline">Full Slap Cup Rules</Link></p>
+      <p><Link href="/games/slap-cup" className="text-neon-pink hover:underline">Full Slap Cup Rules</Link></p>
 
       <h3>7. Stack Cup</h3>
       <p>Variation where you stack your cup onto the next player&apos;s if you bounce in first. Creates a growing tower of cups that makes bouncing harder and harder.</p>
@@ -132,7 +132,7 @@ export default function PregamingGamesPage() {
         <li><strong>Time per round:</strong> 2-5 minutes</li>
         <li><strong>Why it&apos;s perfect for pregaming:</strong> Gets increasingly chaotic, lots of laughs, no setup</li>
       </ul>
-      <p><Link href="/game/cheers-to-the-governor" className="text-neon-pink hover:underline">Full Cheers to the Governor Rules</Link></p>
+      <p><Link href="/games/cheers-to-the-governor" className="text-neon-pink hover:underline">Full Cheers to the Governor Rules</Link></p>
 
       <h3>11. Task Master</h3>
       <p>One person is the Task Master for a round. They give quick challenges (&quot;last person to touch their nose drinks&quot;). Rotate Task Master each round.</p>
