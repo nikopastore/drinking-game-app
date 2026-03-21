@@ -6,6 +6,8 @@ import { games } from "@/config/gameData";
 import { getAllCategorySlugs } from "@/config/categoryData";
 import { cocktails } from "@/config/cocktailData";
 import { blogCategories, blogPosts } from "@/config/blogData";
+import { drinks } from "@/config/drinkData";
+import { tvGames } from "@/config/tvGameData";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const rawBaseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sipwiki.app";
@@ -99,6 +101,72 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/drinks`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/drinks/cocktails`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/drinks/shots`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/drinks/punches`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/drinks/mocktails`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/tv-games`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/games/for-2-people`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/games/for-3-people`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/games/for-4-people`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/games/for-5-plus`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/games/for-large-groups`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.85,
     },
     {
       url: `${baseUrl}/guides/kings-cup-rules`,
@@ -277,6 +345,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
+  const drinkPages: MetadataRoute.Sitemap = drinks.map((drink) => ({
+    url: `${baseUrl}/drinks/${drink.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  const tvGamePages: MetadataRoute.Sitemap = tvGames.map((game) => ({
+    url: `${baseUrl}/tv-games/${game.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
   const blogIndexPages: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/blog`,
@@ -306,6 +388,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...categoryPages,
     ...gamePages,
     ...cocktailPages,
+    ...drinkPages,
+    ...tvGamePages,
     ...blogIndexPages,
     ...blogCategoryPages,
     ...blogPostPages,

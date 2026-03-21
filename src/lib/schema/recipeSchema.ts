@@ -29,6 +29,8 @@ export function generateRecipeSchema(
   // Convert difficulty (1-3) to prep time if not provided
   const estimatedPrepTime = prepTime || getDifficultyPrepTime(cocktail.difficulty);
 
+  const resolvedImage = imageUrl || cocktail.image;
+
   // Build ingredient list with amounts
   const recipeIngredients = cocktail.ingredients.map(
     (ing) => `${ing.amount} ${ing.unit} ${ing.name}`
@@ -46,7 +48,7 @@ export function generateRecipeSchema(
     "@type": "Recipe",
     name: cocktail.name,
     description: cocktail.description,
-    image: imageUrl || `/cocktails/${cocktail.slug}.jpg`,
+    ...(resolvedImage ? { image: resolvedImage } : {}),
     recipeIngredient: recipeIngredients,
     recipeInstructions: recipeInstructions,
     prepTime: estimatedPrepTime,

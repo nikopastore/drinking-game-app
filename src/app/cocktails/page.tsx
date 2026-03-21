@@ -75,6 +75,8 @@ function CocktailCard({ cocktail }: { cocktail: Cocktail }) {
               src={cocktail.image}
               alt={cocktail.name}
               className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-dark-800 to-transparent" />
           </div>

@@ -61,13 +61,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const seoTitle = `${game.name} Drinking Game – Rules & How to Play | SipWiki`;
+  const seoTitle = `${game.name} Rules - How to Play | SipWiki`;
   const playerInfo = formatPlayerCount(game.min_players, game.max_players);
   const materialsInfo =
     game.materials[0] === "no prop"
-      ? "No props needed"
-      : `Materials: ${game.materials.slice(0, 3).join(", ")}`;
-  const seoDescription = `Learn how to play ${game.name} with complete rules and instructions. Perfect for ${playerInfo} players. ${materialsInfo}. Get the official drinking game rules now!`;
+      ? "Materials needed: none"
+      : `Materials needed: ${game.materials.join(", ")}`;
+  const seoDescription = `Learn how to play ${game.name} with our complete rules guide. Perfect for ${playerInfo} players. ${materialsInfo}. Get the official rules now!`;
 
   return {
     title: seoTitle,
@@ -81,7 +81,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       "party games",
     ],
     openGraph: {
-      title: `${game.name} Rules - Complete Drinking Game Guide`,
+      title: `${game.name} Rules - How to Play | SipWiki`,
       description: seoDescription,
       type: "article",
       url: `https://sipwiki.app/games/${game.slug}`,
@@ -89,8 +89,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: "summary_large_image",
-      title: `${game.name} Rules`,
-      description: `Learn how to play ${game.name}. Complete rules for ${playerInfo} players.`,
+      title: `${game.name} Rules - How to Play`,
+      description: `Learn how to play ${game.name}. Perfect for ${playerInfo} players.`,
     },
     alternates: {
       canonical: `https://sipwiki.app/games/${game.slug}`,

@@ -8,15 +8,13 @@ import {
   Wine,
   Flame,
   Play,
-  ExternalLink,
-  ShoppingCart,
   Package,
   ChevronRight,
 } from "lucide-react";
 import Link from "next/link";
 import { formatPlayerCount, getDrunkennessLabel } from "@/lib/utils";
 import { formatMarkdownBold } from "@/lib/sanitize";
-import { getAffiliateLink, nonAffiliateItems } from "@/config/monetizationConfig";
+import { WhatYouNeed } from "@/components/WhatYouNeed";
 import { CommentSection } from "@/components/CommentSection";
 import { getCategoriesForGame } from "@/config/categoryData";
 import { useAuthContext, UnlockRulesCard } from "@/components/auth";
@@ -264,61 +262,7 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
           </CardContent>
         </Card>
 
-        {/* Materials Section with Affiliate Links */}
-        <Card className="mb-8">
-          <CardContent className="p-6">
-            <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-              <ShoppingCart className="h-5 w-5 text-neon-pink" />
-              Materials Needed
-            </h2>
-
-            {game.materials[0] === "no prop" ? (
-              <div className="flex items-center gap-2">
-                <Badge variant="green" className="text-base py-1.5 px-3">
-                  No props needed - just bring drinks!
-                </Badge>
-              </div>
-            ) : (
-              <div className="flex flex-wrap gap-3">
-                {game.materials.map((material) => {
-                  const affiliate = getAffiliateLink(material);
-                  const isNonAffiliate = nonAffiliateItems.includes(
-                    material.toLowerCase()
-                  );
-
-                  if (affiliate && !isNonAffiliate) {
-                    return (
-                      <a
-                        key={material}
-                        href={affiliate.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-medium rounded-lg hover:opacity-90 transition-all hover:scale-105"
-                      >
-                        <span>{affiliate.label}</span>
-                        <ExternalLink className="h-4 w-4" />
-                      </a>
-                    );
-                  }
-
-                  return (
-                    <Badge
-                      key={material}
-                      variant="muted"
-                      className="text-base py-1.5 px-3 capitalize"
-                    >
-                      {material}
-                    </Badge>
-                  );
-                })}
-              </div>
-            )}
-
-            <p className="text-xs text-gray-500 mt-4">
-              * Amazon affiliate links help support SipWiki
-            </p>
-          </CardContent>
-        </Card>
+        <WhatYouNeed game={game} />
 
         <Card className="mb-8 border-dark-600">
           <CardContent className="p-6">

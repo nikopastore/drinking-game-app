@@ -118,7 +118,7 @@ export function middleware(request: NextRequest) {
   }
 
   if (url.pathname === "/game" || url.pathname.startsWith("/game/")) {
-    url.pathname = url.pathname.replace(/^\\/game/, "/games");
+    url.pathname = url.pathname.replace(/^\/game/, "/games");
     const redirectResponse = NextResponse.redirect(url, 301);
     return applySecurityHeaders(redirectResponse);
   }

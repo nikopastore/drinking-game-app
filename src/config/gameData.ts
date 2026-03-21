@@ -574,12 +574,13 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     description:
       "Beer Die is a fast-paced dice throwing game where teams score by landing a die on the table or making the other team miss the catch. It's a backyard and tailgate classic that blends skill, reflexes, and drinking penalties.",
     rules_text:
-      "**Setup:**\n- Two teams of 2 stand at opposite ends of a table\n- Place a die on the table and fill drinks for everyone\n- Each team defends their side of the table\n\n**Basic Play:**\n- A player throws the die so it lands on the table and bounces off\n- Scoring team gets points based on what happens next\n\n**Scoring:**\n- **Die lands on table and stays:** 1 point\n- **Die lands on table and bounces off (not caught):** 2 points\n- **Die bounces off table and is caught cleanly:** 1 point for the catching team\n- **Die bounces off table and is dropped:** 2 points for the throwing team\n\n**Drinking Rule:**\n- The team that loses the point drinks (or the team that scores assigns the drink)\n\n**Winning:**\n- First team to 5 or 7 points wins (agree before starting)\n\n**Tips:**\n- Aim for the back edge to force awkward catches\n- Keep throws controlled - accuracy beats power\n- Play outside with a sturdy table for best results",
+      "**Setup:**\n- Two teams of 2 stand at opposite ends of a table\n- Place a die on the table and fill drinks for everyone\n- Each team defends their side of the table\n\n**Basic Play:**\n- A player throws the die so it lands on the table and bounces off\n- Scoring team gets points based on what happens next\n\n**Scoring:**\n- **Die lands on table and stays:** 1 point\n- **Die lands on table and bounces off (not caught):** 2 points\n- **Die bounces off table and is caught cleanly:** 1 point for the catching team\n- **Die bounces off table and is dropped:** 2 points for the throwing team\n\n**Drinking Rule:**\n- The team that loses the point drinks (or the team that scores assigns the drink)\n\n**Winning:**\n- First team to 5 or 7 points wins (agree before starting)\n\n**House Rules:**\n- **On-the-table only:** If the die hits the floor first, no point and re-throw\n- **Hot seat:** Score 2 points if a defender drops a clean catch\n- **Body block:** No using your body to keep the die on the table\n\n**Beginner Tips:**\n- Aim for the back edge to force awkward catches\n- Keep throws controlled - accuracy beats power\n- Start with 5-point games while you learn pacing\n- Play outside with a sturdy table for best results",
     materials: ["dice", "table", "cups", "beer"],
     min_players: 4,
     max_players: 4,
     alcohol_type: "beer",
     drunkenness_level: 4,
+    difficulty: "Medium",
     image: "/games/7-11-doubles-1.png",
   },
   {
@@ -596,6 +597,291 @@ export const initialGames: Omit<Game, "created_at" | "is_user_submitted">[] = [
     alcohol_type: "beer",
     drunkenness_level: 4,
     image: "/games/horse-race-3.png",
+  },
+  {
+    id: "seed-42",
+    slug: "asshole-president",
+    name: "Asshole / President",
+    description:
+      "Asshole (also called President) is a classic climbing card game where the first player out becomes President and the last becomes Asshole. The drinking twist assigns sips based on rank and keeps rounds fast and competitive.",
+    rules_text:
+      "**Setup:**\n- Shuffle and deal the entire deck evenly\n- Players sort their hands; lowest card starts the first round\n\n**Gameplay:**\n- Play proceeds clockwise\n- On your turn, play the same number of cards as the current pile with a higher rank\n- 2s are wild and reset the pile; 10s can clear the pile instantly\n- If you can't or don't want to play, pass. After everyone passes, the pile clears\n\n**Winning:**\n- First player to empty their hand becomes President\n- Last player to empty their hand becomes Asshole and drinks\n- Optionally play multiple rounds; roles persist until the next round ends\n\n**House Rules:**\n- **Revolution:** Four of a kind reverses the rank order (low becomes high)\n- **Skip on 8s:** An 8 skips the next player\n- **Penalty Pass:** Passing forces a sip\n\n**Beginner Tips:**\n- Save 2s and 10s to escape tough piles\n- Try to shed low cards early\n- Watch how many cards your opponents have left",
+    materials: ["cards"],
+    min_players: 3,
+    max_players: 10,
+    alcohol_type: "any",
+    drunkenness_level: 3,
+    difficulty: "Medium",
+  },
+  {
+    id: "seed-43",
+    slug: "across-the-bridge",
+    name: "Across the Bridge",
+    description:
+      "Across the Bridge is a suspenseful card guessing game where players try to cross a 'bridge' of face-down cards by guessing colors correctly. Miss a guess and you drink.",
+    rules_text:
+      "**Setup:**\n- Place two cups about a foot apart\n- Lay 7 cards face-down between them to form a bridge\n- Choose a starting player\n\n**Gameplay:**\n- The player flips the first card and guesses red or black BEFORE revealing it\n- Correct guess = move to the next card\n- Wrong guess = take a drink and restart at the first card\n\n**Winning:**\n- First player to guess all 7 cards correctly crosses the bridge and wins\n\n**House Rules:**\n- **Troll Toll:** If you miss at card 6 or 7, drink twice\n- **Joker Trap:** Add 2 jokers face-down; if revealed, finish your drink\n- **Bridge Length:** Increase to 9 or 11 cards for larger groups\n\n**Beginner Tips:**\n- Keep guesses calm and steady to avoid rushing\n- Track color streaks, but don't overthink\n- Agree on drink sizes before starting",
+    materials: ["cards", "cups"],
+    min_players: 2,
+    max_players: 8,
+    alcohol_type: "any",
+    drunkenness_level: 3,
+    difficulty: "Easy",
+  },
+  {
+    id: "seed-44",
+    slug: "up-the-river-down-the-river",
+    name: "Up the River, Down the River",
+    description:
+      "Up the River, Down the River is a multi-round card guessing game that ramps up quickly. Players guess colors, highs, and lows, then face a brutal river of cards for penalty drinks.",
+    rules_text:
+      "**Setup:**\n- Shuffle a deck and choose a dealer\n- Each player receives 4 face-down cards in a row\n\n**Gameplay:**\n- **Round 1 (Color):** Guess red or black for card 1. Wrong = drink 1\n- **Round 2 (Higher/Lower):** Guess if card 2 is higher or lower than card 1. Wrong = drink 2\n- **Round 3 (Inside/Outside):** Guess if card 3 falls between or outside cards 1 and 2. Wrong = drink 3\n- **Round 4 (Suit):** Guess the suit of card 4. Wrong = drink 4\n\n**The River:**\n- Dealer lays 10 cards face-up in a row\n- Players match any card in their hand to assign drinks equal to the river position (1-10)\n- If you can't match, drink 1\n\n**Winning:**\n- No set winner. Play until everyone survives the river or agrees to stop\n\n**House Rules:**\n- **Double River:** Run a second river for extra chaos\n- **Mercy Rule:** Cap any single drink assignment at 5\n- **River Bounce:** Matching two cards in a row lets you give +2 extra drinks\n\n**Beginner Tips:**\n- Remember that suits are the hardest round—don't be afraid to drink\n- Start with half-drinks while learning\n- Keep a water break nearby during the river",
+    materials: ["cards"],
+    min_players: 2,
+    max_players: 8,
+    alcohol_type: "any",
+    drunkenness_level: 4,
+    difficulty: "Medium",
+  },
+  {
+    id: "seed-45",
+    slug: "give-and-take",
+    name: "Give and Take",
+    description:
+      "Give and Take is a simple card-flip drinking game where each card tells you to give drinks away or take them yourself. Fast, easy, and great for warmups.",
+    rules_text:
+      "**Setup:**\n- Shuffle the deck and place it face-down in the center\n- Everyone has a drink and sits in a circle\n\n**Gameplay:**\n- Players take turns flipping a single card\n- **Red cards:** Give drinks equal to the card value\n- **Black cards:** Take drinks equal to the card value\n- Face cards = 10 drinks, Aces = 11 drinks (split allowed)\n\n**Winning:**\n- No formal winner. Play for a set number of rounds or until the deck is gone\n\n**House Rules:**\n- **Rule Maker (Kings):** Draw a King to make a new rule\n- **Safe Queen:** Queens are a pass instead of 10 drinks\n- **Challenge:** Anyone can challenge a drink assignment; loser drinks double\n\n**Beginner Tips:**\n- Split big numbers to keep things light\n- Use sips instead of full drinks for face cards\n- Keep turns quick to maintain momentum",
+    materials: ["cards"],
+    min_players: 2,
+    max_players: 10,
+    alcohol_type: "any",
+    drunkenness_level: 2,
+    difficulty: "Easy",
+  },
+  {
+    id: "seed-46",
+    slug: "higher-or-lower",
+    name: "Higher or Lower",
+    description:
+      "Higher or Lower is a quick card-guessing drinking game where players predict whether the next card will be higher or lower. Simple, fast, and perfect for small groups.",
+    rules_text:
+      "**Setup:**\n- Shuffle a deck and place it face-down\n- Flip one card face-up as the starting card\n\n**Gameplay:**\n- Players take turns guessing if the next card will be higher or lower\n- Reveal the card and resolve:\n  - Correct = give 1 drink\n  - Wrong = take 1 drink\n- Aces are high unless you decide otherwise\n\n**Winning:**\n- No formal winner. Play for a set number of rounds or until someone finishes their drink\n\n**House Rules:**\n- **Push:** Same value means everyone drinks\n- **Streak Bonus:** 3 correct guesses in a row = give 3 drinks\n- **Ace Wild:** Aces can be high or low; the guesser chooses\n\n**Beginner Tips:**\n- Keep guesses quick to avoid overthinking\n- Decide Ace rules before starting\n- Use sips instead of full drinks in large groups",
+    materials: ["cards"],
+    min_players: 2,
+    max_players: 8,
+    alcohol_type: "any",
+    drunkenness_level: 2,
+    difficulty: "Easy",
+  },
+  {
+    id: "seed-47",
+    slug: "black-or-red",
+    name: "Black or Red",
+    description:
+      "Black or Red is the simplest possible drinking game: guess the card color, drink if you're wrong. It's great for quick rounds or between bigger games.",
+    rules_text:
+      "**Setup:**\n- Shuffle a deck and place it face-down\n- Choose a starting player\n\n**Gameplay:**\n- On your turn, guess \"black\" or \"red\"\n- Flip the top card to reveal the color\n- Wrong guess = take 2 drinks\n- Correct guess = give 1 drink\n\n**Winning:**\n- No formal winner. Play until the deck is done or the group moves on\n\n**House Rules:**\n- **Face Card Bonus:** Face cards = double drinks\n- **Streak Reward:** 3 correct guesses = give 3 drinks\n- **Dealer's Curse:** Dealer drinks whenever an Ace appears\n\n**Beginner Tips:**\n- Keep drink sizes small for fast play\n- Decide if Aces count as red or black before starting\n- Keep the deck moving to keep energy high",
+    materials: ["cards"],
+    min_players: 2,
+    max_players: 10,
+    alcohol_type: "any",
+    drunkenness_level: 1,
+    difficulty: "Easy",
+  },
+  {
+    id: "seed-48",
+    slug: "spoons",
+    name: "Spoons (Drinking Version)",
+    description:
+      "Spoons is a fast card-passing game where players race to collect four of a kind and grab a spoon. The last player without a spoon drinks.",
+    rules_text:
+      "**Setup:**\n- Place one fewer spoon than players in the center\n- Deal 4 cards to each player\n\n**Gameplay:**\n- Players pass one card to the left each turn (simultaneously)\n- Goal: collect four of a kind\n- When someone gets four, they silently grab a spoon\n- Everyone else then grabs a spoon as fast as possible\n\n**Losing:**\n- The player left without a spoon drinks\n- Start a new round and remove a spoon (optional elimination style)\n\n**House Rules:**\n- **No Peeking:** If you peek early, drink\n- **Speed Spoons:** Timer forces passes every 2 seconds\n- **Penalty Pass:** The last player to pass a card drinks\n\n**Beginner Tips:**\n- Watch for subtle spoon grabs\n- Keep your passes quick and clean\n- Try to track who is close to a set",
+    materials: ["cards", "spoons"],
+    min_players: 4,
+    max_players: 10,
+    alcohol_type: "any",
+    drunkenness_level: 3,
+    difficulty: "Medium",
+  },
+  {
+    id: "seed-49",
+    slug: "mexico",
+    name: "Mexico",
+    description:
+      "Mexico is a classic dice drinking game where the lowest roll drinks. The strongest roll is 21 (Mexico), and the highest double is 66.",
+    rules_text:
+      "**Setup:**\n- Everyone gets a drink and 2 dice\n- Each player starts with 3 lives (or play for sips only)\n\n**Gameplay:**\n- Players roll in order, but can roll once or twice\n- After the second roll, you must keep that result\n- Highest roll wins; lowest roll drinks or loses a life\n\n**Ranking:**\n- **Mexico (2-1):** Highest possible roll\n- **Doubles:** 66 highest, then 55, 44, etc.\n- **Regular rolls:** Use the higher die as the tens digit (e.g., 6 and 3 = 63)\n\n**Winning:**\n- Last player with lives remaining wins\n\n**House Rules:**\n- **Blind Round:** Roll under the cup; reveal later for suspense\n- **Carry Over:** Mexico makes next loser drink double\n- **Reverse Order:** Mexico reverses play direction\n\n**Beginner Tips:**\n- If you roll high on the first throw, consider sticking\n- Know the ranking system before you start\n- Use sips instead of lives for casual play",
+    materials: ["dice"],
+    min_players: 3,
+    max_players: 8,
+    alcohol_type: "any",
+    drunkenness_level: 3,
+    difficulty: "Medium",
+  },
+  {
+    id: "seed-50",
+    slug: "snappa",
+    name: "Snappa",
+    description:
+      "Snappa is a rowdy dice game where special rolls trigger group drinking, call-outs, and mini-challenges. The goal is to keep up with the pace and avoid getting caught.",
+    rules_text:
+      "**Setup:**\n- Everyone has a drink and 2 dice\n- Choose a starting player\n\n**Gameplay:**\n- Roll both dice and resolve the outcome\n- **7:** Give 1 drink\n- **11:** Take 1 drink\n- **Doubles:** Roller gives 2 drinks and rolls again\n- **1-1 (Snappa):** Everyone drinks\n- **6-6 (Big Snappa):** Everyone drinks twice\n\n**Winning:**\n- No formal winner. Play for a set number of rounds or until the group agrees to stop\n\n**House Rules:**\n- **Thumper:** Roll a 4 and become Thumper; last to copy your table tap drinks\n- **Heaven:** Roll a 9 and raise your hand; last to follow drinks\n- **Call-Out:** Roll a 3 and call someone out to drink with you\n\n**Beginner Tips:**\n- Keep dice rolls visible for fairness\n- Start with sips until everyone learns the calls\n- Keep the pace steady so the game doesn't stall",
+    materials: ["dice"],
+    min_players: 3,
+    max_players: 10,
+    alcohol_type: "any",
+    drunkenness_level: 3,
+    difficulty: "Easy",
+  },
+  {
+    id: "seed-51",
+    slug: "liars-dice",
+    name: "Liar's Dice",
+    description:
+      "Liar's Dice is a bluffing game where players wager on how many dice of a certain value are hidden under cups. Call a bluff and the loser drinks.",
+    rules_text:
+      "**Setup:**\n- Each player gets 5 dice and a cup\n- Roll dice in secret and keep them hidden\n\n**Gameplay:**\n- The first player makes a bid (e.g., \"three 4s\")\n- Next player must raise the bid or call \"liar\"\n- If \"liar\" is called, all dice are revealed\n\n**Resolution:**\n- If the bid is true, the caller drinks\n- If the bid is false, the bidder drinks\n\n**Winning:**\n- No formal winner. Play for a set number of rounds or remove a die each time you lose\n\n**House Rules:**\n- **Wild Ones:** 1s count as any face value\n- **Exact Bid:** If you call \"exact\" and it's correct, everyone else drinks\n- **Shot Round:** Final round uses shots instead of sips\n\n**Beginner Tips:**\n- Start with small, safe bids\n- Track how many dice are in play\n- Bluff confidently, but not every time",
+    materials: ["dice", "cups"],
+    min_players: 3,
+    max_players: 8,
+    alcohol_type: "any",
+    drunkenness_level: 3,
+    difficulty: "Medium",
+  },
+  {
+    id: "seed-52",
+    slug: "ship-captain-crew",
+    name: "Ship, Captain, Crew",
+    description:
+      "Ship, Captain, Crew is a classic dice game where you must roll a 6, 5, and 4 to build your ship. The remaining dice become your cargo, and the lowest cargo drinks.",
+    rules_text:
+      "**Setup:**\n- Everyone gets 5 dice\n- Choose a starting player\n\n**Gameplay:**\n- You have three rolls to get a 6 (ship), 5 (captain), and 4 (crew)\n- Once you lock those in, your remaining dice total is your cargo\n- Highest cargo wins the round\n\n**Drinking Rule:**\n- Lowest cargo drinks the difference between their cargo and the highest cargo\n\n**Winning:**\n- Play a set number of rounds; highest total cargo wins overall\n\n**House Rules:**\n- **Lucky Captain:** If you roll ship-captain-crew on the first roll, give 3 drinks\n- **Stormy Seas:** If you fail to build a ship, drink 2\n- **Double Cargo:** Final round counts cargo twice\n\n**Beginner Tips:**\n- Prioritize getting the ship first (the 6)\n- Keep rolls visible so no one misses a lock-in\n- Use sips instead of full drinks for longer sessions",
+    materials: ["dice"],
+    min_players: 2,
+    max_players: 8,
+    alcohol_type: "any",
+    drunkenness_level: 2,
+    difficulty: "Easy",
+  },
+  {
+    id: "seed-53",
+    slug: "beer-ball",
+    name: "Beer Ball",
+    description:
+      "Beer Ball combines elements of beer pong and volleyball. Teams throw a ball to knock over or hit opponent cups to score points and trigger drinks.",
+    rules_text:
+      "**Setup:**\n- Two teams of 2-4 stand at opposite sides of a table or yard\n- Place 6-10 cups per team in a cluster\n- Use a volleyball or kickball\n\n**Gameplay:**\n- Teams toss the ball trying to hit or knock over opponent cups\n- If a cup is hit, the defending team drinks it and removes the cup\n- Catching the ball before it hits the ground cancels the score\n\n**Winning:**\n- First team to clear the opponent's cups wins\n\n**House Rules:**\n- **No Spike Zone:** No spikes within 6 feet of the cups\n- **Re-Rack:** One re-rack per game at 3 cups remaining\n- **Sink Bonus:** If the ball lands inside a cup, drink two\n\n**Beginner Tips:**\n- Keep throws under control to protect cups\n- Use water in cups and drink from your own beverage\n- Start with fewer cups to speed up rounds",
+    materials: ["cups", "ball", "table", "beer"],
+    min_players: 4,
+    max_players: 8,
+    alcohol_type: "beer",
+    drunkenness_level: 4,
+    difficulty: "Medium",
+  },
+  {
+    id: "seed-54",
+    slug: "flunkyball",
+    name: "Flunkyball",
+    description:
+      "Flunkyball is an outdoor relay drinking game where teams throw a ball to knock over a central bottle. While the other team retrieves it, you race to drink.",
+    rules_text:
+      "**Setup:**\n- Two teams line up facing each other about 20-30 feet apart\n- Place a bottle or cone in the middle\n- Each player has a drink\n\n**Gameplay:**\n- One team throws the ball aiming to knock over the bottle\n- If the bottle falls, the throwing team drinks while the other team retrieves and resets it\n- Drinking stops when the bottle is upright and the ball is back in hand\n\n**Winning:**\n- First team to finish all their drinks wins\n\n**House Rules:**\n- **One-Hand Rule:** Bottle must be set with one hand only\n- **Shot Penalty:** If the ball is dropped during retrieval, take a penalty sip\n- **Sprint Rule:** Thrower must stay behind the line or drinks for a foul\n\n**Beginner Tips:**\n- Use lighter drinks to keep the pace safe\n- Set clear boundaries and throwing distance\n- Rotate throwers to keep everyone involved",
+    materials: ["ball", "bottle", "cups", "beer"],
+    min_players: 6,
+    max_players: 20,
+    alcohol_type: "beer",
+    drunkenness_level: 4,
+    difficulty: "Medium",
+  },
+  {
+    id: "seed-55",
+    slug: "paranoia",
+    name: "Paranoia",
+    description:
+      "Paranoia is a whisper-based drinking game where players ask juicy questions in secret. If the target wants to know the question, they drink.",
+    rules_text:
+      "**Setup:**\n- Sit in a circle with drinks\n- Choose a starting player\n\n**Gameplay:**\n- The starting player whispers a question to the person on their right (e.g., \"Who is most likely to...?\")\n- The target answers out loud with a name\n- The named person can either accept it or drink to hear the question\n\n**Winning:**\n- No formal winner. Play until the group is done sharing secrets\n\n**House Rules:**\n- **Double Sip:** If you drink to hear the question, take two sips\n- **Reverse:** If the named person drinks, the questioner drinks too\n- **Wild Card:** Once per game, you can refuse to answer and drink instead\n\n**Beginner Tips:**\n- Keep questions playful, not cruel\n- Set comfort boundaries before starting\n- Use sips instead of shots for long sessions",
+    materials: ["no prop"],
+    min_players: 4,
+    max_players: 12,
+    alcohol_type: "any",
+    drunkenness_level: 2,
+    difficulty: "Easy",
+  },
+  {
+    id: "seed-56",
+    slug: "drink-while-you-think",
+    name: "Drink While You Think",
+    description:
+      "Drink While You Think is a fast-response category game. If you hesitate, you drink while you think of an answer.",
+    rules_text:
+      "**Setup:**\n- Pick a starting player and choose a category (movies, cities, brands, etc.)\n\n**Gameplay:**\n- Players go around naming items in the category\n- If you pause for more than 3 seconds, you must drink while you think\n- You can stop drinking once you give a valid answer\n\n**Winning:**\n- Last player standing or play for a set number of rounds\n\n**House Rules:**\n- **Lightning Round:** Answers must be under 2 seconds\n- **Double Drink:** Repeat an answer and drink double\n- **Category Swap:** Every 10 answers, switch the category\n\n**Beginner Tips:**\n- Pick broad categories at first\n- Keep the pace steady so everyone stays engaged\n- Use smaller sips for longer rounds",
+    materials: ["no prop"],
+    min_players: 3,
+    max_players: 12,
+    alcohol_type: "any",
+    drunkenness_level: 2,
+    difficulty: "Easy",
+  },
+  {
+    id: "seed-57",
+    slug: "fuzzy-duck",
+    name: "Fuzzy Duck",
+    description:
+      "Fuzzy Duck is a tongue-twister drinking game where players repeat \"fuzzy duck\" around the circle. One player can reverse the flow and switch to \"ducky fuzz.\"",
+    rules_text:
+      "**Setup:**\n- Sit in a circle and choose a starting player\n\n**Gameplay:**\n- Players say \"fuzzy duck\" in order around the circle\n- At any time, a player can say \"does he?\" to reverse direction\n- After the reversal, players must say \"ducky fuzz\"\n- Mistakes or hesitation = drink\n\n**Winning:**\n- No formal winner. Play until the group is laughing too hard to continue\n\n**House Rules:**\n- **Double Reverse:** Two \"does he?\" calls in a row drinks\n- **Speed Round:** Increase speed every full lap\n- **Elimination:** Three mistakes and you're out\n\n**Beginner Tips:**\n- Slow down when switching phrases\n- Pay attention to direction changes\n- Keep it lighthearted—mistakes are the fun part",
+    materials: ["no prop"],
+    min_players: 3,
+    max_players: 12,
+    alcohol_type: "any",
+    drunkenness_level: 2,
+    difficulty: "Easy",
+  },
+  {
+    id: "seed-58",
+    slug: "the-name-game",
+    name: "The Name Game",
+    description:
+      "The Name Game is a classic category game where players must quickly name items in a chosen category. Hesitate or repeat and you drink.",
+    rules_text:
+      "**Setup:**\n- Choose a category (animals, bands, cocktails, etc.)\n- Pick a starting player\n\n**Gameplay:**\n- Players take turns naming something in the category\n- No repeats allowed\n- If you pause too long or repeat, you drink and the round restarts\n\n**Winning:**\n- No formal winner. Play as long as the category stays fresh\n\n**House Rules:**\n- **Alphabet Round:** Each answer must start with the next letter\n- **Double Sips:** If you repeat a used answer, drink twice\n- **No Stalling:** If you say \"uh\" or \"um,\" drink once\n\n**Beginner Tips:**\n- Start with broad categories\n- Keep a steady rhythm to avoid awkward pauses\n- Decide on a time limit (3 seconds) before starting",
+    materials: ["no prop"],
+    min_players: 3,
+    max_players: 15,
+    alcohol_type: "any",
+    drunkenness_level: 2,
+    difficulty: "Easy",
+  },
+  {
+    id: "seed-59",
+    slug: "going-on-a-picnic",
+    name: "I'm Going on a Picnic",
+    description:
+      "I'm Going on a Picnic is a memory game where players add items to a growing list. Forget an item and you drink.",
+    rules_text:
+      "**Setup:**\n- Sit in a circle and choose a starting player\n\n**Gameplay:**\n- Player 1 says: \"I'm going on a picnic and I'm bringing...\" plus an item\n- Player 2 repeats the list and adds their own item\n- Continue around the circle, repeating the full list each turn\n\n**Losing:**\n- If you miss an item or get the order wrong, you drink\n\n**House Rules:**\n- **Alphabet Rule:** Items must follow the alphabet in order\n- **Theme Round:** Items must match a theme (beach, movies, etc.)\n- **Double Trouble:** If you forget two items, drink twice\n\n**Beginner Tips:**\n- Keep items short and simple early\n- Pay attention and repeat the list quietly to yourself\n- Use sips instead of full drinks for longer rounds",
+    materials: ["no prop"],
+    min_players: 3,
+    max_players: 12,
+    alcohol_type: "any",
+    drunkenness_level: 1,
+    difficulty: "Easy",
+  },
+  {
+    id: "seed-60",
+    slug: "if-you-know-you-know",
+    name: "If You Know You Know",
+    description:
+      "If You Know You Know is a group in-joke guessing game. Players give cryptic clues about shared memories, and anyone who doesn't get it drinks.",
+    rules_text:
+      "**Setup:**\n- Sit in a circle with drinks\n- Choose a starting player\n\n**Gameplay:**\n- The clue-giver says an \"IYKYK\" statement about a shared memory (\"If you know, you know: the taco run\")\n- Players who understand stay silent\n- Players who don't know must drink\n- The clue-giver explains briefly after the drink\n\n**Winning:**\n- No formal winner. Play until everyone has shared a few clues\n\n**House Rules:**\n- **Double Sip:** If only one person knows, everyone else drinks twice\n- **Reverse:** If everyone knows, the clue-giver drinks\n- **Topic Round:** Limit clues to a theme (college, travel, work)\n\n**Beginner Tips:**\n- Keep clues friendly and inclusive\n- Avoid overly private or embarrassing stories\n- Use small sips so the game lasts longer",
+    materials: ["no prop"],
+    min_players: 3,
+    max_players: 12,
+    alcohol_type: "any",
+    drunkenness_level: 1,
+    difficulty: "Easy",
   },
 ];
 

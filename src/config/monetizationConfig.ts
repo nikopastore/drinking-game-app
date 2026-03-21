@@ -291,6 +291,67 @@ export const affiliateLinks: Record<string, { url: string; label: string; price?
   },
 };
 
+export interface BundleSuggestion {
+  id: string;
+  title: string;
+  description: string;
+  url: string;
+  price: string;
+  tags: string[];
+  appliesToMaterials: string[];
+  appliesToSlugs?: string[];
+}
+
+export const bundleSuggestions: BundleSuggestion[] = [
+  {
+    id: "bundle-beer-pong",
+    title: "Complete Beer Pong Kit",
+    description: "Cups, balls, and a folding table bundle for beer pong nights.",
+    url: "https://www.amazon.com/s?k=beer+pong+kit&tag=sipwiki-20",
+    price: "$85",
+    tags: ["beer pong", "bundle", "table"],
+    appliesToMaterials: ["ping pong balls", "red solo cups", "table"],
+    appliesToSlugs: ["beer-pong", "civil-war", "beer-ball", "rage-cage"],
+  },
+  {
+    id: "bundle-card-night",
+    title: "Card Game Starter Pack",
+    description: "Waterproof cards plus party cups for card-based drinking games.",
+    url: "https://www.amazon.com/s?k=waterproof+playing+cards&tag=sipwiki-20",
+    price: "$25",
+    tags: ["cards", "starter"],
+    appliesToMaterials: ["cards"],
+  },
+  {
+    id: "bundle-dice-night",
+    title: "Dice Night Bundle",
+    description: "Multi-pack dice set and shot cups for dice-heavy games.",
+    url: "https://www.amazon.com/s?k=drinking+dice+set&tag=sipwiki-20",
+    price: "$22",
+    tags: ["dice", "bundle"],
+    appliesToMaterials: ["dice"],
+  },
+  {
+    id: "bundle-flip-cup",
+    title: "Flip Cup Party Set",
+    description: "Bulk cups and a party table for fast team games.",
+    url: "https://www.amazon.com/s?k=flip+cup+set+party&tag=sipwiki-20",
+    price: "$35",
+    tags: ["cups", "team"],
+    appliesToMaterials: ["red solo cups", "table"],
+  },
+  {
+    id: "bundle-outdoor",
+    title: "Outdoor Party Games Kit",
+    description: "Great for lawn games like Flunkyball and Beer Die.",
+    url: "https://www.amazon.com/s?k=lawn+drinking+games+outdoor&tag=sipwiki-20",
+    price: "$45",
+    tags: ["outdoor", "lawn"],
+    appliesToMaterials: ["ball", "bottle", "table"],
+    appliesToSlugs: ["flunkyball", "beer-die", "beer-ball"],
+  },
+];
+
 // Items that are common but not typically "affiliate linkable" in this context
 // or items you don't want to monetize directly.
 export const nonAffiliateItems = [
@@ -316,10 +377,28 @@ export const hasAffiliateLink = (material: string): boolean => {
 // Helper function to get affiliate link for a material
 export const getAffiliateLink = (
   material: string
-): { url: string; label: string } | null => {
+): { url: string; label: string; price?: string } | null => {
   const normalizedMaterial = material.toLowerCase();
   if (hasAffiliateLink(normalizedMaterial)) {
     return affiliateLinks[normalizedMaterial];
   }
   return null;
+};
+
+export const getBundleSuggestions = (
+  materials: string[],
+  slug?: string
+): BundleSuggestion[] => {
+  const normalized = materials.map((material) => material.toLowerCase());
+
+  return bundleSuggestions.filter((bundle) => {
+    const matchesMaterials = bundle.appliesToMaterials.every((item) =>
+      normalized.includes(item)
+    );
+    const matchesSlug = Boolean(
+      slug && bundle.appliesToSlugs && bundle.appliesToSlugs.includes(slug)
+    );
+
+    return matchesMaterials || matchesSlug;
+  });
 };

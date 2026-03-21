@@ -11,7 +11,8 @@ type GameStructuredDataProps = {
   imageUrl?: string;
   datePublished?: string;
   dateModified?: string;
-  faqJsonLd?: Record<string, unknown> | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  faqJsonLd?: any;
 };
 
 const defaultAuthor = {

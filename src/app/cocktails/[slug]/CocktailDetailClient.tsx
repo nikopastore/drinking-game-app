@@ -97,6 +97,8 @@ export function CocktailDetailClient({ cocktail }: CocktailDetailClientProps) {
               src={cocktail.image}
               alt={cocktail.name}
               className="w-full h-full object-contain p-4"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-dark-900 to-transparent" />
           </div>
