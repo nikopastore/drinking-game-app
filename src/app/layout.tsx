@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
   // Brand-first title for brand searches
   title: {
-    default: "SipWiki - The #1 Drinking Game Rules & Party Game App",
+    default: "SipWiki - Drinking Game Rules & Party App",
     template: "%s | SipWiki",
   },
   description: "SipWiki is the ultimate party companion app. 30+ fun group games with rules, from classic Beer Pong to Kings Cup. Perfect icebreakers for house parties, pre-games, and game nights. Works offline!",
@@ -75,8 +75,8 @@ export const metadata: Metadata = {
     userScalable: false,
   },
   openGraph: {
-    title: "SipWiki - The #1 Drinking Game Rules & Party Game App",
-    description: "SipWiki has 30+ fun party games with complete rules. Perfect for house parties, pre-games, and breaking the ice. Free app that works offline!",
+    title: "SipWiki - Drinking Game Rules & Party App",
+    description: "Browse 50+ drinking games with complete rules. Card games, cup games, dice games, and no-prop favorites. Find the perfect party game tonight!",
     type: "website",
     locale: "en_US",
     siteName: "SipWiki",
@@ -84,10 +84,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SipWiki - The #1 Drinking Game Rules App",
-    description: "SipWiki has 30+ fun party games with rules. Perfect for house parties and game nights!",
-    site: "@sipwiki",
-    creator: "@sipwiki",
+    title: "SipWiki - Drinking Game Rules & Party App",
+    description: "Browse 50+ drinking games with complete rules. Find the perfect party game tonight!",
   },
   alternates: {
     canonical: "https://sipwiki.app",
