@@ -104,7 +104,14 @@ function generateGameFAQJsonLd(game: ReturnType<typeof getGameBySlug>) {
 
   const playerInfo = formatPlayerCount(game.min_players, game.max_players);
 
+  // Extract first paragraph of rules as a preview
+  const rulesPreview = game.rules_text.split("\n\n")[0]?.replace(/\*\*/g, "") || game.description;
+
   const faqs = [
+    {
+      question: `What are the rules for ${game.name}?`,
+      answer: `${game.name}: ${rulesPreview}`.substring(0, 500),
+    },
     {
       question: `How many people do you need to play ${game.name}?`,
       answer: `${game.name} requires ${playerInfo} players. ${game.min_players === game.max_players ? `This game works best with exactly ${game.min_players} players.` : game.max_players ? `It works with anywhere from ${game.min_players} to ${game.max_players} players.` : `It works with ${game.min_players} or more players.`}`,

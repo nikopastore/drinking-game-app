@@ -3,6 +3,7 @@ import {
   combineSchemas,
   generateGameHowToSchema,
   generateGameSchema,
+  generateWebPageSchema,
 } from "@/lib/schema";
 
 type GameStructuredDataProps = {
@@ -48,6 +49,13 @@ export function GameStructuredData({
     dateModified,
   });
 
+  // WebPage schema for SEO
+  const webPageSchema = generateWebPageSchema({
+    url,
+    name: game.name,
+    description: game.description,
+  });
+
   const graphSchema = combineSchemas([gameSchema, howToSchema]);
 
   return (
@@ -55,6 +63,10 @@ export function GameStructuredData({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(graphSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
       />
       {faqJsonLd ? (
         <script

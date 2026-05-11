@@ -115,6 +115,8 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-dark-900">
+      {/* Server-rendered H1 for SEO - rendered before client components */}
+      <h1 className="sr-only">SipWiki – Drinking Game Rules & Party App</h1>
       <Header onSearchClick={() => setIsSearchOpen(true)} />
       <Sidebar />
 
