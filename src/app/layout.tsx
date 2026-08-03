@@ -1,5 +1,6 @@
+
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Pacifico } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
 
@@ -15,11 +16,6 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const pacifico = Pacifico({
-  variable: "--font-pacifico",
-  subsets: ["latin"],
-  weight: "400",
-});
 
 export const metadata: Metadata = {
   // CRITICAL: This tells Google your canonical domain
@@ -62,7 +58,7 @@ export const metadata: Metadata = {
     "adult party ideas",
   ],
   manifest: "/manifest.json",
-  themeColor: "#ec4899",
+  themeColor: "#ff3d81",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
@@ -146,10 +142,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
-
         {/* Organization Schema for Brand Identity */}
         <script
           type="application/ld+json"
@@ -162,7 +154,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased min-h-screen bg-dark-900`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-dark-900`}
       >
         <Providers>{children}</Providers>
       </body>

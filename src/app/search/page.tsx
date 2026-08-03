@@ -41,7 +41,7 @@ export default function SearchPage() {
         className={`
           py-6 pb-24 md:pb-6 px-4
           transition-all duration-300 ease-in-out
-          ${isExpanded ? "md:ml-56" : "md:ml-16"}
+          ${isExpanded ? "md:ml-60" : "md:ml-[72px]"}
         `}
       >
         <div className="max-w-4xl mx-auto">

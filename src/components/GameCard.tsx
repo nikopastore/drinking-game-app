@@ -1,162 +1,128 @@
+
 "use client";
 
-import { Game } from "@/types";
-import { useRouter } from "next/navigation";
-import { Flame, Wine } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { Clock3, Flame, Users, Wine } from "lucide-react";
+import { Game } from "@/types";
+import { cn, formatPlayerCount } from "@/lib/utils";
 
 interface GameCardProps {
   game: Game;
   size?: "small" | "medium" | "large";
   showSipFactor?: boolean;
+  className?: string;
+  priority?: boolean;
 }
 
-// Generate a consistent color based on slug for placeholder
-const getPlaceholderGradient = (slug: string): string => {
-  const colors = [
-    "from-pink-600 to-purple-800",
-    "from-blue-600 to-cyan-800",
-    "from-orange-600 to-red-800",
-    "from-green-600 to-teal-800",
-    "from-yellow-600 to-orange-800",
-    "from-indigo-600 to-blue-800",
-    "from-rose-600 to-pink-800",
-    "from-violet-600 to-purple-800",
-  ];
+const gradients = [
+  "from-pink-600 to-purple-800",
+  "from-blue-600 to-cyan-800",
+  "from-orange-600 to-red-800",
+  "from-green-600 to-teal-800",
+  "from-yellow-600 to-orange-800",
+  "from-indigo-600 to-blue-800",
+];
 
-  let hash = 0;
-  for (let i = 0; i < slug.length; i++) {
-    hash = slug.charCodeAt(i) + ((hash << 5) - hash);
-  }
+function getPlaceholderGradient(slug: string): string {
+  const hash = Array.from(slug).reduce(
+    (value, character) => character.charCodeAt(0) + ((value << 5) - value),
+    0
+  );
+  return gradients[Math.abs(hash) % gradients.length];
+}
 
-  return colors[Math.abs(hash) % colors.length];
+function getGameEmoji(game: Game): string {
+  if (game.materials.includes("cards")) return "??";
+  if (game.materials.includes("ping pong balls")) return "??";
+  if (game.materials.includes("dice")) return "??";
+  if (game.materials.includes("cups")) return "??";
+  if (game.name.toLowerCase().includes("movie")) return "??";
+  if (/music|thunder/i.test(game.name)) return "??";
+  if (game.materials.includes("no prop")) return "???";
+  return "??";
+}
+
+const imageSizes = {
+  small: "aspect-[4/3]",
+  medium: "aspect-[4/3]",
+  large: "aspect-[16/10]",
 };
 
-// Get emoji for game type based on materials/name
-const getGameEmoji = (game: Game): string => {
-  if (game.materials.includes("cards")) return "🃏";
-  if (game.materials.includes("ping pong balls")) return "🏓";
-  if (game.materials.includes("dice")) return "🎲";
-  if (game.materials.includes("cups")) return "🥤";
-  if (game.name.toLowerCase().includes("movie")) return "🎬";
-  if (game.name.toLowerCase().includes("music") || game.name.toLowerCase().includes("thunder")) return "🎵";
-  if (game.materials.includes("no prop")) return "🗣️";
-  return "🍻";
-};
-
-export function GameCard({ game, size = "medium", showSipFactor = false }: GameCardProps) {
-  const router = useRouter();
-
-  const handleClick = () => {
-    router.push(`/games/${game.slug}`);
-  };
-
-  const sizeClasses = {
-    small: "w-28 h-40 sm:w-32 sm:h-44",
-    medium: "w-36 h-52 sm:w-40 sm:h-56",
-    large: "w-44 h-60 sm:w-48 sm:h-64",
-  };
-
-  const titleSizes = {
-    small: "text-xs",
-    medium: "text-sm",
-    large: "text-base",
-  };
-
-  const emojiSizes = {
-    small: "text-4xl",
-    medium: "text-5xl",
-    large: "text-6xl",
-  };
-
-  const iconSizes = {
-    small: "h-3 w-3",
-    medium: "h-3.5 w-3.5",
-    large: "h-4 w-4",
-  };
-
+export function GameCard({
+  game,
+  size = "medium",
+  showSipFactor = false,
+  className,
+  priority = false,
+}: GameCardProps) {
   return (
-    <div className="flex flex-col flex-shrink-0 relative hover:z-50">
-      <div
-        onClick={handleClick}
-        className={`${sizeClasses[size]} cursor-pointer group relative rounded-xl overflow-hidden transition-all duration-150 hover:scale-[1.03] hover:brightness-110 hover:shadow-xl hover:shadow-neon-pink/30 active:scale-95 active:brightness-90`}
+    <article className={cn("group min-w-0", className)}>
+      <Link
+        href={"/games/" + game.slug}
+        className="block overflow-hidden rounded-[1.35rem] border border-white/10 bg-dark-800 shadow-[0_18px_50px_rgba(0,0,0,.22)] transition duration-300 hover:-translate-y-1 hover:border-neon-pink/50 hover:shadow-[0_22px_60px_rgba(255,61,129,.16)] active:translate-y-0"
+        aria-label={"View " + game.name + " rules"}
       >
-        {/* Background - Image or Gradient Placeholder */}
-        {game.image ? (
-          <Image
-            src={game.image}
-            alt={game.name}
-            fill
-            className="object-cover"
-            sizes="(max-width: 640px) 144px, 192px"
-          />
-        ) : (
-          <div className={`absolute inset-0 bg-gradient-to-br ${getPlaceholderGradient(game.slug)}`}>
-            {/* Placeholder emoji */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-30">
-              <span className={emojiSizes[size]}>{getGameEmoji(game)}</span>
+        <div className={cn("relative overflow-hidden bg-dark-700", imageSizes[size])}>
+          {game.image ? (
+            <Image
+              src={game.image}
+              alt={game.name}
+              fill
+              priority={priority}
+              className="object-cover transition duration-500 group-hover:scale-[1.04]"
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 280px"
+            />
+          ) : (
+            <div className={cn("absolute inset-0 flex items-center justify-center bg-gradient-to-br", getPlaceholderGradient(game.slug))}>
+              <span className="text-5xl opacity-70" aria-hidden="true">{getGameEmoji(game)}</span>
             </div>
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-dark-900/55 via-transparent to-transparent" />
+          <div className="absolute left-3 top-3 flex items-center gap-1 rounded-full border border-white/15 bg-dark-900/75 px-2.5 py-1 text-[11px] font-bold text-white backdrop-blur-md">
+            <Flame className="h-3 w-3 text-neon-pink" />
+            Sip {game.drunkenness_level}/5
           </div>
-        )}
+        </div>
 
-        {/* Gradient overlay for text readability - only for games without cover images */}
-        {!game.image && (
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-        )}
-
-        {/* Hover glow effect */}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-neon-pink/30 to-transparent" />
-
-        {/* Content - only show for games without cover images */}
-        {!game.image && (
-          <div className="absolute bottom-0 left-0 right-0 p-3">
-            {/* Drunkenness indicator */}
-            <div className="flex gap-0.5 mb-1.5">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Flame
-                  key={i}
-                  className={`h-3 w-3 ${
-                    i < game.drunkenness_level
-                      ? "text-neon-pink drop-shadow-[0_0_4px_rgba(236,72,153,0.8)]"
-                      : "text-gray-600"
-                  }`}
-                />
-              ))}
-            </div>
-
-            {/* Title */}
-            <h3 className={`${titleSizes[size]} font-bold text-white leading-tight line-clamp-2 drop-shadow-lg`}>
-              {game.name}
-            </h3>
+        <div className="p-4">
+          <h3 className={cn("font-extrabold tracking-[-0.025em] text-white", size === "large" ? "text-xl" : "text-base")}>
+            {game.name}
+          </h3>
+          <p className="mt-1 line-clamp-2 min-h-10 text-sm leading-5 text-muted">
+            {game.description}
+          </p>
+          <div className="mt-4 flex items-center gap-3 border-t border-white/8 pt-3 text-xs font-medium text-gray-300">
+            <span className="flex items-center gap-1.5">
+              <Users className="h-3.5 w-3.5 text-neon-blue" />
+              {formatPlayerCount(game.min_players, game.max_players)}
+            </span>
+            {game.estimated_time_minutes && (
+              <span className="flex items-center gap-1.5">
+                <Clock3 className="h-3.5 w-3.5 text-neon-yellow" />
+                {game.estimated_time_minutes.min}{game.estimated_time_minutes.max ? "?" + game.estimated_time_minutes.max : ""}m
+              </span>
+            )}
           </div>
-        )}
+        </div>
+      </Link>
 
-        {/* Border on hover */}
-        <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-neon-pink/50 transition-colors duration-300" />
-      </div>
-
-      {/* Sip Factor Display - shown below the card */}
       {showSipFactor && (
-        <div className="mt-2 flex justify-center group/sip relative">
-          <div className="flex items-center gap-0.5 cursor-help">
-            {Array.from({ length: 5 }).map((_, i) => (
+        <div className="group/sip relative mt-2 flex justify-center" aria-label={"Sip factor " + game.drunkenness_level + " out of 5"}>
+          <div className="flex items-center gap-0.5">
+            {Array.from({ length: 5 }).map((_, index) => (
               <Wine
-                key={i}
-                className={`h-4 w-4 ${
-                  i < game.drunkenness_level
-                    ? "text-neon-pink drop-shadow-[0_0_6px_rgba(255,45,146,0.9)]"
-                    : "text-gray-600"
-                }`}
+                key={index}
+                className={cn("h-3.5 w-3.5", index < game.drunkenness_level ? "text-neon-pink" : "text-dark-600")}
+                aria-hidden="true"
               />
             ))}
           </div>
-          {/* Tooltip */}
-          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-dark-700 text-white text-xs rounded-lg opacity-0 invisible group-hover/sip:opacity-100 group-hover/sip:visible transition-all duration-200 whitespace-nowrap z-50 pointer-events-none border border-dark-600">
-            <span className="font-semibold text-neon-pink">Sip Factor:</span> How much you&apos;ll drink. More glasses = more sips!
-            <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-dark-700" />
-          </div>
+          <span className="pointer-events-none invisible absolute bottom-full z-20 mb-2 rounded-lg border border-white/10 bg-dark-700 px-3 py-2 text-xs text-white opacity-0 shadow-xl transition group-hover/sip:visible group-hover/sip:opacity-100">
+            <strong className="text-neon-pink">Sip Factor:</strong> more glasses means more sips.
+          </span>
         </div>
       )}
-    </div>
+    </article>
   );
 }
