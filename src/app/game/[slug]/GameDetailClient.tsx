@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Game } from "@/types";
@@ -12,6 +13,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { formatPlayerCount, getDrunkennessLabel } from "@/lib/utils";
 import { formatMarkdownBold } from "@/lib/sanitize";
 import { WhatYouNeed } from "@/components/WhatYouNeed";
@@ -76,7 +78,7 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
     <div className="min-h-screen bg-dark-900">
       <Header />
 
-      <main className="max-w-6xl mx-auto px-4 py-8">
+      <main className="mx-auto max-w-6xl px-4 py-8 sm:py-12">
         <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-8">
           <div>
             {/* Breadcrumb Navigation for SEO */}
@@ -113,34 +115,46 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
 
         {/* Header Section */}
         <div className="mb-8">
-          {/* Video Section */}
+          {/* Game media */}
           {game.video_url ? (
-            <div className="aspect-video bg-dark-800 rounded-xl border border-dark-600 mb-6 overflow-hidden">
+            <div className="mb-7 aspect-video overflow-hidden rounded-[1.5rem] border border-white/10 bg-dark-800 shadow-[0_22px_70px_rgba(0,0,0,.3)]">
               <iframe
                 src={getYouTubeEmbedUrl(game.video_url)}
-                title={`How to play ${game.name} - Video tutorial`}
+                title={"How to play " + game.name + " - Video tutorial"}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 loading="lazy"
-                className="w-full h-full"
+                className="h-full w-full"
               />
             </div>
+          ) : game.image ? (
+            <div className="relative mb-7 aspect-[16/9] overflow-hidden rounded-[1.5rem] border border-white/10 bg-dark-800 shadow-[0_22px_70px_rgba(0,0,0,.3)]">
+              <Image
+                src={game.image}
+                alt={game.name}
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 850px"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark-900/75 via-transparent to-transparent" />
+              <span className="night-kicker absolute bottom-5 left-5 rounded-full border border-white/12 bg-dark-900/75 px-3 py-2 backdrop-blur">
+                SipWiki game guide
+              </span>
+            </div>
           ) : (
-            <div className="aspect-video bg-dark-800 rounded-xl border border-dark-600 mb-6 flex items-center justify-center">
-              <div className="text-center">
-                <Play className="h-16 w-16 text-dark-600 mx-auto mb-2" />
-                <p className="text-gray-500">Demo video coming soon</p>
-              </div>
+            <div className="night-panel mb-7 flex aspect-[16/7] items-center justify-center">
+              <Package className="h-12 w-12 text-neon-purple" />
             </div>
           )}
 
           {/* Title and metadata */}
           <div className="flex items-start justify-between gap-4">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
-                {game.name} Drinking Game – Rules & How to Play
+              <h1 className="night-heading mb-3 text-4xl md:text-6xl">
+                {game.name} Drinking Game ? Rules & How to Play
               </h1>
-              <h2 className="text-lg text-neon-pink mb-4">
+              <h2 className="night-kicker mb-4">
                 Official rules, setup, and gameplay steps
               </h2>
             </div>
@@ -404,7 +418,7 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
         )}
 
         {/* Sticky Play Button */}
-            <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-dark-900 via-dark-900 to-transparent">
+            <div className="fixed inset-x-0 bottom-0 z-30 bg-gradient-to-t from-dark-900 via-dark-900/95 to-transparent p-4">
               <div className="max-w-4xl mx-auto">
                 <Link href={`/play/${game.slug}`}>
                   <Button size="lg" className="w-full text-lg py-4">
@@ -418,9 +432,20 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
 
           <aside className="hidden lg:block">
             <div className="sticky top-24 space-y-4">
-              {/* AdSense Sidebar Ad Placeholder */}
-              <div className="flex h-[600px] items-center justify-center rounded-xl border border-dashed border-dark-600 bg-dark-800/40 px-4 text-center text-sm text-gray-500">
-                Ad Placeholder - Game Sidebar
+              <div className="night-panel p-5">
+                <p className="night-kicker">Keep playing</p>
+                <h2 className="mt-2 text-xl font-extrabold text-white">Build the rest of the night</h2>
+                <div className="mt-5 space-y-2">
+                  <Link href="/spin" className="flex items-center justify-between rounded-2xl border border-white/8 bg-white/[.025] p-4 text-sm font-bold text-white transition hover:border-neon-pink/40">
+                    Spin for another game <ChevronRight className="h-4 w-4 text-neon-pink" />
+                  </Link>
+                  <Link href="/party-planner" className="flex items-center justify-between rounded-2xl border border-white/8 bg-white/[.025] p-4 text-sm font-bold text-white transition hover:border-neon-purple/40">
+                    Open party planner <ChevronRight className="h-4 w-4 text-neon-purple" />
+                  </Link>
+                  <Link href="/games" className="flex items-center justify-between rounded-2xl border border-white/8 bg-white/[.025] p-4 text-sm font-bold text-white transition hover:border-neon-blue/40">
+                    Browse all games <ChevronRight className="h-4 w-4 text-neon-blue" />
+                  </Link>
+                </div>
               </div>
             </div>
           </aside>

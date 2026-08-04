@@ -150,7 +150,7 @@ Made with SipWiki Party Planner`;
       <main
         className={`
           transition-all duration-300 ease-in-out pb-24 md:pb-8
-          ${isExpanded ? "md:ml-56" : "md:ml-16"}
+          ${isExpanded ? "md:ml-60" : "md:ml-[72px]"}
         `}
       >
         {/* Hero Section */}

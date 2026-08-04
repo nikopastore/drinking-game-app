@@ -51,7 +51,7 @@ function QuizHubClient() {
       <Header />
       <Sidebar />
 
-      <main className="md:ml-16 transition-all duration-300 ease-in-out pb-24 md:pb-8">
+      <main className="md:ml-[72px] transition-all duration-300 ease-in-out pb-24 md:pb-8">
         {/* Hero Section */}
         <div className="bg-gradient-to-br from-neon-pink/20 via-dark-800 to-neon-purple/20 border-b border-dark-600">
           <div className="max-w-4xl mx-auto px-4 py-12 text-center">

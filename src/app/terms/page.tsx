@@ -18,7 +18,7 @@ export default function TermsPage() {
         className={`
           max-w-4xl mx-auto px-4 py-8 pb-24 md:pb-8
           transition-all duration-300 ease-in-out
-          ${isExpanded ? "md:ml-56" : "md:ml-16"}
+          ${isExpanded ? "md:ml-60" : "md:ml-[72px]"}
         `}
       >
         <h1 className="text-3xl font-bold text-white mb-6">Terms of Service</h1>

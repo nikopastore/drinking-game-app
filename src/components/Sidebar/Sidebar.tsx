@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import Link from "next/link";
@@ -20,7 +22,6 @@ import {
   Sparkles,
   CircleDot,
   Martini,
-  Wine,
   GlassWater,
   Grape,
   Citrus,
@@ -127,19 +128,19 @@ function NavItemButton({ item, isActive }: { item: NavItem; isActive: boolean })
 
   // Use different accent colors based on mode
   const activeClass = mode === "games"
-    ? "bg-neon-pink/20 text-neon-pink"
-    : "bg-neon-purple/20 text-neon-purple";
+    ? "bg-[#fff7eb] text-dark-900 shadow-sm"
+    : "bg-neon-purple text-white shadow-sm";
 
-  const activeIconClass = mode === "games" ? "text-neon-pink" : "text-neon-purple";
+  const activeIconClass = mode === "games" ? "text-dark-900" : "text-white";
 
   return (
     <Link
       href={item.href}
       className={`
-        group relative flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200
+        group relative flex items-center gap-3 rounded-2xl px-3 py-2.5 transition-all duration-200
         ${isActive
           ? activeClass
-          : "text-gray-400 hover:bg-dark-700 hover:text-white"
+          : "text-muted hover:bg-white/6 hover:text-white"
         }
         ${isExpanded ? "justify-start" : "justify-center"}
       `}
@@ -156,7 +157,7 @@ function NavItemButton({ item, isActive }: { item: NavItem; isActive: boolean })
       {/* Tooltip - visible when collapsed and hovering */}
       {!isExpanded && (
         <div className="
-          absolute left-full ml-2 px-2 py-1 bg-dark-700 text-white text-sm rounded-md
+          absolute left-full ml-3 rounded-xl border border-white/10 bg-dark-700 px-3 py-2 text-sm text-white shadow-xl
           opacity-0 invisible group-hover:opacity-100 group-hover:visible
           transition-all duration-200 whitespace-nowrap z-50
           pointer-events-none
@@ -183,17 +184,17 @@ export function Sidebar() {
   return (
     <aside
       className={`
-        fixed left-0 top-14 bottom-0 z-30
-        bg-dark-900 border-r border-dark-600
+        fixed bottom-0 left-0 top-[72px] z-30
+        border-r border-white/8 bg-dark-900/72 backdrop-blur-xl
         transition-all duration-300 ease-in-out
         overflow-y-auto overflow-x-hidden
         hidden md:block
-        ${isExpanded ? "w-56" : "w-16"}
+        ${isExpanded ? "w-60" : "w-[72px]"}
       `}
     >
-      <nav className="p-2 space-y-1">
+      <nav className="space-y-1 p-3">
         {/* Top Section (Shared) */}
-        <div className="pb-2 mb-2 border-b border-dark-600">
+        <div className="pb-2 mb-2 border-b border-white/8">
           {sharedNavItems.map((item) => (
             <NavItemButton
               key={item.href}
@@ -206,7 +207,7 @@ export function Sidebar() {
         {/* Categories Section */}
         {isExpanded && (
           <div className="px-3 py-2">
-            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-muted uppercase tracking-wider">
               {categoryLabel}
             </span>
           </div>
@@ -221,10 +222,10 @@ export function Sidebar() {
         ))}
 
         {/* Tools Section */}
-        <div className="pt-2 mt-2 border-t border-dark-600">
+        <div className="pt-2 mt-2 border-t border-white/8">
           {isExpanded && (
             <div className="px-3 py-2">
-              <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              <span className="text-xs font-semibold text-muted uppercase tracking-wider">
                 {toolsLabel}
               </span>
             </div>

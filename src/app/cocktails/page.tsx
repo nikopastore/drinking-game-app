@@ -197,7 +197,7 @@ export default function CocktailsPage() {
         className={`
           max-w-6xl mx-auto px-4 py-8 pb-24 md:pb-8
           transition-all duration-300 ease-in-out
-          ${isExpanded ? "md:ml-56" : "md:ml-16"}
+          ${isExpanded ? "md:ml-60" : "md:ml-[72px]"}
         `}
       >
         {/* Hero */}
