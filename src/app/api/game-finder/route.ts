@@ -81,7 +81,7 @@ export async function POST(request: NextRequest) {
 
   const parsed = requestSchema.safeParse(body);
   if (!parsed.success) {
-    return json({ error: "Describe the kind of SipWiki game you want in 3?300 characters." }, 400, rateHeaders);
+    return json({ error: "Describe the kind of SipWiki game you want in 3-300 characters." }, 400, rateHeaders);
   }
 
   const query = parsed.data.query;
@@ -95,9 +95,9 @@ export async function POST(request: NextRequest) {
     }, 200, rateHeaders);
   }
 
-  const model = process.env.GEMINI_MODEL || "gemini-2.5-flash-lite";
+  const model = process.env.GEMINI_MODEL || "gemini-3.5-flash";
   const systemInstruction = [
-    "You are SipWiki?s game finder.",
+    "You are SipWiki's game finder.",
     "Your entire knowledge base for this answer is the supplied SipWiki game catalog.",
     "Only recommend exact slugs from the catalog. Never invent games, rules, facts, URLs, or availability.",
     "Do not answer questions outside finding or explaining games represented in this catalog.",
@@ -137,7 +137,7 @@ export async function POST(request: NextRequest) {
       console.error("Gemini game finder request failed", response.status);
       return json({
         ...fallback,
-        notice: "Gemini is temporarily unavailable, so these matches were found directly from SipWiki?s catalog.",
+        notice: "Gemini is temporarily unavailable, so these matches were found directly from SipWiki's catalog.",
       }, 200, rateHeaders);
     }
 
@@ -153,7 +153,7 @@ export async function POST(request: NextRequest) {
     console.error("Gemini game finder error", error instanceof Error ? error.message : "Unknown error");
     return json({
       ...fallback,
-      notice: "Gemini is temporarily unavailable, so these matches were found directly from SipWiki?s catalog.",
+      notice: "Gemini is temporarily unavailable, so these matches were found directly from SipWiki's catalog.",
     }, 200, rateHeaders);
   }
 }

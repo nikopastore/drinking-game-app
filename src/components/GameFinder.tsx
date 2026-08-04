@@ -8,10 +8,10 @@ import { GameCard } from "@/components/GameCard";
 import { cn } from "@/lib/utils";
 
 const quickPrompts = [
-  "6 people ? no props ? quick",
-  "2 players ? chill ? cards",
-  "big group ? high energy",
-  "beer game ? 20 minutes",
+  "6 people / no props / quick",
+  "2 players / chill / cards",
+  "big group / high energy",
+  "beer game / 20 minutes",
 ];
 
 export function GameFinder() {
@@ -31,7 +31,7 @@ export function GameFinder() {
   async function search(searchQuery: string) {
     const cleaned = searchQuery.trim();
     if (cleaned.length < 3) {
-      setError("Tell us a little more?group size, supplies, mood, or time.");
+      setError("Tell us a little more - group size, supplies, mood, or time.");
       return;
     }
 
@@ -66,7 +66,7 @@ export function GameFinder() {
         </span>
         <div>
           <p className="night-kicker">SipWiki AI</p>
-          <h2 id="game-finder-title" className="text-xl font-extrabold tracking-tight text-white">Describe the night. We?ll pick the game.</h2>
+          <h2 id="game-finder-title" className="text-xl font-extrabold tracking-tight text-white">Describe the night. We&apos;ll pick the game.</h2>
         </div>
       </div>
 
@@ -110,7 +110,7 @@ export function GameFinder() {
 
       <p className="mt-3 flex items-center gap-2 text-xs text-muted">
         <ShieldCheck className="h-3.5 w-3.5 text-neon-green" />
-        Grounded in SipWiki?s catalog. Recommendations are verified before they appear.
+        Grounded in SipWiki&apos;s catalog. Recommendations are verified before they appear.
       </p>
 
       {(error || result?.notice) && (

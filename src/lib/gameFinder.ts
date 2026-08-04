@@ -127,7 +127,7 @@ export function findCatalogMatches(query: string, catalog: Game[], limit = 3): G
   return {
     query,
     summary: signals.isSiteIntent
-      ? "These are the closest matches from SipWiki?s game library."
+      ? "These are the closest matches from SipWiki's game library."
       : "I can only help with games and information in SipWiki, so here are a few library favorites.",
     recommendations,
     source: "catalog",
