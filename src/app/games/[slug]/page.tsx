@@ -15,6 +15,7 @@ import { CategoryPageClient } from "./CategoryPageClient";
 import { GameDetailClient } from "@/app/game/[slug]/GameDetailClient";
 import { GameStructuredData } from "@/components/seo";
 import { formatPlayerCount } from "@/lib/utils";
+import { getGameMetadataTitle } from "@/lib/seoTitles";
 import { generateFAQSchema } from "@/lib/schema";
 
 interface PageProps {
@@ -61,7 +62,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const seoTitle = `${game.name} Rules - How to Play | SipWiki`;
+  const seoTitle = getGameMetadataTitle(game.name);
   const playerInfo = formatPlayerCount(game.min_players, game.max_players);
   const materialsInfo =
     game.materials[0] === "no prop"
