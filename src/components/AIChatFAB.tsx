@@ -52,7 +52,7 @@ export function AIChatFAB({ game }: AIChatFABProps) {
 
       const data = await res.json();
       addMessage({ role: "assistant", content: data.reply });
-    } catch (error) {
+    } catch {
       addMessage({
         role: "assistant",
         content: "Oops! Something went wrong. Try again!",
