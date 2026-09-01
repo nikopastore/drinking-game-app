@@ -1,0 +1,11 @@
+{
+  "name": "SipWiki",
+  "install": "npm ci",
+  "terminals": [
+    {
+      "name": "dev",
+      "command": "npm run dev -- --port 4323"
+    }
+  ],
+  "ports": [4323]
+}
