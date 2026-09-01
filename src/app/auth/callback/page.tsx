@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { safeNextPath } from "@/lib/authRedirect";
 
 // This page handles the OAuth callback on the client side
 // Used for mobile app builds where server-side route handlers don't work
@@ -13,7 +14,7 @@ export default function AuthCallbackPage() {
   useEffect(() => {
     const handleCallback = async () => {
       const code = searchParams.get("code");
-      const next = searchParams.get("next") ?? "/";
+      const next = safeNextPath(searchParams.get("next"));
 
       console.log("[Auth Callback] Starting with code:", code ? "present" : "missing");
 

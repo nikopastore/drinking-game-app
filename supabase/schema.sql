@@ -20,6 +20,12 @@ CREATE TABLE IF NOT EXISTS games (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
+ALTER TABLE games ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Anyone can read games"
+  ON games FOR SELECT
+  USING (true);
+
 -- ============================================
 -- COMMENTS TABLE
 -- ============================================
@@ -170,29 +176,72 @@ CREATE POLICY "Anyone can insert email subscribers"
 -- FUNCTIONS
 -- ============================================
 
--- Function to increment comment upvotes
+-- Function to increment comment upvotes (legacy no-op; count is trigger-maintained)
 CREATE OR REPLACE FUNCTION increment_comment_upvotes(comment_uuid UUID)
-RETURNS void AS $$
+RETURNS void
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
 BEGIN
-  UPDATE comments
-  SET upvotes = upvotes + 1
-  WHERE id = comment_uuid;
+  IF auth.uid() IS NULL THEN
+    RAISE EXCEPTION 'Not authenticated';
+  END IF;
+  -- Intentionally empty: comment.upvotes is updated by comment_upvotes_sync
+  RETURN;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$;
 
--- Function to decrement comment upvotes
+-- Function to decrement comment upvotes (legacy no-op; count is trigger-maintained)
 CREATE OR REPLACE FUNCTION decrement_comment_upvotes(comment_uuid UUID)
-RETURNS void AS $$
+RETURNS void
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
 BEGIN
-  UPDATE comments
-  SET upvotes = GREATEST(0, upvotes - 1)
-  WHERE id = comment_uuid;
+  IF auth.uid() IS NULL THEN
+    RAISE EXCEPTION 'Not authenticated';
+  END IF;
+  RETURN;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$;
+
+CREATE OR REPLACE FUNCTION sync_comment_upvote_count()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+BEGIN
+  IF TG_OP = 'INSERT' THEN
+    UPDATE comments SET upvotes = upvotes + 1 WHERE id = NEW.comment_id;
+    RETURN NEW;
+  ELSIF TG_OP = 'DELETE' THEN
+    UPDATE comments SET upvotes = GREATEST(0, upvotes - 1) WHERE id = OLD.comment_id;
+    RETURN OLD;
+  END IF;
+  RETURN NULL;
+END;
+$$;
+
+DROP TRIGGER IF EXISTS comment_upvotes_sync ON comment_upvotes;
+CREATE TRIGGER comment_upvotes_sync
+  AFTER INSERT OR DELETE ON comment_upvotes
+  FOR EACH ROW
+  EXECUTE FUNCTION sync_comment_upvote_count();
+
+REVOKE ALL ON FUNCTION increment_comment_upvotes(UUID) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION increment_comment_upvotes(UUID) TO authenticated;
+REVOKE ALL ON FUNCTION decrement_comment_upvotes(UUID) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION decrement_comment_upvotes(UUID) TO authenticated;
 
 -- Function to get average rating for a game
 CREATE OR REPLACE FUNCTION get_game_rating(game_slug TEXT)
-RETURNS TABLE(average_rating NUMERIC, total_ratings BIGINT) AS $$
+RETURNS TABLE(average_rating NUMERIC, total_ratings BIGINT)
+LANGUAGE plpgsql
+SET search_path = public
+AS $$
 BEGIN
   RETURN QUERY
   SELECT
@@ -201,7 +250,7 @@ BEGIN
   FROM ratings
   WHERE game_id = game_slug;
 END;
-$$ LANGUAGE plpgsql;
+$$;
 
 -- ============================================
 -- USER PROFILES TABLE (extends auth.users)
@@ -251,9 +300,9 @@ CREATE INDEX idx_friendships_friend_id ON friendships(friend_id);
 -- ============================================
 ALTER TABLE user_profiles ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Anyone can read user profiles"
+CREATE POLICY "Users can read their own profile"
   ON user_profiles FOR SELECT
-  USING (true);
+  USING (auth.uid() = id);
 
 CREATE POLICY "Users can insert their own profile"
   ON user_profiles FOR INSERT
@@ -301,7 +350,17 @@ RETURNS TABLE (
   friend_id UUID,
   display_name TEXT,
   avatar_url TEXT
-) AS $$
+)
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+BEGIN
+  IF auth.uid() IS NULL OR auth.uid() <> p_user_id THEN
+    RAISE EXCEPTION 'Not authorized';
+  END IF;
+
+  RETURN QUERY
   SELECT DISTINCT
     up.id as friend_id,
     up.display_name,
@@ -311,7 +370,11 @@ RETURNS TABLE (
   JOIN user_profiles up ON friend_uc.user_id = up.id
   WHERE uc.user_id = p_user_id
     AND friend_uc.user_id != p_user_id;
-$$ LANGUAGE sql SECURITY DEFINER;
+END;
+$$;
+
+REVOKE ALL ON FUNCTION find_friends(UUID) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION find_friends(UUID) TO authenticated;
 
 -- ============================================
 -- AUTO-UPDATE TIMESTAMP TRIGGER
@@ -374,10 +437,18 @@ CREATE OR REPLACE FUNCTION toggle_favorite(
   p_item_slug TEXT,
   p_item_name TEXT
 )
-RETURNS BOOLEAN AS $$
+RETURNS BOOLEAN
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
 DECLARE
   v_exists BOOLEAN;
 BEGIN
+  IF auth.uid() IS NULL OR auth.uid() <> p_user_id THEN
+    RAISE EXCEPTION 'Not authorized';
+  END IF;
+
   SELECT EXISTS(
     SELECT 1 FROM favorites
     WHERE user_id = p_user_id
@@ -397,7 +468,10 @@ BEGIN
     RETURN TRUE; -- Added to favorites
   END IF;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$;
+
+REVOKE ALL ON FUNCTION toggle_favorite(UUID, TEXT, TEXT, TEXT) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION toggle_favorite(UUID, TEXT, TEXT, TEXT) TO authenticated;
 
 -- Function to get user's favorites by type
 CREATE OR REPLACE FUNCTION get_user_favorites(p_user_id UUID, p_item_type TEXT)
@@ -405,8 +479,16 @@ RETURNS TABLE (
   item_slug TEXT,
   item_name TEXT,
   created_at TIMESTAMPTZ
-) AS $$
+)
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
 BEGIN
+  IF auth.uid() IS NULL OR auth.uid() <> p_user_id THEN
+    RAISE EXCEPTION 'Not authorized';
+  END IF;
+
   RETURN QUERY
   SELECT f.item_slug, f.item_name, f.created_at
   FROM favorites f
@@ -414,12 +496,23 @@ BEGIN
   AND f.item_type = p_item_type
   ORDER BY f.created_at DESC;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$;
+
+REVOKE ALL ON FUNCTION get_user_favorites(UUID, TEXT) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION get_user_favorites(UUID, TEXT) TO authenticated;
 
 -- Function to check if item is favorited
 CREATE OR REPLACE FUNCTION is_favorited(p_user_id UUID, p_item_type TEXT, p_item_slug TEXT)
-RETURNS BOOLEAN AS $$
+RETURNS BOOLEAN
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
 BEGIN
+  IF auth.uid() IS NULL OR auth.uid() <> p_user_id THEN
+    RAISE EXCEPTION 'Not authorized';
+  END IF;
+
   RETURN EXISTS(
     SELECT 1 FROM favorites
     WHERE user_id = p_user_id
@@ -427,4 +520,7 @@ BEGIN
     AND item_slug = p_item_slug
   );
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$;
+
+REVOKE ALL ON FUNCTION is_favorited(UUID, TEXT, TEXT) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION is_favorited(UUID, TEXT, TEXT) TO authenticated;

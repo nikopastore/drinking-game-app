@@ -114,11 +114,10 @@ export function checkRateLimit(
  * Handles various proxy headers
  */
 export function getClientIP(request: Request): string {
-  // Check various headers that proxies use
-  const forwardedFor = request.headers.get("x-forwarded-for");
-  if (forwardedFor) {
-    // x-forwarded-for can contain multiple IPs, take the first one
-    return forwardedFor.split(",")[0].trim();
+  // Prefer platform-controlled headers. Clients can set x-forwarded-for.
+  const vercelForwardedFor = request.headers.get("x-vercel-forwarded-for");
+  if (vercelForwardedFor) {
+    return vercelForwardedFor.split(",")[0].trim();
   }
 
   const realIP = request.headers.get("x-real-ip");
@@ -126,13 +125,11 @@ export function getClientIP(request: Request): string {
     return realIP.trim();
   }
 
-  // Vercel-specific header
-  const vercelForwardedFor = request.headers.get("x-vercel-forwarded-for");
-  if (vercelForwardedFor) {
-    return vercelForwardedFor.split(",")[0].trim();
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  if (forwardedFor) {
+    return forwardedFor.split(",")[0].trim();
   }
 
-  // Fallback to a default identifier
   return "unknown";
 }
 
