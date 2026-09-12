@@ -4,6 +4,7 @@ import { Citrus } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/cocktails/rum" },
   title: "Rum Cocktails - SipWiki",
   description: "Discover tropical rum cocktail recipes. From Mojitos to Piña Coladas, find your perfect rum drink.",
 };

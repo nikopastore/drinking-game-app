@@ -4,6 +4,7 @@ import { PartyPopper } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/cocktails/party" },
   title: "Party Drinks - SipWiki",
   description: "Discover crowd-pleasing party cocktail recipes. Perfect drinks for entertaining and celebrations.",
 };

@@ -4,6 +4,7 @@ import { Wheat } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/cocktails/whiskey" },
   title: "Whiskey Cocktails - SipWiki",
   description: "Discover classic whiskey cocktail recipes. From Old Fashioneds to Manhattans, find your perfect whiskey drink.",
 };

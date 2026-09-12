@@ -39,6 +39,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: seoTitle,
     description: seoDescription,
+    alternates: { canonical: `/cocktails/${cocktail.slug}` },
     keywords: [
       `${cocktail.name.toLowerCase()} recipe`,
       `how to make ${cocktail.name.toLowerCase()}`,

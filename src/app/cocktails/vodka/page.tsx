@@ -4,6 +4,7 @@ import { GlassWater } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/cocktails/vodka" },
   title: "Vodka Cocktails - SipWiki",
   description: "Discover the best vodka cocktail recipes. From Moscow Mules to Cosmopolitans, find your perfect vodka drink.",
 };

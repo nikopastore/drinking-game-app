@@ -4,6 +4,7 @@ import { Leaf } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/cocktails/mocktails" },
   title: "Mocktails - Non-Alcoholic Drinks - SipWiki",
   description: "Discover refreshing non-alcoholic mocktail recipes. Perfect for designated drivers, kids, or anyone taking a break.",
 };

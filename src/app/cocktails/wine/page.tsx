@@ -4,6 +4,7 @@ import { Grape } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/cocktails/wine" },
   title: "Wine Cocktails - SipWiki",
   description: "Discover refreshing wine cocktail recipes. From Sangria to Spritzers, find your perfect wine-based drink.",
 };

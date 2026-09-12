@@ -1,7 +1,15 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { tvGames } from "@/config/tvGameData";
 import { Header } from "@/components/Header";
 import { Card, CardContent, Badge } from "@/components/ui";
+
+export const metadata: Metadata = {
+  title: "TV & Movie Drinking Games",
+  description:
+    "Browse complete drinking games for popular TV shows and movies, with drink rules, shot rules, and episode recommendations.",
+  alternates: { canonical: "/tv-games" },
+};
 
 export default function TvGamesPage() {
   return (

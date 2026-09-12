@@ -1,8 +1,16 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { drinks, drinkCategories } from "@/config/drinkData";
 import { Header } from "@/components/Header";
 import { Card, CardContent, Badge } from "@/components/ui";
 import { DrinkCard } from "@/components/DrinkCard";
+
+export const metadata: Metadata = {
+  title: "Drinks & Recipes",
+  description:
+    "Browse cocktail, shot, punch, and mocktail recipes with ingredients, instructions, and party-ready serving ideas.",
+  alternates: { canonical: "/drinks" },
+};
 
 export default function DrinksPage() {
   const counts = drinkCategories.reduce<Record<string, number>>((acc, category) => {

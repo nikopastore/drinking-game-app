@@ -4,6 +4,7 @@ import { Leaf } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/cocktails/gin" },
   title: "Gin Cocktails - SipWiki",
   description: "Explore botanical gin cocktail recipes. From classic Gin & Tonic to Negronis, find your perfect gin drink.",
 };

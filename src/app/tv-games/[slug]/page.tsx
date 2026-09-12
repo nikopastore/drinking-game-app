@@ -27,6 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: game.title,
     description,
+    alternates: { canonical: `/tv-games/${game.slug}` },
     openGraph: {
       title: game.title,
       description,

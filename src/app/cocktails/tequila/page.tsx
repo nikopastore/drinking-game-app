@@ -4,6 +4,7 @@ import { Citrus } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/cocktails/tequila" },
   title: "Tequila Cocktails - SipWiki",
   description: "Explore authentic tequila cocktail recipes. From Margaritas to Palomas, find your perfect tequila drink.",
 };

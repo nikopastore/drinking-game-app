@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DrinksCategoryPage } from "../CategoryPage";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/drinks/punches" },
   title: "Punch Recipes - Batch Drinks for Parties | SipWiki",
   description: "Batch-friendly punch recipes for groups, including Jungle Juice and Sangria variations. Perfect for parties and events.",
 };

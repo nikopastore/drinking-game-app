@@ -4,6 +4,7 @@ import { FlaskConical } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/cocktails/shooters" },
   title: "Shooters & Shots - SipWiki",
   description: "Discover party shooter recipes. From B-52s to Lemon Drops, find the perfect shots for your party.",
 };
