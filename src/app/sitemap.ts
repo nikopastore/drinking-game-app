@@ -8,6 +8,7 @@ import { cocktails } from "@/config/cocktailData";
 import { blogCategories, blogPosts } from "@/config/blogData";
 import { drinks } from "@/config/drinkData";
 import { tvGames } from "@/config/tvGameData";
+import { isThinCityGuideSlug } from "@/lib/cityGuides";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const rawBaseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sipwiki.app";
@@ -310,7 +311,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "beer-pong-in-las-vegas-nv", "beer-pong-in-new-york-city-ny", "beer-pong-in-los-angeles-ca"
   ];
 
-  const guideSlugs = [...guideSlugsB1, ...guideSlugsB2, ...guideSlugsB3, ...guideSlugsB4, ...guideSlugsB5, ...guideSlugsB6, ...guideSlugsB7, ...guideSlugsB8];
+  const guideSlugs = [...guideSlugsB1, ...guideSlugsB2, ...guideSlugsB3, ...guideSlugsB4, ...guideSlugsB5, ...guideSlugsB6, ...guideSlugsB7, ...guideSlugsB8]
+    .filter((slug) => !isThinCityGuideSlug(slug));
 
   const guidePages: MetadataRoute.Sitemap = guideSlugs.map((slug) => ({
     url: `${baseUrl}/guides/${slug}`,

@@ -23,6 +23,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { EmailCapture } from "@/components/EmailCapture";
+import { partyPlanShareText, partySupplyLinks } from "@/lib/partySupplies";
+import { trackEvent } from "@/lib/analytics";
 
 // SEO-optimized metadata is in layout or generated separately for static
 
@@ -117,14 +119,26 @@ export default function PartyPlannerPage() {
     };
   }, [plan]);
 
-  const handleShare = async () => {
-    const text = `Party Plan for ${plan.guests} guests:
-- ${calculations.beerCases} cases of beer
-- ${calculations.liquorBottles} bottles of liquor
-- ${calculations.cups} cups
-- ${calculations.ice} lbs of ice
+  const supplies = useMemo(
+    () =>
+      partySupplyLinks({
+        cups: calculations.cups,
+        beerCases: calculations.beerCases,
+        ice: calculations.ice,
+      }),
+    [calculations.cups, calculations.beerCases, calculations.ice]
+  );
 
-Made with SipWiki Party Planner`;
+  const handleShare = async () => {
+    const text = partyPlanShareText({
+      guests: plan.guests,
+      beerCases: calculations.beerCases,
+      liquorBottles: calculations.liquorBottles,
+      cups: calculations.cups,
+      ice: calculations.ice,
+      games: calculations.suggestedGames.map((game) => game.name),
+      supplies,
+    });
 
     if (navigator.share) {
       try {
@@ -360,6 +374,22 @@ Made with SipWiki Party Planner`;
                         <p className="text-gray-400 text-sm">{calculations.snacks}</p>
                       </div>
                     </div>
+                  </div>
+
+                  <div className="mt-6 space-y-2">
+                    {supplies.map((item) => (
+                      <a
+                        key={item.url}
+                        href={item.url}
+                        target="_blank"
+                        rel="sponsored nofollow noopener noreferrer"
+                        onClick={() => trackEvent("affiliate_click", "party-planner")}
+                        className="flex items-center justify-between rounded-lg border border-white/10 px-3 py-2 text-sm text-gray-200 hover:border-neon-pink/50"
+                      >
+                        <span>{item.label}</span>
+                        <span className="text-gray-400">{item.detail}</span>
+                      </a>
+                    ))}
                   </div>
 
                   <div className="mt-6 flex gap-3">

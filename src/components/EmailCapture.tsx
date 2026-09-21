@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Mail, Gift, CheckCircle2 } from "lucide-react";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
+import { trackEvent } from "@/lib/analytics";
 
 interface EmailCaptureProps {
   source: string;
@@ -35,14 +36,14 @@ export function EmailCapture({ source }: EmailCaptureProps) {
     const { error } = await supabase.from("email_subscribers").insert({
       email: email.trim().toLowerCase(),
       source,
-      lead_magnet: "party-planning-checklist",
+      lead_magnet: "party-tips",
       page_path: typeof window !== "undefined" ? window.location.pathname : null,
     });
 
     if (error) {
       if (error.code === "23505") {
         setStatus("success");
-        setMessage("You're already on the list. We'll send the checklist soon!");
+        setMessage("You're already on the list.");
         return;
       }
       setStatus("error");
@@ -51,7 +52,8 @@ export function EmailCapture({ source }: EmailCaptureProps) {
     }
 
     setStatus("success");
-    setMessage("Success! Check your inbox for the checklist PDF.");
+    trackEvent("email_submit", source);
+    setMessage("You're on the list. Use the party planner for tonight's shopping list.");
     setEmail("");
   };
 
@@ -61,13 +63,13 @@ export function EmailCapture({ source }: EmailCaptureProps) {
         <div>
           <div className="flex items-center gap-2 text-neon-pink">
             <Gift className="h-5 w-5" />
-            <span className="text-sm font-semibold uppercase tracking-wider">Free Download</span>
+            <span className="text-sm font-semibold uppercase tracking-wider">Party tips</span>
           </div>
           <h3 className="mt-2 text-xl font-bold text-white">
-            Free Party Planning Checklist PDF
+            Get hosting notes from SipWiki
           </h3>
           <p className="mt-2 text-gray-300">
-            Get the complete shopping list, prep timeline, and hosting tips in one printable checklist.
+            Join the list for party tips. The planner on this site is the checklist — we do not email a PDF.
           </p>
         </div>
 
@@ -91,7 +93,7 @@ export function EmailCapture({ source }: EmailCaptureProps) {
             className="rounded-full bg-neon-pink px-6 py-2 text-sm font-semibold text-white transition-colors hover:bg-neon-pink/80 disabled:cursor-not-allowed disabled:opacity-60"
             disabled={status === "loading"}
           >
-            {status === "loading" ? "Sending..." : "Send Me the PDF"}
+            {status === "loading" ? "Joining..." : "Join the list"}
           </button>
           <p className="text-xs text-gray-500">No spam. Unsubscribe anytime.</p>
         </form>

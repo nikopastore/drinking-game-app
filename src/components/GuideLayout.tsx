@@ -75,7 +75,7 @@ export function GuideLayout({
               Ready to play {primaryGame.name}?
             </span>
             <Link
-              href={`/games/${primaryGame.slug}`}
+              href={`/play/${primaryGame.slug}`}
               className="flex items-center gap-2 bg-white text-dark-900 px-4 py-2 rounded-full font-semibold text-sm hover:bg-gray-100 transition-colors"
             >
               <Play className="h-4 w-4" />
@@ -152,7 +152,7 @@ export function GuideLayout({
               Now that you know the rules, jump into a game on SipWiki!
             </p>
             <Link
-              href={`/games/${primaryGame.slug}`}
+              href={`/play/${primaryGame.slug}`}
               className="inline-flex items-center gap-2 bg-neon-pink text-white px-6 py-3 rounded-full font-semibold hover:bg-neon-pink/80 transition-colors"
             >
               <Play className="h-5 w-5" />
