@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Disco ball">
+  <rect width="400" height="400" rx="36" fill="#12121a"/>
+  <line x1="200" y1="58" x2="200" y2="96" stroke="#d7dde8" stroke-width="6"/>
+  <circle cx="200" cy="214" r="108" fill="#d9e2ee"/>
+  <g stroke="#8ea0b8" stroke-width="3">
+    <path d="M110 180h180M104 214h192M110 248h180"/>
+    <path d="M160 112c20 40 20 124 0 196M200 106v216M240 112c-20 40-20 124 0 196"/>
+  </g>
+  <circle cx="168" cy="176" r="10" fill="#fff" opacity="0.8"/>
+  <circle cx="300" cy="120" r="6" fill="#ff2d92"/>
+  <circle cx="92" cy="150" r="5" fill="#00d4ff"/>
+  <circle cx="320" cy="250" r="5" fill="#ffb020"/>
+</svg>

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { isThinCityGuidePath } from "@/lib/cityGuides";
 
 const CANONICAL_HOST = "sipwiki.app";
 
@@ -156,6 +157,9 @@ export function middleware(request: NextRequest) {
 
   // Apply security headers to all page responses
   const response = NextResponse.next();
+  if (isThinCityGuidePath(pathname)) {
+    response.headers.set("X-Robots-Tag", "noindex, follow");
+  }
   return applySecurityHeaders(response);
 }
 

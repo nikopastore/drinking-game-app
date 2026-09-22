@@ -4,67 +4,67 @@
 export const affiliateLinks: Record<string, { url: string; label: string; price?: string }> = {
   // --- Core Supplies ---
   cards: {
-    url: "https://a.co/d/b2Y6Jm2",
+    url: "https://www.amazon.com/s?k=waterproof+playing+cards&tag=sipwiki-20",
     label: "Waterproof Cards",
     price: "$8",
   },
   "waterproof cards": {
-    url: "https://a.co/d/b2Y6Jm2",
+    url: "https://www.amazon.com/s?k=waterproof+playing+cards&tag=sipwiki-20",
     label: "Waterproof Playing Cards",
     price: "$8",
   },
   "playing cards": {
-    url: "https://a.co/d/b2Y6Jm2",
+    url: "https://www.amazon.com/s?k=waterproof+playing+cards&tag=sipwiki-20",
     label: "Waterproof Playing Cards",
     price: "$8",
   },
   "red solo cups": {
-    url: "https://a.co/d/eUXpEON",
+    url: "https://www.amazon.com/s?k=red+solo+cups+100+pack&tag=sipwiki-20",
     label: "Red Solo Cups (Bulk 100ct)",
     price: "$15",
   },
   cups: {
-    url: "https://a.co/d/eUXpEON",
+    url: "https://www.amazon.com/s?k=party+cups+100+pack&tag=sipwiki-20",
     label: "Party Cups (100ct)",
     price: "$15",
   },
   "plastic cups": {
-    url: "https://a.co/d/eUXpEON",
+    url: "https://www.amazon.com/s?k=red+solo+cups+100+pack&tag=sipwiki-20",
     label: "Red Solo Cups (100ct)",
     price: "$15",
   },
   "solo cups": {
-    url: "https://a.co/d/eUXpEON",
+    url: "https://www.amazon.com/s?k=red+solo+cups+100+pack&tag=sipwiki-20",
     label: "Red Solo Cups (100ct)",
     price: "$15",
   },
   "large cup": {
-    url: "https://amzn.to/4p5Fexz",
+    url: "https://www.amazon.com/s?k=giant+party+goblet&tag=sipwiki-20",
     label: "Giant Party Goblet",
     price: "$12",
   },
   "king cup": {
-    url: "https://amzn.to/4p5Fexz",
+    url: "https://www.amazon.com/s?k=giant+kings+cup+goblet&tag=sipwiki-20",
     label: "Giant King's Cup Goblet",
     price: "$12",
   },
   "ping pong balls": {
-    url: "https://a.co/d/5XLkYU5",
+    url: "https://www.amazon.com/s?k=pro+ping+pong+balls&tag=sipwiki-20",
     label: "Pro Ping Pong Balls (50 Pack)",
     price: "$10",
   },
   "beer pong balls": {
-    url: "https://a.co/d/5XLkYU5",
+    url: "https://www.amazon.com/s?k=beer+pong+balls&tag=sipwiki-20",
     label: "Beer Pong Balls (50 Pack)",
     price: "$10",
   },
   dice: {
-    url: "https://a.co/d/76GnIfa",
+    url: "https://www.amazon.com/s?k=dice+set+10+pack&tag=sipwiki-20",
     label: "Dice Set (10 Pack)",
     price: "$6",
   },
   "drinking dice": {
-    url: "https://a.co/d/76GnIfa",
+    url: "https://www.amazon.com/s?k=party+dice+set&tag=sipwiki-20",
     label: "Party Dice Set",
     price: "$6",
   },
@@ -113,7 +113,7 @@ export const affiliateLinks: Record<string, { url: string; label: string; price?
 
   // --- Game Specific Items ---
   "duct tape": {
-    url: "https://amzn.to/4p5Fexz",
+    url: "https://www.amazon.com/s?k=heavy+duty+duct+tape&tag=sipwiki-20",
     label: "Heavy Duty Duct Tape",
     price: "$8",
   },

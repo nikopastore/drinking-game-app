@@ -8,20 +8,17 @@ import {
   rateLimiters,
 } from "@/lib/rateLimit";
 import { createCorsHeaders, handleCorsPreflightRequest } from "@/lib/cors";
+import { buildRefereePrompt, resolveRefereeGame } from "@/lib/chatReferee";
 
 /**
- * Zod schema for chat request validation
- * Enforces type safety and size limits to prevent abuse
+ * Zod schema for chat request validation.
+ * The referee prompt is loaded from the catalog by slug. Client rules are ignored.
  */
 const ChatRequestSchema = z.object({
-  gameName: z
+  gameSlug: z
     .string()
-    .min(1, "Game name is required")
-    .max(100, "Game name too long"),
-  rules: z
-    .string()
-    .min(1, "Rules are required")
-    .max(10000, "Rules text too long"),
+    .min(1, "Game slug is required")
+    .max(80, "Game slug too long"),
   message: z
     .string()
     .min(1, "Message is required")
@@ -42,24 +39,6 @@ function getOpenAIClient() {
   return new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
   });
-}
-
-function getSystemPrompt(gameName: string, rules: string): string {
-  return `You are the official referee for "${gameName}". You know the rules inside and out.
-
-RULES:
-${rules}
-
-INSTRUCTIONS:
-- Answer questions about the rules concisely (1-3 sentences max)
-- If asked about a scenario not covered by the rules, make a fair ruling and say "House rule suggestion:"
-- Be fun and casual - you're at a party, not a courtroom
-- Use simple language, avoid complex explanations
-- If someone asks something unrelated to the game, redirect them playfully back to the game
-- Never encourage dangerous drinking behavior or excessive consumption
-- If asked about drinking amounts, always remind players to drink responsibly
-
-Remember: Keep responses SHORT and PARTY-FRIENDLY!`;
 }
 
 /**
@@ -108,7 +87,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { gameName, rules, message, history } = parseResult.data;
+    const { gameSlug, message, history } = parseResult.data;
+    const game = resolveRefereeGame(gameSlug);
+    if (!game) {
+      return NextResponse.json(
+        { error: "Unknown game" },
+        { status: 400, headers: allHeaders }
+      );
+    }
 
     // Check if API key is configured
     if (!process.env.OPENAI_API_KEY) {
@@ -124,7 +110,7 @@ export async function POST(request: NextRequest) {
     const messages: OpenAI.Chat.ChatCompletionMessageParam[] = [
       {
         role: "system",
-        content: getSystemPrompt(gameName, rules),
+        content: buildRefereePrompt(game),
       },
       // Add chat history (last 10 messages to keep context manageable)
       ...history.slice(-10).map((msg) => ({

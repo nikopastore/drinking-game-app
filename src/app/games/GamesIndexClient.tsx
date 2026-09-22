@@ -13,6 +13,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { games } from "@/config/gameData";
+import { getClassicGames } from "@/lib/classicGames";
 import { gameCategories, getGamesForCategory } from "@/config/categoryData";
 import { Header } from "@/components/Header";
 import { GameCard } from "@/components/GameCard";
@@ -21,9 +22,7 @@ import { Sidebar, useSidebar } from "@/components/Sidebar";
 import { MobileNav } from "@/components/MobileNav";
 import { cn } from "@/lib/utils";
 
-const popularGames = [...games]
-  .sort((a, b) => b.drunkenness_level - a.drunkenness_level)
-  .slice(0, 3);
+const popularGames = getClassicGames();
 
 const utilityLinks = [
   { href: "/spin", label: "Spin the wheel", description: "Let chance choose the next game.", icon: CircleDot, color: "text-neon-pink" },

@@ -114,11 +114,11 @@ export function checkRateLimit(
  * Handles various proxy headers
  */
 export function getClientIP(request: Request): string {
-  // Check various headers that proxies use
-  const forwardedFor = request.headers.get("x-forwarded-for");
-  if (forwardedFor) {
-    // x-forwarded-for can contain multiple IPs, take the first one
-    return forwardedFor.split(",")[0].trim();
+  // Vercel sets this from the connecting client. Prefer it over the
+  // spoofable x-forwarded-for header that callers can send themselves.
+  const vercelForwardedFor = request.headers.get("x-vercel-forwarded-for");
+  if (vercelForwardedFor) {
+    return vercelForwardedFor.split(",")[0].trim();
   }
 
   const realIP = request.headers.get("x-real-ip");
@@ -126,13 +126,11 @@ export function getClientIP(request: Request): string {
     return realIP.trim();
   }
 
-  // Vercel-specific header
-  const vercelForwardedFor = request.headers.get("x-vercel-forwarded-for");
-  if (vercelForwardedFor) {
-    return vercelForwardedFor.split(",")[0].trim();
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  if (forwardedFor) {
+    return forwardedFor.split(",")[0].trim();
   }
 
-  // Fallback to a default identifier
   return "unknown";
 }
 
@@ -164,6 +162,11 @@ export const rateLimiters = {
   /** Relaxed: 30 requests per minute per IP */
   relaxed: {
     maxRequests: 30,
+    windowMs: 60 * 1000,
+  },
+  /** Commerce events: 60 requests per minute per IP */
+  events: {
+    maxRequests: 60,
     windowMs: 60 * 1000,
   },
 } as const;

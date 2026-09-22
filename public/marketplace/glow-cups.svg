@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Glowing party cups">
+  <rect width="400" height="400" rx="36" fill="#12121a"/>
+  <circle cx="150" cy="210" r="78" fill="#00d4ff" opacity="0.18"/>
+  <circle cx="250" cy="190" r="90" fill="#ff2d92" opacity="0.18"/>
+  <path d="M108 250l16-110h40l16 110" fill="#12343c" stroke="#00d4ff" stroke-width="8"/>
+  <path d="M168 268l20-140h52l20 140" fill="#2a1230" stroke="#ff2d92" stroke-width="8"/>
+  <path d="M236 240l14-96h36l14 96" fill="#122818" stroke="#7dffb2" stroke-width="8"/>
+  <path d="M124 168h40M188 160h52M250 168h36" stroke="#fff" stroke-width="4" opacity="0.35"/>
+</svg>

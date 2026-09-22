@@ -159,15 +159,16 @@ describe('getClientIP', () => {
     expect(getClientIP(request)).toBe('192.168.1.3')
   })
 
-  it('prefers x-forwarded-for over other headers', () => {
+  it('prefers x-vercel-forwarded-for over spoofable forwarded headers', () => {
     const request = new Request('https://example.com', {
       headers: {
         'x-forwarded-for': '192.168.1.1',
         'x-real-ip': '192.168.1.2',
+        'x-vercel-forwarded-for': '192.168.1.3',
       },
     })
 
-    expect(getClientIP(request)).toBe('192.168.1.1')
+    expect(getClientIP(request)).toBe('192.168.1.3')
   })
 
   it('returns "unknown" when no headers present', () => {

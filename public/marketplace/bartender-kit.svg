@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Cocktail shaker and jigger">
+  <rect width="400" height="400" rx="36" fill="#12121a"/>
+  <path d="M150 78h70l18 46H132z" fill="#d5dde8"/>
+  <rect x="128" y="124" width="112" height="150" rx="18" fill="#c5ceda" stroke="#f4f7fb" stroke-width="6"/>
+  <path d="M146 150h76" stroke="#fff" stroke-width="6" opacity="0.45"/>
+  <path d="M268 150l36 28v78l-36 24z" fill="#9aa6b5" stroke="#eef3f8" stroke-width="6"/>
+  <path d="M304 178l28 20v56l-28 16z" fill="#ff2d92"/>
+  <rect x="118" y="286" width="150" height="14" rx="7" fill="#6d7888"/>
+</svg>
