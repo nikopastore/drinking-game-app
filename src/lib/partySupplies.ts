@@ -14,6 +14,7 @@ export function partySupplyLinks(quantities: {
 }): SupplyLink[] {
   const cups = getAffiliateLink("cups");
   const cards = getAffiliateLink("cards");
+  const ice = getAffiliateLink("ice");
 
   const links: SupplyLink[] = [];
   if (cups) {
@@ -30,11 +31,13 @@ export function partySupplyLinks(quantities: {
       detail: "One deck",
     });
   }
-  links.push({
-    label: "Party ice",
-    url: withAssociateTag("https://www.amazon.com/s?k=party+ice"),
-    detail: `${quantities.ice} lb`,
-  });
+  if (ice) {
+    links.push({
+      label: ice.label,
+      url: withAssociateTag(ice.url),
+      detail: `${quantities.ice} lb of ice`,
+    });
+  }
   return links;
 }
 

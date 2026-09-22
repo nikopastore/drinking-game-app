@@ -49,7 +49,11 @@ describe("party supplies", () => {
     });
     expect(text).toContain("10 people");
     expect(text).toContain("King's Cup");
-    expect(supplies.some((item) => item.url.includes("tag=sipwiki-20") || item.url.includes("a.co"))).toBe(true);
+    expect(supplies.map((item) => item.url)).toEqual([
+      "https://www.amazon.com/dp/B0FR3N4683?tag=sipwiki-20",
+      "https://www.amazon.com/dp/B00ULW61SM?tag=sipwiki-20",
+      "https://www.amazon.com/dp/B08DJ6GPFK?tag=sipwiki-20",
+    ]);
   });
 });
 
