@@ -127,20 +127,20 @@ export default function TailgatePartyGuidePage() {
       </ul>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-        <a href="https://www.amazon.com/s?k=cornhole+boards+regulation&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
-          <h4 className="font-bold text-white">Regulation Cornhole Set</h4>
-          <p className="text-gray-400 text-sm">Official size boards and bags</p>
-          <span className="text-neon-pink font-bold">$100-200</span>
+        <a href="https://www.amazon.com/dp/B07TC5X8P5?tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
+          <h4 className="font-bold text-white">GoSports Cornhole Set</h4>
+          <p className="text-gray-400 text-sm">4 ft x 2 ft wooden boards with a carrying case</p>
+          <span className="text-neon-pink font-bold">$129</span>
         </a>
         <a href="https://www.amazon.com/s?k=kan+jam+game+set&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
           <h4 className="font-bold text-white">Kan Jam Set</h4>
           <p className="text-gray-400 text-sm">Portable and easy to set up</p>
           <span className="text-neon-pink font-bold">$40-50</span>
         </a>
-        <a href="https://www.amazon.com/s?k=portable+beer+pong+table&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
-          <h4 className="font-bold text-white">Portable Pong Table</h4>
-          <p className="text-gray-400 text-sm">Folds up for easy transport</p>
-          <span className="text-neon-pink font-bold">$60-120</span>
+        <a href="https://www.amazon.com/dp/B003XNWN3S?tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
+          <h4 className="font-bold text-white">GoPong 8ft Table</h4>
+          <p className="text-gray-400 text-sm">Portable beer pong table</p>
+          <span className="text-neon-pink font-bold">$99</span>
         </a>
         <a href="https://www.amazon.com/s?k=polish+horseshoes+beersbee&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
           <h4 className="font-bold text-white">Beersbee/Polish Horseshoes</h4>
@@ -259,10 +259,10 @@ export default function TailgatePartyGuidePage() {
           <p className="text-gray-400 text-sm">6-foot tables for games and food</p>
           <span className="text-neon-pink font-bold">$40-60</span>
         </a>
-        <a href="https://www.amazon.com/s?k=bluetooth+speaker+portable+loud&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
-          <h4 className="font-bold text-white">Bluetooth Speaker</h4>
-          <p className="text-gray-400 text-sm">Loud enough for outdoor parties</p>
-          <span className="text-neon-pink font-bold">$50-150</span>
+        <a href="https://www.amazon.com/dp/B07QK2SPP7?tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
+          <h4 className="font-bold text-white">JBL Flip 5 Speaker</h4>
+          <p className="text-gray-400 text-sm">Waterproof speaker for the parking lot</p>
+          <span className="text-neon-pink font-bold">$89</span>
         </a>
         <a href="https://www.amazon.com/s?k=camping+chairs+with+cooler&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
           <h4 className="font-bold text-white">Camping Chairs w/ Cooler</h4>

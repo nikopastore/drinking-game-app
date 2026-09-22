@@ -64,25 +64,24 @@ export default function BestOutdoorDrinkingGamesPage() {
       <div className="bg-dark-800 p-6 rounded-xl border border-dark-600 my-4">
         <div className="flex justify-between items-start mb-4">
           <div>
-            <h4 className="font-bold text-white text-lg">GoSports 4&apos;x2&apos; Regulation Set</h4>
-            <p className="text-gray-400">Tournament-quality boards with carrying case</p>
+            <h4 className="font-bold text-white text-lg">GoSports 4&apos;x2&apos; Wooden Set</h4>
+            <p className="text-gray-400">Regulation boards with a carrying case</p>
           </div>
-          <span className="text-neon-pink font-bold text-xl">$130-180</span>
+          <span className="text-neon-pink font-bold text-xl">$129</span>
         </div>
         <div className="grid grid-cols-2 gap-4 text-sm mb-4">
           <div>
-            <p className="text-green-400">✓ Regulation size</p>
-            <p className="text-green-400">✓ All-weather surface</p>
-            <p className="text-green-400">✓ 8 bean bags included</p>
+            <p className="text-green-400">✓ 4 ft x 2 ft boards</p>
+            <p className="text-green-400">✓ Wooden construction</p>
+            <p className="text-green-400">✓ Light brown finish</p>
           </div>
           <div>
-            <p className="text-green-400">✓ Foldable legs</p>
             <p className="text-green-400">✓ Carrying case</p>
-            <p className="text-green-400">✓ Multiple designs</p>
+            <p className="text-green-400">✓ GoSports brand</p>
           </div>
         </div>
         <a
-          href="https://www.amazon.com/s?k=GoSports+cornhole+regulation&tag=sipwiki-20"
+          href="https://www.amazon.com/dp/B07TC5X8P5?tag=sipwiki-20"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block px-6 py-2 bg-neon-pink text-white rounded-lg hover:bg-neon-pink/80"
@@ -137,29 +136,27 @@ export default function BestOutdoorDrinkingGamesPage() {
         Giant Jenga is perfect for <Link href="/guides/drunk-jenga-rules" className="text-neon-pink hover:underline">Drunk Jenga</Link> outdoor edition.
       </p>
 
-      <h3>Best Giant Jenga: GoSports Giant Toppling Tower</h3>
+      <h3>Giant Tumbling Tower</h3>
       <div className="bg-dark-800 p-6 rounded-xl border border-dark-600 my-4">
         <div className="flex justify-between items-start mb-4">
           <div>
-            <h4 className="font-bold text-white text-lg">Giant Wooden Toppling Tower</h4>
-            <p className="text-gray-400">Builds to 5+ feet tall</p>
+            <h4 className="font-bold text-white text-lg">60-Block Yard Tower</h4>
+            <p className="text-gray-400">Stacks up to 5 feet</p>
           </div>
-          <span className="text-neon-pink font-bold text-xl">$60-100</span>
+          <span className="text-neon-pink font-bold text-xl">$42</span>
         </div>
         <div className="grid grid-cols-2 gap-4 text-sm mb-4">
           <div>
-            <p className="text-green-400">✓ Pine wood blocks</p>
-            <p className="text-green-400">✓ Stacks to 5ft+</p>
-            <p className="text-green-400">✓ 54 blocks</p>
+            <p className="text-green-400">✓ 60 wooden blocks</p>
+            <p className="text-green-400">✓ Stacks up to 5 ft</p>
           </div>
           <div>
-            <p className="text-green-400">✓ Carrying case</p>
-            <p className="text-green-400">✓ Write on blocks</p>
-            <p className="text-green-400">✓ Indoor/outdoor</p>
+            <p className="text-green-400">✓ Yard game</p>
+            <p className="text-green-400">✓ Write rules on the blocks</p>
           </div>
         </div>
         <a
-          href="https://www.amazon.com/s?k=giant+Jenga+tower+outdoor&tag=sipwiki-20"
+          href="https://www.amazon.com/dp/B0F5WCVZ1W?tag=sipwiki-20"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block px-6 py-2 bg-neon-pink text-white rounded-lg hover:bg-neon-pink/80"
@@ -297,10 +294,10 @@ export default function BestOutdoorDrinkingGamesPage() {
           <p className="text-gray-400 text-sm">Shade for hot days</p>
           <span className="text-neon-pink font-bold">$80-150</span>
         </a>
-        <a href="https://www.amazon.com/s?k=outdoor+bluetooth+speaker+waterproof&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
-          <h4 className="font-bold text-white">Outdoor Speaker</h4>
-          <p className="text-gray-400 text-sm">Waterproof party speaker</p>
-          <span className="text-neon-pink font-bold">$30-100</span>
+        <a href="https://www.amazon.com/dp/B07QK2SPP7?tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
+          <h4 className="font-bold text-white">JBL Flip 5 Speaker</h4>
+          <p className="text-gray-400 text-sm">Waterproof portable Bluetooth speaker</p>
+          <span className="text-neon-pink font-bold">$89</span>
         </a>
       </div>
 

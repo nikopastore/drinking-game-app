@@ -6,6 +6,7 @@ import {
   getBundleSuggestions,
   nonAffiliateItems,
 } from "@/config/monetizationConfig";
+import { withAssociateTag } from "@/lib/affiliateUrl";
 
 const formatPrice = (value: number) => `$${value.toFixed(0)}`;
 
@@ -58,7 +59,7 @@ export function WhatYouNeed({ game }: { game: Game }) {
                   return (
                     <a
                       key={item.material}
-                      href={item.affiliate.url}
+                      href={withAssociateTag(item.affiliate.url)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-medium rounded-lg hover:opacity-90 transition-all hover:scale-105"

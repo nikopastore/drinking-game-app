@@ -155,10 +155,10 @@ export default function SmallApartmentPartyPage() {
       </ul>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-        <a href="https://www.amazon.com/s?k=playing+cards+waterproof&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
-          <h4 className="font-bold text-white">Waterproof Playing Cards</h4>
+        <a href="https://www.amazon.com/dp/B00ULW61SM?tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
+          <h4 className="font-bold text-white">Hoyle Waterproof Cards</h4>
           <p className="text-gray-400 text-sm">Survive any spill</p>
-          <span className="text-neon-pink font-bold">$8-15</span>
+          <span className="text-neon-pink font-bold">$5</span>
         </a>
         <a href="https://www.amazon.com/s?k=mini+beer+pong+set&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
           <h4 className="font-bold text-white">Mini Beer Pong Set</h4>

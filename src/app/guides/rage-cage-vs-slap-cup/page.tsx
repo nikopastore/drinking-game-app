@@ -175,15 +175,15 @@ export default function RageCageVsSlapCupPage() {
       </ul>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-        <a href="https://www.amazon.com/s?k=ping+pong+balls+beer+pong&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
-          <h4 className="font-bold text-white">Ping Pong Balls (50 pack)</h4>
+        <a href="https://www.amazon.com/dp/B08PF41G4B?tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
+          <h4 className="font-bold text-white">BPONG Orange Balls (12 pack)</h4>
           <p className="text-gray-400 text-sm">You&apos;ll lose some, buy extra</p>
-          <span className="text-neon-pink font-bold">$8-12</span>
+          <span className="text-neon-pink font-bold">$16</span>
         </a>
-        <a href="https://www.amazon.com/s?k=red+solo+cups+100+pack&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
-          <h4 className="font-bold text-white">Solo Cups (100 pack)</h4>
-          <p className="text-gray-400 text-sm">Classic red cups</p>
-          <span className="text-neon-pink font-bold">$12-18</span>
+        <a href="https://www.amazon.com/dp/B0FR3N4683?tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
+          <h4 className="font-bold text-white">Red Party Cups (100 pack)</h4>
+          <p className="text-gray-400 text-sm">16oz red cups</p>
+          <span className="text-neon-pink font-bold">$14</span>
         </a>
       </div>
 
