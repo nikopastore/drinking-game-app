@@ -1,0 +1,47 @@
+- generic [active] [ref=f4e1]:
+  - button "Open Next.js Dev Tools" [ref=f4e11] [cursor=pointer]
+  - alert [ref=f4e15]: Playing King's Cup | SipWiki | SipWiki
+  - generic [ref=f4e16]:
+    - banner [ref=f4e17]:
+      - generic [ref=f4e19]:
+        - link "Exit Game" [ref=f4e20] [cursor=pointer]:
+          - /url: /games/kings-cup
+        - heading "King's Cup" [level=1] [ref=f4e27]
+        - generic [ref=f4e28]: 2m 50s
+    - main [ref=f4e33]:
+      - generic [ref=f4e34]:
+        - paragraph [ref=f4e35]: Guys
+        - generic [ref=f4e36]:
+          - paragraph [ref=f4e37]: "5"
+          - paragraph [ref=f4e38]: Guys drink.
+          - paragraph [ref=f4e39]: 51 cards left in this pass
+        - generic [ref=f4e40]:
+          - button "Next card" [ref=f4e41]
+          - button "Share this card" [ref=f4e42]
+        - generic [ref=f4e43]:
+          - paragraph [ref=f4e44]: Grab the supplies
+          - generic [ref=f4e45]:
+            - link "Waterproof Cards" [ref=f4e46] [cursor=pointer]:
+              - /url: https://a.co/d/b2Y6Jm2
+            - link "Party Cups (100ct)" [ref=f4e47] [cursor=pointer]:
+              - /url: https://a.co/d/eUXpEON
+            - link "Giant Party Goblet" [ref=f4e48] [cursor=pointer]:
+              - /url: https://amzn.to/4p5Fexz
+      - button "End Game" [ref=f4e51]
+    - button "Open AI Chat" [ref=f4e55]
+    - generic [ref=f4e59]:
+      - generic [ref=f4e60]:
+        - generic [ref=f4e66]:
+          - heading "AI Referee" [level=3] [ref=f4e67]
+          - paragraph [ref=f4e68]: Ask me about the rules
+        - button [ref=f4e69]
+      - generic [ref=f4e74]:
+        - paragraph [ref=f4e78]: Need help with King's Cup?
+        - paragraph [ref=f4e79]: Ask me anything about the rules!
+        - generic [ref=f4e80]:
+          - button "What happens if I roll doubles?" [ref=f4e81]
+          - button "How do I win?" [ref=f4e82]
+          - button "Can you explain the rules?" [ref=f4e83]
+      - generic [ref=f4e85]:
+        - textbox "Ask about the rules..." [ref=f4e87]
+        - button [disabled] [ref=f4e88]

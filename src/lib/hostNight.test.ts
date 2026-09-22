@@ -4,27 +4,6 @@ import { resolveRefereeGame, buildRefereePrompt } from "./chatReferee";
 import { getClassicGames } from "./classicGames";
 import { isThinCityGuidePath, isThinCityGuideSlug } from "./cityGuides";
 import { partyPlanShareText, partySupplyLinks } from "./partySupplies";
-import { NEVER_HAVE_I_EVER, buildKingsDeck, buildPromptDeck } from "./playDecks";
-
-describe("pass-the-phone decks", () => {
-  it("builds a 52-card King's Cup deck", () => {
-    const deck = buildKingsDeck(() => 0);
-    expect(deck).toHaveLength(52);
-    expect(new Set(deck.map((card) => card.id)).size).toBe(52);
-  });
-
-  it("keeps both prompts from each Never Have I Ever pair", () => {
-    expect(NEVER_HAVE_I_EVER).toHaveLength(24);
-    expect(NEVER_HAVE_I_EVER.some((card) => card.title.includes("skinny dipping"))).toBe(true);
-    expect(NEVER_HAVE_I_EVER.some((card) => card.title.includes("wrong person"))).toBe(true);
-  });
-
-  it("shuffles prompt decks without dropping cards", () => {
-    const deck = buildPromptDeck("most-likely-to", () => 0.5);
-    expect(deck.length).toBeGreaterThan(10);
-    expect(new Set(deck.map((card) => card.id)).size).toBe(deck.length);
-  });
-});
 
 describe("homepage classics", () => {
   it("returns King's Cup, Beer Pong, and Flip Cup", () => {

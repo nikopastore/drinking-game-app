@@ -1,0 +1,47 @@
+- generic [active] [ref=e1]:
+  - button "Open Next.js Dev Tools" [ref=e11] [cursor=pointer]
+  - alert [ref=e15]
+  - generic [ref=e36]:
+    - banner [ref=e37]:
+      - generic [ref=e39]:
+        - link "Exit Game" [ref=e40] [cursor=pointer]:
+          - /url: /games/kings-cup
+        - heading "King's Cup" [level=1] [ref=e47]
+        - generic [ref=e48]: 6s
+    - main [ref=e53]:
+      - generic [ref=e54]:
+        - paragraph [ref=e55]: Me
+        - generic [ref=e56]:
+          - paragraph [ref=e57]: "3"
+          - paragraph [ref=e58]: You drink.
+          - paragraph [ref=e59]: 51 cards left in this pass
+        - generic [ref=e60]:
+          - button "Next card" [ref=e61]
+          - button "Share this card" [ref=e62]
+        - generic [ref=e63]:
+          - paragraph [ref=e64]: Grab the supplies
+          - generic [ref=e65]:
+            - link "Waterproof Cards" [ref=e66] [cursor=pointer]:
+              - /url: https://a.co/d/b2Y6Jm2
+            - link "Party Cups (100ct)" [ref=e67] [cursor=pointer]:
+              - /url: https://a.co/d/eUXpEON
+            - link "Giant Party Goblet" [ref=e68] [cursor=pointer]:
+              - /url: https://amzn.to/4p5Fexz
+      - button "End Game" [ref=e71]
+    - button "Open AI Chat" [ref=e75]
+    - generic [ref=e79]:
+      - generic [ref=e80]:
+        - generic [ref=e86]:
+          - heading "AI Referee" [level=3] [ref=e87]
+          - paragraph [ref=e88]: Ask me about the rules
+        - button [ref=e89]
+      - generic [ref=e94]:
+        - paragraph [ref=e98]: Need help with King's Cup?
+        - paragraph [ref=e99]: Ask me anything about the rules!
+        - generic [ref=e100]:
+          - button "What happens if I roll doubles?" [ref=e101]
+          - button "How do I win?" [ref=e102]
+          - button "Can you explain the rules?" [ref=e103]
+      - generic [ref=e105]:
+        - textbox "Ask about the rules..." [ref=e107]
+        - button [disabled] [ref=e108]

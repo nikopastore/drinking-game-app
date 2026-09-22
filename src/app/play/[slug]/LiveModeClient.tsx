@@ -11,9 +11,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AIChatFAB } from "@/components/AIChatFAB";
 import { RatingModal } from "@/components/RatingModal";
-import { PassThePhone } from "@/components/play/PassThePhone";
-import { trackEvent } from "@/lib/analytics";
-import { isPassThePhoneSlug } from "@/lib/playDecks";
 
 interface LiveModeClientProps {
   game: Game;
@@ -32,10 +29,6 @@ export function LiveModeClient({ game }: LiveModeClientProps) {
       startSession(game.slug, game.name);
     }
   }, [game.slug, game.name, session, startSession]);
-
-  useEffect(() => {
-    trackEvent("play_started", game.slug);
-  }, [game.slug]);
 
   // Update elapsed time every second
   useEffect(() => {
@@ -102,10 +95,6 @@ export function LiveModeClient({ game }: LiveModeClientProps) {
       </header>
 
       <main className="max-w-4xl mx-auto px-4 py-8">
-        {isPassThePhoneSlug(game.slug) ? (
-          <PassThePhone game={game} slug={game.slug} />
-        ) : (
-        <>
         {/* Rules Card */}
         <Card className="mb-8">
           <CardContent className="p-6">
@@ -141,8 +130,6 @@ export function LiveModeClient({ game }: LiveModeClientProps) {
             </ul>
           </CardContent>
         </Card>
-        </>
-        )}
 
         {/* End Game Button */}
         <div className="fixed bottom-20 left-0 right-0 p-4">

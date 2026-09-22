@@ -1,4 +1,4 @@
-export const ANALYTICS_EVENTS = ["play_started", "affiliate_click", "email_submit"] as const;
+export const ANALYTICS_EVENTS = ["affiliate_click", "email_submit"] as const;
 
 export type AnalyticsEventName = (typeof ANALYTICS_EVENTS)[number];
 
