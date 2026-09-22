@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Giant beer goblet">
-  <rect width="400" height="400" rx="36" fill="#12121a"/>
-  <path d="M118 92h164c8 62 8 110 0 168H118c-8-58-8-106 0-168z" fill="#f4c56a" stroke="#ffe7b0" stroke-width="8"/>
-  <path d="M150 118h100c4 36 4 64 0 96H150c-4-32-4-60 0-96z" fill="#fff3c4" opacity="0.35"/>
-  <rect x="184" y="258" width="32" height="46" rx="6" fill="#d7a441"/>
-  <ellipse cx="200" cy="318" rx="62" ry="16" fill="#c48a2a"/>
-  <ellipse cx="200" cy="96" rx="78" ry="14" fill="#ffe7b0" opacity="0.55"/>
-</svg>
