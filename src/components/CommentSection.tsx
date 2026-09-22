@@ -175,23 +175,17 @@ export function CommentSection({ gameSlug }: CommentSectionProps) {
         .single();
 
       if (existing) {
-        // Remove upvote
+        // Remove upvote. comments.upvotes is recounted by a database trigger.
         await supabase
           .from("comment_upvotes")
           .delete()
           .eq("user_id", user.id)
           .eq("comment_id", commentId);
-        await supabase.rpc("decrement_comment_upvotes", {
-          comment_uuid: commentId,
-        });
       } else {
-        // Add upvote
+        // Add upvote. comments.upvotes is recounted by a database trigger.
         await supabase.from("comment_upvotes").insert({
           user_id: user.id,
           comment_id: commentId,
-        });
-        await supabase.rpc("increment_comment_upvotes", {
-          comment_uuid: commentId,
         });
       }
 

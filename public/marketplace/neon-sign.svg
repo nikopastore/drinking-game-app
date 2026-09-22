@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Neon bar sign">
+  <rect width="400" height="400" rx="36" fill="#12121a"/>
+  <rect x="70" y="120" width="260" height="160" rx="24" fill="#1a1024" stroke="#3a2448" stroke-width="8"/>
+  <text x="200" y="230" text-anchor="middle" fill="none" stroke="#ff2d92" stroke-width="10" font-size="92" font-family="Georgia, serif" letter-spacing="6">BAR</text>
+  <text x="200" y="230" text-anchor="middle" fill="#ffd0ea" font-size="92" font-family="Georgia, serif" letter-spacing="6" opacity="0.85">BAR</text>
+</svg>

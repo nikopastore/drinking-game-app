@@ -164,6 +164,11 @@ export const rateLimiters = {
     maxRequests: 30,
     windowMs: 60 * 1000,
   },
+  /** Commerce events: 60 requests per minute per IP */
+  events: {
+    maxRequests: 60,
+    windowMs: 60 * 1000,
+  },
 } as const;
 
 /**

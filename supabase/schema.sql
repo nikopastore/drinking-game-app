@@ -99,6 +99,13 @@ CREATE TABLE IF NOT EXISTS email_subscribers (
 -- ROW LEVEL SECURITY POLICIES
 -- ============================================
 
+-- Games: public catalog is read-only. Writes stay in src/config/gameData.ts.
+ALTER TABLE games ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Anyone can read games"
+  ON games FOR SELECT
+  USING (true);
+
 -- Comments: Anyone can read, authenticated users can insert their own
 ALTER TABLE comments ENABLE ROW LEVEL SECURITY;
 
@@ -170,25 +177,64 @@ CREATE POLICY "Anyone can insert email subscribers"
 -- FUNCTIONS
 -- ============================================
 
--- Function to increment comment upvotes
+-- Upvote totals follow the comment_upvotes rows. These RPCs stay callable so
+-- older clients do not error, but they never change comments.upvotes.
 CREATE OR REPLACE FUNCTION increment_comment_upvotes(comment_uuid UUID)
-RETURNS void AS $$
+RETURNS void
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
 BEGIN
-  UPDATE comments
-  SET upvotes = upvotes + 1
-  WHERE id = comment_uuid;
+  IF auth.uid() IS NULL THEN
+    RETURN;
+  END IF;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$;
 
--- Function to decrement comment upvotes
 CREATE OR REPLACE FUNCTION decrement_comment_upvotes(comment_uuid UUID)
-RETURNS void AS $$
+RETURNS void
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
 BEGIN
-  UPDATE comments
-  SET upvotes = GREATEST(0, upvotes - 1)
-  WHERE id = comment_uuid;
+  IF auth.uid() IS NULL THEN
+    RETURN;
+  END IF;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$;
+
+-- Recount after each upvote insert or delete. SECURITY DEFINER so the count
+-- can be written on comments the voter does not own (RLS only allows authors
+-- to update their own comments). The function only writes the derived count.
+CREATE OR REPLACE FUNCTION sync_comment_upvote_count()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+DECLARE
+  target_comment_id UUID;
+BEGIN
+  target_comment_id := COALESCE(NEW.comment_id, OLD.comment_id);
+
+  UPDATE comments
+  SET upvotes = (
+    SELECT COUNT(*)::INT
+    FROM comment_upvotes
+    WHERE comment_id = target_comment_id
+  )
+  WHERE id = target_comment_id;
+
+  RETURN NULL;
+END;
+$$;
+
+CREATE TRIGGER comment_upvotes_sync_count
+  AFTER INSERT OR DELETE ON comment_upvotes
+  FOR EACH ROW
+  EXECUTE FUNCTION sync_comment_upvote_count();
 
 -- Function to get average rating for a game
 CREATE OR REPLACE FUNCTION get_game_rating(game_slug TEXT)
@@ -251,9 +297,9 @@ CREATE INDEX idx_friendships_friend_id ON friendships(friend_id);
 -- ============================================
 ALTER TABLE user_profiles ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Anyone can read user profiles"
+CREATE POLICY "Users can read their own profile"
   ON user_profiles FOR SELECT
-  USING (true);
+  USING (auth.uid() = id);
 
 CREATE POLICY "Users can insert their own profile"
   ON user_profiles FOR INSERT
@@ -296,22 +342,28 @@ CREATE POLICY "Users can insert their own friendships"
 -- ============================================
 -- FRIEND MATCHING FUNCTION
 -- ============================================
+-- p_user_id is ignored. Friends are resolved only for the signed-in user.
 CREATE OR REPLACE FUNCTION find_friends(p_user_id UUID)
 RETURNS TABLE (
   friend_id UUID,
   display_name TEXT,
   avatar_url TEXT
-) AS $$
+)
+LANGUAGE sql
+SECURITY DEFINER
+SET search_path = public
+AS $$
   SELECT DISTINCT
-    up.id as friend_id,
+    up.id AS friend_id,
     up.display_name,
     up.avatar_url
   FROM user_contacts uc
   JOIN user_contacts friend_uc ON uc.contact_hash = friend_uc.contact_hash
   JOIN user_profiles up ON friend_uc.user_id = up.id
-  WHERE uc.user_id = p_user_id
-    AND friend_uc.user_id != p_user_id;
-$$ LANGUAGE sql SECURITY DEFINER;
+  WHERE auth.uid() IS NOT NULL
+    AND uc.user_id = auth.uid()
+    AND friend_uc.user_id <> auth.uid();
+$$;
 
 -- ============================================
 -- AUTO-UPDATE TIMESTAMP TRIGGER
@@ -367,64 +419,109 @@ CREATE POLICY "Users can delete their own favorites"
 -- FAVORITES FUNCTIONS
 -- ============================================
 
--- Function to toggle favorite
+-- p_user_id is ignored. Favorites are always read and written for auth.uid().
 CREATE OR REPLACE FUNCTION toggle_favorite(
   p_user_id UUID,
   p_item_type TEXT,
   p_item_slug TEXT,
   p_item_name TEXT
 )
-RETURNS BOOLEAN AS $$
+RETURNS BOOLEAN
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
 DECLARE
+  v_uid UUID;
   v_exists BOOLEAN;
 BEGIN
+  v_uid := auth.uid();
+  IF v_uid IS NULL THEN
+    RETURN FALSE;
+  END IF;
+
   SELECT EXISTS(
     SELECT 1 FROM favorites
-    WHERE user_id = p_user_id
+    WHERE user_id = v_uid
     AND item_type = p_item_type
     AND item_slug = p_item_slug
   ) INTO v_exists;
 
   IF v_exists THEN
     DELETE FROM favorites
-    WHERE user_id = p_user_id
+    WHERE user_id = v_uid
     AND item_type = p_item_type
     AND item_slug = p_item_slug;
-    RETURN FALSE; -- Removed from favorites
+    RETURN FALSE;
   ELSE
     INSERT INTO favorites (user_id, item_type, item_slug, item_name)
-    VALUES (p_user_id, p_item_type, p_item_slug, p_item_name);
-    RETURN TRUE; -- Added to favorites
+    VALUES (v_uid, p_item_type, p_item_slug, p_item_name);
+    RETURN TRUE;
   END IF;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$;
 
--- Function to get user's favorites by type
 CREATE OR REPLACE FUNCTION get_user_favorites(p_user_id UUID, p_item_type TEXT)
 RETURNS TABLE (
   item_slug TEXT,
   item_name TEXT,
   created_at TIMESTAMPTZ
-) AS $$
+)
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
 BEGIN
+  IF auth.uid() IS NULL THEN
+    RETURN;
+  END IF;
+
   RETURN QUERY
   SELECT f.item_slug, f.item_name, f.created_at
   FROM favorites f
-  WHERE f.user_id = p_user_id
+  WHERE f.user_id = auth.uid()
   AND f.item_type = p_item_type
   ORDER BY f.created_at DESC;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$;
 
--- Function to check if item is favorited
 CREATE OR REPLACE FUNCTION is_favorited(p_user_id UUID, p_item_type TEXT, p_item_slug TEXT)
-RETURNS BOOLEAN AS $$
+RETURNS BOOLEAN
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
 BEGIN
+  IF auth.uid() IS NULL THEN
+    RETURN FALSE;
+  END IF;
+
   RETURN EXISTS(
     SELECT 1 FROM favorites
-    WHERE user_id = p_user_id
+    WHERE user_id = auth.uid()
     AND item_type = p_item_type
     AND item_slug = p_item_slug
   );
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$;
+
+-- ============================================
+-- PRODUCT EVENTS (affiliate clicks and email signups only)
+-- ============================================
+CREATE TABLE IF NOT EXISTS product_events (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name TEXT NOT NULL CHECK (name IN ('affiliate_click', 'email_submit')),
+  slug TEXT CHECK (slug IS NULL OR char_length(slug) <= 80),
+  path TEXT CHECK (path IS NULL OR char_length(path) <= 200),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+ALTER TABLE product_events ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Anon and authenticated can insert product events"
+  ON product_events
+  FOR INSERT
+  TO anon, authenticated
+  WITH CHECK (name IN ('affiliate_click', 'email_submit'));
+
+GRANT INSERT ON TABLE product_events TO anon, authenticated;
