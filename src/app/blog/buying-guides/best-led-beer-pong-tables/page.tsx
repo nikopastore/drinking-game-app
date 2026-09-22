@@ -196,10 +196,10 @@ export default function BestLEDPongTablesPage() {
           <p className="text-gray-400 text-sm">Add LED strips to any existing table</p>
           <span className="text-neon-pink font-bold">$20-30</span>
         </a>
-        <a href="https://www.amazon.com/s?k=glow+in+dark+party+cups&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
-          <h4 className="font-bold text-white">Glow-in-Dark Cups</h4>
-          <p className="text-gray-400 text-sm">UV-reactive cups for blacklight parties</p>
-          <span className="text-neon-pink font-bold">$15-20</span>
+        <a href="https://www.amazon.com/dp/B08NW1W5NX?tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
+          <h4 className="font-bold text-white">Glow in the Dark Cups</h4>
+          <p className="text-gray-400 text-sm">24 pack of 16oz cups in five colors</p>
+          <span className="text-neon-pink font-bold">$16</span>
         </a>
         <a href="https://www.amazon.com/s?k=LED+cup+holder+ring+party&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
           <h4 className="font-bold text-white">LED Cup Holders</h4>

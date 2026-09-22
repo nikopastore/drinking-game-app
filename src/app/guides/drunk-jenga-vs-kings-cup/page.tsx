@@ -209,20 +209,20 @@ export default function DrunkJengaVsKingsCupPage() {
       <h2>Equipment</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-        <a href="https://www.amazon.com/s?k=drunk+jenga+drinking+game&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
-          <h4 className="font-bold text-white">Drunk Jenga Set</h4>
-          <p className="text-gray-400 text-sm">Pre-written blocks or DIY</p>
-          <span className="text-neon-pink font-bold">$15-25</span>
+        <a href="https://www.amazon.com/dp/B0895623TN?tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
+          <h4 className="font-bold text-white">Gamie Drinking Tower</h4>
+          <p className="text-gray-400 text-sm">48 blocks with challenges, plus 4 glasses</p>
+          <span className="text-neon-pink font-bold">$19</span>
         </a>
-        <a href="https://www.amazon.com/s?k=giant+jenga+outdoor&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
-          <h4 className="font-bold text-white">Giant Jenga</h4>
-          <p className="text-gray-400 text-sm">Outdoor parties, bigger blocks</p>
-          <span className="text-neon-pink font-bold">$40-80</span>
+        <a href="https://www.amazon.com/dp/B0F5WCVZ1W?tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
+          <h4 className="font-bold text-white">Giant Tumbling Tower</h4>
+          <p className="text-gray-400 text-sm">60 blocks, stacks up to 5 feet</p>
+          <span className="text-neon-pink font-bold">$42</span>
         </a>
-        <a href="https://www.amazon.com/s?k=waterproof+playing+cards&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
-          <h4 className="font-bold text-white">Waterproof Cards</h4>
+        <a href="https://www.amazon.com/dp/B00ULW61SM?tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
+          <h4 className="font-bold text-white">Hoyle Waterproof Cards</h4>
           <p className="text-gray-400 text-sm">Survive drink spills</p>
-          <span className="text-neon-pink font-bold">$8-15</span>
+          <span className="text-neon-pink font-bold">$5</span>
         </a>
         <a href="https://www.amazon.com/s?k=kings+cup+drinking+game&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
           <h4 className="font-bold text-white">Kings Cup Set</h4>

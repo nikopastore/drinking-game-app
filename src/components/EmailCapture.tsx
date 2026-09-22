@@ -9,52 +9,95 @@ interface EmailCaptureProps {
   source: string;
 }
 
+interface SubscribeResponse {
+  ok?: boolean;
+  already?: boolean;
+  emailed?: boolean;
+  error?: string;
+}
+
 export function EmailCapture({ source }: EmailCaptureProps) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
+  const saveOnDevice = async (address: string) => {
+    if (!isSupabaseConfigured()) return false;
+    const supabase = createClient();
+    const { error } = await supabase.from("email_subscribers").insert({
+      email: address,
+      source,
+      lead_magnet: "party-tips",
+      page_path: window.location.pathname,
+    });
+    if (!error) return "saved";
+    if (error.code === "23505") return "already";
+    return false;
+  };
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setMessage("");
 
-    if (!email.trim()) {
+    const address = email.trim().toLowerCase();
+    if (!address) {
       setStatus("error");
       setMessage("Please enter a valid email.");
       return;
     }
 
-    if (!isSupabaseConfigured()) {
-      setStatus("error");
-      setMessage("Email signups are temporarily unavailable.");
-      return;
-    }
-
     setStatus("loading");
 
-    const supabase = createClient();
-    const { error } = await supabase.from("email_subscribers").insert({
-      email: email.trim().toLowerCase(),
-      source,
-      lead_magnet: "party-tips",
-      page_path: typeof window !== "undefined" ? window.location.pathname : null,
-    });
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: address,
+          source,
+          pagePath: window.location.pathname,
+        }),
+      });
 
-    if (error) {
-      if (error.code === "23505") {
+      if (response.ok) {
+        const data = (await response.json()) as SubscribeResponse;
         setStatus("success");
-        setMessage("You're already on the list.");
+        trackEvent("email_submit", source);
+        setEmail("");
+        if (data.already) {
+          setMessage("You're already on the list.");
+        } else if (data.emailed) {
+          setMessage("Check your inbox for the party planner and supply links.");
+        } else {
+          setMessage("You're on the list. Open the party planner for tonight's shopping list.");
+        }
         return;
       }
-      setStatus("error");
-      setMessage("Something went wrong. Please try again.");
+
+      if (response.status !== 404 && response.status !== 503) {
+        setStatus("error");
+        setMessage("Something went wrong. Please try again.");
+        return;
+      }
+    } catch {
+      // The static mobile build has no API route. Fall through to a direct insert.
+    }
+
+    const saved = await saveOnDevice(address);
+    if (saved) {
+      setStatus("success");
+      if (saved === "saved") trackEvent("email_submit", source);
+      setEmail("");
+      setMessage(
+        saved === "already"
+          ? "You're already on the list."
+          : "You're on the list. Open the party planner for tonight's shopping list."
+      );
       return;
     }
 
-    setStatus("success");
-    trackEvent("email_submit", source);
-    setMessage("You're on the list. Use the party planner for tonight's shopping list.");
-    setEmail("");
+    setStatus("error");
+    setMessage("Email signups are temporarily unavailable.");
   };
 
   return (
@@ -66,10 +109,10 @@ export function EmailCapture({ source }: EmailCaptureProps) {
             <span className="text-sm font-semibold uppercase tracking-wider">Party tips</span>
           </div>
           <h3 className="mt-2 text-xl font-bold text-white">
-            Get hosting notes from SipWiki
+            Get the party list by email
           </h3>
           <p className="mt-2 text-gray-300">
-            Join the list for party tips. The planner on this site is the checklist — we do not email a PDF.
+            Join the list and we will send the party planner plus the supply links.
           </p>
         </div>
 

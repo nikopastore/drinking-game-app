@@ -194,10 +194,10 @@ export default function QuartersVsPowerHourPage() {
       </ul>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-        <a href="https://www.amazon.com/s?k=shot+glasses+set+12&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
-          <h4 className="font-bold text-white">Shot Glass Set</h4>
-          <p className="text-gray-400 text-sm">Perfect for Power Hour</p>
-          <span className="text-neon-pink font-bold">$12-20</span>
+        <a href="https://www.amazon.com/dp/B0BJ12FNYW?tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
+          <h4 className="font-bold text-white">Plastic Shot Cups (100 pack)</h4>
+          <p className="text-gray-400 text-sm">2oz clear cups for Power Hour</p>
+          <span className="text-neon-pink font-bold">$9</span>
         </a>
         <a href="https://www.amazon.com/s?k=beer+pitcher+plastic&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
           <h4 className="font-bold text-white">Beer Pitcher</h4>

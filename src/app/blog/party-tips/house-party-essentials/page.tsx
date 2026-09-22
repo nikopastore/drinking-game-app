@@ -139,25 +139,25 @@ export default function HousePartyEssentialsPage() {
 
       <h3>Game Supplies</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-        <a href="https://www.amazon.com/s?k=beer+pong+table&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
-          <h4 className="font-bold text-white">Beer Pong Table</h4>
-          <p className="text-gray-400 text-sm">8-foot regulation table</p>
-          <span className="text-neon-pink font-bold">$60-150</span>
+        <a href="https://www.amazon.com/dp/B003XNWN3S?tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
+          <h4 className="font-bold text-white">GoPong 8ft Table</h4>
+          <p className="text-gray-400 text-sm">Portable 8-foot beer pong table</p>
+          <span className="text-neon-pink font-bold">$99</span>
         </a>
-        <a href="https://www.amazon.com/s?k=ping+pong+balls+beer+pong&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
-          <h4 className="font-bold text-white">Ping Pong Balls</h4>
-          <p className="text-gray-400 text-sm">Get more than you think - they disappear</p>
-          <span className="text-neon-pink font-bold">$8-15</span>
+        <a href="https://www.amazon.com/dp/B08PF41G4B?tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
+          <h4 className="font-bold text-white">BPONG Orange Balls</h4>
+          <p className="text-gray-400 text-sm">12 pack. They still disappear</p>
+          <span className="text-neon-pink font-bold">$16</span>
         </a>
-        <a href="https://www.amazon.com/s?k=playing+cards+plastic&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
-          <h4 className="font-bold text-white">Playing Cards</h4>
-          <p className="text-gray-400 text-sm">Multiple decks for different games</p>
-          <span className="text-neon-pink font-bold">$5-12</span>
+        <a href="https://www.amazon.com/dp/B00ULW61SM?tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
+          <h4 className="font-bold text-white">Hoyle Waterproof Cards</h4>
+          <p className="text-gray-400 text-sm">One plastic deck</p>
+          <span className="text-neon-pink font-bold">$5</span>
         </a>
-        <a href="https://www.amazon.com/s?k=solo+cups+red+18oz&tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
-          <h4 className="font-bold text-white">Solo Cups (Bulk)</h4>
-          <p className="text-gray-400 text-sm">100+ count pack</p>
-          <span className="text-neon-pink font-bold">$15-25</span>
+        <a href="https://www.amazon.com/dp/B0FR3N4683?tag=sipwiki-20" target="_blank" rel="noopener noreferrer" className="block p-4 bg-dark-800 rounded-lg border border-dark-600 hover:border-neon-pink/50 transition-colors">
+          <h4 className="font-bold text-white">Red Party Cups</h4>
+          <p className="text-gray-400 text-sm">100 pack of 16oz cups</p>
+          <span className="text-neon-pink font-bold">$14</span>
         </a>
       </div>
 

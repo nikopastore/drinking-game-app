@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Electric wine opener">
-  <rect width="400" height="400" rx="36" fill="#12121a"/>
-  <rect x="156" y="70" width="88" height="150" rx="28" fill="#2a2a38" stroke="#ff2d92" stroke-width="8"/>
-  <circle cx="200" cy="128" r="18" fill="#00d4ff"/>
-  <rect x="176" y="214" width="48" height="36" rx="8" fill="#3a3a4a"/>
-  <path d="M200 250c8 18 8 36 0 70" fill="none" stroke="#d7dde8" stroke-width="8"/>
-  <path d="M200 300c-16 16-16 34 0 50 16-16 16-34 0-50z" fill="#c5ceda"/>
-  <rect x="168" y="292" width="64" height="18" rx="4" fill="#6a4a2a"/>
-</svg>
