@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { GuideLayout } from "@/components/GuideLayout";
 
 export const metadata: Metadata = {
-  title: "Mean Girls Drinking Game Rules (2025) | SipWiki",
+  title: "Mean Girls Drinking Game Rules (2025)",
   description: "Mean Girls drinking game rules for the ultimate watch party. Drink for “On Wednesdays,” Burn Book drama, and every iconic quote.",
   keywords: [
     "mean girls drinking game",

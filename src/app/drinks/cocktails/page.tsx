@@ -3,7 +3,7 @@ import { DrinksCategoryPage } from "../CategoryPage";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/drinks/cocktails" },
-  title: "Cocktail Recipes - Easy Party Drinks | SipWiki",
+  title: "Cocktail Recipes - Easy Party Drinks",
   description: "Explore cocktail recipes with step-by-step instructions, ingredients, and pro tips. Find classics like Margaritas, Mojitos, and more.",
 };
 

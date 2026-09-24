@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     : cocktail.baseSpirit.charAt(0).toUpperCase() + cocktail.baseSpirit.slice(1);
 
   // SEO optimized title
-  const seoTitle = `${cocktail.name} Recipe - How to Make a ${cocktail.name} | SipWiki`;
+  const seoTitle = `${cocktail.name} Recipe - How to Make a ${cocktail.name}`;
 
   // SEO optimized description
   const ingredientList = cocktail.ingredients.slice(0, 3).map(i => i.name).join(", ");

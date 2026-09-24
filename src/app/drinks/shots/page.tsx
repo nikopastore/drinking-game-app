@@ -3,7 +3,7 @@ import { DrinksCategoryPage } from "../CategoryPage";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/drinks/shots" },
-  title: "Shot Recipes - Party Shooters & Bombs | SipWiki",
+  title: "Shot Recipes - Party Shooters & Bombs",
   description: "Discover shot recipes including Lemon Drop, Kamikaze, B-52, and more. Quick shooters and bomb shots for parties.",
 };
 

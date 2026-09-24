@@ -3,7 +3,7 @@ import { DrinksCategoryPage } from "../CategoryPage";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/drinks/mocktails" },
-  title: "Mocktail Recipes - Non-Alcoholic Drinks | SipWiki",
+  title: "Mocktail Recipes - Non-Alcoholic Drinks",
   description: "Non-alcoholic mocktail recipes with bright flavors and party-ready presentation.",
 };
 

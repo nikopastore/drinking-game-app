@@ -82,7 +82,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       "party games",
     ],
     openGraph: {
-      title: `${game.name} Rules - How to Play | SipWiki`,
+      title: `${game.name} Rules - How to Play`,
       description: seoDescription,
       type: "article",
       url: `https://sipwiki.app/games/${game.slug}`,
