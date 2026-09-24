@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PlayerCountPage } from "../PlayerCountPage";
 
 export const metadata: Metadata = {
-  title: "Drinking Games for 4 People | SipWiki",
+  title: "Drinking Games for 4 People",
   description: "Four-player drinking games that keep everyone involved. Great for double dates and small groups.",
 };
 

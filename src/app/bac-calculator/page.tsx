@@ -7,7 +7,7 @@ import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "BAC Calculator: Blood Alcohol Content Estimator | SipWiki",
+  title: "BAC Calculator: Blood Alcohol Content Estimator",
   description: "Free BAC calculator estimates your blood alcohol content based on weight, gender, drinks consumed, and time. Know when it's safe to drive. Never drink and drive.",
   keywords: [
     "BAC calculator",

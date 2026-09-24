@@ -8,7 +8,7 @@ import { generateArticleSchema } from "@/lib/schema";
 import { EmailCapture } from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
-  title: "Best Cocktails Guide: Classic & Modern Recipes (2025) | SipWiki",
+  title: "Best Cocktails Guide: Classic & Modern Recipes (2025)",
   description: "Complete guide to cocktails: 50+ classic and modern recipes, bartending tips, ingredient guides, and mixing techniques. From Margaritas to Old Fashioneds, master them all.",
   keywords: [
     "cocktail recipes",

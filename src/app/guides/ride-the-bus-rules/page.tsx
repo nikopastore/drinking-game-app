@@ -4,7 +4,7 @@ import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Ride the Bus Rules: Complete Guide to This Classic Card Game | SipWiki",
+  title: "Ride the Bus Rules: Complete Guide to This Classic Card Game",
   description: "Complete Ride the Bus drinking game rules with all 3 rounds explained. Learn the guessing phase, pyramid phase, and brutal bus ride. Perfect for 4-8 players.",
   keywords: ["ride the bus rules", "ride the bus drinking game", "card drinking games", "pyramid drinking game", "how to play ride the bus", "bus driver drinking game", "ride the bus card game"],
   openGraph: { title: "Ride the Bus Rules: Complete Guide", description: "Master the Ride the Bus drinking game with our complete rules guide.", type: "article", url: "https://sipwiki.app/guides/ride-the-bus-rules" },

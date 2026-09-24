@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const seoTitle = `${game.name} Rules - How to Play | SipWiki`;
+  const seoTitle = `${game.name} Rules - How to Play`;
   const playerInfo = formatPlayerCount(game.min_players, game.max_players);
   const materialsInfo =
     game.materials[0] === "no prop"
@@ -81,7 +81,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       "party games",
     ],
     openGraph: {
-      title: `${game.name} Rules - How to Play | SipWiki`,
+      title: `${game.name} Rules - How to Play`,
       description: seoDescription,
       type: "article",
       url: `https://sipwiki.app/games/${game.slug}`,

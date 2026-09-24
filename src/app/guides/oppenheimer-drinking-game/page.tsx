@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { GuideLayout } from "@/components/GuideLayout";
 
 export const metadata: Metadata = {
-  title: "Oppenheimer Drinking Game Rules (2025) | SipWiki",
+  title: "Oppenheimer Drinking Game Rules (2025)",
   description: "Oppenheimer drinking game rules for your movie night. Drink for Manhattan Project moments, tense courtroom scenes, and every \"I am become death\" reference.",
   keywords: [
     "oppenheimer drinking game",

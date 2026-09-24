@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `Playing ${game.name} | SipWiki`,
+    title: `Playing ${game.name}`,
     description: `Live game session for ${game.name}. Get AI referee help and track your game time.`,
   };
 }

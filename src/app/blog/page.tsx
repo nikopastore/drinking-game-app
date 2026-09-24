@@ -11,7 +11,7 @@ import {
 import { blogCategories, blogPosts, getBlogPostsByCategory } from "@/config/blogData";
 
 export const metadata: Metadata = {
-  title: "Blog - Party Tips, Buying Guides & Safety | SipWiki",
+  title: "Blog - Party Tips, Buying Guides & Safety",
   description: "Expert party tips, buying guides for drinking game supplies, safety advice, and tutorials. Everything you need to host the perfect party.",
   keywords: [
     "drinking game tips",

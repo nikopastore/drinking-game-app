@@ -4,7 +4,7 @@ import { BookOpen, ArrowRight, Crown, Target, Users, Hand, UsersRound } from "lu
 import { EmailCapture } from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
-  title: "Drinking Game Guides & Rules | SipWiki",
+  title: "Drinking Game Guides & Rules",
   description: "Complete guides and official rules for all popular drinking games. Learn how to play Kings Cup, Beer Pong, and more with step-by-step instructions.",
   keywords: [
     "drinking game rules",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "beer pong rules",
   ],
   openGraph: {
-    title: "Drinking Game Guides & Rules | SipWiki",
+    title: "Drinking Game Guides & Rules",
     description: "Complete guides and official rules for all popular drinking games.",
     type: "website",
     url: "https://sipwiki.app/guides",

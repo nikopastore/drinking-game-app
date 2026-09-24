@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const difficultyLabel = ["Easy", "Medium", "Hard"][drink.difficulty - 1];
   const ingredientList = drink.ingredients.slice(0, 3).map((i) => i.name).join(", ");
-  const title = `${drink.name} Recipe - How to Make ${drink.name} | SipWiki`;
+  const title = `${drink.name} Recipe - How to Make ${drink.name}`;
   const description = `Learn how to make ${drink.name}. ${difficultyLabel} recipe with ${ingredientList}. Step-by-step instructions, serving size, and pro tips.`;
 
   return {

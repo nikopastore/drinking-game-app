@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "Drinking Quiz - Discover Your Party Personality | SipWiki",
+  title: "Drinking Quiz - Discover Your Party Personality",
   description: "Take our fun drinking quizzes to discover your party personality. Find out what drinking game matches your style and what cocktail represents you!",
   keywords: [
     "drinking quiz",

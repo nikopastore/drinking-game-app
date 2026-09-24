@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "What Drinking Game Are You? Free Personality Quiz | SipWiki",
+  title: "What Drinking Game Are You? Free Personality Quiz",
   description: "Take our fun 2-minute quiz to discover your drinking game personality! Find out if you're a Kings Cup Royalty, Beer Pong Champion, or Chaos Agent. Get personalized game recommendations based on your party style.",
   keywords: [
     // Primary keywords

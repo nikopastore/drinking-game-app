@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Cocktail Recipes & Party Drinks | SipWiki",
+  title: "Cocktail Recipes & Party Drinks",
   description:
     "Explore cocktail recipes for every party: classics, shooters, tropical drinks, and mocktails. Browse by spirit, difficulty, and vibe to find your next favorite drink.",
   keywords: [
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "rum cocktails",
   ],
   openGraph: {
-    title: "Cocktail Recipes & Party Drinks | SipWiki",
+    title: "Cocktail Recipes & Party Drinks",
     description:
       "Explore cocktail recipes for every party: classics, shooters, tropical drinks, and mocktails.",
     type: "website",
