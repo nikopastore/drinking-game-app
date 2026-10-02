@@ -1,6 +1,4 @@
 import type { NextConfig } from "next";
-import fs from "node:fs";
-import path from "node:path";
 import withPWAInit from "@ducanh2912/next-pwa";
 
 const isStaticExport = process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true';
@@ -56,6 +54,7 @@ const withPWA = withPWAInit({
 });
 
 const nextConfig: NextConfig = {
+  outputFileTracingRoot: process.cwd(),
   // Required for Next.js 15+ with PWA plugin (which adds webpack config)
   turbopack: {},
   // Enable static export for Capacitor builds
@@ -66,20 +65,6 @@ const nextConfig: NextConfig = {
       unoptimized: true,
     },
   }),
-  async redirects() {
-    const gameDataPath = path.join(process.cwd(), "src/config/gameData.ts");
-    const gameData = fs.readFileSync(gameDataPath, "utf8");
-    const slugMatches = Array.from(gameData.matchAll(/slug:\\s*\"([^\"]+)\"/g)).map(
-      (match) => match[1]
-    );
-    const slugs = Array.from(new Set(slugMatches));
-
-    return slugs.map((slug) => ({
-      source: `/game/${slug}`,
-      destination: `/games/${slug}`,
-      permanent: true,
-    }));
-  },
 };
 
 export default withPWA(nextConfig);

@@ -48,6 +48,7 @@ export function generateRecipeSchema(
     "@type": "Recipe",
     name: cocktail.name,
     description: cocktail.description,
+    url,
     ...(resolvedImage ? { image: resolvedImage } : {}),
     recipeIngredient: recipeIngredients,
     recipeInstructions: recipeInstructions,

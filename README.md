@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SipWiki
 
-## Getting Started
+SipWiki is a party companion built with Next.js. It combines a searchable library of drinking games, cocktail and mocktail recipes, party-planning tools, live game sessions, an AI game finder, and an optional AI referee.
 
-First, run the development server:
+## Local development
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). The age gate appears on a fresh browser profile.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run test:run
+npm run build
+npm run build:mobile
+```
 
-## Learn More
+`build:mobile` creates a static export for Capacitor. API routes, middleware, AI requests, and email delivery require the web deployment; the mobile build falls back to the catalog and local device state when those services are unavailable.
 
-To learn more about Next.js, take a look at the following resources:
+## Environment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Copy `.env.example` to `.env.local` and configure the services you plan to use:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` for auth, favorites, comments, cabinets, and submissions.
+- `OPENAI_API_KEY` for the live AI referee.
+- `GEMINI_API_KEY` for the catalog-grounded game finder.
+- `RESEND_API_KEY` and `RESEND_FROM_EMAIL` for the party-list email.
+- `NEXT_PUBLIC_SITE_URL` for canonical URLs and MCP links.
 
-## Deploy on Vercel
+Apply Supabase migrations in `supabase/migrations/` in order. The SQL bootstrap file is kept for reference and new projects.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Main routes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `/games` and `/games/[slug]` — game library and rules
+- `/play/[slug]` — live session with timer and AI referee
+- `/cocktails` and `/drinks` — cocktail, punch, shot, and mocktail recipes
+- `/party-planner` — supplies and party planning calculator
+- `/spin` — filtered random game picker
+- `/shop` — affiliate party supplies
+- `/submit` — authenticated community submissions
+
+## Mobile
+
+Capacitor configuration lives in `capacitor.config.ts`. Use `npm run build:mobile` before `npx cap sync`, then open the native project with `npm run cap:ios` or `npm run cap:android`.

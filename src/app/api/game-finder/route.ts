@@ -65,6 +65,11 @@ function json(data: unknown, status: number, headers: Record<string, string>) {
 }
 
 export async function POST(request: NextRequest) {
+  const contentLength = Number(request.headers.get("content-length") || 0);
+  if (contentLength > 32 * 1024) {
+    return json({ error: "Request body too large" }, 413, {});
+  }
+
   const rateLimit = checkRateLimit(getClientIP(request), rateLimiters.chat);
   const rateHeaders = createRateLimitHeaders(rateLimit);
 

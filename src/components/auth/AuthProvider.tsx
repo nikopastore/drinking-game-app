@@ -43,8 +43,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     user,
     profile,
     loading,
-    signInWithGoogle,
-    signInWithApple,
     signOut: authSignOut,
     refreshProfile,
   } = useAuth();

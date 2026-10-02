@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { getSafeAuthRedirect } from "@/lib/authRedirect";
 
 // This page handles the OAuth callback on the client side
 // Used for mobile app builds where server-side route handlers don't work
@@ -13,19 +14,23 @@ export default function AuthCallbackPage() {
   useEffect(() => {
     const handleCallback = async () => {
       const code = searchParams.get("code");
-      const next = searchParams.get("next") ?? "/";
+      const next = getSafeAuthRedirect(searchParams.get("next"));
 
-      console.log("[Auth Callback] Starting with code:", code ? "present" : "missing");
+      if (process.env.NODE_ENV === "development") {
+        console.log("[Auth Callback] Starting with code:", code ? "present" : "missing");
+      }
 
       if (code) {
         const supabase = createClient();
         const { data, error } = await supabase.auth.exchangeCodeForSession(code);
 
-        console.log("[Auth Callback] exchangeCodeForSession result:", {
-          hasUser: !!data?.user,
-          hasSession: !!data?.session,
-          error: error?.message,
-        });
+        if (process.env.NODE_ENV === "development") {
+          console.log("[Auth Callback] exchangeCodeForSession result:", {
+            hasUser: !!data?.user,
+            hasSession: !!data?.session,
+            error: error?.message,
+          });
+        }
 
         if (!error && data.user) {
           // Create or update user profile
@@ -49,7 +54,9 @@ export default function AuthCallbackPage() {
             { onConflict: "id" }
           );
 
-          router.push(`${next}?auth=success`);
+          const destination = new URL(next, window.location.origin);
+          destination.searchParams.set("auth", "success");
+          router.push(`${destination.pathname}${destination.search}${destination.hash}`);
           return;
         }
       }

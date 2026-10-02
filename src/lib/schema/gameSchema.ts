@@ -50,7 +50,7 @@ export function generateGameSchema(
       : {
           logo: {
             "@type": "ImageObject" as const,
-            url: "https://sipwiki.app/icon-512.png",
+          url: "https://sipwiki.app/icons/icon-512x512.png",
           },
         }),
   };
@@ -58,8 +58,7 @@ export function generateGameSchema(
   const resolvedImage =
     imageUrl || game.image || `https://sipwiki.app/games/${game.slug}.jpg`;
 
-  const resolvedAggregateRating =
-    aggregateRating || getDefaultAggregateRating(game);
+  const resolvedAggregateRating = aggregateRating;
 
   const gameItems =
     game.materials[0] === "no prop"
@@ -95,14 +94,16 @@ export function generateGameSchema(
     ].join(", "),
   };
 
-  schema.aggregateRating = {
-    "@type": "AggregateRating",
-    ratingValue: resolvedAggregateRating.ratingValue,
-    ratingCount: resolvedAggregateRating.ratingCount,
-    reviewCount: resolvedAggregateRating.ratingCount,
-    bestRating: 5,
-    worstRating: 1,
-  };
+  if (resolvedAggregateRating) {
+    schema.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: resolvedAggregateRating.ratingValue,
+      ratingCount: resolvedAggregateRating.ratingCount,
+      reviewCount: resolvedAggregateRating.ratingCount,
+      bestRating: 5,
+      worstRating: 1,
+    };
+  }
 
   return schema;
 }
@@ -222,23 +223,6 @@ function getEstimatedGameTime(game: Game): string {
   if (level <= 3) return "PT30M"; // 30 minutes
   if (level <= 4) return "PT45M"; // 45 minutes
   return "PT60M"; // 60 minutes
-}
-
-function getDefaultAggregateRating(game: Game): {
-  ratingValue: number;
-  ratingCount: number;
-} {
-  const baseRating = 4.6 + (game.drunkenness_level - 3) * 0.05;
-  const ratingValue = Math.min(4.9, Math.max(4.3, Number(baseRating.toFixed(1))));
-  const ratingCount = Math.max(
-    150,
-    (game.max_players ? game.max_players : 10) * 90
-  );
-
-  return {
-    ratingValue,
-    ratingCount,
-  };
 }
 
 /**

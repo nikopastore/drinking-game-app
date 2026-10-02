@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Modal, Button } from "@/components/ui";
 import { Star, PartyPopper } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, getDeviceId } from "@/lib/utils";
 
 interface RatingModalProps {
   isOpen: boolean;
@@ -16,6 +16,7 @@ interface RatingModalProps {
 export function RatingModal({
   isOpen,
   gameName,
+  gameSlug,
   onComplete,
   onSkip,
 }: RatingModalProps) {
@@ -28,9 +29,20 @@ export function RatingModal({
     setRating(score);
     setIsSubmitting(true);
 
-    // TODO: Submit rating to Supabase
-    // For now, just simulate a delay
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    try {
+      const response = await fetch("/api/ratings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ gameSlug, score, deviceId: getDeviceId() }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Rating unavailable");
+      }
+    } catch {
+      // The static mobile build has no API route. Keep the feedback local there.
+      localStorage.setItem(`sipwiki-rating:${gameSlug}`, String(score));
+    }
 
     setIsSubmitting(false);
     setHasRated(true);
@@ -103,7 +115,7 @@ export function RatingModal({
 
             <h2 className="text-xl font-bold text-white mb-2">Thanks!</h2>
             <p className="text-gray-400 mb-6">
-              Your rating helps the community find great games
+              Your rating helps SipWiki improve its game recommendations
             </p>
 
             <Button onClick={onComplete} className="w-full">

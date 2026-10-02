@@ -25,7 +25,7 @@ export function useFavorites(): FavoritesState {
   const [gameFavorites, setGameFavorites] = useState<Favorite[]>([]);
   const [cocktailFavorites, setCocktailFavorites] = useState<Favorite[]>([]);
   const [loading, setLoading] = useState(true);
-  const { user, isAuthenticated } = useAuthContext();
+  const { user } = useAuthContext();
 
   const supabase = createClient();
 

@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
-import { HTMLAttributes, forwardRef, useEffect } from "react";
+import { HTMLAttributes, forwardRef, useEffect, useRef } from "react";
 import { Button } from "./Button";
 
 interface ModalProps extends HTMLAttributes<HTMLDivElement> {
@@ -31,6 +31,14 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
       };
     }, [isOpen, onClose]);
 
+    const dialogRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+      if (isOpen) {
+        dialogRef.current?.focus();
+      }
+    }, [isOpen]);
+
     if (!isOpen) return null;
 
     const sizes = {
@@ -49,7 +57,15 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
 
         {/* Modal */}
         <div
-          ref={ref}
+          role="dialog"
+          aria-modal="true"
+          aria-label={title || "SipWiki dialog"}
+          tabIndex={-1}
+          ref={(node) => {
+            dialogRef.current = node;
+            if (typeof ref === "function") ref(node);
+            else if (ref) ref.current = node;
+          }}
           className={cn(
             "relative w-full mx-4 bg-dark-800 border border-dark-600 rounded-xl shadow-2xl",
             sizes[size],
@@ -66,6 +82,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
                 size="sm"
                 onClick={onClose}
                 className="p-1"
+                aria-label="Close dialog"
               >
                 <X className="h-5 w-5" />
               </Button>

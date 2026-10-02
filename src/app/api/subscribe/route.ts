@@ -15,6 +15,11 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  * A missing mail key, or a failed send, still keeps the signup.
  */
 export async function POST(request: NextRequest) {
+  const contentLength = Number(request.headers.get("content-length") || 0);
+  if (contentLength > 4 * 1024) {
+    return NextResponse.json({ error: "Request body too large" }, { status: 413 });
+  }
+
   const clientIP = getClientIP(request);
   const rateLimitResult = checkRateLimit(`subscribe:${clientIP}`, rateLimiters.strict);
 
@@ -46,20 +51,16 @@ export async function POST(request: NextRequest) {
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.from("email_subscribers").insert({
-    email,
-    source,
-    lead_magnet: "party-tips",
-    page_path: pagePath,
+  const { data: accepted, error } = await supabase.rpc("subscribe_email", {
+    p_email: email,
+    p_source: source,
+    p_page_path: pagePath,
   });
 
   if (error) {
-    if (error.code === "23505") {
-      return NextResponse.json({ ok: true, already: true, emailed: false });
-    }
     return NextResponse.json({ error: "Could not save signup" }, { status: 500 });
   }
 
-  const emailed = await sendWelcomeEmail(email);
-  return NextResponse.json({ ok: true, already: false, emailed });
+  const emailed = accepted ? await sendWelcomeEmail(email) : false;
+  return NextResponse.json({ ok: true, emailed });
 }
