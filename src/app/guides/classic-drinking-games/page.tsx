@@ -4,7 +4,7 @@ import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "15 Classic Drinking Games Everyone Should Know | SipWiki",
+  title: "15 Classic Drinking Games Everyone Should Know",
   description: "The classic drinking games that have stood the test of time. From Beer Pong to Kings Cup, these timeless party games are must-knows for any social gathering.",
   keywords: ["classic drinking games", "traditional drinking games", "old school drinking games", "popular drinking games", "best known drinking games", "timeless party games"],
   openGraph: { title: "15 Classic Drinking Games Everyone Should Know", description: "Timeless party games that never get old!", type: "article", url: "https://sipwiki.app/guides/classic-drinking-games" },

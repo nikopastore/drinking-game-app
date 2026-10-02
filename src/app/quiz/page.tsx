@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/quiz" },
-  title: "Drinking Quizzes - Fun Party Personality Tests | SipWiki",
+  title: "Drinking Quizzes - Fun Party Personality Tests",
   description: "Take our fun drinking quizzes to discover your party personality, find your perfect cocktail, and get matched with drinking games you'll love.",
   keywords: [
     "drinking quiz",

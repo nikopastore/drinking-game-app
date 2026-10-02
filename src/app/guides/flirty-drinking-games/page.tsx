@@ -4,7 +4,7 @@ import { QuickAnswer } from "@/components/seo";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "15 Best Flirty Drinking Games for Sparks & Chemistry | SipWiki",
+  title: "15 Best Flirty Drinking Games for Sparks & Chemistry",
   description: "Flirty drinking games perfect for date nights, couples parties, and when the chemistry is undeniable. From Truth or Drink to romantic card games.",
   keywords: ["flirty drinking games", "romantic drinking games", "sexy drinking games", "drinking games for couples", "spicy drinking games", "date night drinking games", "flirty party games"],
   openGraph: { title: "15 Best Flirty Drinking Games", description: "Turn up the heat with these romantic party games!", type: "article", url: "https://sipwiki.app/guides/flirty-drinking-games" },

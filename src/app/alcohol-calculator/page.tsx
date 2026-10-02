@@ -5,7 +5,7 @@ import { Card, CardContent, Button } from "@/components/ui";
 import { Calculator, PartyPopper } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Alcohol Calculator - How Much Do You Need For Your Party | SipWiki",
+  title: "Alcohol Calculator - How Much Do You Need For Your Party",
   description:
     "Plan the right amount of beer, wine, liquor, and supplies for any party size. Use the SipWiki alcohol calculator guide and get precise estimates.",
   keywords: [
