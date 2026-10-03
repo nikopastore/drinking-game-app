@@ -1,6 +1,8 @@
 -- SipWiki Database Schema
 -- Run this in your Supabase SQL Editor
 
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
 -- ============================================
 -- GAMES TABLE (for future database-driven games)
 -- ============================================
@@ -342,7 +344,24 @@ CREATE TABLE IF NOT EXISTS user_profiles (
 CREATE INDEX idx_user_profiles_display_name ON user_profiles(display_name);
 
 -- ============================================
--- USER CONTACTS TABLE (hashed for privacy)
+-- PRIVATE CONTACT MATCHING KEY (never exposed to client roles)
+CREATE SCHEMA IF NOT EXISTS private;
+
+CREATE TABLE IF NOT EXISTS private.contact_match_keys (
+  key_id BOOLEAN PRIMARY KEY DEFAULT TRUE CHECK (key_id),
+  secret BYTEA NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+INSERT INTO private.contact_match_keys (key_id, secret)
+VALUES (TRUE, gen_random_bytes(32))
+ON CONFLICT (key_id) DO NOTHING;
+
+ALTER TABLE private.contact_match_keys ENABLE ROW LEVEL SECURITY;
+REVOKE ALL ON SCHEMA private FROM PUBLIC, anon, authenticated;
+REVOKE ALL ON private.contact_match_keys FROM PUBLIC, anon, authenticated;
+
+-- USER CONTACTS TABLE (server-side keyed HMACs only)
 -- ============================================
 CREATE TABLE IF NOT EXISTS user_contacts (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -402,6 +421,8 @@ CREATE POLICY "Users can delete their own contacts"
   ON user_contacts FOR DELETE
   USING (auth.uid() = user_id);
 
+REVOKE ALL ON TABLE user_contacts FROM PUBLIC, anon, authenticated;
+
 -- ============================================
 -- FRIENDSHIPS RLS POLICIES
 -- ============================================
@@ -440,6 +461,85 @@ AS $$
     AND uc.user_id = auth.uid()
     AND friend_uc.user_id <> auth.uid();
 $$;
+
+-- Raw normalized contact values are accepted only long enough to calculate a
+-- server-side keyed HMAC. The values themselves are never persisted.
+CREATE OR REPLACE FUNCTION sync_contacts(
+  p_user_id UUID,
+  p_contacts TEXT[]
+)
+RETURNS TABLE (
+  friend_id UUID,
+  display_name TEXT,
+  avatar_url TEXT
+)
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public, private, extensions
+AS $$
+DECLARE
+  v_uid UUID := auth.uid();
+  v_secret BYTEA;
+  v_contact TEXT;
+  v_normalized TEXT;
+BEGIN
+  IF v_uid IS NULL OR p_user_id IS DISTINCT FROM v_uid
+     OR COALESCE(cardinality(p_contacts), 0) > 5000 THEN
+    RETURN;
+  END IF;
+
+  SELECT secret INTO v_secret
+  FROM private.contact_match_keys
+  WHERE key_id = TRUE;
+
+  IF v_secret IS NULL THEN
+    RETURN;
+  END IF;
+
+  DELETE FROM public.user_contacts WHERE user_id = v_uid;
+
+  FOREACH v_contact IN ARRAY COALESCE(p_contacts, ARRAY[]::TEXT[]) LOOP
+    v_normalized := lower(trim(v_contact));
+    IF char_length(v_normalized) BETWEEN 1 AND 200 THEN
+      INSERT INTO public.user_contacts (user_id, contact_hash)
+      VALUES (
+        v_uid,
+        encode(hmac(convert_to(v_normalized, 'UTF8'), v_secret, 'sha256'), 'hex')
+      )
+      ON CONFLICT (user_id, contact_hash) DO NOTHING;
+    END IF;
+  END LOOP;
+
+  UPDATE public.user_profiles
+  SET contacts_synced_at = NOW()
+  WHERE id = v_uid;
+
+  INSERT INTO public.friendships (user_id, friend_id)
+  SELECT DISTINCT v_uid, up.id
+  FROM public.user_contacts uc
+  JOIN public.user_contacts friend_uc ON uc.contact_hash = friend_uc.contact_hash
+  JOIN public.user_profiles up ON friend_uc.user_id = up.id
+  WHERE uc.user_id = v_uid
+    AND friend_uc.user_id <> v_uid
+  ON CONFLICT (user_id, friend_id) DO NOTHING;
+
+  RETURN QUERY
+  SELECT DISTINCT
+    up.id,
+    up.display_name,
+    up.avatar_url
+  FROM public.user_contacts uc
+  JOIN public.user_contacts friend_uc ON uc.contact_hash = friend_uc.contact_hash
+  JOIN public.user_profiles up ON friend_uc.user_id = up.id
+  WHERE uc.user_id = v_uid
+    AND friend_uc.user_id <> v_uid;
+END;
+$$;
+
+REVOKE ALL ON FUNCTION find_friends(UUID) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION find_friends(UUID) TO authenticated;
+REVOKE ALL ON FUNCTION sync_contacts(UUID, TEXT[]) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION sync_contacts(UUID, TEXT[]) TO authenticated;
 
 -- ============================================
 -- AUTO-UPDATE TIMESTAMP TRIGGER

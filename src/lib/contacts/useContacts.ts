@@ -4,7 +4,7 @@ import { useState, useCallback } from "react";
 import { Capacitor } from "@capacitor/core";
 import { createClient } from "@/lib/supabase/client";
 import { Friend } from "@/types";
-import { normalizeEmail, normalizePhone, sha256 } from "./contactHelpers";
+import { normalizeEmail, normalizePhone } from "./contactHelpers";
 
 interface ContactSyncResult {
   skipped: boolean;
@@ -77,62 +77,28 @@ export function useContacts(): UseContactsReturn {
         }
       }
 
-      // Hash all contacts
-      const hashes = await Promise.all(
-        contactItems.map((item) => sha256(item))
-      );
+      // De-duplicate before sending the normalized values to the server. The
+      // database applies a private keyed HMAC; no reversible client-side hash
+      // is persisted or exposed to other users.
+      const uniqueContacts = [...new Set(contactItems)].slice(0, 5000);
 
-      // Remove duplicates
-      const uniqueHashes = [...new Set(hashes)];
-
-      if (uniqueHashes.length === 0) {
+      if (uniqueContacts.length === 0) {
         return { skipped: false, friends: [] };
       }
 
       const supabase = createClient();
 
-      // Batch insert hashes (upsert to handle duplicates)
-      const contactRecords = uniqueHashes.map((hash) => ({
-        user_id: userId,
-        contact_hash: hash,
-      }));
-
-      // Insert in batches of 500 to avoid payload limits
-      const batchSize = 500;
-      for (let i = 0; i < contactRecords.length; i += batchSize) {
-        const batch = contactRecords.slice(i, i + batchSize);
-        await supabase
-          .from("user_contacts")
-          .upsert(batch, { onConflict: "user_id,contact_hash" });
-      }
-
-      // Update sync timestamp
-      await supabase
-        .from("user_profiles")
-        .update({ contacts_synced_at: new Date().toISOString() })
-        .eq("id", userId);
-
-      // Find friends using the RPC function
-      const { data: friends, error: friendsError } = await supabase.rpc(
-        "find_friends",
-        { p_user_id: userId }
-      );
+      // The SECURITY DEFINER function validates the signed-in user, applies a
+      // private server-side HMAC, replaces the user's contact set, updates the
+      // sync timestamp, and returns only matching profile data.
+      const { data: friends, error: friendsError } = await supabase.rpc("sync_contacts", {
+        p_user_id: userId,
+        p_contacts: uniqueContacts,
+      });
 
       if (friendsError) {
         console.error("Error finding friends:", friendsError);
         return { skipped: false, friends: [] };
-      }
-
-      // Create friendship records for discovered friends
-      if (friends && friends.length > 0) {
-        const friendshipRecords = friends.map((f: Friend) => ({
-          user_id: userId,
-          friend_id: f.friend_id,
-        }));
-
-        await supabase
-          .from("friendships")
-          .upsert(friendshipRecords, { onConflict: "user_id,friend_id" });
       }
 
       return { skipped: false, friends: friends || [] };

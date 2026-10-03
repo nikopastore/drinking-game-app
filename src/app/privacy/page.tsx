@@ -36,7 +36,7 @@ export default function PrivacyPage() {
               <li><strong>Account Information:</strong> If you create an account, we collect your email address and display name.</li>
               <li><strong>Usage Data:</strong> We collect anonymous usage statistics to improve our service.</li>
               <li><strong>Favorites & History:</strong> Favorites can be stored in your Supabase account; local storage also keeps preferences and play-session state.</li>
-              <li><strong>Contact Matching:</strong> The mobile app can hash permitted email and phone contacts to find friends who already use SipWiki.</li>
+              <li><strong>Contact Matching:</strong> With permission, the mobile app sends normalized email and phone values over an encrypted connection for a one-way keyed match. SipWiki stores only server-generated HMACs, not the contact values.</li>
               <li><strong>Email Signups:</strong> If you join the party-tips list, we store your email, signup source, and page path.</li>
             </ul>
 
@@ -67,7 +67,7 @@ export default function PrivacyPage() {
             </p>
             <ul className="list-disc list-inside text-gray-300 mb-4 space-y-2">
               <li><strong>Service Providers:</strong> Hosting, Supabase authentication/database, privacy-limited analytics, Resend email delivery, OpenAI and Google Gemini AI processing, and Amazon affiliate destinations.</li>
-              <li><strong>Contact Permissions:</strong> Native contact data is read only after permission is granted and is hashed before matching. The raw address-book entries are not uploaded by SipWiki.</li>
+              <li><strong>Contact Permissions:</strong> Native contact data is read only after permission is granted. Normalized values are processed transiently by Supabase to generate keyed HMACs; raw address-book entries are not persisted.</li>
               <li><strong>Legal Requirements:</strong> When required by law or to protect our rights</li>
             </ul>
 
