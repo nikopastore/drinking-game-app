@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { permanentRedirect } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "Drink Calculator - How Much Alcohol For Your Party | SipWiki",
+  title: "Drink Calculator - How Much Alcohol For Your Party",
   description: "Free drink calculator to determine how much beer, wine, and liquor you need for any party size. Calculate alcohol for 10, 20, 50, or 100+ guests instantly.",
   keywords: [
     "drink calculator",

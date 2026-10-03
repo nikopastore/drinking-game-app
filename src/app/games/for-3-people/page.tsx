@@ -3,7 +3,7 @@ import { PlayerCountPage } from "../PlayerCountPage";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/games/for-3-people" },
-  title: "Drinking Games for 3 People | SipWiki",
+  title: "Drinking Games for 3 People",
   description: "The best drinking games for three people. Keep the energy up with rules made for trios.",
 };
 

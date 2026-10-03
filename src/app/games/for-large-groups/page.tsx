@@ -3,7 +3,7 @@ import { PlayerCountPage } from "../PlayerCountPage";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/games/for-large-groups" },
-  title: "Drinking Games for Large Groups (10+) | SipWiki",
+  title: "Drinking Games for Large Groups (10+ People)",
   description: "Drinking games designed for 10 or more players. Big energy, big laughs, and easy rules.",
 };
 

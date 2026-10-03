@@ -16,7 +16,7 @@ export const gameCategories: GameCategory[] = [
   {
     slug: "card-games",
     name: "Card Games",
-    title: "Card Drinking Games - Rules & How to Play | SipWiki",
+    title: "Card Drinking Games - Rules & How to Play",
     description:
       "Complete rules for the best card drinking games including King's Cup, Ride the Bus, Pyramid, and more. Easy to learn with just a deck of cards.",
     heading: "Card Drinking Games",
@@ -28,7 +28,7 @@ export const gameCategories: GameCategory[] = [
   {
     slug: "cup-games",
     name: "Cup Games",
-    title: "Cup Drinking Games - Beer Pong, Flip Cup & More | SipWiki",
+    title: "Cup Drinking Games - Beer Pong, Flip Cup & More",
     description:
       "Rules for popular cup drinking games like Beer Pong, Flip Cup, Rage Cage, and Slap Cup. Perfect for competitive party games.",
     heading: "Cup Drinking Games",
@@ -43,7 +43,7 @@ export const gameCategories: GameCategory[] = [
   {
     slug: "dice-games",
     name: "Dice Games",
-    title: "Dice Drinking Games - Rules for Three Man, 7-11 & More | SipWiki",
+    title: "Dice Drinking Games - Rules for Three Man, 7-11 & More",
     description:
       "Complete rules for dice drinking games including Three Man, 7-11-Doubles, Mexico, and more. Simple games with just dice and drinks.",
     heading: "Dice Drinking Games",
@@ -55,7 +55,7 @@ export const gameCategories: GameCategory[] = [
   {
     slug: "no-props",
     name: "No Props Needed",
-    title: "Drinking Games Without Cards or Props - No Equipment Needed | SipWiki",
+    title: "Drinking Games Without Cards or Props - No Equipment Needed",
     description:
       "The best drinking games that require no cards, cups, or equipment. Perfect for spontaneous parties - just bring drinks and friends!",
     heading: "No Props Drinking Games",
@@ -67,7 +67,7 @@ export const gameCategories: GameCategory[] = [
   {
     slug: "two-player",
     name: "Two Player",
-    title: "Drinking Games for 2 People - Couples & Date Night Games | SipWiki",
+    title: "Drinking Games for 2 People - Couples & Date Night Games",
     description:
       "Fun drinking games for just 2 people. Perfect for couples, date nights, or when it's just you and a friend.",
     heading: "Drinking Games for 2 People",
@@ -79,7 +79,7 @@ export const gameCategories: GameCategory[] = [
   {
     slug: "large-groups",
     name: "Large Groups",
-    title: "Drinking Games for Large Groups (6+ People) | SipWiki",
+    title: "Drinking Games for Large Groups (6+ People)",
     description:
       "The best drinking games for big parties and large groups. These games work great with 6, 10, or even 20+ people.",
     heading: "Drinking Games for Large Groups",
@@ -91,7 +91,7 @@ export const gameCategories: GameCategory[] = [
   {
     slug: "beer-games",
     name: "Beer Games",
-    title: "Beer Drinking Games - Classic Party Games | SipWiki",
+    title: "Beer Drinking Games - Classic Party Games",
     description:
       "Classic beer drinking games including Beer Pong, Flip Cup, and more. Best played with beer or light drinks.",
     heading: "Beer Drinking Games",
@@ -103,7 +103,7 @@ export const gameCategories: GameCategory[] = [
   {
     slug: "quick-easy",
     name: "Quick & Easy",
-    title: "Easy Drinking Games - Simple Rules for Beginners | SipWiki",
+    title: "Easy Drinking Games - Simple Rules for Beginners",
     description:
       "Simple drinking games with easy rules. Perfect for beginners or when you want a more relaxed drinking experience.",
     heading: "Quick & Easy Drinking Games",
@@ -115,7 +115,7 @@ export const gameCategories: GameCategory[] = [
   {
     slug: "extreme",
     name: "Extreme",
-    title: "Extreme Drinking Games - High Intensity Party Games | SipWiki",
+    title: "Extreme Drinking Games - High Intensity Party Games",
     description:
       "Warning: These drinking games are not for lightweights. High-intensity games for experienced players only.",
     heading: "Extreme Drinking Games",
