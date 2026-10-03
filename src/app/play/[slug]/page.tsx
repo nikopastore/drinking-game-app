@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!game) {
     return {
-      title: "Game Not Found - SipWiki",
+      title: "Game Not Found",
     };
   }
 

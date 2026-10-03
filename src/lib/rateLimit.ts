@@ -33,6 +33,7 @@ interface RateLimitResult {
 // Key: identifier (IP address or user ID)
 // Value: array of request timestamps
 const rateLimitStore = new Map<string, RateLimitEntry>();
+const MAX_RATE_LIMIT_KEYS = 10_000;
 
 // Cleanup old entries periodically to prevent memory leaks
 const CLEANUP_INTERVAL = 60 * 1000; // 1 minute
@@ -80,6 +81,17 @@ export function checkRateLimit(
   // Get or create entry for this identifier
   let entry = rateLimitStore.get(identifier);
   if (!entry) {
+    if (rateLimitStore.size >= MAX_RATE_LIMIT_KEYS) {
+      cleanupOldEntries(config.windowMs);
+    }
+    if (rateLimitStore.size >= MAX_RATE_LIMIT_KEYS) {
+      return {
+        allowed: false,
+        remaining: 0,
+        resetAt: now + config.windowMs,
+        limit: config.maxRequests,
+      };
+    }
     entry = { timestamps: [] };
     rateLimitStore.set(identifier, entry);
   }
@@ -119,16 +131,6 @@ export function getClientIP(request: Request): string {
   const vercelForwardedFor = request.headers.get("x-vercel-forwarded-for");
   if (vercelForwardedFor) {
     return vercelForwardedFor.split(",")[0].trim();
-  }
-
-  const realIP = request.headers.get("x-real-ip");
-  if (realIP) {
-    return realIP.trim();
-  }
-
-  const forwardedFor = request.headers.get("x-forwarded-for");
-  if (forwardedFor) {
-    return forwardedFor.split(",")[0].trim();
   }
 
   return "unknown";

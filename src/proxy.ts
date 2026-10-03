@@ -110,7 +110,7 @@ const canonicalizeRequest = (request: NextRequest) => {
   return { url, needsRedirect };
 };
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { url, needsRedirect } = canonicalizeRequest(request);
   if (url.pathname === "/drink-calculator") {
     url.pathname = "/alcohol-calculator";

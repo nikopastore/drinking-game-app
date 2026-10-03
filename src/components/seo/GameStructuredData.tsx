@@ -19,7 +19,7 @@ type GameStructuredDataProps = {
 const defaultAuthor = {
   name: "SipWiki Editorial Team",
   url: "https://sipwiki.app/about",
-  logoUrl: "https://sipwiki.app/icon-512.png",
+  logoUrl: "https://sipwiki.app/icons/icon-512x512.png",
   type: "Organization" as const,
 };
 

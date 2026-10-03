@@ -32,19 +32,19 @@ describe("recordProductEvent", () => {
     vi.restoreAllMocks();
   });
 
-  it("rejects unknown event names", async () => {
+  it("accepts the allowlisted play event and rejects unknown names", async () => {
     configureSupabaseEnv();
-    const insert = vi.fn();
+    const insert = vi.fn().mockResolvedValue({ error: null });
     const writer: ProductEventWriter = { insert };
 
     await expect(
       recordProductEvent({ name: "play_started", slug: "kings-cup", path: "/play/kings-cup" }, writer)
-    ).resolves.toBe(false);
+    ).resolves.toBe(true);
     await expect(
       recordProductEvent({ name: "page_view" }, writer)
     ).resolves.toBe(false);
 
-    expect(insert).not.toHaveBeenCalled();
+    expect(insert).toHaveBeenCalledTimes(1);
   });
 
   it("drops extra fields before insert", async () => {

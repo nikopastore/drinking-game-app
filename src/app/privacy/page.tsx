@@ -25,17 +25,19 @@ export default function PrivacyPage() {
         <Card className="mb-6">
           <CardContent className="p-6 prose prose-invert max-w-none">
             <p className="text-gray-300 mb-4">
-              <strong>Last updated:</strong> December 2025
+              <strong>Last updated:</strong> September 2026
             </p>
 
             <h2 className="text-xl font-bold text-white mt-6 mb-3">1. Information We Collect</h2>
             <p className="text-gray-300 mb-4">
-              SipWiki collects minimal information to provide our drinking game discovery service:
+              SipWiki collects the information needed to provide accounts, favorites, contact matching, analytics, email signups, and AI-assisted features:
             </p>
             <ul className="list-disc list-inside text-gray-300 mb-4 space-y-2">
               <li><strong>Account Information:</strong> If you create an account, we collect your email address and display name.</li>
               <li><strong>Usage Data:</strong> We collect anonymous usage statistics to improve our service.</li>
-              <li><strong>Favorites & History:</strong> Games you favorite or recently viewed are stored locally on your device.</li>
+              <li><strong>Favorites & History:</strong> Favorites can be stored in your Supabase account; local storage also keeps preferences and play-session state.</li>
+              <li><strong>Contact Matching:</strong> The mobile app can hash permitted email and phone contacts to find friends who already use SipWiki.</li>
+              <li><strong>Email Signups:</strong> If you join the party-tips list, we store your email, signup source, and page path.</li>
             </ul>
 
             <h2 className="text-xl font-bold text-white mt-6 mb-3">2. ChatGPT Integration</h2>
@@ -45,7 +47,7 @@ export default function PrivacyPage() {
             <ul className="list-disc list-inside text-gray-300 mb-4 space-y-2">
               <li>We receive your search queries and filter preferences to return relevant games.</li>
               <li>We do not store your ChatGPT conversation history.</li>
-              <li>No personal information is shared with or collected from ChatGPT.</li>
+              <li>Chat queries and game-finder requests are sent to the configured AI providers (OpenAI and Google Gemini) to generate responses.</li>
             </ul>
 
             <h2 className="text-xl font-bold text-white mt-6 mb-3">3. How We Use Your Information</h2>
@@ -64,7 +66,8 @@ export default function PrivacyPage() {
               We do not sell your personal information. We may share data with:
             </p>
             <ul className="list-disc list-inside text-gray-300 mb-4 space-y-2">
-              <li><strong>Service Providers:</strong> Hosting, analytics, and authentication services</li>
+              <li><strong>Service Providers:</strong> Hosting, Supabase authentication/database, privacy-limited analytics, Resend email delivery, OpenAI and Google Gemini AI processing, and Amazon affiliate destinations.</li>
+              <li><strong>Contact Permissions:</strong> Native contact data is read only after permission is granted and is hashed before matching. The raw address-book entries are not uploaded by SipWiki.</li>
               <li><strong>Legal Requirements:</strong> When required by law or to protect our rights</li>
             </ul>
 

@@ -19,8 +19,7 @@ export const authors: Record<string, Author> = {
     name: "SipWiki Editorial Team",
     slug: "sipwiki-team",
     role: "Editorial Team",
-    avatar: "/authors/sipwiki-team.png",
-    logo: "/icon-512.png",
+    logo: "/icons/icon-512x512.png",
     bio: "The SipWiki Editorial Team curates, tests, and updates every drinking game guide so you can trust the rules on game night.",
     schemaType: "Organization",
     sameAs: [
@@ -33,14 +32,12 @@ export const authors: Record<string, Author> = {
     name: "The Party Pro",
     slug: "party-pro",
     role: "Event & Safety Specialist",
-    avatar: "/authors/party-pro.png",
     bio: "Former event coordinator with 10+ years of experience hosting safe, memorable parties. Expert in responsible drinking practices and party planning logistics.",
   },
   "game-master": {
     name: "The Game Master",
     slug: "game-master",
     role: "Drinking Game Historian",
-    avatar: "/authors/game-master.png",
     bio: "Researcher and enthusiast who has documented the origins and variations of over 200 drinking games from around the world.",
   },
 };

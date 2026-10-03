@@ -59,7 +59,6 @@ export function AuthGuard({ children, onAuthenticated, gameName }: AuthGuardProp
 export function useAuthGuard() {
   const { user, loading } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
-  const [pendingAction, setPendingAction] = useState<(() => void) | null>(null);
   const [pendingGameName, setPendingGameName] = useState<string | undefined>();
 
   const requireAuth = useCallback(
@@ -69,7 +68,6 @@ export function useAuthGuard() {
       if (user) {
         action();
       } else {
-        setPendingAction(() => action);
         setPendingGameName(gameName);
         setShowAuthModal(true);
       }
@@ -79,7 +77,6 @@ export function useAuthGuard() {
 
   const closeAuthModal = useCallback(() => {
     setShowAuthModal(false);
-    setPendingAction(null);
     setPendingGameName(undefined);
   }, []);
 

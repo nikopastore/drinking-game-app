@@ -5,7 +5,7 @@
       "args": [
         "/c",
         "npx",
-        "@claude-flow/cli@latest",
+        "@claude-flow/cli@3.47.0",
         "mcp",
         "start"
       ],

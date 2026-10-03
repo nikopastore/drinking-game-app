@@ -44,7 +44,7 @@ npm run cap:sync         # Sync web assets to native projects
 
 ### Important Files
 
-- `src/config/gameData.ts` - All game definitions (30+ games with rules)
+- `src/config/gameData.ts` - All game definitions (58 games with rules)
 - `src/config/monetizationConfig.ts` - Amazon affiliate link mappings
 - `src/lib/store.ts` - Zustand store for play sessions, chat, ratings
 - `src/lib/supabase/client.ts` and `server.ts` - Supabase client setup
@@ -77,6 +77,11 @@ npm run cap:sync         # Sync web assets to native projects
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 OPENAI_API_KEY=
+GEMINI_API_KEY=
+GEMINI_MODEL=
+RESEND_API_KEY=
+RESEND_FROM_EMAIL=
+NEXT_PUBLIC_SITE_URL=https://sipwiki.app
 ```
 
 ## Design System
@@ -92,3 +97,13 @@ OPENAI_API_KEY=
 - Static export mode (`NEXT_PUBLIC_STATIC_EXPORT=true`) for Capacitor
 - PWA disabled during static export
 - Images unoptimized in mobile builds
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

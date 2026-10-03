@@ -33,14 +33,14 @@ function getPlaceholderGradient(slug: string): string {
 }
 
 function getGameEmoji(game: Game): string {
-  if (game.materials.includes("cards")) return "??";
-  if (game.materials.includes("ping pong balls")) return "??";
-  if (game.materials.includes("dice")) return "??";
-  if (game.materials.includes("cups")) return "??";
-  if (game.name.toLowerCase().includes("movie")) return "??";
-  if (/music|thunder/i.test(game.name)) return "??";
-  if (game.materials.includes("no prop")) return "???";
-  return "??";
+  if (game.materials.includes("cards")) return "🃏";
+  if (game.materials.includes("ping pong balls")) return "🏓";
+  if (game.materials.includes("dice")) return "🎲";
+  if (game.materials.includes("cups")) return "🥤";
+  if (game.name.toLowerCase().includes("movie")) return "🎬";
+  if (/music|thunder/i.test(game.name)) return "🎵";
+  if (game.materials.includes("no prop")) return "💬";
+  return "🎉";
 }
 
 const imageSizes = {
@@ -100,7 +100,7 @@ export function GameCard({
             {game.estimated_time_minutes && (
               <span className="flex items-center gap-1.5">
                 <Clock3 className="h-3.5 w-3.5 text-neon-yellow" />
-                {game.estimated_time_minutes.min}{game.estimated_time_minutes.max ? "?" + game.estimated_time_minutes.max : ""}m
+                {game.estimated_time_minutes.min}{game.estimated_time_minutes.max ? `–${game.estimated_time_minutes.max}` : ""}m
               </span>
             )}
           </div>

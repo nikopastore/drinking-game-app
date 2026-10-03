@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { Game } from "@/types";
 import { cn } from "@/lib/utils";
 
@@ -31,11 +31,14 @@ export function WheelSpinner({ games, onResult }: WheelSpinnerProps) {
   const lastSegmentRef = useRef<number>(0);
 
   // Create segments - use game count or minimum 8
-  const segments: Game[] = [];
-  const minSegments = Math.max(8, games.length);
-  for (let i = 0; i < minSegments; i++) {
-    segments.push(games[i % games.length]);
-  }
+  const segments = useMemo(() => {
+    const nextSegments: Game[] = [];
+    const minSegments = Math.max(8, games.length);
+    for (let i = 0; i < minSegments; i++) {
+      nextSegments.push(games[i % games.length]);
+    }
+    return nextSegments;
+  }, [games]);
 
   const segmentAngle = 360 / segments.length;
   const numLeds = 32;
@@ -53,9 +56,6 @@ export function WheelSpinner({ games, onResult }: WheelSpinnerProps) {
     if (tickIntervalRef.current) {
       clearInterval(tickIntervalRef.current);
     }
-
-    let currentRotation = rotation;
-    const targetRotation = rotation;
 
     tickIntervalRef.current = setInterval(() => {
       // Estimate current visual rotation based on easing
@@ -82,14 +82,14 @@ export function WheelSpinner({ games, onResult }: WheelSpinnerProps) {
         }
       }
     }, 30);
-  }, [rotation, segmentAngle]);
+  }, [segmentAngle]);
 
   const spinStartRef = useRef<number>(0);
   const lastRotationRef = useRef<number>(0);
   const targetRotationRef = useRef<number>(0);
   const targetSegmentRef = useRef<number>(0);
 
-  const spin = () => {
+  const spin = useCallback(() => {
     if (isSpinning || games.length === 0) return;
 
     setIsSpinning(true);
@@ -122,8 +122,12 @@ export function WheelSpinner({ games, onResult }: WheelSpinnerProps) {
     const normalizedCurrent = rotation % 360;
     const newRotation = normalizedCurrent + fullRotations + targetAngle + variance;
 
+    // These refs hold transient animation state for the click handler.
+    // eslint-disable-next-line react-hooks/immutability
     lastRotationRef.current = rotation;
+    // eslint-disable-next-line react-hooks/immutability
     targetRotationRef.current = newRotation;
+    // eslint-disable-next-line react-hooks/immutability
     spinStartRef.current = Date.now();
 
     setRotation(newRotation);
@@ -146,7 +150,7 @@ export function WheelSpinner({ games, onResult }: WheelSpinnerProps) {
         onResult(segments[targetSegmentRef.current]);
       }, 500);
     }, 7000);
-  };
+  }, [games.length, isSpinning, onResult, rotation, segmentAngle, segments, startTickerEffect]);
 
   return (
     <div className="relative flex flex-col items-center select-none">

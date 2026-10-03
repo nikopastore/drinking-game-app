@@ -147,13 +147,7 @@ CREATE POLICY "Anyone can read ratings"
   ON ratings FOR SELECT
   USING (true);
 
-CREATE POLICY "Anyone can insert ratings"
-  ON ratings FOR INSERT
-  WITH CHECK (true);
 
-CREATE POLICY "Anyone can update ratings by device_id"
-  ON ratings FOR UPDATE
-  USING (true);
 
 -- Game Submissions: Auth required to submit
 ALTER TABLE game_submissions ENABLE ROW LEVEL SECURITY;
@@ -166,12 +160,94 @@ CREATE POLICY "Authenticated users can insert submissions"
   ON game_submissions FOR INSERT
   WITH CHECK (auth.uid() = user_id);
 
--- Email Subscribers: Allow anonymous inserts for lead magnets
+-- Email Subscribers: writes go through the validated function below
 ALTER TABLE email_subscribers ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Anyone can insert email subscribers"
-  ON email_subscribers FOR INSERT
-  WITH CHECK (true);
+-- ============================================
+-- VALIDATED PUBLIC INGESTION FUNCTIONS
+-- ============================================
+
+CREATE OR REPLACE FUNCTION subscribe_email(
+  p_email TEXT,
+  p_source TEXT DEFAULT NULL,
+  p_page_path TEXT DEFAULT NULL
+)
+RETURNS BOOLEAN
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+DECLARE
+  normalized_email TEXT := lower(trim(p_email));
+  inserted_count INTEGER;
+BEGIN
+  IF normalized_email IS NULL
+     OR char_length(normalized_email) > 200
+     OR normalized_email !~ '^[^[:space:]@]+@[^[:space:]@]+\.[^[:space:]@]+$' THEN
+    RETURN FALSE;
+  END IF;
+
+  INSERT INTO email_subscribers (email, source, lead_magnet, page_path)
+  VALUES (normalized_email, left(p_source, 80), 'party-tips', left(p_page_path, 200))
+  ON CONFLICT (email) DO NOTHING;
+
+  GET DIAGNOSTICS inserted_count = ROW_COUNT;
+  RETURN inserted_count > 0;
+END;
+$$;
+
+CREATE OR REPLACE FUNCTION record_product_event(
+  p_name TEXT,
+  p_slug TEXT DEFAULT NULL,
+  p_path TEXT DEFAULT NULL
+)
+RETURNS VOID
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+BEGIN
+  IF p_name NOT IN ('play_started', 'affiliate_click', 'email_submit') THEN
+    RETURN;
+  END IF;
+
+  INSERT INTO product_events (name, slug, path)
+  VALUES (p_name, left(p_slug, 80), left(p_path, 200));
+END;
+$$;
+
+CREATE OR REPLACE FUNCTION submit_rating(
+  p_game_id TEXT,
+  p_score INTEGER,
+  p_device_id TEXT
+)
+RETURNS BOOLEAN
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+BEGIN
+  IF p_game_id IS NULL OR char_length(p_game_id) > 80
+     OR p_score < 1 OR p_score > 5
+     OR p_device_id IS NULL OR char_length(p_device_id) > 128 THEN
+    RETURN FALSE;
+  END IF;
+
+  INSERT INTO ratings (game_id, device_id, user_id, score)
+  VALUES (p_game_id, p_device_id, auth.uid(), p_score)
+  ON CONFLICT (game_id, device_id)
+  DO UPDATE SET score = EXCLUDED.score, user_id = EXCLUDED.user_id;
+
+  RETURN TRUE;
+END;
+$$;
+
+REVOKE ALL ON FUNCTION subscribe_email(TEXT, TEXT, TEXT) FROM PUBLIC;
+REVOKE ALL ON FUNCTION record_product_event(TEXT, TEXT, TEXT) FROM PUBLIC;
+REVOKE ALL ON FUNCTION submit_rating(TEXT, INTEGER, TEXT) FROM PUBLIC;
+GRANT EXECUTE ON FUNCTION subscribe_email(TEXT, TEXT, TEXT) TO anon, authenticated;
+GRANT EXECUTE ON FUNCTION record_product_event(TEXT, TEXT, TEXT) TO anon, authenticated;
+GRANT EXECUTE ON FUNCTION submit_rating(TEXT, INTEGER, TEXT) TO anon, authenticated;
 
 -- ============================================
 -- FUNCTIONS
@@ -506,22 +582,14 @@ END;
 $$;
 
 -- ============================================
--- PRODUCT EVENTS (affiliate clicks and email signups only)
+-- PRODUCT EVENTS (play starts, affiliate clicks, and email signups)
 -- ============================================
 CREATE TABLE IF NOT EXISTS product_events (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  name TEXT NOT NULL CHECK (name IN ('affiliate_click', 'email_submit')),
+  name TEXT NOT NULL CHECK (name IN ('play_started', 'affiliate_click', 'email_submit')),
   slug TEXT CHECK (slug IS NULL OR char_length(slug) <= 80),
   path TEXT CHECK (path IS NULL OR char_length(path) <= 200),
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 ALTER TABLE product_events ENABLE ROW LEVEL SECURITY;
-
-CREATE POLICY "Anon and authenticated can insert product events"
-  ON product_events
-  FOR INSERT
-  TO anon, authenticated
-  WITH CHECK (name IN ('affiliate_click', 'email_submit'));
-
-GRANT INSERT ON TABLE product_events TO anon, authenticated;

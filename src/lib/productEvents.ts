@@ -3,7 +3,7 @@ import { ANALYTICS_EVENTS, type AnalyticsEventName } from "@/lib/analytics";
 import { isSupabaseConfigured } from "@/lib/supabase/client";
 
 /**
- * Allowlisted commerce events. Zod strips unknown keys, so email, user id,
+ * Allowlisted product events. Zod strips unknown keys, so email, user id,
  * IP, and any other extra fields never reach storage.
  */
 export const productEventSchema = z.object({

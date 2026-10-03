@@ -44,14 +44,14 @@ export function useAuth(): AuthState {
   useEffect(() => {
     // Get initial session from cookies/storage (faster than getUser which hits server)
     const initAuth = async () => {
-      console.log("[useAuth] initAuth starting...");
+      const debugAuth = process.env.NODE_ENV === "development";
+      if (debugAuth) console.log("[useAuth] initAuth starting...");
 
       // First try getSession (reads from storage, faster)
       const { data: { session }, error: sessionError } = await supabase.auth.getSession();
-      console.log("[useAuth] getSession result:", {
+      if (debugAuth) console.log("[useAuth] getSession result:", {
         hasSession: !!session,
         hasUser: !!session?.user,
-        userId: session?.user?.id?.slice(0, 8),
         error: sessionError?.message
       });
 
@@ -64,9 +64,8 @@ export function useAuth(): AuthState {
 
       // Fallback: try getUser if no session found (validates with server)
       const { data: { user }, error } = await supabase.auth.getUser();
-      console.log("[useAuth] getUser result:", {
+      if (debugAuth) console.log("[useAuth] getUser result:", {
         hasUser: !!user,
-        userId: user?.id?.slice(0, 8),
         error: error?.message
       });
       setUser(user);
@@ -83,7 +82,9 @@ export function useAuth(): AuthState {
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event: AuthChangeEvent, session: Session | null) => {
-        console.log("[useAuth] onAuthStateChange:", { event, hasSession: !!session });
+        if (process.env.NODE_ENV === "development") {
+          console.log("[useAuth] onAuthStateChange:", { event, hasSession: !!session });
+        }
         const newUser = session?.user ?? null;
         setUser(newUser);
 

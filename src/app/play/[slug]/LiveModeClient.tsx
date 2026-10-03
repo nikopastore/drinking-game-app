@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AIChatFAB } from "@/components/AIChatFAB";
 import { RatingModal } from "@/components/RatingModal";
+import { trackEvent } from "@/lib/analytics";
 
 interface LiveModeClientProps {
   game: Game;
@@ -21,12 +22,12 @@ export function LiveModeClient({ game }: LiveModeClientProps) {
   const { session, startSession, endSession, pendingRating, setPendingRating } =
     useAppStore();
   const [elapsedTime, setElapsedTime] = useState("0s");
-  const [showRatingModal, setShowRatingModal] = useState(false);
 
   // Start session on mount if not already active
   useEffect(() => {
     if (!session || session.gameSlug !== game.slug) {
       startSession(game.slug, game.name);
+      trackEvent("play_started", game.slug);
     }
   }, [game.slug, game.name, session, startSession]);
 
@@ -41,27 +42,17 @@ export function LiveModeClient({ game }: LiveModeClientProps) {
     return () => clearInterval(interval);
   }, [session]);
 
-  // Show rating modal when pending
-  useEffect(() => {
-    if (pendingRating && pendingRating.slug === game.slug) {
-      setShowRatingModal(true);
-    }
-  }, [pendingRating, game.slug]);
-
   const handleEndGame = () => {
     endSession();
-    setShowRatingModal(true);
   };
 
   const handleRatingComplete = () => {
     setPendingRating(null);
-    setShowRatingModal(false);
     router.push(`/games/${game.slug}`);
   };
 
   const handleRatingSkip = () => {
     setPendingRating(null);
-    setShowRatingModal(false);
     router.push(`/games/${game.slug}`);
   };
 
@@ -152,7 +143,7 @@ export function LiveModeClient({ game }: LiveModeClientProps) {
 
       {/* Rating Modal */}
       <RatingModal
-        isOpen={showRatingModal}
+        isOpen={pendingRating?.slug === game.slug}
         gameName={game.name}
         gameSlug={game.slug}
         onComplete={handleRatingComplete}

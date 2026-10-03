@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Mail, Gift, CheckCircle2 } from "lucide-react";
-import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { trackEvent } from "@/lib/analytics";
 
 interface EmailCaptureProps {
@@ -20,20 +19,6 @@ export function EmailCapture({ source }: EmailCaptureProps) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
-
-  const saveOnDevice = async (address: string) => {
-    if (!isSupabaseConfigured()) return false;
-    const supabase = createClient();
-    const { error } = await supabase.from("email_subscribers").insert({
-      email: address,
-      source,
-      lead_magnet: "party-tips",
-      page_path: window.location.pathname,
-    });
-    if (!error) return "saved";
-    if (error.code === "23505") return "already";
-    return false;
-  };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -83,21 +68,8 @@ export function EmailCapture({ source }: EmailCaptureProps) {
       // The static mobile build has no API route. Fall through to a direct insert.
     }
 
-    const saved = await saveOnDevice(address);
-    if (saved) {
-      setStatus("success");
-      if (saved === "saved") trackEvent("email_submit", source);
-      setEmail("");
-      setMessage(
-        saved === "already"
-          ? "You're already on the list."
-          : "You're on the list. Open the party planner for tonight's shopping list."
-      );
-      return;
-    }
-
     setStatus("error");
-    setMessage("Email signups are temporarily unavailable.");
+    setMessage("Email signups are available from the web version of SipWiki.");
   };
 
   return (

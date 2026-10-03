@@ -1,7 +1,7 @@
 {
   "name": "SipWiki - Party Games & Icebreakers",
   "short_name": "SipWiki",
-  "description": "30+ fun party games with complete rules. Perfect for house parties, game nights, and breaking the ice!",
+  "description": "58 party games, cocktail recipes, and planning tools for house parties and game nights.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0a0f",
@@ -57,13 +57,5 @@
       "purpose": "maskable any"
     }
   ],
-  "categories": ["entertainment", "games", "social"],
-  "screenshots": [
-    {
-      "src": "/screenshots/home.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow"
-    }
-  ]
+  "categories": ["entertainment", "games", "social"]
 }

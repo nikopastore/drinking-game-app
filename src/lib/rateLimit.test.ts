@@ -135,20 +135,20 @@ describe('checkRateLimit', () => {
 })
 
 describe('getClientIP', () => {
-  it('extracts IP from x-forwarded-for header', () => {
+  it('ignores spoofable x-forwarded-for outside the trusted platform header', () => {
     const request = new Request('https://example.com', {
       headers: { 'x-forwarded-for': '192.168.1.1, 10.0.0.1' },
     })
 
-    expect(getClientIP(request)).toBe('192.168.1.1')
+    expect(getClientIP(request)).toBe('unknown')
   })
 
-  it('extracts IP from x-real-ip header', () => {
+  it('ignores spoofable x-real-ip outside the trusted platform header', () => {
     const request = new Request('https://example.com', {
       headers: { 'x-real-ip': '192.168.1.2' },
     })
 
-    expect(getClientIP(request)).toBe('192.168.1.2')
+    expect(getClientIP(request)).toBe('unknown')
   })
 
   it('extracts IP from x-vercel-forwarded-for header', () => {
@@ -177,12 +177,12 @@ describe('getClientIP', () => {
     expect(getClientIP(request)).toBe('unknown')
   })
 
-  it('trims whitespace from IP addresses', () => {
+  it('does not trust forwarded headers supplied by callers', () => {
     const request = new Request('https://example.com', {
       headers: { 'x-forwarded-for': '  192.168.1.1  ' },
     })
 
-    expect(getClientIP(request)).toBe('192.168.1.1')
+    expect(getClientIP(request)).toBe('unknown')
   })
 })
 
