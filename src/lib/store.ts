@@ -3,6 +3,8 @@ import { persist, createJSONStorage } from "zustand/middleware";
 import { ChatMessage, PlaySession } from "@/types";
 
 interface AppState {
+  recentGames: Array<{ slug: string; name: string; playedAt: number }>;
+  clearRecentGames: () => void;
   // Play Session
   session: PlaySession | null;
   startSession: (slug: string, name: string) => void;
@@ -28,9 +30,11 @@ export const useAppStore = create<AppState>()(
     (set, get) => ({
       // Session state
       session: null,
+      recentGames: [],
+      clearRecentGames: () => set({ recentGames: [] }),
 
       startSession: (slug: string, name: string) => {
-        set({
+        set((state) => ({
           session: {
             gameSlug: slug,
             gameName: name,
@@ -38,7 +42,8 @@ export const useAppStore = create<AppState>()(
             isActive: true,
           },
           chatHistory: [], // Clear chat when starting new session
-        });
+          recentGames: [{ slug, name, playedAt: Date.now() }, ...state.recentGames.filter((game) => game.slug !== slug)].slice(0, 20),
+        }));
       },
 
       endSession: () => {
@@ -98,6 +103,7 @@ export const useAppStore = create<AppState>()(
       partialize: (state) => ({
         session: state.session,
         pendingRating: state.pendingRating,
+        recentGames: state.recentGames,
         // Don't persist chat history to keep storage small
       }),
     }

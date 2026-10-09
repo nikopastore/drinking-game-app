@@ -76,6 +76,13 @@ function materialMatches(gameMaterial: string, wanted: string): boolean {
   return left.includes(wanted) || wanted.includes(left);
 }
 
+function fitsConstraints(game: Game, signals: QuerySignals): boolean {
+  if (signals.playerCount !== null && (game.min_players > signals.playerCount || (game.max_players !== null && game.max_players < signals.playerCount))) return false;
+  if (signals.noProps && !game.materials.includes("no prop")) return false;
+  if (signals.maxMinutes !== null && (!game.estimated_time_minutes || game.estimated_time_minutes.min > signals.maxMinutes)) return false;
+  return true;
+}
+
 function buildReason(game: Game, signals: QuerySignals): string {
   const reasons: string[] = [];
   if (signals.playerCount !== null) reasons.push("fits " + signals.playerCount + " players");
@@ -89,7 +96,7 @@ function buildReason(game: Game, signals: QuerySignals): string {
 
 export function findCatalogMatches(query: string, catalog: Game[], limit = 3): GameFinderResult {
   const signals = parseSignals(query);
-  const scored = catalog.map((game, index) => {
+  const scored = catalog.filter((game) => fitsConstraints(game, signals)).map((game, index) => {
     let score = Math.max(0, 12 - index * 0.04);
     const searchable = [game.name, game.description, game.rules_text, ...game.materials].join(" ").toLowerCase();
 
@@ -126,7 +133,7 @@ export function findCatalogMatches(query: string, catalog: Game[], limit = 3): G
 
   return {
     query,
-    summary: signals.isSiteIntent
+    summary: recommendations.length === 0 ? "No catalog games fit all of those requirements. Try a different player count, time limit, or equipment choice." : signals.isSiteIntent
       ? "These are the closest matches from SipWiki's game library."
       : "I can only help with games and information in SipWiki, so here are a few library favorites.",
     recommendations,
@@ -142,7 +149,8 @@ export function validateGeminiRecommendations(
 ): GameFinderResult {
   if (!value || typeof value !== "object") return fallback;
   const record = value as Record<string, unknown>;
-  const validSlugs = new Set(catalog.map((game) => game.slug));
+  const signals = parseSignals(query);
+  const validSlugs = new Set(catalog.filter((game) => fitsConstraints(game, signals)).map((game) => game.slug));
   const seen = new Set<string>();
   const raw = Array.isArray(record.recommendations) ? record.recommendations : [];
 
@@ -157,7 +165,7 @@ export function validateGeminiRecommendations(
       reason: typeof candidate.reason === "string"
         ? candidate.reason.slice(0, 240)
         : "A close match from the SipWiki library.",
-      matchScore: typeof candidate.matchScore === "number"
+      matchScore: typeof candidate.matchScore === "number" && Number.isFinite(candidate.matchScore)
         ? Math.max(1, Math.min(100, Math.round(candidate.matchScore)))
         : 80,
     }];
@@ -167,6 +175,8 @@ export function validateGeminiRecommendations(
     if (recommendations.length >= 3) break;
     if (!seen.has(recommendation.slug)) recommendations.push(recommendation);
   }
+
+  if (recommendations.length === 0) return fallback;
 
   return {
     query,

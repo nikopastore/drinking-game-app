@@ -730,7 +730,7 @@ export async function OPTIONS(request: NextRequest) {
 // Handle MCP protocol requests
 export async function POST(request: NextRequest) {
   const corsHeaders = createCorsHeaders(request);
-  const rateLimit = checkRateLimit(getClientIP(request), rateLimiters.relaxed);
+  const rateLimit = checkRateLimit(`mcp:${getClientIP(request)}`, rateLimiters.relaxed);
   const rateHeaders = createRateLimitHeaders(rateLimit);
 
   if (!rateLimit.allowed) {

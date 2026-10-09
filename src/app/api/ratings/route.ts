@@ -10,7 +10,7 @@ const RatingRequest = z.object({
 });
 
 export async function POST(request: NextRequest) {
-  const rateLimit = checkRateLimit(getClientIP(request), rateLimiters.strict);
+  const rateLimit = checkRateLimit(`ratings:${getClientIP(request)}`, rateLimiters.strict);
   const headers = createRateLimitHeaders(rateLimit);
   if (!rateLimit.allowed) {
     return NextResponse.json({ error: "Too many ratings" }, { status: 429, headers });

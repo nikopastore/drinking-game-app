@@ -24,28 +24,31 @@ export function RatingModal({
   const [hoveredRating, setHoveredRating] = useState<number>(0);
   const [hasRated, setHasRated] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   const handleRate = async (score: number) => {
     setRating(score);
     setIsSubmitting(true);
+    setError("");
 
     try {
-      const response = await fetch("/api/ratings", {
+      if (process.env.NEXT_PUBLIC_STATIC_EXPORT === "true") {
+        localStorage.setItem(`sipwiki-rating:${gameSlug}`, String(score));
+      } else {
+        const response = await fetch("/api/ratings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ gameSlug, score, deviceId: getDeviceId() }),
       });
 
-      if (!response.ok) {
-        throw new Error("Rating unavailable");
+        if (!response.ok) throw new Error("Rating unavailable");
       }
+      setHasRated(true);
     } catch {
-      // The static mobile build has no API route. Keep the feedback local there.
-      localStorage.setItem(`sipwiki-rating:${gameSlug}`, String(score));
+      setError("Your rating could not be saved. Please try again or skip for now.");
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setIsSubmitting(false);
-    setHasRated(true);
   };
 
   const getRatingLabel = (score: number): string => {
@@ -60,7 +63,7 @@ export function RatingModal({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onSkip} title="" size="sm">
+    <Modal isOpen={isOpen} onClose={onSkip} title={`Rate ${gameName}`} size="sm">
       <div className="text-center py-4">
         {!hasRated ? (
           <>
@@ -80,6 +83,7 @@ export function RatingModal({
               {[1, 2, 3, 4, 5].map((score) => (
                 <button
                   key={score}
+                  aria-label={`Rate ${score} out of 5 stars`}
                   onClick={() => handleRate(score)}
                   onMouseEnter={() => setHoveredRating(score)}
                   onMouseLeave={() => setHoveredRating(0)}
@@ -102,6 +106,7 @@ export function RatingModal({
             <p className="text-gray-300 h-6 mb-6">
               {getRatingLabel(hoveredRating || rating)}
             </p>
+            {error && <p role="alert" className="mb-4 text-sm text-red-400">{error}</p>}
 
             <Button variant="ghost" onClick={onSkip} className="w-full">
               Skip for now

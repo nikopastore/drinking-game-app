@@ -3,6 +3,20 @@ import { games } from "@/config/gameData";
 import { findCatalogMatches, validateGeminiRecommendations } from "./gameFinder";
 
 describe("game finder", () => {
+  it("does not claim impossible player or duration matches", () => {
+    const result = findCatalogMatches("1 people under 1 minutes no props", games);
+    expect(result.recommendations).toEqual([]);
+    expect(result.summary).toContain("No catalog games fit");
+  });
+
+  it("rejects model picks that violate a requested player count", () => {
+    const query = "2 players with cards";
+    const fallback = findCatalogMatches(query, games);
+    const wrong = games.find((game) => game.min_players > 2)!;
+    const result = validateGeminiRecommendations({ recommendations: [{ slug: wrong.slug, matchScore: 99 }] }, query, games, fallback);
+    expect(result.recommendations.some((pick) => pick.slug === wrong.slug)).toBe(false);
+    expect(result.recommendations.every((pick) => games.find((game) => game.slug === pick.slug)!.min_players <= 2)).toBe(true);
+  });
   it("only recommends catalog games", () => {
     const result = findCatalogMatches("6 people, no props, something quick", games);
     const slugs = new Set(games.map((game) => game.slug));

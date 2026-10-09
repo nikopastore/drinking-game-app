@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
   }
 
   const clientIP = getClientIP(request);
-  const rateLimitResult = checkRateLimit(clientIP, rateLimiters.events);
+  const rateLimitResult = checkRateLimit(`events:${clientIP}`, rateLimiters.events);
 
   if (!rateLimitResult.allowed) {
     return NextResponse.json(

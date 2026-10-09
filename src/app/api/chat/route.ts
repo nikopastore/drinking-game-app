@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
 
   // Check rate limit first
   const clientIP = getClientIP(request);
-  const rateLimitResult = checkRateLimit(clientIP, rateLimiters.chat);
+  const rateLimitResult = checkRateLimit(`chat:${clientIP}`, rateLimiters.chat);
   const rateLimitHeaders = createRateLimitHeaders(rateLimitResult);
 
   // Merge all headers
