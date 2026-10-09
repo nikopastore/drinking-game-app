@@ -61,7 +61,8 @@ export function useContacts(): UseContactsReturn {
         if (contact.emails) {
           for (const email of contact.emails) {
             if (email.address) {
-              contactItems.push(normalizeEmail(email.address));
+              const normalized = normalizeEmail(email.address);
+              if (normalized.length <= 200 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalized)) contactItems.push(normalized);
             }
           }
         }
@@ -80,11 +81,8 @@ export function useContacts(): UseContactsReturn {
       // De-duplicate before sending the normalized values to the server. The
       // database applies a private keyed HMAC; no reversible client-side hash
       // is persisted or exposed to other users.
-      const uniqueContacts = [...new Set(contactItems)].slice(0, 5000);
-
-      if (uniqueContacts.length === 0) {
-        return { skipped: false, friends: [] };
-      }
+      const uniqueContacts = [...new Set(contactItems)];
+      if (uniqueContacts.length > 5000) throw new Error("Your address book exceeds the 5,000-contact sync limit.");
 
       const supabase = createClient();
 
@@ -97,8 +95,7 @@ export function useContacts(): UseContactsReturn {
       });
 
       if (friendsError) {
-        console.error("Error finding friends:", friendsError);
-        return { skipped: false, friends: [] };
+        throw new Error(friendsError.message || "Could not sync contacts. Please try again.");
       }
 
       return { skipped: false, friends: friends || [] };

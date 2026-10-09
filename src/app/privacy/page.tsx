@@ -36,7 +36,7 @@ export default function PrivacyPage() {
               <li><strong>Account Information:</strong> If you create an account, we collect your email address and display name.</li>
               <li><strong>Usage Data:</strong> We collect anonymous usage statistics to improve our service.</li>
               <li><strong>Favorites & History:</strong> Favorites can be stored in your Supabase account; local storage also keeps preferences and play-session state.</li>
-              <li><strong>Contact Matching:</strong> With permission, the mobile app sends normalized email and phone values over an encrypted connection for a one-way keyed match. SipWiki stores only server-generated HMACs, not the contact values.</li>
+              <li><strong>Contact Matching:</strong> With permission, the mobile app sends normalized email and phone values over an encrypted connection for a one-way keyed match. SipWiki stores only server-generated HMACs, not the contact values. Matches require a confirmed account identity and both people to enable discovery. You can disable discovery and remove your synced contacts in Account.</li>
               <li><strong>Email Signups:</strong> If you join the party-tips list, we store your email, signup source, and page path.</li>
             </ul>
 

@@ -1,7 +1,9 @@
 -- Replace reversible client-side contact hashes with server-side keyed HMACs.
 -- Safe to re-run. Raw normalized contact values are never persisted.
 
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
+CREATE SCHEMA IF NOT EXISTS extensions;
+CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA extensions;
+SET search_path = public, extensions;
 
 CREATE SCHEMA IF NOT EXISTS private;
 

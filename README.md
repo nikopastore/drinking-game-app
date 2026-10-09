@@ -33,10 +33,16 @@ Copy `.env.example` to `.env.local` and configure the services you plan to use:
 
 Apply Supabase migrations in `supabase/migrations/` in order. The SQL bootstrap file is kept for reference and new projects.
 
+Contact discovery matches uploaded identifiers to confirmed account identities only when both users opt in. The database stores keyed HMACs, supports three syncs per day, and keeps historical hashes out of matching. Existing mobile users can enroll again from Account; turning discovery off removes their uploaded hashes. Confirmed phone identities keep country codes.
+
+For disposable PostgreSQL regression testing, load `supabase/tests/bootstrap.sql`, then `supabase/schema.sql`, then `supabase/tests/contact_matching.sql`. The bootstrap creates mock auth roles/users and must never be run against production.
+
 ## Main routes
 
 - `/games` and `/games/[slug]` — game library and rules
 - `/play/[slug]` — live session with timer and AI referee
+- `/recent` — last 20 games played on this device, with a clear-history control
+- `/account` — sign-in details and contact-discovery controls
 - `/cocktails` and `/drinks` — cocktail, punch, shot, and mocktail recipes
 - `/party-planner` — supplies and party planning calculator
 - `/spin` — filtered random game picker
