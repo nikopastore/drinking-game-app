@@ -5,7 +5,8 @@
  * It exposes SipWiki's drinking game data as tools that ChatGPT can use.
  */
 
-// Force static export for mobile builds - API not available in mobile app
+// Keep the route compatible with Capacitor's static export. POST handlers are
+// still executed by the deployed server runtime when the web app is online.
 export const dynamic = "force-static";
 
 import { NextRequest, NextResponse } from "next/server";
@@ -13,8 +14,9 @@ import { games } from "@/config/gameData";
 import { cocktails } from "@/config/cocktailData";
 import { Game, Cocktail } from "@/types";
 import { createCorsHeaders, handleCorsPreflightRequest } from "@/lib/cors";
+import { checkRateLimit, createRateLimitHeaders, getClientIP, rateLimiters } from "@/lib/rateLimit";
 
-const SIPWIKI_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://sipwiki.com";
+const SIPWIKI_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://sipwiki.app";
 
 // Helper function to format game for response
 function formatGameSummary(game: Game) {
@@ -61,7 +63,6 @@ function formatCocktailSummary(cocktail: Cocktail) {
 }
 
 function formatCocktailFull(cocktail: Cocktail) {
-  const difficultyLabel = ["Easy", "Medium", "Hard"][cocktail.difficulty - 1];
   return {
     ...formatCocktailSummary(cocktail),
     ingredients: cocktail.ingredients.map((i) =>
@@ -729,6 +730,15 @@ export async function OPTIONS(request: NextRequest) {
 // Handle MCP protocol requests
 export async function POST(request: NextRequest) {
   const corsHeaders = createCorsHeaders(request);
+  const rateLimit = checkRateLimit(`mcp:${getClientIP(request)}`, rateLimiters.relaxed);
+  const rateHeaders = createRateLimitHeaders(rateLimit);
+
+  if (!rateLimit.allowed) {
+    return NextResponse.json(
+      { jsonrpc: "2.0", error: { code: -32000, message: "Too many requests" }, id: null },
+      { status: 429, headers: { ...corsHeaders, ...rateHeaders } }
+    );
+  }
 
   try {
     const body = await request.json();
@@ -753,7 +763,19 @@ export async function POST(request: NextRequest) {
         break;
 
       case "tools/call":
-        const { name, arguments: args } = params;
+        if (!params || typeof params !== "object") {
+          return NextResponse.json(
+            { jsonrpc: "2.0", error: { code: -32602, message: "Invalid tool parameters" }, id },
+            { status: 400, headers: { ...corsHeaders, ...rateHeaders } }
+          );
+        }
+        const { name, arguments: args } = params as { name?: unknown; arguments?: Record<string, unknown> };
+        if (typeof name !== "string") {
+          return NextResponse.json(
+            { jsonrpc: "2.0", error: { code: -32602, message: "Tool name is required" }, id },
+            { status: 400, headers: { ...corsHeaders, ...rateHeaders } }
+          );
+        }
         result = executeTool(name, args || {});
         break;
 
@@ -771,10 +793,16 @@ export async function POST(request: NextRequest) {
         break;
 
       case "resources/read":
+        if (params?.uri !== `${SIPWIKI_URL}/chatgpt-widget.html` && params?.uri !== "/chatgpt-widget.html") {
+          return NextResponse.json(
+            { jsonrpc: "2.0", error: { code: -32602, message: "Unknown resource" }, id },
+            { status: 400, headers: { ...corsHeaders, ...rateHeaders } }
+          );
+        }
         result = {
           contents: [
             {
-              uri: params.uri,
+              uri: `${SIPWIKI_URL}/chatgpt-widget.html`,
               mimeType: "text/html",
               text: `<iframe src="${SIPWIKI_URL}/chatgpt-widget.html" style="width:100%;height:400px;border:none;"></iframe>`,
             },
@@ -789,7 +817,7 @@ export async function POST(request: NextRequest) {
             error: { code: -32601, message: `Method not found: ${method}` },
             id,
           },
-          { status: 400, headers: corsHeaders }
+          { status: 400, headers: { ...corsHeaders, ...rateHeaders } }
         );
     }
 
@@ -799,7 +827,7 @@ export async function POST(request: NextRequest) {
         result,
         id,
       },
-      { headers: corsHeaders }
+      { headers: { ...corsHeaders, ...rateHeaders } }
     );
   } catch (error) {
     console.error("MCP API error:", error);
@@ -809,7 +837,7 @@ export async function POST(request: NextRequest) {
         error: { code: -32603, message: "Internal error" },
         id: null,
       },
-      { status: 500, headers: corsHeaders }
+      { status: 500, headers: { ...corsHeaders, ...rateHeaders } }
     );
   }
 }

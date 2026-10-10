@@ -51,7 +51,7 @@ export { generateVideoSchema, type VideoSchemaOptions } from "./videoSchema";
  * }
  * ```
  */
-export function injectSchema(schema: any): string {
+export function injectSchema(schema: unknown): string {
   return JSON.stringify(schema);
 }
 
@@ -61,7 +61,7 @@ export function injectSchema(schema: any): string {
  *
  * Example: Game page with both Game and HowTo schemas
  */
-export function combineSchemas(schemas: any[]) {
+export function combineSchemas(schemas: unknown[]) {
   return {
     "@context": "https://schema.org",
     "@graph": schemas,

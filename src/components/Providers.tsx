@@ -42,8 +42,10 @@ function ProvidersContent({ children }: { children: React.ReactNode }) {
   };
 
   const handleRatingSkip = () => {
+    const slug = pendingRating?.slug;
     setPendingRating(null);
     setShowRatingModal(false);
+    if (slug) router.push(`/games/${slug}`);
   };
 
   return (
@@ -55,6 +57,7 @@ function ProvidersContent({ children }: { children: React.ReactNode }) {
               {children}
               {pendingRating && (
                 <RatingModal
+                  key={pendingRating.slug}
                   isOpen={showRatingModal}
                   gameName={pendingRating.name}
                   gameSlug={pendingRating.slug}

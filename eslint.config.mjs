@@ -12,7 +12,22 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    ".claude/**",
+    ".claude-flow/**",
+    ".swarm/**",
+    "public/**",
+    "scripts/**",
   ]),
+  {
+    rules: {
+      // Static editorial prose is authored as JSX text; apostrophes and quotes
+      // are safe there and do not need entity escaping.
+      "react/no-unescaped-entities": "off",
+      // Several providers intentionally hydrate client-only state from local
+      // storage and the current route inside effects.
+      "react-hooks/set-state-in-effect": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

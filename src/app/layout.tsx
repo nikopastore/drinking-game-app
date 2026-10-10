@@ -1,5 +1,5 @@
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     default: "SipWiki - Drinking Game Rules & Party App",
     template: "%s | SipWiki",
   },
-  description: "SipWiki is the ultimate party companion app. 30+ fun group games with rules, from classic Beer Pong to Kings Cup. Perfect icebreakers for house parties, pre-games, and game nights. Works offline!",
+  description: "SipWiki is a party companion with 58 drinking games, 50 cocktail recipes, party planning tools, and an AI game finder for house parties and game nights.",
 
   // Application name for brand recognition
   applicationName: "SipWiki",
@@ -58,21 +58,14 @@ export const metadata: Metadata = {
     "adult party ideas",
   ],
   manifest: "/manifest.json",
-  themeColor: "#ff3d81",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
     title: "SipWiki",
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-  },
   openGraph: {
     title: "SipWiki - Drinking Game Rules & Party App",
-    description: "Browse 50+ drinking games with complete rules. Card games, cup games, dice games, and no-prop favorites. Find the perfect party game tonight!",
+    description: "Browse 58 drinking games with complete rules. Card games, cup games, dice games, and no-prop favorites. Find the perfect party game tonight!",
     type: "website",
     locale: "en_US",
     siteName: "SipWiki",
@@ -81,7 +74,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "SipWiki - Drinking Game Rules & Party App",
-    description: "Browse 50+ drinking games with complete rules. Find the perfect party game tonight!",
+    description: "Browse 58 drinking games with complete rules. Find the perfect party game tonight!",
   },
   alternates: {
     canonical: "https://sipwiki.app",
@@ -98,6 +91,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#ff3d81",
+};
+
 // Organization schema for brand identity in Google
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -105,9 +104,9 @@ const organizationSchema = {
   name: "SipWiki",
   alternateName: ["Sip Wiki", "SipWiki App"],
   url: "https://sipwiki.app",
-  logo: "https://sipwiki.app/icon-512.png",
+  logo: "https://sipwiki.app/icons/icon-512x512.png",
   description:
-    "SipWiki is the #1 drinking game rules and party game companion app. Find rules for Beer Pong, King's Cup, Flip Cup, and 30+ more party games.",
+    "SipWiki is a drinking game rules and party companion app. Find rules for Beer Pong, King's Cup, Flip Cup, and 58 party games.",
   foundingDate: "2024",
   sameAs: [
     "https://twitter.com/sipwiki",

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Modal, Button } from "@/components/ui";
 import { Star, PartyPopper } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, getDeviceId } from "@/lib/utils";
 
 interface RatingModalProps {
   isOpen: boolean;
@@ -16,6 +16,7 @@ interface RatingModalProps {
 export function RatingModal({
   isOpen,
   gameName,
+  gameSlug,
   onComplete,
   onSkip,
 }: RatingModalProps) {
@@ -23,17 +24,31 @@ export function RatingModal({
   const [hoveredRating, setHoveredRating] = useState<number>(0);
   const [hasRated, setHasRated] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   const handleRate = async (score: number) => {
     setRating(score);
     setIsSubmitting(true);
+    setError("");
 
-    // TODO: Submit rating to Supabase
-    // For now, just simulate a delay
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    try {
+      if (process.env.NEXT_PUBLIC_STATIC_EXPORT === "true") {
+        localStorage.setItem(`sipwiki-rating:${gameSlug}`, String(score));
+      } else {
+        const response = await fetch("/api/ratings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ gameSlug, score, deviceId: getDeviceId() }),
+      });
 
-    setIsSubmitting(false);
-    setHasRated(true);
+        if (!response.ok) throw new Error("Rating unavailable");
+      }
+      setHasRated(true);
+    } catch {
+      setError("Your rating could not be saved. Please try again or skip for now.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const getRatingLabel = (score: number): string => {
@@ -48,7 +63,7 @@ export function RatingModal({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onSkip} title="" size="sm">
+    <Modal isOpen={isOpen} onClose={onSkip} title={`Rate ${gameName}`} size="sm">
       <div className="text-center py-4">
         {!hasRated ? (
           <>
@@ -68,6 +83,7 @@ export function RatingModal({
               {[1, 2, 3, 4, 5].map((score) => (
                 <button
                   key={score}
+                  aria-label={`Rate ${score} out of 5 stars`}
                   onClick={() => handleRate(score)}
                   onMouseEnter={() => setHoveredRating(score)}
                   onMouseLeave={() => setHoveredRating(0)}
@@ -90,6 +106,7 @@ export function RatingModal({
             <p className="text-gray-300 h-6 mb-6">
               {getRatingLabel(hoveredRating || rating)}
             </p>
+            {error && <p role="alert" className="mb-4 text-sm text-red-400">{error}</p>}
 
             <Button variant="ghost" onClick={onSkip} className="w-full">
               Skip for now
@@ -103,7 +120,7 @@ export function RatingModal({
 
             <h2 className="text-xl font-bold text-white mb-2">Thanks!</h2>
             <p className="text-gray-400 mb-6">
-              Your rating helps the community find great games
+              Your rating helps SipWiki improve its game recommendations
             </p>
 
             <Button onClick={onComplete} className="w-full">

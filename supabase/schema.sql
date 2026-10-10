@@ -1,6 +1,10 @@
 -- SipWiki Database Schema
 -- Run this in your Supabase SQL Editor
 
+CREATE SCHEMA IF NOT EXISTS extensions;
+CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA extensions;
+SET search_path = public, extensions;
+
 -- ============================================
 -- GAMES TABLE (for future database-driven games)
 -- ============================================
@@ -147,13 +151,7 @@ CREATE POLICY "Anyone can read ratings"
   ON ratings FOR SELECT
   USING (true);
 
-CREATE POLICY "Anyone can insert ratings"
-  ON ratings FOR INSERT
-  WITH CHECK (true);
 
-CREATE POLICY "Anyone can update ratings by device_id"
-  ON ratings FOR UPDATE
-  USING (true);
 
 -- Game Submissions: Auth required to submit
 ALTER TABLE game_submissions ENABLE ROW LEVEL SECURITY;
@@ -166,12 +164,94 @@ CREATE POLICY "Authenticated users can insert submissions"
   ON game_submissions FOR INSERT
   WITH CHECK (auth.uid() = user_id);
 
--- Email Subscribers: Allow anonymous inserts for lead magnets
+-- Email Subscribers: writes go through the validated function below
 ALTER TABLE email_subscribers ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Anyone can insert email subscribers"
-  ON email_subscribers FOR INSERT
-  WITH CHECK (true);
+-- ============================================
+-- VALIDATED PUBLIC INGESTION FUNCTIONS
+-- ============================================
+
+CREATE OR REPLACE FUNCTION subscribe_email(
+  p_email TEXT,
+  p_source TEXT DEFAULT NULL,
+  p_page_path TEXT DEFAULT NULL
+)
+RETURNS BOOLEAN
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+DECLARE
+  normalized_email TEXT := lower(trim(p_email));
+  inserted_count INTEGER;
+BEGIN
+  IF normalized_email IS NULL
+     OR char_length(normalized_email) > 200
+     OR normalized_email !~ '^[^[:space:]@]+@[^[:space:]@]+\.[^[:space:]@]+$' THEN
+    RETURN FALSE;
+  END IF;
+
+  INSERT INTO email_subscribers (email, source, lead_magnet, page_path)
+  VALUES (normalized_email, left(p_source, 80), 'party-tips', left(p_page_path, 200))
+  ON CONFLICT (email) DO NOTHING;
+
+  GET DIAGNOSTICS inserted_count = ROW_COUNT;
+  RETURN inserted_count > 0;
+END;
+$$;
+
+CREATE OR REPLACE FUNCTION record_product_event(
+  p_name TEXT,
+  p_slug TEXT DEFAULT NULL,
+  p_path TEXT DEFAULT NULL
+)
+RETURNS VOID
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+BEGIN
+  IF p_name NOT IN ('play_started', 'affiliate_click', 'email_submit') THEN
+    RETURN;
+  END IF;
+
+  INSERT INTO product_events (name, slug, path)
+  VALUES (p_name, left(p_slug, 80), left(p_path, 200));
+END;
+$$;
+
+CREATE OR REPLACE FUNCTION submit_rating(
+  p_game_id TEXT,
+  p_score INTEGER,
+  p_device_id TEXT
+)
+RETURNS BOOLEAN
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+BEGIN
+  IF p_game_id IS NULL OR char_length(p_game_id) > 80
+     OR p_score < 1 OR p_score > 5
+     OR p_device_id IS NULL OR char_length(p_device_id) > 128 THEN
+    RETURN FALSE;
+  END IF;
+
+  INSERT INTO ratings (game_id, device_id, user_id, score)
+  VALUES (p_game_id, p_device_id, auth.uid(), p_score)
+  ON CONFLICT (game_id, device_id)
+  DO UPDATE SET score = EXCLUDED.score, user_id = EXCLUDED.user_id;
+
+  RETURN TRUE;
+END;
+$$;
+
+REVOKE ALL ON FUNCTION subscribe_email(TEXT, TEXT, TEXT) FROM PUBLIC;
+REVOKE ALL ON FUNCTION record_product_event(TEXT, TEXT, TEXT) FROM PUBLIC;
+REVOKE ALL ON FUNCTION submit_rating(TEXT, INTEGER, TEXT) FROM PUBLIC;
+GRANT EXECUTE ON FUNCTION subscribe_email(TEXT, TEXT, TEXT) TO anon, authenticated;
+GRANT EXECUTE ON FUNCTION record_product_event(TEXT, TEXT, TEXT) TO anon, authenticated;
+GRANT EXECUTE ON FUNCTION submit_rating(TEXT, INTEGER, TEXT) TO anon, authenticated;
 
 -- ============================================
 -- FUNCTIONS
@@ -266,7 +346,24 @@ CREATE TABLE IF NOT EXISTS user_profiles (
 CREATE INDEX idx_user_profiles_display_name ON user_profiles(display_name);
 
 -- ============================================
--- USER CONTACTS TABLE (hashed for privacy)
+-- PRIVATE CONTACT MATCHING KEY (never exposed to client roles)
+CREATE SCHEMA IF NOT EXISTS private;
+
+CREATE TABLE IF NOT EXISTS private.contact_match_keys (
+  key_id BOOLEAN PRIMARY KEY DEFAULT TRUE CHECK (key_id),
+  secret BYTEA NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+INSERT INTO private.contact_match_keys (key_id, secret)
+VALUES (TRUE, gen_random_bytes(32))
+ON CONFLICT (key_id) DO NOTHING;
+
+ALTER TABLE private.contact_match_keys ENABLE ROW LEVEL SECURITY;
+REVOKE ALL ON SCHEMA private FROM PUBLIC, anon, authenticated;
+REVOKE ALL ON private.contact_match_keys FROM PUBLIC, anon, authenticated;
+
+-- USER CONTACTS TABLE (server-side keyed HMACs only)
 -- ============================================
 CREATE TABLE IF NOT EXISTS user_contacts (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -326,6 +423,8 @@ CREATE POLICY "Users can delete their own contacts"
   ON user_contacts FOR DELETE
   USING (auth.uid() = user_id);
 
+REVOKE ALL ON TABLE user_contacts FROM PUBLIC, anon, authenticated;
+
 -- ============================================
 -- FRIENDSHIPS RLS POLICIES
 -- ============================================
@@ -339,31 +438,143 @@ CREATE POLICY "Users can insert their own friendships"
   ON friendships FOR INSERT
   WITH CHECK (auth.uid() = user_id);
 
--- ============================================
--- FRIEND MATCHING FUNCTION
--- ============================================
--- p_user_id is ignored. Friends are resolved only for the signed-in user.
-CREATE OR REPLACE FUNCTION find_friends(p_user_id UUID)
-RETURNS TABLE (
-  friend_id UUID,
-  display_name TEXT,
-  avatar_url TEXT
-)
+-- Match contacts to confirmed account identities, never to shared address books.
+-- Enrollment and rate limits are private server-owned state. Legacy hashes and
+-- derived friendships are retained for recovery but are not exposed or matched.
+SET search_path = public, extensions;
+
+ALTER TABLE public.user_contacts ADD COLUMN IF NOT EXISTS hash_version INTEGER NOT NULL DEFAULT 1;
+
+CREATE TABLE IF NOT EXISTS private.contact_sync_state (
+  user_id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+  opted_in BOOLEAN NOT NULL DEFAULT FALSE,
+  window_started_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  sync_count INTEGER NOT NULL DEFAULT 0
+);
+ALTER TABLE private.contact_sync_state ENABLE ROW LEVEL SECURITY;
+REVOKE ALL ON private.contact_sync_state FROM PUBLIC, anon, authenticated;
+REVOKE ALL ON TABLE public.friendships FROM PUBLIC, anon, authenticated;
+
+-- Bind crypto to the installed extension schema (older databases use public).
+DO $bind$
+DECLARE v_schema TEXT;
+BEGIN
+  SELECT n.nspname INTO STRICT v_schema
+  FROM pg_extension e JOIN pg_namespace n ON n.oid = e.extnamespace
+  WHERE e.extname = 'pgcrypto';
+  EXECUTE format($ddl$
+    CREATE OR REPLACE FUNCTION private.contact_hash(p_value TEXT)
+    RETURNS TEXT LANGUAGE sql STABLE
+    SET search_path = pg_catalog
+    AS $hash$
+      SELECT encode(%I.hmac(convert_to(lower(trim(p_value)), 'UTF8'),
+        (SELECT secret FROM private.contact_match_keys WHERE key_id), 'sha256'), 'hex');
+    $hash$;
+  $ddl$, v_schema);
+END;
+$bind$;
+REVOKE ALL ON FUNCTION private.contact_hash(TEXT) FROM PUBLIC, anon, authenticated;
+
+CREATE OR REPLACE FUNCTION private.contact_matches(p_uid UUID)
+RETURNS TABLE (friend_id UUID, display_name TEXT, avatar_url TEXT)
 LANGUAGE sql
-SECURITY DEFINER
-SET search_path = public
+SET search_path = pg_catalog, extensions
 AS $$
-  SELECT DISTINCT
-    up.id AS friend_id,
-    up.display_name,
-    up.avatar_url
-  FROM user_contacts uc
-  JOIN user_contacts friend_uc ON uc.contact_hash = friend_uc.contact_hash
-  JOIN user_profiles up ON friend_uc.user_id = up.id
-  WHERE auth.uid() IS NOT NULL
-    AND uc.user_id = auth.uid()
-    AND friend_uc.user_id <> auth.uid();
+  SELECT DISTINCT up.id, up.display_name, up.avatar_url
+  FROM auth.users au
+  JOIN public.user_profiles up ON up.id = au.id
+  JOIN private.contact_sync_state consent ON consent.user_id = au.id AND consent.opted_in
+  CROSS JOIN private.contact_match_keys k
+  WHERE k.key_id AND au.id <> p_uid
+    AND EXISTS (SELECT 1 FROM private.contact_sync_state caller WHERE caller.user_id = p_uid AND caller.opted_in)
+    AND EXISTS (
+      SELECT 1 FROM public.user_contacts uc
+      WHERE uc.user_id = p_uid AND uc.hash_version = 2
+        AND (
+          (au.email_confirmed_at IS NOT NULL AND au.email IS NOT NULL
+            AND uc.contact_hash = private.contact_hash(au.email))
+          OR (au.phone_confirmed_at IS NOT NULL AND au.phone ~ '^\+?[1-9][0-9]{7,14}$'
+            AND uc.contact_hash = private.contact_hash('+' || ltrim(au.phone, '+')))
+        )
+    )
+  ORDER BY up.id
+  LIMIT 100;
 $$;
+REVOKE ALL ON FUNCTION private.contact_matches(UUID) FROM PUBLIC, anon, authenticated;
+
+CREATE OR REPLACE FUNCTION public.find_friends(p_user_id UUID)
+RETURNS TABLE (friend_id UUID, display_name TEXT, avatar_url TEXT)
+LANGUAGE plpgsql SECURITY DEFINER
+SET search_path = pg_catalog, extensions
+AS $$
+BEGIN
+  IF auth.uid() IS NULL OR p_user_id IS DISTINCT FROM auth.uid() THEN
+    RAISE EXCEPTION 'Not authorized' USING ERRCODE = '42501';
+  END IF;
+  RETURN QUERY SELECT * FROM private.contact_matches(auth.uid());
+END;
+$$;
+
+CREATE OR REPLACE FUNCTION public.sync_contacts(p_user_id UUID, p_contacts TEXT[])
+RETURNS TABLE (friend_id UUID, display_name TEXT, avatar_url TEXT)
+LANGUAGE plpgsql SECURITY DEFINER
+SET search_path = pg_catalog, extensions
+AS $$
+DECLARE
+  v_uid UUID := auth.uid();
+  v_secret BYTEA;
+  v_contact TEXT;
+  v_count INTEGER;
+BEGIN
+  IF v_uid IS NULL OR p_user_id IS DISTINCT FROM v_uid THEN
+    RAISE EXCEPTION 'Not authorized' USING ERRCODE = '42501';
+  END IF;
+  IF p_contacts IS NULL OR cardinality(p_contacts) > 5000
+     OR COALESCE(array_ndims(p_contacts), 1) <> 1
+     OR EXISTS (SELECT 1 FROM unnest(p_contacts) c WHERE c IS NULL OR char_length(c) > 200
+        OR NOT (c ~ '^[^[:space:]@]+@[^[:space:]@]+\.[^[:space:]@]+$' OR c ~ '^\+[1-9][0-9]{7,14}$')) THEN
+    RAISE EXCEPTION 'Invalid contacts' USING ERRCODE = '22023';
+  END IF;
+
+  SELECT secret INTO STRICT v_secret FROM private.contact_match_keys WHERE key_id;
+  INSERT INTO private.contact_sync_state AS state (user_id, opted_in, sync_count)
+  VALUES (v_uid, TRUE, 1)
+  ON CONFLICT (user_id) DO UPDATE SET
+    opted_in = TRUE,
+    window_started_at = CASE WHEN state.window_started_at <= NOW() - INTERVAL '1 day' THEN NOW() ELSE state.window_started_at END,
+    sync_count = CASE WHEN state.window_started_at <= NOW() - INTERVAL '1 day' THEN 1 ELSE state.sync_count + 1 END
+  RETURNING sync_count INTO v_count;
+  IF v_count > 3 THEN
+    RAISE EXCEPTION 'Contact sync limit reached. Try again tomorrow.' USING ERRCODE = 'P0001';
+  END IF;
+
+  DELETE FROM public.user_contacts WHERE user_id = v_uid;
+  FOREACH v_contact IN ARRAY p_contacts LOOP
+    INSERT INTO public.user_contacts (user_id, contact_hash, hash_version)
+    VALUES (v_uid, private.contact_hash(v_contact), 2)
+    ON CONFLICT (user_id, contact_hash) DO NOTHING;
+  END LOOP;
+  UPDATE public.user_profiles SET contacts_synced_at = NOW() WHERE id = v_uid;
+  RETURN QUERY SELECT * FROM private.contact_matches(v_uid);
+END;
+$$;
+
+CREATE OR REPLACE FUNCTION public.stop_contact_sync()
+RETURNS VOID LANGUAGE plpgsql SECURITY DEFINER
+SET search_path = pg_catalog
+AS $$
+BEGIN
+  IF auth.uid() IS NULL THEN
+    RAISE EXCEPTION 'Not authorized' USING ERRCODE = '42501';
+  END IF;
+  UPDATE private.contact_sync_state SET opted_in = FALSE WHERE user_id = auth.uid();
+  DELETE FROM public.user_contacts WHERE user_id = auth.uid();
+  UPDATE public.user_profiles SET contacts_synced_at = NULL WHERE id = auth.uid();
+END;
+$$;
+
+REVOKE ALL ON FUNCTION public.find_friends(UUID), public.sync_contacts(UUID, TEXT[]), public.stop_contact_sync() FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.find_friends(UUID), public.sync_contacts(UUID, TEXT[]), public.stop_contact_sync() TO authenticated;
 
 -- ============================================
 -- AUTO-UPDATE TIMESTAMP TRIGGER
@@ -506,22 +717,14 @@ END;
 $$;
 
 -- ============================================
--- PRODUCT EVENTS (affiliate clicks and email signups only)
+-- PRODUCT EVENTS (play starts, affiliate clicks, and email signups)
 -- ============================================
 CREATE TABLE IF NOT EXISTS product_events (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  name TEXT NOT NULL CHECK (name IN ('affiliate_click', 'email_submit')),
+  name TEXT NOT NULL CHECK (name IN ('play_started', 'affiliate_click', 'email_submit')),
   slug TEXT CHECK (slug IS NULL OR char_length(slug) <= 80),
   path TEXT CHECK (path IS NULL OR char_length(path) <= 200),
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 ALTER TABLE product_events ENABLE ROW LEVEL SECURITY;
-
-CREATE POLICY "Anon and authenticated can insert product events"
-  ON product_events
-  FOR INSERT
-  TO anon, authenticated
-  WITH CHECK (name IN ('affiliate_click', 'email_submit'));
-
-GRANT INSERT ON TABLE product_events TO anon, authenticated;

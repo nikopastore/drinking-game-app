@@ -14,8 +14,13 @@ import { recordProductEvent, type ProductEventRow } from "@/lib/productEvents";
  * A missing database or a failed insert still returns 204 so the click is not blocked.
  */
 export async function POST(request: NextRequest) {
+  const contentLength = Number(request.headers.get("content-length") || 0);
+  if (contentLength > 4 * 1024) {
+    return NextResponse.json({ error: "Request body too large" }, { status: 413 });
+  }
+
   const clientIP = getClientIP(request);
-  const rateLimitResult = checkRateLimit(clientIP, rateLimiters.events);
+  const rateLimitResult = checkRateLimit(`events:${clientIP}`, rateLimiters.events);
 
   if (!rateLimitResult.allowed) {
     return NextResponse.json(
@@ -37,10 +42,10 @@ export async function POST(request: NextRequest) {
   const accepted = await recordProductEvent(body, {
     insert: async (row: ProductEventRow) => {
       const supabase = await createClient();
-      const { error } = await supabase.from("product_events").insert({
-        name: row.name,
-        slug: row.slug,
-        path: row.path,
+      const { error } = await supabase.rpc("record_product_event", {
+        p_name: row.name,
+        p_slug: row.slug,
+        p_path: row.path,
       });
       return { error: error ? { message: error.message } : null };
     },

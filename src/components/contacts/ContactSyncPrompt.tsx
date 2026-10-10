@@ -110,7 +110,7 @@ export function ContactSyncPrompt({
 
             {/* Subtext */}
             <p className="text-center text-gray-400 mb-8 leading-relaxed">
-              See which of your contacts are already partying here. Your contacts are hashed for privacy and never stored as plain text.
+              Find contacts with confirmed SipWiki accounts who have also enabled friend discovery. Enabling this makes your confirmed account discoverable to their contacts.
             </p>
 
             {/* Error message */}
@@ -166,7 +166,7 @@ export function ContactSyncPrompt({
 
             {/* Privacy note */}
             <p className="mt-6 text-xs text-center text-gray-500">
-              We only check for matches. Your contact info stays private.
+              Contact values are sent securely for matching; only keyed hashes are stored. You can turn discovery off in Account.
             </p>
           </div>
         </motion.div>

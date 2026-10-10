@@ -49,12 +49,17 @@ export async function OPTIONS(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  const contentLength = Number(request.headers.get("content-length") || 0);
+  if (contentLength > 64 * 1024) {
+    return NextResponse.json({ error: "Request body too large" }, { status: 413 });
+  }
+
   // Get CORS headers for this request
   const corsHeaders = createCorsHeaders(request);
 
   // Check rate limit first
   const clientIP = getClientIP(request);
-  const rateLimitResult = checkRateLimit(clientIP, rateLimiters.chat);
+  const rateLimitResult = checkRateLimit(`chat:${clientIP}`, rateLimiters.chat);
   const rateLimitHeaders = createRateLimitHeaders(rateLimitResult);
 
   // Merge all headers

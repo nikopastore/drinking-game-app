@@ -130,7 +130,6 @@ function generateWhereToPlay(game: Game, city: City): string {
 function generateLocalTips(game: Game, city: City): string {
   const gameName = game.name;
   const cityName = city.name;
-  const stateAbbr = city.stateAbbr;
 
   return `### ${cityName}-Specific Tips
 

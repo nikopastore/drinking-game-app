@@ -65,14 +65,14 @@ describe("GameCard", () => {
   });
 
   it.each([
-    [["cards"], "Card game", "??"],
-    [["ping pong balls"], "Pong", "??"],
-    [["dice"], "Dice game", "??"],
-    [["cups"], "Cup game", "??"],
-    [[], "Movie game", "??"],
-    [[], "Thunderstruck", "??"],
-    [["no prop"], "Conversation", "???"],
-    [["random stuff"], "Other game", "??"],
+    [["cards"], "Card game", "🃏"],
+    [["ping pong balls"], "Pong", "🏓"],
+    [["dice"], "Dice game", "🎲"],
+    [["cups"], "Cup game", "🥤"],
+    [[], "Movie game", "🎬"],
+    [[], "Thunderstruck", "🎵"],
+    [["no prop"], "Conversation", "💬"],
+    [["random stuff"], "Other game", "🎉"],
   ])("shows the right fallback artwork for %s", (materials, name, emoji) => {
     render(<GameCard game={createMockGame({ image: undefined, materials, name })} />);
     expect(screen.getByText(emoji)).toBeInTheDocument();

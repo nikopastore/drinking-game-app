@@ -1,4 +1,4 @@
-import { WithContext, Article, FAQPage, Question } from "schema-dts";
+import { WithContext, Article, FAQPage } from "schema-dts";
 
 export interface ArticleSchemaOptions {
   title: string;
@@ -91,6 +91,7 @@ export function generateFAQSchema(
   const schema: WithContext<FAQPage> = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    url,
     mainEntity: faqs.map((faq) => ({
       "@type": "Question" as const,
       name: faq.question,
@@ -135,7 +136,7 @@ export function generateWebPageSchema(options: {
 }) {
   const { url, name, description, speakableSelector } = options;
 
-  const schema: any = {
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "WebPage",
     url: url,

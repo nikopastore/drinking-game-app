@@ -65,7 +65,12 @@ function json(data: unknown, status: number, headers: Record<string, string>) {
 }
 
 export async function POST(request: NextRequest) {
-  const rateLimit = checkRateLimit(getClientIP(request), rateLimiters.chat);
+  const contentLength = Number(request.headers.get("content-length") || 0);
+  if (contentLength > 32 * 1024) {
+    return json({ error: "Request body too large" }, 413, {});
+  }
+
+  const rateLimit = checkRateLimit(`finder:${getClientIP(request)}`, rateLimiters.chat);
   const rateHeaders = createRateLimitHeaders(rateLimit);
 
   if (!rateLimit.allowed) {
@@ -86,12 +91,13 @@ export async function POST(request: NextRequest) {
 
   const query = parsed.data.query;
   const fallback = findCatalogMatches(query, games);
+  if (fallback.recommendations.length === 0) return json(fallback, 200, rateHeaders);
   const apiKey = process.env.GEMINI_API_KEY;
 
   if (!apiKey) {
     return json({
       ...fallback,
-      notice: "Smart catalog matching is active. Add GEMINI_API_KEY to enable Gemini reasoning.",
+      notice: "These matches were found directly from SipWiki's catalog.",
     }, 200, rateHeaders);
   }
 
@@ -124,7 +130,7 @@ export async function POST(request: NextRequest) {
           }],
           generationConfig: {
             temperature: 0.25,
-            maxOutputTokens: 700,
+            maxOutputTokens: 1800,
             responseMimeType: "application/json",
             responseSchema,
           },
@@ -142,9 +148,9 @@ export async function POST(request: NextRequest) {
     }
 
     const payload = await response.json() as {
-      candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }>;
+      candidates?: Array<{ content?: { parts?: Array<{ text?: string; thought?: boolean }> } }>;
     };
-    const text = payload.candidates?.[0]?.content?.parts?.[0]?.text;
+    const text = payload.candidates?.[0]?.content?.parts?.filter((part) => !part.thought).map((part) => part.text ?? "").join("");
     if (!text) return json(fallback, 200, rateHeaders);
 
     const modelResult = JSON.parse(text.replace(/^\u0060\u0060\u0060json\s*|\s*\u0060\u0060\u0060$/g, ""));

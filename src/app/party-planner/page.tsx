@@ -175,7 +175,7 @@ export default function PartyPlannerPage() {
               <span className="text-sm text-neon-pink font-medium">Free Party Calculator</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              AI Party Planner Calculator
+              Party Planner Calculator
             </h1>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
               Calculate exactly how much alcohol, cups, and supplies you need for your party.

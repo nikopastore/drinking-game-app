@@ -14,6 +14,18 @@ describe('useAppStore', () => {
   })
 
   describe('session management', () => {
+    it('keeps bounded, unique recent history in most-recent order', () => {
+      const state = useAppStore.getState();
+      state.clearRecentGames();
+      for (let i = 0; i < 25; i++) state.startSession(`game-${i}`, `Game ${i}`);
+      state.startSession('game-10', 'Game 10');
+      const recent = useAppStore.getState().recentGames;
+      expect(recent).toHaveLength(20);
+      expect(recent[0].slug).toBe('game-10');
+      expect(new Set(recent.map((entry) => entry.slug)).size).toBe(20);
+      state.clearRecentGames();
+      expect(useAppStore.getState().recentGames).toEqual([]);
+    });
     it('starts a new session', () => {
       const { startSession } = useAppStore.getState()
 

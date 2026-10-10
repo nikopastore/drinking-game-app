@@ -152,7 +152,7 @@ export function GameDetailClient({ game }: GameDetailClientProps) {
           <div className="flex items-start justify-between gap-4">
             <div>
               <h1 className="night-heading mb-3 text-4xl md:text-6xl">
-                {game.name} Drinking Game ? Rules & How to Play
+                {game.name} Drinking Game — Rules & How to Play
               </h1>
               <h2 className="night-kicker mb-4">
                 Official rules, setup, and gameplay steps

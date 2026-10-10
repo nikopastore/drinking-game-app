@@ -20,7 +20,7 @@ import {
 import { games } from "../config/gameData";
 import { Game } from "../types";
 
-const SIPWIKI_URL = process.env.SIPWIKI_URL || "https://sipwiki.com";
+const SIPWIKI_URL = process.env.SIPWIKI_URL || "https://sipwiki.app";
 
 // Helper function to format game for response
 function formatGameSummary(game: Game) {

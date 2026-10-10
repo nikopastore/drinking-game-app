@@ -133,7 +133,7 @@ export function GamesIndexClient() {
           <div className="mb-6 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
             <div>
               <p className="night-kicker">The full deck</p>
-              <h2 className="mt-2 text-3xl font-black tracking-[-0.04em] text-white">Every game, A?Z</h2>
+              <h2 className="mt-2 text-3xl font-black tracking-[-0.04em] text-white">Every game, A–Z</h2>
               <p className="mt-2 text-sm text-muted">{filteredGames.length} of {games.length} games</p>
             </div>
             <label className="flex min-h-12 w-full max-w-sm items-center gap-3 rounded-full border border-white/10 bg-dark-800/85 px-4 focus-within:border-neon-pink/50">
@@ -190,7 +190,7 @@ export function GamesIndexClient() {
             <div>
               <p className="night-kicker">Everything still here</p>
               <h2 className="mt-2 text-2xl font-black text-white">Cocktails, buying guides, safety tips, shop, favorites, and account tools.</h2>
-              <p className="mt-2 max-w-3xl text-sm leading-6 text-muted">The redesign changes the experience, not the library. Every existing SipWiki page and feature remains available through the navigation.</p>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-muted">Mix a cocktail, plan your supplies, save favorites, or get ready for the next game—all from the navigation.</p>
             </div>
             <Link href="/blog" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/12 px-5 text-sm font-bold text-white hover:bg-white/5">
               Explore guides <ChevronRight className="h-4 w-4" />
@@ -201,7 +201,7 @@ export function GamesIndexClient() {
         <section className="night-shell py-12 text-sm leading-7 text-muted">
           <h2 className="text-xl font-bold text-white">About the SipWiki game library</h2>
           <p className="mt-3 max-w-4xl">
-            SipWiki brings complete setup instructions, gameplay rules, variations, and practical tips into one searchable library. Browse classics such as King?s Cup, Beer Pong, Flip Cup, and Never Have I Ever, or filter the full collection by name and supplies.
+            SipWiki brings complete setup instructions, gameplay rules, variations, and practical tips into one searchable library. Browse classics such as King&apos;s Cup, Beer Pong, Flip Cup, and Never Have I Ever, or filter the full collection by name and supplies.
           </p>
         </section>
       </main>

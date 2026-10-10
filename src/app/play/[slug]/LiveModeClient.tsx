@@ -8,27 +8,26 @@ import { formatElapsedTime } from "@/lib/utils";
 import { formatMarkdownBold } from "@/lib/sanitize";
 import { Timer, X, Wine, ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { AIChatFAB } from "@/components/AIChatFAB";
-import { RatingModal } from "@/components/RatingModal";
+import { trackEvent } from "@/lib/analytics";
 
 interface LiveModeClientProps {
   game: Game;
 }
 
 export function LiveModeClient({ game }: LiveModeClientProps) {
-  const router = useRouter();
-  const { session, startSession, endSession, pendingRating, setPendingRating } =
+  const { session, startSession, endSession } =
     useAppStore();
   const [elapsedTime, setElapsedTime] = useState("0s");
-  const [showRatingModal, setShowRatingModal] = useState(false);
+  const [ending, setEnding] = useState(false);
 
   // Start session on mount if not already active
   useEffect(() => {
-    if (!session || session.gameSlug !== game.slug) {
+    if (!ending && (!session || session.gameSlug !== game.slug)) {
       startSession(game.slug, game.name);
+      trackEvent("play_started", game.slug);
     }
-  }, [game.slug, game.name, session, startSession]);
+  }, [game.slug, game.name, session, startSession, ending]);
 
   // Update elapsed time every second
   useEffect(() => {
@@ -41,28 +40,9 @@ export function LiveModeClient({ game }: LiveModeClientProps) {
     return () => clearInterval(interval);
   }, [session]);
 
-  // Show rating modal when pending
-  useEffect(() => {
-    if (pendingRating && pendingRating.slug === game.slug) {
-      setShowRatingModal(true);
-    }
-  }, [pendingRating, game.slug]);
-
   const handleEndGame = () => {
+    setEnding(true);
     endSession();
-    setShowRatingModal(true);
-  };
-
-  const handleRatingComplete = () => {
-    setPendingRating(null);
-    setShowRatingModal(false);
-    router.push(`/games/${game.slug}`);
-  };
-
-  const handleRatingSkip = () => {
-    setPendingRating(null);
-    setShowRatingModal(false);
-    router.push(`/games/${game.slug}`);
   };
 
   return (
@@ -150,14 +130,6 @@ export function LiveModeClient({ game }: LiveModeClientProps) {
       {/* AI Chat FAB */}
       <AIChatFAB game={game} />
 
-      {/* Rating Modal */}
-      <RatingModal
-        isOpen={showRatingModal}
-        gameName={game.name}
-        gameSlug={game.slug}
-        onComplete={handleRatingComplete}
-        onSkip={handleRatingSkip}
-      />
     </div>
   );
 }
