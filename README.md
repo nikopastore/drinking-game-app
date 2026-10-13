@@ -59,6 +59,14 @@ Run `supabase/tests/ingestion.sql` in the same disposable environment to exercis
 - `/shop` — affiliate party supplies
 - `/submit` — authenticated community submissions
 
+## Adult declaration
+
+The web app verifies a signed, HttpOnly 30-day receipt before AI chat, game finding, ratings, and newsletter signup. This is a self-declaration, not identity-based age verification. It collects no birth date or identity documents. Privacy, Terms, and OAuth callbacks remain reachable before confirmation. Account can clear the receipt on this device. Old localStorage flags do not authorize web APIs.
+
+Configure an independent random `AGE_CONSENT_SECRET` (at least 32 characters) as a server Secret for Production and a different value for Preview. Missing configuration fails closed. A version change in `ageConsentConfig.ts` requires a new confirmation. Native static export uses a versioned local declaration because it has no Next API runtime.
+
+Web confirmation needs an online status check and essential cookies. Run `node scripts/verify-age-consent.mjs https://your-staged-production-url` to test synthetic receipt issuance, forged/missing receipt rejection, input validation, game finding, policy access, and reset without writing ratings or newsletter signups.
+
 ## Mobile
 
 Capacitor configuration lives in `capacitor.config.ts`. Use `npm run build:mobile` before `npx cap sync`, then open the native project with `npm run cap:ios` or `npm run cap:android`.

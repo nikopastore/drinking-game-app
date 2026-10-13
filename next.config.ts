@@ -16,6 +16,11 @@ const withPWA = withPWAInit({
     disableDevLogs: true,
     runtimeCaching: [
       {
+        // A reset/expired receipt must never be revived by an offline cache.
+        urlPattern: /\/api\/age-consent(?:\/|\?|$)/i,
+        handler: "NetworkOnly",
+      },
+      {
         urlPattern: /^https:\/\/fonts\.(?:gstatic|googleapis)\.com\/.*/i,
         handler: "CacheFirst",
         options: {

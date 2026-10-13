@@ -8,6 +8,7 @@ import {
 } from "@/lib/rateLimit";
 import { createIngestionClient } from "@/lib/supabase/ingestion";
 import { sendWelcomeEmail } from "@/lib/welcomeEmail";
+import { requireAgeConsent } from "@/lib/ageConsent";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -23,6 +24,8 @@ export async function POST(request: NextRequest) {
 
   const clientIP = getClientIP(request);
   const rateLimitResult = checkRateLimit(`subscribe:${clientIP}`, rateLimiters.strict);
+  const consentError = requireAgeConsent(request);
+  if (consentError) return consentError;
 
   if (!rateLimitResult.allowed) {
     return NextResponse.json(
