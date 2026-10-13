@@ -1,6 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { NextRequest } from "next/server";
 import { clearAllRateLimits } from "@/lib/rateLimit";
+import { signAgeConsent } from "@/lib/ageConsent";
+import { AGE_CONSENT_COOKIE } from "@/lib/ageConsentConfig";
+vi.mock("server-only", () => ({}));
 
 const mocks = vi.hoisted(() => ({
   rpc: vi.fn(), getUser: vi.fn(), send: vi.fn(), client: vi.fn(),
@@ -19,7 +22,7 @@ import { POST as event } from "./events/route";
 
 function request(path: string, body: unknown) {
   return new NextRequest(`https://sipwiki.app/api/${path}`, {
-    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
+    method: "POST", headers: { "Content-Type": "application/json", Cookie: `${AGE_CONSENT_COOKIE}=${signAgeConsent("test-secret-that-is-at-least-32-characters")}` }, body: JSON.stringify(body),
   });
 }
 const rating = { gameSlug: "beer-pong", score: 4, deviceId: "00000000-0000-4000-8000-000000000001" };
@@ -27,6 +30,7 @@ const rating = { gameSlug: "beer-pong", score: 4, deviceId: "00000000-0000-4000-
 describe("ingestion APIs", () => {
   beforeEach(() => {
     clearAllRateLimits(); mocks.callbacks.length = 0;
+    vi.stubEnv("AGE_CONSENT_SECRET", "test-secret-that-is-at-least-32-characters");
     vi.stubEnv("NEXT_PUBLIC_SUPABASE_URL", "https://example.supabase.co");
     vi.stubEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY", "public-test-key");
     mocks.client.mockReturnValue({ rpc: mocks.rpc });

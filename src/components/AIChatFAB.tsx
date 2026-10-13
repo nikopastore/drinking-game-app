@@ -51,7 +51,8 @@ export function AIChatFAB({ game }: AIChatFABProps) {
       });
 
       const data = await res.json();
-      addMessage({ role: "assistant", content: data.reply });
+      if (data.code === "AGE_CONFIRMATION_REQUIRED") window.dispatchEvent(new Event("sipwiki-age-consent-expired"));
+      addMessage({ role: "assistant", content: typeof data.reply === "string" ? data.reply : typeof data.error === "string" ? data.error : "Could not get referee help. Please try again." });
     } catch {
       addMessage({
         role: "assistant",

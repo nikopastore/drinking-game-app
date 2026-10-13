@@ -49,6 +49,7 @@ export function EmailCapture({ source }: EmailCaptureProps) {
         setMessage("Thanks! Check your inbox for party tips. Open the party planner for tonight's shopping list.");
         return;
       }
+      if (response.status === 428) window.dispatchEvent(new Event("sipwiki-age-consent-expired"));
 
       setStatus("error");
       setMessage("Signups are temporarily unavailable. Please try again later.");

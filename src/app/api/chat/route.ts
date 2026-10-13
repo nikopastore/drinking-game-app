@@ -9,6 +9,7 @@ import {
 } from "@/lib/rateLimit";
 import { createCorsHeaders, handleCorsPreflightRequest } from "@/lib/cors";
 import { buildRefereePrompt, resolveRefereeGame } from "@/lib/chatReferee";
+import { requireAgeConsent } from "@/lib/ageConsent";
 
 /**
  * Zod schema for chat request validation.
@@ -64,6 +65,8 @@ export async function POST(request: NextRequest) {
 
   // Merge all headers
   const allHeaders = { ...corsHeaders, ...rateLimitHeaders };
+  const consentError = requireAgeConsent(request, allHeaders);
+  if (consentError) return consentError;
 
   if (!rateLimitResult.allowed) {
     return NextResponse.json(

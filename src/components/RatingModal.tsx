@@ -41,6 +41,7 @@ export function RatingModal({
         body: JSON.stringify({ gameSlug, score, deviceId: getDeviceId() }),
       });
 
+        if (response.status === 428) window.dispatchEvent(new Event("sipwiki-age-consent-expired"));
         if (!response.ok) throw new Error("Rating unavailable");
       }
       setHasRated(true);

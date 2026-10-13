@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { games } from "@/config/gameData";
+import { requireAgeConsent } from "@/lib/ageConsent";
 import {
   findCatalogMatches,
   validateGeminiRecommendations,
@@ -72,6 +73,8 @@ export async function POST(request: NextRequest) {
 
   const rateLimit = checkRateLimit(`finder:${getClientIP(request)}`, rateLimiters.chat);
   const rateHeaders = createRateLimitHeaders(rateLimit);
+  const consentError = requireAgeConsent(request, rateHeaders);
+  if (consentError) return consentError;
 
   if (!rateLimit.allowed) {
     return json({ error: "Too many searches. Try again in a minute." }, 429, rateHeaders);

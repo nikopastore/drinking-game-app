@@ -8,9 +8,13 @@ import { Button, Card, CardContent } from "@/components/ui";
 import { useAuthContext } from "@/components/auth/AuthProvider";
 import { createClient } from "@/lib/supabase/client";
 import { ContactSyncPrompt } from "@/components/contacts/ContactSyncPrompt";
+import { useAgeGate } from "@/components/AgeGate";
 
 export default function AccountPage() {
   const { user, loading, requireAuth, signOut } = useAuthContext();
+  const { resetVerification } = useAgeGate();
+  const [consentError, setConsentError] = useState("");
+  const [resettingConsent, setResettingConsent] = useState(false);
   const [disabling, setDisabling] = useState(false);
   const [discoveryMessage, setDiscoveryMessage] = useState("");
   const [syncOpen, setSyncOpen] = useState(false);
@@ -57,6 +61,21 @@ export default function AccountPage() {
                 <Button onClick={() => requireAuth()}>Sign in</Button>
               </div>
             )}
+          </CardContent>
+        </Card>
+        <Card className="mt-6">
+          <CardContent className="p-6">
+            <h2 className="font-semibold text-white">Age confirmation on this device</h2>
+            <p className="mt-2 text-sm text-gray-400">Your adult declaration is remembered for up to 30 days. It does not verify your identity or birth date.</p>
+            <Button variant="outline" className="mt-4" isLoading={resettingConsent} onClick={() => {
+              setConsentError("");
+              setResettingConsent(true);
+              void resetVerification().catch(() => setConsentError("Could not reset confirmation. Please try again.")).finally(() => setResettingConsent(false));
+            }}>Reset age confirmation</Button>
+            {consentError && <p role="alert" className="mt-3 text-sm text-red-400">{consentError}</p>}
+            <div className="mt-4 flex gap-4 text-sm text-neon-pink">
+              <Link href="/privacy">Privacy Policy</Link><Link href="/terms">Terms of Service</Link>
+            </div>
           </CardContent>
         </Card>
       </main>

@@ -43,6 +43,11 @@ export function GameFinder() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query: cleaned }),
       });
+      if (response.status === 428) {
+        window.dispatchEvent(new Event("sipwiki-age-consent-expired"));
+        setResult(null);
+        return;
+      }
       if (!response.ok) throw new Error("Search request failed");
       setResult(await response.json() as GameFinderResult);
     } catch {
