@@ -5,7 +5,7 @@ import {
   getClientIP,
   rateLimiters,
 } from "@/lib/rateLimit";
-import { createClient } from "@/lib/supabase/server";
+import { createIngestionClient } from "@/lib/supabase/ingestion";
 import { recordProductEvent, type ProductEventRow } from "@/lib/productEvents";
 
 /**
@@ -41,7 +41,8 @@ export async function POST(request: NextRequest) {
 
   const accepted = await recordProductEvent(body, {
     insert: async (row: ProductEventRow) => {
-      const supabase = await createClient();
+      const supabase = createIngestionClient();
+      if (!supabase) return { error: { message: "Product event storage is unavailable" } };
       const { error } = await supabase.rpc("record_product_event", {
         p_name: row.name,
         p_slug: row.slug,
