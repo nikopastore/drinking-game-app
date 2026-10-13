@@ -31,11 +31,21 @@ Copy `.env.example` to `.env.local` and configure the services you plan to use:
 - `RESEND_API_KEY` and `RESEND_FROM_EMAIL` for the party-list email.
 - `NEXT_PUBLIC_SITE_URL` for canonical URLs and MCP links.
 
-Apply Supabase migrations in `supabase/migrations/` in order. The SQL bootstrap file is kept for reference and new projects.
+The SQL bootstrap file is kept for reference and new projects. Ingestion uses a separate server-only Supabase client; account/session clients continue to use the public key.
+
+### Server-only ingestion rollout
+
+1. Apply `20261013_prepare_server_ingestion.sql` (additive; existing production callers still work).
+2. Configure `SUPABASE_SERVICE_ROLE_KEY` directly as a Secret in Vercel Production. Configure a separate appropriate Preview credential before preview verification. Never send this key in chat, expose it as `NEXT_PUBLIC_*`, or commit it.
+3. Deploy this server-only API build and verify ratings, signups, and event storage. Missing credentials return 503 for ratings/signups and skip nonessential event storage; there is no public-key fallback.
+4. Only then apply `20261013_restrict_public_ingestion.sql`. It revokes PUBLIC, anonymous, and signed-in RPC access while allowing the trusted writer. Check both old and new rating signatures.
+
+After step 4, rolling the application back to an older public-key ingestion build will break writes. Roll back only to a build that uses the trusted writer; do not restore public grants as a workaround.
 
 Contact discovery matches uploaded identifiers to confirmed account identities only when both users opt in. The database stores keyed HMACs, supports three syncs per day, and keeps historical hashes out of matching. Existing mobile users can enroll again from Account; turning discovery off removes their uploaded hashes. Confirmed phone identities keep country codes.
 
 For disposable PostgreSQL regression testing, load `supabase/tests/bootstrap.sql`, then `supabase/schema.sql`, then `supabase/tests/contact_matching.sql`. The bootstrap creates mock auth roles/users and must never be run against production.
+Run `supabase/tests/ingestion.sql` in the same disposable environment to exercise denied direct RPC access, trusted writes, email deduplication, and signed-in rating attribution.
 
 ## Main routes
 

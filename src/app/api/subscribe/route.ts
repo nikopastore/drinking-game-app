@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
+import { after } from "next/server";
 import {
   checkRateLimit,
   createRateLimitHeaders,
   getClientIP,
   rateLimiters,
 } from "@/lib/rateLimit";
-import { createClient } from "@/lib/supabase/server";
+import { createIngestionClient } from "@/lib/supabase/ingestion";
 import { sendWelcomeEmail } from "@/lib/welcomeEmail";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -30,7 +31,8 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+  const supabase = createIngestionClient();
+  if (!supabase) {
     return NextResponse.json({ error: "Signups are unavailable" }, { status: 503 });
   }
 
@@ -50,7 +52,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid email" }, { status: 400 });
   }
 
-  const supabase = await createClient();
   const { data: accepted, error } = await supabase.rpc("subscribe_email", {
     p_email: email,
     p_source: source,
@@ -61,6 +62,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Could not save signup" }, { status: 500 });
   }
 
-  const emailed = accepted ? await sendWelcomeEmail(email) : false;
-  return NextResponse.json({ ok: true, emailed });
+  after(async () => {
+    if (accepted) await sendWelcomeEmail(email);
+  });
+  return NextResponse.json({ ok: true });
 }

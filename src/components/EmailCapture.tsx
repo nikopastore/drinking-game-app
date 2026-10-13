@@ -8,13 +8,6 @@ interface EmailCaptureProps {
   source: string;
 }
 
-interface SubscribeResponse {
-  ok?: boolean;
-  already?: boolean;
-  emailed?: boolean;
-  error?: string;
-}
-
 export function EmailCapture({ source }: EmailCaptureProps) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -32,6 +25,11 @@ export function EmailCapture({ source }: EmailCaptureProps) {
     }
 
     setStatus("loading");
+    if (process.env.NEXT_PUBLIC_STATIC_EXPORT === "true") {
+      setStatus("error");
+      setMessage("Email signups are available from the web version of SipWiki.");
+      return;
+    }
 
     try {
       const response = await fetch("/api/subscribe", {
@@ -45,31 +43,19 @@ export function EmailCapture({ source }: EmailCaptureProps) {
       });
 
       if (response.ok) {
-        const data = (await response.json()) as SubscribeResponse;
         setStatus("success");
         trackEvent("email_submit", source);
         setEmail("");
-        if (data.already) {
-          setMessage("You're already on the list.");
-        } else if (data.emailed) {
-          setMessage("Check your inbox for the party planner and supply links.");
-        } else {
-          setMessage("You're on the list. Open the party planner for tonight's shopping list.");
-        }
+        setMessage("Thanks! Check your inbox for party tips. Open the party planner for tonight's shopping list.");
         return;
       }
 
-      if (response.status !== 404 && response.status !== 503) {
-        setStatus("error");
-        setMessage("Something went wrong. Please try again.");
-        return;
-      }
+      setStatus("error");
+      setMessage("Signups are temporarily unavailable. Please try again later.");
     } catch {
-      // The static mobile build has no API route. Fall through to a direct insert.
+      setStatus("error");
+      setMessage("Could not reach SipWiki. Please try again later.");
     }
-
-    setStatus("error");
-    setMessage("Email signups are available from the web version of SipWiki.");
   };
 
   return (
