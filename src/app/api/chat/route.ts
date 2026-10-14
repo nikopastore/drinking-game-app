@@ -56,6 +56,8 @@ export async function POST(request: NextRequest) {
   const game = resolveRefereeGame(gameSlug);
   if (!game) return fail(400, "UNKNOWN_GAME", "Choose a game from SipWiki's catalog.");
   if (!process.env.OPENAI_API_KEY) return fail(503, "AI_UNAVAILABLE", "AI referee is unavailable. You can still read the game rules.");
+  if (request.signal.aborted) return fail(499, "AI_CANCELED", "Question canceled.");
+  const deadline = AbortSignal.timeout(CHAT_PROVIDER_TIMEOUT_MS);
 
   try {
     // Preserve the existing provider/model. Bound one attempt instead of the
@@ -70,13 +72,13 @@ export async function POST(request: NextRequest) {
       ],
       max_tokens: 200,
       temperature: 0.7,
-    }, { signal: request.signal });
+    }, { signal: AbortSignal.any([request.signal, deadline]) });
     const reply = completion.choices[0]?.message?.content?.trim();
     if (!reply) return fail(502, "AI_EMPTY_REPLY", "The referee returned no answer. Please try again or read the rules.");
     return NextResponse.json({ reply: reply.slice(0, CHAT_HISTORY_CONTENT_LIMIT) }, { headers });
   } catch (error) {
     if (request.signal.aborted) return fail(499, "AI_CANCELED", "Question canceled.");
-    const timeout = error instanceof OpenAI.APIConnectionTimeoutError;
+    const timeout = deadline.aborted || error instanceof OpenAI.APIConnectionTimeoutError;
     const status = error instanceof OpenAI.APIError ? error.status : undefined;
     const code = timeout ? "AI_TIMEOUT" : status === 429 ? "AI_BUSY" : "AI_UNAVAILABLE";
     // Never log transcripts, provider error bodies, auth headers or keys.

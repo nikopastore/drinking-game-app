@@ -89,5 +89,16 @@ describe("referee request contract", () => {
     mocks.create.mockRejectedValueOnce(new Error("Request aborted"));
     const response = await POST(request(undefined, controller.signal));
     expect(response.status).toBe(499); expect(log).not.toHaveBeenCalled();
+    expect(mocks.create).not.toHaveBeenCalled();
+  });
+  it("enforces the total provider deadline even after connection establishment", async () => {
+    const deadline = new AbortController();
+    vi.spyOn(AbortSignal, "timeout").mockReturnValue(deadline.signal);
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    mocks.create.mockImplementationOnce((_body, { signal }) => new Promise((_resolve, reject) => signal.addEventListener("abort", () => reject(new DOMException("Aborted", "AbortError")))));
+    const response = POST(request());
+    await vi.waitFor(() => expect(mocks.create).toHaveBeenCalledOnce());
+    deadline.abort();
+    expect((await response).status).toBe(504);
   });
 });
