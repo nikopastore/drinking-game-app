@@ -1,169 +1,88 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 import { z } from "zod";
-import {
-  checkRateLimit,
-  getClientIP,
-  createRateLimitHeaders,
-  rateLimiters,
-} from "@/lib/rateLimit";
+import { checkRateLimit, getClientIP, createRateLimitHeaders, rateLimiters } from "@/lib/rateLimit";
 import { createCorsHeaders, handleCorsPreflightRequest } from "@/lib/cors";
 import { buildRefereePrompt, resolveRefereeGame } from "@/lib/chatReferee";
 import { requireAgeConsent } from "@/lib/ageConsent";
+import { CHAT_MESSAGE_LIMIT, CHAT_CONTEXT_MESSAGES, CHAT_HISTORY_CONTENT_LIMIT, CHAT_PROVIDER_TIMEOUT_MS } from "@/lib/chatConfig";
 
-/**
- * Zod schema for chat request validation.
- * The referee prompt is loaded from the catalog by slug. Client rules are ignored.
- */
 const ChatRequestSchema = z.object({
-  gameSlug: z
-    .string()
-    .min(1, "Game slug is required")
-    .max(80, "Game slug too long"),
-  message: z
-    .string()
-    .min(1, "Message is required")
-    .max(500, "Message too long (max 500 characters)"),
-  history: z
-    .array(
-      z.object({
-        role: z.enum(["user", "assistant"]),
-        content: z.string().max(1000, "History message too long"),
-      })
-    )
-    .max(20, "Too many history messages")
-    .default([]),
+  gameSlug: z.string().min(1).max(80),
+  message: z.string().trim().min(1).max(CHAT_MESSAGE_LIMIT),
+  history: z.array(z.object({
+    role: z.enum(["user", "assistant"]),
+    content: z.string().max(CHAT_HISTORY_CONTENT_LIMIT),
+  })).max(20).default([]),
 });
 
-// Initialize OpenAI client lazily to avoid build-time errors
-function getOpenAIClient() {
-  return new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
-}
-
-/**
- * Handle CORS preflight requests
- */
 export async function OPTIONS(request: NextRequest) {
   return handleCorsPreflightRequest(request);
 }
 
 export async function POST(request: NextRequest) {
-  const contentLength = Number(request.headers.get("content-length") || 0);
-  if (contentLength > 64 * 1024) {
-    return NextResponse.json({ error: "Request body too large" }, { status: 413 });
-  }
-
-  // Get CORS headers for this request
-  const corsHeaders = createCorsHeaders(request);
-
-  // Check rate limit first
-  const clientIP = getClientIP(request);
-  const rateLimitResult = checkRateLimit(`chat:${clientIP}`, rateLimiters.chat);
-  const rateLimitHeaders = createRateLimitHeaders(rateLimitResult);
-
-  // Merge all headers
-  const allHeaders = { ...corsHeaders, ...rateLimitHeaders };
-  const consentError = requireAgeConsent(request, allHeaders);
+  const rate = checkRateLimit(`chat:${getClientIP(request)}`, rateLimiters.chat);
+  const headers = { ...createCorsHeaders(request), ...createRateLimitHeaders(rate), "Cache-Control": "private, no-store" };
+  const fail = (status: number, code: string, reply: string, retryAfter?: number) => NextResponse.json(
+    { error: reply, reply, code, ...(retryAfter ? { retryAfter } : {}) },
+    { status, headers: { ...headers, ...(retryAfter ? { "Retry-After": String(retryAfter) } : {}) } },
+  );
+  const consentError = requireAgeConsent(request, headers);
   if (consentError) return consentError;
+  if (!rate.allowed) return fail(429, "CHAT_RATE_LIMITED", "Too many questions. Try again shortly.", Math.max(1, Math.ceil((rate.resetAt - Date.now()) / 1000)));
 
-  if (!rateLimitResult.allowed) {
-    return NextResponse.json(
-      {
-        error: "Too many requests",
-        reply: "Whoa, slow down! The AI referee needs a breather. Try again in a minute.",
-        retryAfter: Math.ceil((rateLimitResult.resetAt - Date.now()) / 1000),
-      },
-      {
-        status: 429,
-        headers: allHeaders,
+  let body: unknown;
+  try {
+    const reader = request.body?.getReader();
+    if (!reader) return fail(400, "INVALID_REQUEST", "A question is required.");
+    const chunks: Uint8Array[] = [];
+    let size = 0;
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      size += value.byteLength;
+      if (size > 64 * 1024) {
+        await reader.cancel();
+        return fail(413, "REQUEST_TOO_LARGE", "Your question is too large. Please shorten it.");
       }
-    );
-  }
+      chunks.push(value);
+    }
+    body = JSON.parse(Buffer.concat(chunks).toString("utf8"));
+  } catch { return fail(400, "INVALID_REQUEST", "Could not read your question. Please try again."); }
+
+  const parsed = ChatRequestSchema.safeParse(body);
+  if (!parsed.success) return fail(400, "INVALID_REQUEST", "Send a question of 1–500 characters about a SipWiki game.");
+  const { gameSlug, message, history } = parsed.data;
+  const game = resolveRefereeGame(gameSlug);
+  if (!game) return fail(400, "UNKNOWN_GAME", "Choose a game from SipWiki's catalog.");
+  if (!process.env.OPENAI_API_KEY) return fail(503, "AI_UNAVAILABLE", "AI referee is unavailable. You can still read the game rules.");
 
   try {
-    const body = await request.json();
-
-    // Validate input with Zod schema
-    const parseResult = ChatRequestSchema.safeParse(body);
-    if (!parseResult.success) {
-      const errors = parseResult.error.issues.map((e) => e.message).join(", ");
-      return NextResponse.json(
-        { error: `Invalid request: ${errors}` },
-        { status: 400, headers: allHeaders }
-      );
-    }
-
-    const { gameSlug, message, history } = parseResult.data;
-    const game = resolveRefereeGame(gameSlug);
-    if (!game) {
-      return NextResponse.json(
-        { error: "Unknown game" },
-        { status: 400, headers: allHeaders }
-      );
-    }
-
-    // Check if API key is configured
-    if (!process.env.OPENAI_API_KEY) {
-      return NextResponse.json(
-        {
-          reply: "AI referee is not configured yet. Please add your OpenAI API key to enable this feature!"
-        },
-        { status: 200, headers: allHeaders }
-      );
-    }
-
-    // Build messages array
-    const messages: OpenAI.Chat.ChatCompletionMessageParam[] = [
-      {
-        role: "system",
-        content: buildRefereePrompt(game),
-      },
-      // Add chat history (last 10 messages to keep context manageable)
-      ...history.slice(-10).map((msg) => ({
-        role: msg.role as "user" | "assistant",
-        content: msg.content,
-      })),
-      // Add current message
-      {
-        role: "user" as const,
-        content: message,
-      },
-    ];
-
-    const completion = await getOpenAIClient().chat.completions.create({
+    // Preserve the existing provider/model. Bound one attempt instead of the
+    // SDK's default ten-minute timeout plus automatic retries.
+    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY, timeout: CHAT_PROVIDER_TIMEOUT_MS, maxRetries: 0 });
+    const completion = await client.chat.completions.create({
       model: "gpt-4o-mini",
-      messages,
+      messages: [
+        { role: "system", content: buildRefereePrompt(game) },
+        ...history.slice(-CHAT_CONTEXT_MESSAGES),
+        { role: "user", content: message },
+      ],
       max_tokens: 200,
       temperature: 0.7,
-    });
-
-    const reply = completion.choices[0]?.message?.content || "I'm not sure about that one!";
-
-    return NextResponse.json({ reply }, { headers: allHeaders });
+    }, { signal: request.signal });
+    const reply = completion.choices[0]?.message?.content?.trim();
+    if (!reply) return fail(502, "AI_EMPTY_REPLY", "The referee returned no answer. Please try again or read the rules.");
+    return NextResponse.json({ reply: reply.slice(0, CHAT_HISTORY_CONTENT_LIMIT) }, { headers });
   } catch (error) {
-    console.error("Chat API error:", error);
-
-    // Handle specific OpenAI errors
-    if (error instanceof OpenAI.APIError) {
-      if (error.status === 401) {
-        return NextResponse.json(
-          { reply: "AI referee credentials are invalid. Please check your API key." },
-          { status: 200, headers: allHeaders }
-        );
-      }
-      if (error.status === 429) {
-        return NextResponse.json(
-          { reply: "AI referee is taking a break (rate limited). Try again in a moment!" },
-          { status: 200, headers: allHeaders }
-        );
-      }
-    }
-
-    return NextResponse.json(
-      { reply: "AI referee had a hiccup. Try asking again!" },
-      { status: 200, headers: allHeaders }
-    );
+    if (request.signal.aborted) return fail(499, "AI_CANCELED", "Question canceled.");
+    const timeout = error instanceof OpenAI.APIConnectionTimeoutError;
+    const status = error instanceof OpenAI.APIError ? error.status : undefined;
+    const code = timeout ? "AI_TIMEOUT" : status === 429 ? "AI_BUSY" : "AI_UNAVAILABLE";
+    // Never log transcripts, provider error bodies, auth headers or keys.
+    console.error("AI referee request failed", { code, status: status ?? null });
+    if (timeout) return fail(504, code, "The referee took too long. Try again or read the game rules.");
+    if (status === 429) return fail(503, code, "The referee is busy. Try again shortly or read the game rules.", 30);
+    return fail(503, code, "AI referee is temporarily unavailable. You can still read the game rules.");
   }
 }

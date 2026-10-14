@@ -1,0 +1,5 @@
+export const CHAT_MESSAGE_LIMIT = 500;
+export const CHAT_CONTEXT_MESSAGES = 10;
+export const CHAT_HISTORY_CONTENT_LIMIT = 1000;
+export const CHAT_PROVIDER_TIMEOUT_MS = 12_000;
+export const CHAT_CLIENT_TIMEOUT_MS = 15_000;

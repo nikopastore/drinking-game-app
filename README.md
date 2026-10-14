@@ -67,6 +67,14 @@ Configure an independent random `AGE_CONSENT_SECRET` (at least 32 characters) as
 
 Web confirmation needs an online status check and essential cookies. Run `node scripts/verify-age-consent.mjs https://your-staged-production-url` to test synthetic receipt issuance, forged/missing receipt rejection, input validation, game finding, policy access, and reset without writing ratings or newsletter signups.
 
+## AI referee reliability
+
+The referee stays on the existing OpenAI provider/model. It makes one provider attempt with a 12-second timeout, and the browser stops waiting after 15 seconds. Stop, close, and session changes cancel browser requests and discard abandoned responses. Cancellation does not guarantee reversal of provider billing. Provider failures return non-success HTTP statuses and safe, transcript-free diagnostic codes; they are not inserted into chat history as referee answers.
+
+Only the last 10 messages are sent as context, each bounded to 1,000 characters; the visible in-memory transcript retains up to 40 messages and is not persisted. Questions are limited to 500 characters. Retry respects server cooldowns. The dialog supports Escape, keyboard focus trapping/restoration, and a direct link to catalog rules. Native static export explains that AI requires the web app instead of issuing an unavailable local API request.
+
+Run `node scripts/verify-referee.mjs https://your-preview-url` to verify receipt enforcement, invalid request rejection, body bounds, and one short real provider response. This test incurs the existing provider's cost for that single question; it performs no account, rating, or signup writes. Unit tests cover outage, deadline, cooldown, retry, and cancellation paths without provider calls.
+
 ## Mobile
 
 Capacitor configuration lives in `capacitor.config.ts`. Use `npm run build:mobile` before `npx cap sync`, then open the native project with `npm run cap:ios` or `npm run cap:android`.
