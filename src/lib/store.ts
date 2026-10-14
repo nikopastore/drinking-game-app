@@ -66,7 +66,7 @@ export const useAppStore = create<AppState>()(
 
       addMessage: (msg: ChatMessage) => {
         set((state) => ({
-          chatHistory: [...state.chatHistory, msg],
+          chatHistory: [...state.chatHistory, msg].slice(-40),
         }));
       },
 
