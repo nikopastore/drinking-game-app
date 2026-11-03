@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createIngestionClient } from "@/lib/supabase/ingestion";
 import { getGameBySlug } from "@/config/gameData";
 import { requireAgeConsent } from "@/lib/ageConsent";
-import { checkRateLimit, createRateLimitHeaders, getClientIP, rateLimiters } from "@/lib/rateLimit";
+import { checkDistributedRateLimit, createRateLimitHeaders, getClientIP, rateLimiters } from "@/lib/rateLimit";
 
 const RatingRequest = z.object({
   gameSlug: z.string().regex(/^[a-z0-9-]{1,80}$/),
@@ -13,7 +13,7 @@ const RatingRequest = z.object({
 });
 
 export async function POST(request: NextRequest) {
-  const rateLimit = checkRateLimit(`ratings:${getClientIP(request)}`, rateLimiters.strict);
+  const rateLimit = await checkDistributedRateLimit(`ratings:${getClientIP(request)}`, rateLimiters.strict);
   const headers = createRateLimitHeaders(rateLimit);
   const consentError = requireAgeConsent(request, headers);
   if (consentError) return consentError;

@@ -7,7 +7,7 @@ import {
   validateGeminiRecommendations,
 } from "@/lib/gameFinder";
 import {
-  checkRateLimit,
+  checkDistributedRateLimit,
   createRateLimitHeaders,
   getClientIP,
   rateLimiters,
@@ -71,7 +71,7 @@ export async function POST(request: NextRequest) {
     return json({ error: "Request body too large" }, 413, {});
   }
 
-  const rateLimit = checkRateLimit(`finder:${getClientIP(request)}`, rateLimiters.chat);
+  const rateLimit = await checkDistributedRateLimit(`finder:${getClientIP(request)}`, rateLimiters.chat);
   const rateHeaders = createRateLimitHeaders(rateLimit);
   const consentError = requireAgeConsent(request, rateHeaders);
   if (consentError) return consentError;

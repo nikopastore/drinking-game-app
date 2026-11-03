@@ -75,6 +75,10 @@ Only the last 10 messages are sent as context, each bounded to 1,000 characters;
 
 Run `node scripts/verify-referee.mjs https://your-preview-url` to verify receipt enforcement, invalid request rejection, body bounds, and one short real provider response. This test incurs the existing provider's cost for that single question; it performs no account, rating, or signup writes. Unit tests cover outage, deadline, cooldown, retry, and cancellation paths without provider calls.
 
+## Rate limiting and abuse protection
+
+The Vercel WAF rules are the global edge control for AI and public-submission paths. API handlers keep a bounded sliding-window limiter, and production Vercel functions propagate only active block markers through Runtime Cache. This avoids pretending a non-atomic cache read/write is a global counter: allowed-request accounting remains local, while a client blocked in one warm function can be blocked by sibling functions in the same cache region. Runtime Cache errors fail open to the local limiter for availability; missing `VERCEL`/cache context (local development and tests) uses the local limiter only. No IP address is stored in Runtime Cache—the cache key is SHA-256 hashed.
+
 ## Mobile
 
 Capacitor configuration lives in `capacitor.config.ts`. Use `npm run build:mobile` before `npx cap sync`, then open the native project with `npm run cap:ios` or `npm run cap:android`.

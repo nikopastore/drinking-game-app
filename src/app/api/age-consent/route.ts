@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ageConsentSecret, signAgeConsent } from "@/lib/ageConsent";
 import { AGE_CONSENT_COOKIE, AGE_CONSENT_MAX_AGE, AGE_CONSENT_VERSION } from "@/lib/ageConsentConfig";
-import { checkRateLimit, getClientIP, rateLimiters } from "@/lib/rateLimit";
+import { checkDistributedRateLimit, getClientIP, rateLimiters } from "@/lib/rateLimit";
 
 const noStore = { "Cache-Control": "private, no-store" };
 const cookieOptions = { httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "lax" as const, path: "/" };
@@ -11,7 +11,7 @@ function sameOrigin(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   if (!sameOrigin(request)) return NextResponse.json({ error: "Invalid origin" }, { status: 403, headers: noStore });
-  if (!checkRateLimit(`age-consent:${getClientIP(request)}`, rateLimiters.relaxed).allowed) return NextResponse.json({ error: "Please try again shortly" }, { status: 429, headers: noStore });
+  if (!(await checkDistributedRateLimit(`age-consent:${getClientIP(request)}`, rateLimiters.relaxed)).allowed) return NextResponse.json({ error: "Please try again shortly" }, { status: 429, headers: noStore });
   const secret = ageConsentSecret();
   if (!secret) return NextResponse.json({ error: "Age confirmation is temporarily unavailable" }, { status: 503, headers: noStore });
   try {

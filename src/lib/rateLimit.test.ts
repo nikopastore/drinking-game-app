@@ -1,6 +1,7 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import {
   checkRateLimit,
+  checkDistributedRateLimit,
   getClientIP,
   createRateLimitHeaders,
   rateLimiters,
@@ -183,6 +184,38 @@ describe('getClientIP', () => {
     })
 
     expect(getClientIP(request)).toBe('unknown')
+  })
+})
+
+describe('distributed block propagation', () => {
+  afterEach(() => {
+    vi.unstubAllEnvs()
+    clearAllRateLimits()
+  })
+
+  it('propagates a local block marker through the Vercel Runtime Cache', async () => {
+    vi.stubEnv('VERCEL', '1')
+    const identifier = `distributed-test-${Date.now()}-${Math.random()}`
+    const config = { maxRequests: 1, windowMs: 60_000 }
+
+    expect((await checkDistributedRateLimit(identifier, config)).allowed).toBe(true)
+    const blocked = await checkDistributedRateLimit(identifier, config)
+    expect(blocked.allowed).toBe(false)
+
+    // Simulate a fresh function instance: local memory is empty, but the
+    // runtime-cache block survives and still denies the request.
+    clearAllRateLimits()
+    const propagated = await checkDistributedRateLimit(identifier, config)
+    expect(propagated.allowed).toBe(false)
+    expect(propagated.remaining).toBe(0)
+  })
+
+  it('keeps the local limiter as the default outside Vercel', async () => {
+    vi.stubEnv('VERCEL', '')
+    const identifier = `local-only-${Date.now()}-${Math.random()}`
+    const config = { maxRequests: 1, windowMs: 60_000 }
+    expect((await checkDistributedRateLimit(identifier, config)).allowed).toBe(true)
+    expect((await checkDistributedRateLimit(identifier, config)).allowed).toBe(false)
   })
 })
 
