@@ -6,6 +6,7 @@ import { games } from "@/config/gameData";
 import { findCatalogMatches, GameFinderResult } from "@/lib/gameFinder";
 import { GameCard } from "@/components/GameCard";
 import { cn } from "@/lib/utils";
+import { trackEvent } from "@/lib/analytics";
 
 const quickPrompts = [
   "6 people / no props / quick",
@@ -49,9 +50,14 @@ export function GameFinder() {
         return;
       }
       if (!response.ok) throw new Error("Search request failed");
-      setResult(await response.json() as GameFinderResult);
+      const data = await response.json() as GameFinderResult;
+      setResult(data);
+      trackEvent("game_finder_search", data.source);
+      if (data.source !== "gemini") trackEvent("game_finder_fallback", data.source);
     } catch {
-      setResult(findCatalogMatches(cleaned, games));
+      const catalogResult = findCatalogMatches(cleaned, games);
+      setResult(catalogResult);
+      trackEvent("game_finder_fallback", "catalog");
       setError("The AI is taking a breather, so we matched these directly from the SipWiki catalog.");
     } finally {
       setLoading(false);
@@ -128,7 +134,7 @@ export function GameFinder() {
         <div className="mt-8" aria-live="polite">
           <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
             <div>
-              <p className="night-kicker">{result.source === "gemini" ? "Gemini shortlist" : "Catalog shortlist"}</p>
+              <p className="night-kicker">{result.source === "gemini" ? "Gemini shortlist" : result.source === "openai" ? "Backup AI shortlist" : "Catalog shortlist"}</p>
               <p className="mt-1 text-sm text-gray-300">{result.summary}</p>
             </div>
             <button type="button" onClick={() => setResult(null)} className="text-xs font-bold text-muted hover:text-white">Clear results</button>
