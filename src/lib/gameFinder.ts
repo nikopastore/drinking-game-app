@@ -10,7 +10,7 @@ export interface GameFinderResult {
   query: string;
   summary: string;
   recommendations: GameFinderRecommendation[];
-  source: "gemini" | "catalog";
+  source: "gemini" | "openai" | "catalog";
   notice?: string;
 }
 
@@ -141,11 +141,12 @@ export function findCatalogMatches(query: string, catalog: Game[], limit = 3): G
   };
 }
 
-export function validateGeminiRecommendations(
+export function validateModelRecommendations(
   value: unknown,
   query: string,
   catalog: Game[],
-  fallback: GameFinderResult
+  fallback: GameFinderResult,
+  source: "gemini" | "openai" = "gemini",
 ): GameFinderResult {
   if (!value || typeof value !== "object") return fallback;
   const record = value as Record<string, unknown>;
@@ -184,6 +185,15 @@ export function validateGeminiRecommendations(
       ? record.summary.slice(0, 280)
       : "Here are the closest matches from SipWiki.",
     recommendations: recommendations.slice(0, 3),
-    source: "gemini",
+    source,
   };
+}
+
+export function validateGeminiRecommendations(
+  value: unknown,
+  query: string,
+  catalog: Game[],
+  fallback: GameFinderResult,
+): GameFinderResult {
+  return validateModelRecommendations(value, query, catalog, fallback, "gemini");
 }

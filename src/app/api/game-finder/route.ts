@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
+import OpenAI from "openai";
 import { z } from "zod";
 import { games } from "@/config/gameData";
 import { requireAgeConsent } from "@/lib/ageConsent";
 import {
   findCatalogMatches,
   validateGeminiRecommendations,
+  validateModelRecommendations,
 } from "@/lib/gameFinder";
 import {
   checkDistributedRateLimit,
@@ -63,6 +65,45 @@ function json(data: unknown, status: number, headers: Record<string, string>) {
       "Cache-Control": "no-store",
     },
   });
+}
+
+const fallbackNotice = "Gemini is temporarily unavailable; SipWiki used its backup AI route.";
+const catalogNotice = "AI providers are temporarily unavailable, so these matches were found directly from SipWiki's catalog.";
+
+async function openAIFallback(query: string, fallback: ReturnType<typeof findCatalogMatches>, headers: Record<string, string>, request: NextRequest) {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) return json({ ...fallback, notice: catalogNotice }, 200, headers);
+  try {
+    const client = new OpenAI({ apiKey, timeout: 8_000, maxRetries: 0 });
+    const completion = await client.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        {
+          role: "system",
+          content: [
+            "You are SipWiki's backup game finder.",
+            "Use only the supplied catalog. Return JSON with summary and exactly three recommendations.",
+            "Each recommendation must use an exact catalog slug, a practical reason under 30 words, and matchScore 1-100.",
+            "Never invent games, rules, URLs, or availability. Alcohol is optional; non-alcoholic drinks are valid.",
+          ].join(" "),
+        },
+        {
+          role: "user",
+          content: `USER REQUEST:\n${query}\n\nSIPWIKI CATALOG:\n${JSON.stringify(catalogForModel)}`,
+        },
+      ],
+      response_format: { type: "json_object" },
+      max_tokens: 900,
+      temperature: 0.2,
+    }, { signal: AbortSignal.any([request.signal, AbortSignal.timeout(8_000)]) });
+    const text = completion.choices[0]?.message?.content;
+    if (!text) return json({ ...fallback, notice: catalogNotice }, 200, headers);
+    const validated = validateModelRecommendations(JSON.parse(text), query, games, fallback, "openai");
+    return json({ ...validated, notice: fallbackNotice }, 200, headers);
+  } catch (error) {
+    console.warn("AI game finder fallback unavailable", { status: error instanceof OpenAI.APIError ? error.status : null });
+    return json({ ...fallback, notice: catalogNotice }, 200, headers);
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -143,11 +184,8 @@ export async function POST(request: NextRequest) {
     );
 
     if (!response.ok) {
-      console.error("Gemini game finder request failed", response.status);
-      return json({
-        ...fallback,
-        notice: "Gemini is temporarily unavailable, so these matches were found directly from SipWiki's catalog.",
-      }, 200, rateHeaders);
+      console.warn("Gemini game finder request failed; trying backup AI", response.status);
+      return openAIFallback(query, fallback, rateHeaders, request);
     }
 
     const payload = await response.json() as {
@@ -159,10 +197,7 @@ export async function POST(request: NextRequest) {
     const modelResult = JSON.parse(text.replace(/^\u0060\u0060\u0060json\s*|\s*\u0060\u0060\u0060$/g, ""));
     return json(validateGeminiRecommendations(modelResult, query, games, fallback), 200, rateHeaders);
   } catch (error) {
-    console.error("Gemini game finder error", error instanceof Error ? error.message : "Unknown error");
-    return json({
-      ...fallback,
-      notice: "Gemini is temporarily unavailable, so these matches were found directly from SipWiki's catalog.",
-    }, 200, rateHeaders);
+    console.warn("Gemini game finder error; trying backup AI", error instanceof Error ? error.message : "Unknown error");
+    return openAIFallback(query, fallback, rateHeaders, request);
   }
 }
