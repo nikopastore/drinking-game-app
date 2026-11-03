@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { ArrowRight, Play, Home, BookOpen } from "lucide-react";
 import { ShareButton } from "@/components/ShareButton";
 import { EmailCapture } from "@/components/EmailCapture";
+import { GuideQuickAnswer } from "@/components/seo";
 
 interface RelatedGame {
   name: string;
@@ -127,6 +128,8 @@ export function GuideLayout({
           {/* AdSense: Guide In-Content Ad */}
           Ad Placeholder - Guide In-Content
         </div>
+
+        <GuideQuickAnswer pathname={pathname} />
 
         <div className="prose prose-invert prose-lg max-w-none
           prose-headings:text-white prose-headings:font-bold
