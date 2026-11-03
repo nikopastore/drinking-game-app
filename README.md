@@ -79,7 +79,7 @@ Run `node scripts/verify-referee.mjs https://your-preview-url` to verify receipt
 
 The Vercel WAF rules are the global edge control for AI and public-submission paths. API handlers keep a bounded sliding-window limiter, and production Vercel functions propagate only active block markers through Runtime Cache. This avoids pretending a non-atomic cache read/write is a global counter: allowed-request accounting remains local, while a client blocked in one warm function can be blocked by sibling functions in the same cache region. Runtime Cache errors fail open to the local limiter for availability; missing `VERCEL`/cache context (local development and tests) uses the local limiter only. No IP address is stored in Runtime Cache—the cache key is SHA-256 hashed.
 
-Run `node scripts/verify-rate-limit.mjs https://your-preview-url` for an external burst check. It sends only invalid chat payloads, expects ten validation responses followed by a 429, and makes no provider, rating, signup, or event writes.
+Run `node scripts/verify-rate-limit.mjs https://your-preview-url` for an external burst check. It sends only invalid chat payloads, expects ten validation responses followed by a 429, and makes no provider, rating, signup, or event writes. Repeated runs can use `--allow-existing-block` while a prior Runtime Cache marker is still active.
 
 ## Mobile
 

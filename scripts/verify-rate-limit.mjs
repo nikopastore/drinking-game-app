@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 // Synthetic burst test: invalid chat payloads stop at validation and never call
 // the provider. The eleventh request should hit the app's ten-per-minute limit.
 const base = new URL(process.argv[2] || "http://localhost:3000").origin;
+const allowExistingBlock = process.argv.includes("--allow-existing-block");
 async function post(path, body, cookie) {
   return fetch(base + path, {
     method: "POST",
@@ -22,7 +23,12 @@ for (let index = 0; index < 11; index++) {
   const response = await post("/api/chat", {}, cookie);
   statuses.push(response.status);
 }
-assert.deepEqual(statuses.slice(0, 10), Array(10).fill(400));
-assert.equal(statuses[10], 429);
+if (allowExistingBlock) {
+  assert.equal(statuses[0], 400);
+  assert.ok(statuses.slice(1).some((status) => status === 429));
+} else {
+  assert.deepEqual(statuses.slice(0, 10), Array(10).fill(400));
+  assert.equal(statuses[10], 429);
+}
 await fetch(base + "/api/age-consent", { method: "DELETE", headers: { Origin: base, Cookie: cookie } });
 console.log(JSON.stringify({ base, passed: true, statuses }));
