@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { games } from "@/config/gameData";
-import { findCatalogMatches, validateGeminiRecommendations } from "./gameFinder";
+import { findCatalogMatches, validateGeminiRecommendations, validateModelRecommendations } from "./gameFinder";
 
 describe("game finder", () => {
   it("does not claim impossible player or duration matches", () => {
@@ -46,5 +46,15 @@ describe("game finder", () => {
   it("keeps unrelated requests inside SipWiki", () => {
     const result = findCatalogMatches("What is the weather tomorrow?", games);
     expect(result.summary).toContain("only help with games");
+  });
+
+  it("labels a validated backup-provider response separately from Gemini", () => {
+    const fallback = findCatalogMatches("a chill game", games);
+    const result = validateModelRecommendations({
+      summary: "Backup matches.",
+      recommendations: [{ slug: fallback.recommendations[0].slug, reason: "A good fit", matchScore: 88 }],
+    }, "a chill game", games, fallback, "openai");
+    expect(result.source).toBe("openai");
+    expect(result.recommendations).toHaveLength(3);
   });
 });

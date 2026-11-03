@@ -81,6 +81,12 @@ The Vercel WAF rules are the global edge control for AI and public-submission pa
 
 Run `node scripts/verify-rate-limit.mjs https://your-preview-url` for an external burst check. It sends only invalid chat payloads, expects ten validation responses followed by a 429, and makes no provider, rating, signup, or event writes. Repeated runs can use `--allow-existing-block` while a prior Runtime Cache marker is still active.
 
+## Game finder provider recovery
+
+The catalog finder tries Gemini first. If Gemini returns a billing/quota response such as HTTP 402, times out, or returns invalid output, the route makes one bounded OpenAI backup request using the existing `OPENAI_API_KEY`, validates every slug against the SipWiki catalog, and labels the response `source: "openai"`. If both providers fail, it returns the deterministic catalog matcher with HTTP 200 and a user-safe notice. No provider error body or API key is returned to clients.
+
+`node scripts/verify-referee.mjs https://your-preview-url` verifies the existing OpenAI path. The route-level tests cover Gemini 402 → OpenAI recovery, both-provider failure → catalog fallback, and Gemini success without an unnecessary OpenAI call.
+
 ## Mobile
 
 Capacitor configuration lives in `capacitor.config.ts`. Use `npm run build:mobile` before `npx cap sync`, then open the native project with `npm run cap:ios` or `npm run cap:android`.
