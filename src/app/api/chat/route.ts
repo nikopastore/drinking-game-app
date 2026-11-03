@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 import { z } from "zod";
-import { checkRateLimit, getClientIP, createRateLimitHeaders, rateLimiters } from "@/lib/rateLimit";
+import { checkDistributedRateLimit, getClientIP, createRateLimitHeaders, rateLimiters } from "@/lib/rateLimit";
 import { createCorsHeaders, handleCorsPreflightRequest } from "@/lib/cors";
 import { buildRefereePrompt, resolveRefereeGame } from "@/lib/chatReferee";
 import { requireAgeConsent } from "@/lib/ageConsent";
@@ -21,7 +21,7 @@ export async function OPTIONS(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const rate = checkRateLimit(`chat:${getClientIP(request)}`, rateLimiters.chat);
+  const rate = await checkDistributedRateLimit(`chat:${getClientIP(request)}`, rateLimiters.chat);
   const headers = { ...createCorsHeaders(request), ...createRateLimitHeaders(rate), "Cache-Control": "private, no-store" };
   const fail = (status: number, code: string, reply: string, retryAfter?: number) => NextResponse.json(
     { error: reply, reply, code, ...(retryAfter ? { retryAfter } : {}) },

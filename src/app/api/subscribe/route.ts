@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { after } from "next/server";
 import {
-  checkRateLimit,
+  checkDistributedRateLimit,
   createRateLimitHeaders,
   getClientIP,
   rateLimiters,
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
   }
 
   const clientIP = getClientIP(request);
-  const rateLimitResult = checkRateLimit(`subscribe:${clientIP}`, rateLimiters.strict);
+  const rateLimitResult = await checkDistributedRateLimit(`subscribe:${clientIP}`, rateLimiters.strict);
   const consentError = requireAgeConsent(request);
   if (consentError) return consentError;
 

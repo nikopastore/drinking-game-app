@@ -65,7 +65,7 @@ The web app verifies a signed, HttpOnly 30-day receipt before AI chat, game find
 
 Configure an independent random `AGE_CONSENT_SECRET` (at least 32 characters) as a server Secret for Production and a different value for Preview. Missing configuration fails closed. A version change in `ageConsentConfig.ts` requires a new confirmation. Native static export uses a versioned local declaration because it has no Next API runtime.
 
-Web confirmation needs an online status check and essential cookies. Run `node scripts/verify-age-consent.mjs https://your-staged-production-url` to test synthetic receipt issuance, forged/missing receipt rejection, input validation, game finding, policy access, and reset without writing ratings or newsletter signups.
+Web confirmation needs an online status check and essential cookies. Run `node scripts/verify-age-consent.mjs https://your-staged-production-url` to test synthetic receipt issuance, forged/missing receipt rejection, input validation, game finding, policy access, and reset without writing ratings or newsletter signups. Preview deployments without `SUPABASE_SERVICE_ROLE_KEY` can add `--allow-private-writer-unavailable`; repeated runs from one client can also add `--allow-rate-limited`. Production checks should omit both flags.
 
 ## AI referee reliability
 
@@ -74,6 +74,12 @@ The referee stays on the existing OpenAI provider/model. It makes one provider a
 Only the last 10 messages are sent as context, each bounded to 1,000 characters; the visible in-memory transcript retains up to 40 messages and is not persisted. Questions are limited to 500 characters. Retry respects server cooldowns. The dialog supports Escape, keyboard focus trapping/restoration, and a direct link to catalog rules. Native static export explains that AI requires the web app instead of issuing an unavailable local API request.
 
 Run `node scripts/verify-referee.mjs https://your-preview-url` to verify receipt enforcement, invalid request rejection, body bounds, and one short real provider response. This test incurs the existing provider's cost for that single question; it performs no account, rating, or signup writes. Unit tests cover outage, deadline, cooldown, retry, and cancellation paths without provider calls.
+
+## Rate limiting and abuse protection
+
+The Vercel WAF rules are the global edge control for AI and public-submission paths. API handlers keep a bounded sliding-window limiter, and production Vercel functions propagate only active block markers through Runtime Cache. This avoids pretending a non-atomic cache read/write is a global counter: allowed-request accounting remains local, while a client blocked in one warm function can be blocked by sibling functions in the same cache region. Runtime Cache errors fail open to the local limiter for availability; missing `VERCEL`/cache context (local development and tests) uses the local limiter only. No IP address is stored in Runtime Cache—the cache key is SHA-256 hashed.
+
+Run `node scripts/verify-rate-limit.mjs https://your-preview-url` for an external burst check. It sends only invalid chat payloads, expects ten validation responses followed by a 429, and makes no provider, rating, signup, or event writes. Repeated runs can use `--allow-existing-block` while a prior Runtime Cache marker is still active.
 
 ## Mobile
 

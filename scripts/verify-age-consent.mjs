@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 // Synthetic release smoke test. Creates only a declaration receipt; does not
 // write ratings/signups, send email, or assert the operator's real age.
 const base = new URL(process.argv[2] || "http://localhost:3000").origin;
+const allowPrivateWriterUnavailable = process.argv.includes("--allow-private-writer-unavailable");
+const allowRateLimited = process.argv.includes("--allow-rate-limited");
 const results = [];
 async function request(path, method = "POST", body, cookie, origin = base) {
   const response = await fetch(base + path, {
@@ -42,7 +44,14 @@ assert.equal((await status.json()).confirmed, true);
 assert.ok(status.headers.get("cache-control")?.includes("no-store"));
 for (const route of ["chat", "ratings", "subscribe"]) {
   // Invalid payload proves passage through the receipt guard without writes.
-  await expectStatus(`${route}: acknowledged input validation`, await request(`/api/${route}`, "POST", {}, cookie), 400);
+  const response = await request(`/api/${route}`, "POST", {}, cookie);
+  if (allowRateLimited && response.status === 429) {
+    results.push({ check: `${route}: limiter already active`, status: response.status });
+  } else if (route === "subscribe" && allowPrivateWriterUnavailable && response.status === 503) {
+    results.push({ check: `${route}: private writer unavailable in preview`, status: response.status });
+  } else {
+    await expectStatus(`${route}: acknowledged input validation`, response, 400);
+  }
 }
 const finder = await request("/api/game-finder", "POST", { query: "A relaxed card game for four friends using non-alcoholic drinks" }, cookie);
 await expectStatus("acknowledged game finder", finder, 200);

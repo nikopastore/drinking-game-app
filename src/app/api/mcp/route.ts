@@ -14,7 +14,7 @@ import { games } from "@/config/gameData";
 import { cocktails } from "@/config/cocktailData";
 import { Game, Cocktail } from "@/types";
 import { createCorsHeaders, handleCorsPreflightRequest } from "@/lib/cors";
-import { checkRateLimit, createRateLimitHeaders, getClientIP, rateLimiters } from "@/lib/rateLimit";
+import { checkDistributedRateLimit, createRateLimitHeaders, getClientIP, rateLimiters } from "@/lib/rateLimit";
 
 const SIPWIKI_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://sipwiki.app";
 
@@ -730,7 +730,7 @@ export async function OPTIONS(request: NextRequest) {
 // Handle MCP protocol requests
 export async function POST(request: NextRequest) {
   const corsHeaders = createCorsHeaders(request);
-  const rateLimit = checkRateLimit(`mcp:${getClientIP(request)}`, rateLimiters.relaxed);
+  const rateLimit = await checkDistributedRateLimit(`mcp:${getClientIP(request)}`, rateLimiters.relaxed);
   const rateHeaders = createRateLimitHeaders(rateLimit);
 
   if (!rateLimit.allowed) {

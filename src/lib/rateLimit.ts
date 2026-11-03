@@ -1,11 +1,14 @@
 /**
- * Simple in-memory rate limiter using sliding window algorithm
+ * Sliding-window limiter with an in-memory fast path and optional Vercel
+ * Runtime Cache propagation for blocked clients.
  *
- * For production with multiple instances, consider using:
- * - Redis with @upstash/ratelimit
- * - Vercel KV
- * - Other distributed cache
+ * The Runtime Cache only propagates a block marker; it is deliberately not
+ * used as an increment counter because get/set is not an atomic operation.
+ * Vercel WAF rules remain the authoritative global limiter.
  */
+
+import { createHash } from "node:crypto";
+import { getCache } from "@vercel/functions";
 
 interface RateLimitEntry {
   timestamps: number[];
@@ -119,6 +122,50 @@ export function checkRateLimit(
     resetAt,
     limit: config.maxRequests,
   };
+}
+
+const RUNTIME_BLOCK_NAMESPACE = "sipwiki-rate-limit-block";
+
+function runtimeCacheAvailable(): boolean {
+  return process.env.VERCEL === "1" || Boolean(process.env.RUNTIME_CACHE_ENDPOINT);
+}
+
+function runtimeBlockKey(identifier: string): string {
+  return createHash("sha256").update(identifier).digest("hex");
+}
+
+/**
+ * Propagate local blocks across warm Vercel functions in the same runtime
+ * cache region. Cache failures fail open to the local limiter for availability.
+ */
+export async function checkDistributedRateLimit(
+  identifier: string,
+  config: RateLimitConfig,
+): Promise<RateLimitResult> {
+  const local = checkRateLimit(identifier, config);
+  if (!runtimeCacheAvailable()) return local;
+
+  try {
+    const cache = getCache({ namespace: RUNTIME_BLOCK_NAMESPACE });
+    const key = runtimeBlockKey(identifier);
+    const remote = await cache.get(key);
+    const remoteResetAt = remote && typeof remote === "object" && "resetAt" in remote
+      && Number.isFinite((remote as { resetAt?: unknown }).resetAt)
+      ? Number((remote as { resetAt: number }).resetAt)
+      : null;
+
+    if (remoteResetAt && remoteResetAt > Date.now()) {
+      return { ...local, allowed: false, remaining: 0, resetAt: Math.max(local.resetAt, remoteResetAt) };
+    }
+
+    if (!local.allowed) {
+      const ttl = Math.max(1, Math.ceil((local.resetAt - Date.now()) / 1000));
+      await cache.set(key, { resetAt: local.resetAt }, { ttl, name: "rate-limit-block" });
+    }
+  } catch {
+    // Runtime Cache is defense-in-depth. Keep the bounded local limiter alive.
+  }
+  return local;
 }
 
 /**

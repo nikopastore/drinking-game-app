@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
-  checkRateLimit,
+  checkDistributedRateLimit,
   createRateLimitHeaders,
   getClientIP,
   rateLimiters,
@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
   }
 
   const clientIP = getClientIP(request);
-  const rateLimitResult = checkRateLimit(`events:${clientIP}`, rateLimiters.events);
+  const rateLimitResult = await checkDistributedRateLimit(`events:${clientIP}`, rateLimiters.events);
 
   if (!rateLimitResult.allowed) {
     return NextResponse.json(
